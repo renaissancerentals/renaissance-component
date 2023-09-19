@@ -1,0 +1,6 @@
+.div-video{position:relative}.div-video .volume{position:absolute;bottom:1rem;left:1rem;cursor:pointer;color:white}.div-video .play-pause{position:absolute;bottom:1rem;right:1rem;cursor:pointer;color:white}.div-video .volume:hover,.div-video .play-pause:hover{opacity:.6}.div-video .muncher-spinner{position:absolute;left:45%;top:45%}.div-video video{width:100%;height:100%;object-fit:cover}
+
+.video-story{width:40vw}
+
+
+/*# sourceMappingURL=video-Video-stories.c3ab1218.chunk.css.map*/

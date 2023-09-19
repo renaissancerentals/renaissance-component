@@ -1,0 +1,13 @@
+@import 'src/assets/variables';
+
+.section-sublets {
+  header {
+    text-align: right;
+    margin-right: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 1px dashed $tertiary-background-color;
+  }
+}

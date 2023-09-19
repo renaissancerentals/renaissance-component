@@ -1,0 +1,44 @@
+@import "src/assets/variables";
+
+$card-color: $secondary-color !default;
+$card-background: $primary-background-color !default;
+$card-header-background: $tertiary-background-color !default;
+.section-card {
+  color: $card-color;
+  background: $card-background;
+  font-family: $sans-serif-font;
+  line-height: 1.4rem;
+  margin: 3vw;
+  width: 94vw;
+  @media (min-width: $large-size) {
+    margin: 0;
+    width: 100%;
+  }
+
+  .muncher-paper {
+    padding: 0;
+  }
+
+  .card-header {
+    background: $card-header-background;
+    color: $card-background;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 400;
+    font-family: $serif-font;
+  }
+
+  .card-body {
+    padding: 1rem;
+    font-size: .8rem;
+    font-weight: 400;
+
+  }
+
+  .card-body--featured {
+    color: $card-background;
+    background: $primary-color;
+  }
+}
+

@@ -1,0 +1,83 @@
+@import "src/assets/variables";
+
+.div-gallery {
+  padding: 0;
+  display: block;
+  position: relative;
+  width: 100%;
+
+  .gallery-hero-two-columns {
+    display: flex;
+
+    .gallery-hero-column-one, .gallery-hero-column-two {
+      width: 50vw;
+    }
+
+    .gallery-hero--image {
+      cursor: pointer;
+      object-fit: cover;
+      object-position: center;
+
+    }
+
+    .cover-image {
+      cursor: default;
+    }
+
+    .gallery-hero-one {
+      .gallery-hero--image {
+        width: 100vw;
+        object-fit: cover;
+        object-position: center;
+        height: 40vw;
+      }
+    }
+
+    .gallery-hero-column {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      .gallery-hero--image {
+        width: 25%;
+        height: 20vw;
+      }
+
+      .gallery-hero-mobile--image {
+        cursor: pointer;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 40vh;
+      }
+    }
+
+    .gallery-hero-column-one {
+
+      .gallery-hero--image {
+        width: 100%;
+        height: 40vw;
+      }
+    }
+
+
+    .gallery-hero-column-two {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      .gallery-hero--image {
+        width: 50%;
+        height: 20vw;
+      }
+    }
+  }
+
+
+  .badge--info {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+}

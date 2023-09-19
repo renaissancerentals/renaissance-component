@@ -1,0 +1,33 @@
+@import 'src/assets/variables';
+
+.section-card-sublet {
+  .muncher-paper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    @media(min-width: $large-size) {
+      flex-wrap: nowrap;
+    }
+  }
+  .sublet-card--content {
+    padding: 0 1rem;
+    width: 100%;
+
+    .sublet-title {
+      text-align: left;
+      font-size: 1rem;
+      @media(min-width: $large-size) {
+        margin-top: 0;
+      }
+
+    }
+
+    .sublet-metadata{
+      font-size: .8rem;
+    }
+    .sublet-description{
+      font-size: .8rem;
+    }
+  }
+}

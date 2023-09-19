@@ -1,0 +1,28 @@
+@import "src/assets/variables";
+
+$feature-section-background-color: $secondary-background-color !default;
+.section-feature {
+  font-family: $main-font;
+  background: $feature-section-background-color;
+  padding: 1.5rem;
+
+  .heading {
+    i, .emphasized {
+      background: $feature-section-background-color;
+      padding: 0 1rem;
+    }
+  }
+
+  .section-feature--detail {
+    padding: 0;
+  }
+}
+
+@media (min-width: $large-size) {
+  .section-feature {
+    .section-feature--detail {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}

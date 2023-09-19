@@ -1,0 +1,37 @@
+@import "src/assets/variables";
+
+.section-feature {
+  .section-feature--two-column {
+    @media (min-width: $large-size) {
+      display: flex;
+    }
+
+    ul {
+      li {
+        font-size: .8rem;
+      }
+    }
+
+    ul, ol {
+      column-count: 1;
+      padding: 0 1rem;
+    }
+  }
+
+  .section-feature--title {
+    font-family: $serif-font;
+    text-align: left;
+    text-transform: none;
+    font-weight: normal;
+    font-size: 2rem;
+  }
+
+  .pronounce {
+    font-size: .7rem;
+
+    i {
+      font-size: .8rem;
+      padding-left: .5rem;
+    }
+  }
+}

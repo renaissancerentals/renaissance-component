@@ -1,0 +1,33 @@
+@import "src/assets/variables";
+
+.section-property-location {
+  .react-loading-skeleton {
+    width: 90vw;
+    height: 8rem;
+    margin: .5rem 0;
+  }
+
+  @media(min-width: $large-size) {
+    .property-location {
+      .react-loading-skeleton {
+        width: 20vw;
+      }
+
+      .map-skeleton {
+        margin: .5rem 1rem;
+        width: 50vw;
+      }
+    }
+  }
+
+
+  .lease-office {
+    @media(min-width: $large-size) {
+      .react-loading-skeleton {
+        width: 20vw;
+        margin: .5rem .5rem;
+      }
+    }
+
+  }
+}

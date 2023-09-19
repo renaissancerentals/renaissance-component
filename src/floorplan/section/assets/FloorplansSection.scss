@@ -1,0 +1,18 @@
+@import "src/assets/variables";
+
+.section-floorplans {
+  padding: 0;
+  .floorplans-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .floorplan-card {
+      margin: 1rem;
+    }
+  }
+  .floorplan-banner {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

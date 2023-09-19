@@ -1,0 +1,90 @@
+@import 'src/assets/variables';
+
+$floorplan-background-color: $tertiary-color !default;
+$floorplan-featured-color: $primary-color !default;
+$floorplan-hover-color: $primary-background-color !default;
+
+.section-floorplan {
+  padding: 0 0 .5rem;
+  background: $floorplan-background-color;
+
+  .floorplan--cards {
+    padding: 0;
+    margin: 1rem 0;
+    @media (min-width: $large-size) {
+      -webkit-column-count: 2;
+      column-count: 2;
+      column-gap: 1rem;
+      > .section-card {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .section-card {
+    padding: 0;
+    margin: 3vw;
+    width: 94vw;
+
+    @media (min-width: $large-size) {
+      margin: 1rem 0;
+      width: 100%;
+      break-inside: avoid-column;
+      -webkit-column-break-inside: avoid;
+    }
+
+    p {
+      font-size: 1rem;
+      letter-spacing: .03rem;
+      line-height: 1.5rem;
+      font-weight: 300;
+    }
+
+    ul {
+      column-count: 1;
+      padding-top: 0;
+
+      li {
+        font-size: 1rem;
+      }
+    }
+
+    .muncher-paper {
+      margin: 0;
+    }
+
+    .floorplan-card--featured, h5 {
+      color: $floorplan-featured-color;
+      margin: .3rem 0;
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+
+    h5 {
+      padding: 0;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+  }
+
+  .contact-card {
+    text-align: center;
+
+    p {
+      font-size: 1.6rem;
+      font-family: $serif-font;
+      letter-spacing: .04rem;
+      line-height: 2rem;
+      font-weight: 400;
+    }
+
+    a {
+      color: $floorplan-hover-color;
+    }
+  }
+
+  .muncher-button--tertiary {
+    color: $floorplan-hover-color;
+    text-transform: capitalize;
+  }
+}

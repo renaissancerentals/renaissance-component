@@ -1,0 +1,4 @@
+.section-announcement{font-family:"Merriweather",serif;text-align:center}.section-announcement h2{font-family:"Merriweather",serif;text-transform:capitalize;font-size:20px}.section-announcement p{font-size:14px}.section-announcement button{font-family:"Merriweather Sans",sans-serif;font-weight:bold;padding:.7rem 1rem;background:#41606d;color:white;font-size:14px}@media (min-width: 62rem){.section-announcement{display:flex;justify-content:center;align-items:center;padding:2rem;background:grey}}.section-announcement .left{background:white;color:#41606d}.section-announcement .left h2{color:#41606d}.section-announcement .right{background:#41606d;color:white}.section-announcement .left,.section-announcement .right{padding:1rem}@media (min-width: 62rem){.section-announcement .left,.section-announcement .right{max-width:30rem;height:10rem}}
+
+
+/*# sourceMappingURL=announcement-Banner-stories.c53c2836.chunk.css.map*/

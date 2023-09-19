@@ -1,0 +1,53 @@
+@import 'src/assets/variables';
+
+.div-sublet-image {
+
+  position: relative;
+  height: 16rem;
+  width: 96vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .muncher-spinner {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .muncher-button--navigate {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  .sublet--image {
+    width: 96vw;
+    height: 16rem;
+    object-fit: cover;
+  }
+
+  @media(min-width: $large-size) {
+    width: 20rem;
+    height: 14rem;
+    .sublet--image {
+      width: 20rem;
+      height: 14rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 25rem;
+    height: 16rem;
+    .sublet--image {
+      width: 25rem;
+      height: 16rem;
+    }
+  }
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
