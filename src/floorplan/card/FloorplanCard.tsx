@@ -38,9 +38,9 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
 
 
             {isAssetLoading ? <Spinner size="medium"/> : <></>}
-            {floorplan.featured ? (isFloorplanAvailable(floorplan) ? <Badge>Featured & Available</Badge> :
+            {floorplan.featured ? (isFloorplanAvailable(floorplan) ? <Badge>Featured & Available Now</Badge> :
 
-                <Badge>Featured</Badge>) : isFloorplanAvailable(floorplan) ? <Badge>Available</Badge> : ''}
+                <Badge>Featured</Badge>) : isFloorplanAvailable(floorplan) ? <Badge>Available Now</Badge> : ''}
             {floorplan.virtualTourLink ?
                 <div className="icon-tour">
                     <Button variant="transparent" size="small"
