@@ -93,6 +93,7 @@ export type PropertyId =
     "scholars-rock" |
     "scholars-rooftop" |
     "summer-house" |
+    "summer-house-short-term" |
     "verona-park";
 
 export const PropertiesEmail: any = {
