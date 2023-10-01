@@ -46,12 +46,17 @@ export const Default = Template.bind({});
 export const WithFilters = Template.bind({});
 
 WithFilters.args = {
-    defaultAvailability: AVAILABLE_NOW,
-    propertyId:"verona-park"
+    defaultAvailability: moment().add(1, "month").format('MM-YYYY'),
+    propertyId: "verona-park"
+}
+export const AvailableNowFilter = Template.bind({});
+
+AvailableNowFilter.args = {
+    defaultAvailability: AVAILABLE_NOW
 }
 export const WithFloorplanIds = Template.bind({});
 
 WithFloorplanIds.args = {
     defaultFloorplanIds: ["blair-flat", "crestone", "capri", "3335ec"],
-    propertyId:"verona-park"
+    propertyId: "verona-park"
 }

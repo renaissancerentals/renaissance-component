@@ -90,6 +90,8 @@ export const isDateWithinTwelveMonths = (date: string) => {
 }
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format('MMM YYYY');
 
+export const defaultAvailabilityToMonthYear = (dateString: string): string =>
+    AVAILABLE_NOW === dateString ? dateString : moment(dateString, "MM-YYYY").format('MMM YYYY');
 
 export const momentToMonthYear = (date: Moment) => date.format('MMM YYYY');
 const isAvailable = (floorplan: FloorplanCardData, availabilityFilters: Month[]): boolean => {

@@ -6,7 +6,7 @@ import {Icon, Pill, Range} from "@contentmunch/muncher-ui";
 import {CurrentFilters, FloorplanFilters, SortBy} from "../data/FloorplanFilters";
 import {FloorplanCardData, FloorplanStyle, MAX_RENT, MIN_RENT} from "../data/Floorplan";
 import {BedroomFilter, sortBedrooms} from "./filter/Bedroom";
-import {momentToMonthYear, sortAndFilter} from "../service/FloorplanService";
+import {defaultAvailabilityToMonthYear, sortAndFilter} from "../service/FloorplanService";
 import {AvailabilityFilter, sortAvailability} from "./filter/Availability";
 import {PriceFilter} from "./filter/Price";
 import {StyleFilter} from "./filter/Style";
@@ -26,7 +26,7 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
     }) => {
 
     const [bedroomFilters, setBedroomFilters] = useState<number[]>(defaultBedRooms ? [defaultBedRooms] : []);
-    const [availabilityFilters, setAvailabilityFilters] = useState<string[]>(defaultAvailability ? [defaultAvailability] : []);
+    const [availabilityFilters, setAvailabilityFilters] = useState<string[]>(defaultAvailability ? [defaultAvailabilityToMonthYear(defaultAvailability)] : []);
     const [styleFilters, setStyleFilters] = useState<FloorplanStyle[]>(defaultFloorplanStyle ? [defaultFloorplanStyle] : []);
     const [minRent, setMinRent] = useState<number>(defaultMinRent ? defaultMinRent : MIN_RENT);
     const [maxRent, setMaxRent] = useState<number>(defaultMaxRent ? defaultMaxRent : MAX_RENT);

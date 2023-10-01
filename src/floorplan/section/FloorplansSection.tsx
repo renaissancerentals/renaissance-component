@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {FloorplanCardData, FloorplanStyle, MAX_RENT, MIN_RENT} from "../data/Floorplan";
 import {FloorplansHeader} from "./FloorplansHeader";
-import {filtersFrom, sortAndFilter} from "../service/FloorplanService";
+import {defaultAvailabilityToMonthYear, filtersFrom, sortAndFilter} from "../service/FloorplanService";
 import {FloorplanCard} from "../card/FloorplanCard";
 import {VideoModal} from "../../asset/VideoModal";
 import {Video} from "../../asset/data/Asset";
@@ -14,7 +14,7 @@ export const FloorplansSection: React.FC<FloorplansSectionProps> = (
     }) => {
     const [filteredFloorplans, setFilteredFloorplans] = useState<FloorplanCardData[]>(sortAndFilter(floorplans, {
         bedroomFilters: defaultBedRooms ? [defaultBedRooms] : [],
-        availabilityFilters: defaultAvailability ? [defaultAvailability] : [],
+        availabilityFilters: defaultAvailability ? [defaultAvailabilityToMonthYear(defaultAvailability)] : [],
         styleFilters: defaultFloorplanStyle ? [defaultFloorplanStyle] : [],
         minRent: defaultMinRent ? defaultMinRent : MIN_RENT,
         maxRent: defaultMaxRent ? defaultMaxRent : MAX_RENT,
