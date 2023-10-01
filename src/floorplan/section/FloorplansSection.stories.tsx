@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
-import {getAllPropertyFilterData, sortFloorplans} from "../service/FloorplanService";
+import {AVAILABLE_NOW, getAllPropertyFilterData, sortFloorplans} from "../service/FloorplanService";
 import {FloorplanCardData} from "../data/Floorplan";
 import {FloorplanSectionSkeleton} from "./FloorplanSectionSkeleton";
 import {FloorplansSection} from "./FloorplansSection";
@@ -46,7 +46,7 @@ export const Default = Template.bind({});
 export const WithFilters = Template.bind({});
 
 WithFilters.args = {
-    defaultAvailability: [moment("Sep 2022", "MMM YYYY")],
+    defaultAvailability: AVAILABLE_NOW,
     propertyId:"verona-park"
 }
 export const WithFloorplanIds = Template.bind({});

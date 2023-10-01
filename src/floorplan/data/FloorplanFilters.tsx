@@ -6,7 +6,7 @@ import {FloorplanStyle} from "./Floorplan";
 
 export interface CurrentFilters {
     bedroomFilters: number[];
-    availabilityFilters: Month[];
+    availabilityFilters: string[];
     styleFilters: FloorplanStyle[];
     minRent: number;
     maxRent: number;

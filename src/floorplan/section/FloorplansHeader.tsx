@@ -26,7 +26,7 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
     }) => {
 
     const [bedroomFilters, setBedroomFilters] = useState<number[]>(defaultBedRooms ? [defaultBedRooms] : []);
-    const [availabilityFilters, setAvailabilityFilters] = useState<string[]>(defaultAvailability ? defaultAvailability.map(avail=>momentToMonthYear(avail)) : []);
+    const [availabilityFilters, setAvailabilityFilters] = useState<string[]>(defaultAvailability ? [defaultAvailability] : []);
     const [styleFilters, setStyleFilters] = useState<FloorplanStyle[]>(defaultFloorplanStyle ? [defaultFloorplanStyle] : []);
     const [minRent, setMinRent] = useState<number>(defaultMinRent ? defaultMinRent : MIN_RENT);
     const [maxRent, setMaxRent] = useState<number>(defaultMaxRent ? defaultMaxRent : MAX_RENT);
