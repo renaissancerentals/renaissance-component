@@ -11,6 +11,10 @@ const getPropertyQuery = (propertyId: String) => {
             conversionTrackingId2 amenities {id name type featured}\
             teamMembers {id name blogLink jobTitle email  photoLink }\
             busRoutes { busRoute busRouteLink}\
+            leasingOffice { \
+                id name address zipcode phone officeHours direction officeMap \
+                officeMapLandscape officeImage officeImageDescription \
+            }\
             floorplans { id name bedroom bathroom style featured \
                 greenCertified videoTourLink threeSixtyVideoTourLink \
                 virtualTourLink photo coverImage floorPlanFolderId \
