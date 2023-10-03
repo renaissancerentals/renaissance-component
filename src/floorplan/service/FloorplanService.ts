@@ -100,7 +100,14 @@ const isAvailable = (floorplan: FloorplanCardData, availabilityFilters: Month[])
 
         floorplan.units.some((unit) => {
                 if (availabilityFilters.indexOf(AVAILABLE_NOW) > -1) {
-                    return isBeforeToday(unit.moveInDate);
+                    if (isBeforeToday(unit.moveInDate)) {
+                        return true;
+                    }
+                }
+                if (availabilityFilters.indexOf(momentToMonthYear(today)) > -1) {
+                    if (isBeforeToday(unit.moveInDate)) {
+                        return true;
+                    }
                 }
                 return availabilityFilters.indexOf(dateToMonthYear(unit.moveInDate)) > -1;
             }
