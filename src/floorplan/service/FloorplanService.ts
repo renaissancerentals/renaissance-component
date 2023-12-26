@@ -2,7 +2,6 @@ import _ from 'lodash';
 import {Month} from "../data/Calendar";
 import {CurrentFilters, FloorplanFilters, SortBy, SortFields} from "../data/FloorplanFilters";
 import moment, {Moment} from "moment";
-import AdminApi from "../../service/AdminApi";
 import {
     Floorplan,
     FloorplanCardData,
@@ -16,7 +15,7 @@ import {
 import {dateToMoment, minumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
 import {Pet, Unit} from "../data/Unit";
-import GraphqlQuery from "../../service/GraphqlQuery";
+import {get, graphql} from "../../service/RoundRobin";
 
 export const AVAILABLE_NOW = "Available Now";
 
@@ -41,7 +40,7 @@ const getAllPropertyFilterDataQuery = () => {
     }'
 }
 export const getAllPropertyFilterData = (): Promise<PropertyFilterData[]> => {
-    return GraphqlQuery(getAllPropertyFilterDataQuery()).then(response => {
+    return graphql(getAllPropertyFilterDataQuery()).then(response => {
             const properties: PropertyFilterData[] = response.data.data.properties.filter((property: PropertyFilterData) => property.active);
 
             properties.forEach(property => {
@@ -69,7 +68,7 @@ const getFloorplansFilterDataQuery = (propertyId: String) => {
     }'
 }
 export const getFloorplansFilterData = (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    return GraphqlQuery(getFloorplansFilterDataQuery(propertyId)).then(response => {
+    return graphql(getFloorplansFilterDataQuery(propertyId)).then(response => {
             const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
             floorplans.forEach(floorplan => {
                 floorplan.units = floorplan.units.filter(unit => unit.active);
@@ -175,7 +174,7 @@ export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters =
 
 export const getFeaturedFloorplans = (): Promise<FloorplanSpotlight[]> => {
 
-    return AdminApi.get("floorplans?projection=spotlight&size=200")
+    return get("floorplans?projection=spotlight&size=200")
         .then(response =>
             response.data._embedded.floorplans.filter((floorplan: FloorplanSpotlight) => floorplan.featured && floorplan.property.active)
         );
@@ -183,7 +182,7 @@ export const getFeaturedFloorplans = (): Promise<FloorplanSpotlight[]> => {
 
 export const getAllActiveFloorplans = (): Promise<FloorplanDetails[]> => {
 
-    return AdminApi.get("floorplans?projection=details&size=200")
+    return get("floorplans?projection=details&size=200")
         .then(response =>
             response.data._embedded.floorplans
                 .filter((floorplan: Floorplan) => floorplan.active)
@@ -192,20 +191,17 @@ export const getAllActiveFloorplans = (): Promise<FloorplanDetails[]> => {
 };
 
 export const getFloorplan = (floorplanId: string): Promise<Floorplan> =>
-    AdminApi.get("floorplans/" + floorplanId + "?projection=withId").then(response => response.data);
-
-export const getUnitsFor = (floorplanId: string): Promise<Unit[]> =>
-    AdminApi.get("units/byFloorplan?floorplanId=" + floorplanId).then(response => response.data);
+    get("floorplans/" + floorplanId + "?projection=withId").then(response => response.data);
 
 export const getSimilarFloorplans = (floorplanId: string): Promise<SimilarFloorplan[]> =>
-    AdminApi.get("similarFloorplans/byFloorplan?floorplanId=" + floorplanId).then(response => response.data);
+    get("similarFloorplans/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.similarFloorplans);
 
 export const getFloorplanVariations = (floorplanId: string): Promise<FloorplanVariation[]> =>
-    AdminApi.get("floorplanVariations/byFloorplan?floorplanId=" + floorplanId).then(response => response.data);
+    get("floorplanVariations/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.floorplanVariations);
 const today = moment();
 export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): boolean => floorplan.units.some((unit) => today.isAfter(dateToMoment(unit.moveInDate)));
 export const getTestimonials = (floorplanId: string): Promise<Testimonial[]> =>
-    AdminApi.get("testimonials/byFloorplan?floorplanId=" + floorplanId).then(response => response.data);
+    get("testimonials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.testimonials);
 
 
 export const permittedPets = (floorplan: Floorplan): string[] => {

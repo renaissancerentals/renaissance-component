@@ -1,7 +1,7 @@
 import {PropertyTeamMember} from "../data/TeamMember";
-import AdminApi from "../../service/AdminApi";
+import {get} from "../../service/RoundRobin";
 
 
 export const getAllTeamMembers = (): Promise<PropertyTeamMember[]> => {
-    return AdminApi.get("teamMembers?projection=propertyTeamMember&size=100").then(response => response.data._embedded.teamMembers);
+    return get("teamMembers?projection=propertyTeamMember&size=100").then(response => response.data._embedded.teamMembers);
 };

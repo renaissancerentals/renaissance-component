@@ -78,6 +78,7 @@ export {getAllTeamMembers} from "./team/service/TeamService";
 export {RENAISSANCE_BASE_URL} from "./service/Api";
 export {ASSET_BASE_URL, DEFAULT_IMAGE_URL} from "./service/AssetApi";
 export {RENAISSANCE_ADMIN_BASE_URL} from "./service/AdminApi";
+export {get, graphql} from "./service/RoundRobin";
 export type  {
     MinMax
 } from "./utils/Utils";
