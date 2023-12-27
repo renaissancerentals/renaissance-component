@@ -55,8 +55,13 @@ export const Gallery: React.FC<GalleryProps> = ({type, images, isLoading, showNa
                     {
                         sliderImageLoaded ? "" : <Spinner/>
                     }
-                    <img src={assetUrlFrom(imageInFocus.id, propertyId)} alt={imageInFocus.name} onLoad={imageLoaded}/>
-                    {showName ? <p>{imageInFocus.name}</p> : ""}
+                    {imageInFocus.id ?
+                        <>
+                            <img src={assetUrlFrom(imageInFocus.id, propertyId)} alt={imageInFocus.name}
+                                 onLoad={imageLoaded}/>
+                            {showName ? <p>{imageInFocus.name}</p> : ""}
+                        </> : <></>}
+
                     <div className="right" onClick={rightClickHandler}>
                         <Icon name="arrow-right" size="large"/>
                     </div>

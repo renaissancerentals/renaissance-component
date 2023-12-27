@@ -15,7 +15,7 @@ const Template: Story<DriveGalleryProps> = (args) => {
 
 export const GridGallery = Template.bind({});
 GridGallery.args = {
-    driveId: "0B6C97UNWKNaIMXNZWFBBNmV2enM",
+    driveId: "1zGKGw9EBbQCvLkZqK-grYp8sul5lXJqF",
     type: "grid",
     initialSize: 9,
     propertyId: "verona-park"

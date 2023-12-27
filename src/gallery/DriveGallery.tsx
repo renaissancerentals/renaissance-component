@@ -5,7 +5,7 @@ import "./assets/DriveGallery.scss";
 import {getAssetsFrom} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
 
-export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initialSize, showName,propertyId}) => {
+export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initialSize, showName, propertyId}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [images, setImages] = useState<Asset[]>([]);
     const [currentImages, setCurrentImages] = useState<Asset[]>([]);
@@ -30,7 +30,8 @@ export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initia
 
     return (
         <div className="drive-gallery">
-            <Gallery allImages={images} images={currentImages} isLoading={isLoading} type={type} showName={showName} propertyId={propertyId}/>
+            <Gallery allImages={images} images={currentImages} isLoading={isLoading} type={type} showName={showName}
+                     propertyId={propertyId}/>
             {showButton ? <Button variant={"secondary"} onClick={handleButtonClick}>More Pictures »</Button> : ""}
         </div>
 
@@ -42,7 +43,7 @@ export interface DriveGalleryProps {
     type?: GalleryType;
     initialSize?: number;
     showName?: boolean;
-    propertyId:string;
+    propertyId: string;
 }
 
 DriveGallery.defaultProps = {
