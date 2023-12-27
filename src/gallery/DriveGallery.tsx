@@ -19,8 +19,13 @@ export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initia
             } else {
                 setCurrentImages(galleryImages);
             }
-            setIsLoading(false);
+
+        }).catch(() => {
+            console.log("Invalid driveId", driveId);
         })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, [driveId, initialSize]);
 
     const handleButtonClick = () => {

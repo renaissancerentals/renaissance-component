@@ -15,14 +15,21 @@ export const getAssetUrl = (imageUrl: string, assetGatewayId: string): string =>
 export const assetUrlFrom = (id: string, assetGatewayId: string): string => propertyIdToDomain(propertyFragment(assetGatewayId)) + ASSET_DOWNLOAD_FRAGMENT + id;
 
 
-export const getAssetsFrom = async (folderId: string): Promise<Asset[]> => {
-    let response = await AssetApi.get("assets/" + folderId);
-    return await response.data._embedded ?
-        response.data._embedded.assets.filter((a: Asset) => a !== undefined)
-            .sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name))
-        : [];
+// export const getAssetsFrom = async (folderId: string): Promise<Asset[]> => {
+//     let response = await AssetApi.get("assets/" + folderId);
+//     return await response.data._embedded ?
+//         response.data._embedded.assets.filter((a: Asset) => a !== undefined)
+//             .sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name))
+//         : [];
+// }
+export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
+    return AssetApi.get("assets/" + folderId)
+        .then(response => response.data._embedded ?
+            response.data._embedded.assets.sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name)) : [])
+        .catch(reason => {
+            console.log(reason);
+        });
 }
-
 export const propertyIdToDomain = (propertyId: string): string => {
     switch (propertyId) {
         case "verona-park":
