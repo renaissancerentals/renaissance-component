@@ -1,5 +1,5 @@
 import {PropertyDetails, PropertyId} from "../data/Property";
-import GraphqlQuery from "../../service/GraphqlQuery";
+import {graphql} from "../../service/GraphqlQuery";
 
 const getPropertyQuery = (propertyId: String) => {
     return '{                                                       \
@@ -27,6 +27,6 @@ const getPropertyQuery = (propertyId: String) => {
     }'
 }
 export const getProperty = (propertyId: PropertyId): Promise<PropertyDetails> => {
-    return GraphqlQuery(getPropertyQuery(propertyId))
+    return graphql(getPropertyQuery(propertyId))
         .then(response => response.data.data.property);
 };

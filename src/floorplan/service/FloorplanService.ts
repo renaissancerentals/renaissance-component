@@ -15,8 +15,8 @@ import {
 import {dateToMoment, minumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
 import {Pet, Unit} from "../data/Unit";
-import GraphqlQuery from "../../service/GraphqlQuery";
 import {get} from "../../service/RoundRobin";
+import {graphql} from "../../service/GraphqlQuery";
 
 export const AVAILABLE_NOW = "Available Now";
 
@@ -41,7 +41,7 @@ const getAllPropertyFilterDataQuery = () => {
     }'
 }
 export const getAllPropertyFilterData = (): Promise<PropertyFilterData[]> => {
-    return GraphqlQuery(getAllPropertyFilterDataQuery()).then(response => {
+    return graphql(getAllPropertyFilterDataQuery()).then(response => {
             const properties: PropertyFilterData[] = response.data.data.properties.filter((property: PropertyFilterData) => property.active);
 
             properties.forEach(property => {
@@ -69,7 +69,7 @@ const getFloorplansFilterDataQuery = (propertyId: String) => {
     }'
 }
 export const getFloorplansFilterData = (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    return GraphqlQuery(getFloorplansFilterDataQuery(propertyId)).then(response => {
+    return graphql(getFloorplansFilterDataQuery(propertyId)).then(response => {
             const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
             floorplans.forEach(floorplan => {
                 floorplan.units = floorplan.units.filter(unit => unit.active);
