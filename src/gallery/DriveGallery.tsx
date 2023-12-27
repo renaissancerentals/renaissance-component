@@ -12,20 +12,25 @@ export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initia
     const [showButton, setShowButton] = useState<boolean>(true);
 
     useEffect(() => {
-        getAssetsFrom(driveId).then(galleryImages => {
-            setImages(galleryImages);
-            if (initialSize && initialSize < galleryImages.length) {
-                setCurrentImages(galleryImages.slice(0, initialSize));
-            } else {
-                setCurrentImages(galleryImages);
-            }
+        if (driveId) {
+            getAssetsFrom(driveId).then(galleryImages => {
 
-        }).catch(() => {
-            console.log("Invalid driveId", driveId);
-        })
-            .finally(() => {
+                setImages(galleryImages);
+                if (initialSize && initialSize < galleryImages.length) {
+                    setCurrentImages(galleryImages.slice(0, initialSize));
+                } else {
+                    setCurrentImages(galleryImages);
+                }
+
+            }).catch(() => {
+                console.log("Invalid driveId", driveId);
+            }).finally(() => {
                 setIsLoading(false);
             });
+        } else {
+            setIsLoading(false);
+        }
+
     }, [driveId, initialSize]);
 
     const handleButtonClick = () => {

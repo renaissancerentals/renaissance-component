@@ -15,15 +15,21 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
     const [isAssetLoading, setIsAssetLoading] = useState(false);
     const [isAssetLoaded, setIsAssetLoaded] = useState(false);
     const loadAssets = () => {
-        setIsAssetLoading(true);
-        getAssetsFrom(floorplan.photosFolderId).then(data => {
-            setAssets(data);
-        }).catch(() => {
-            console.log("invalid folderId");
-        }).finally(() => {
+
+        if (floorplan.photosFolderId) {
+            getAssetsFrom(floorplan.photosFolderId).then(data => {
+                setAssets(data);
+            }).catch(() => {
+                console.log("invalid folderId");
+            }).finally(() => {
+                setIsAssetLoaded(true);
+                setIsAssetLoading(false);
+            });
+        } else {
             setIsAssetLoaded(true);
             setIsAssetLoading(false);
-        });
+        }
+
     };
     return (
         <div className={size === "small" ? "floorplan-card floorplan-card--small" : "floorplan-card"}>
