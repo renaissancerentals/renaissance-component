@@ -61,7 +61,13 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                 let totalToShow = currentAssets.length + count;
 
                 if (totalToShow > 5) {
-                    setTotalPages(Math.trunc(total + ((totalToShow - 5) / 8) + 1));
+
+                    let fullPages = Math.trunc(total + ((totalToShow - 5) / 8) + 1);
+
+                    if ((totalToShow - 5) % 8 === 0) {
+                        setTotalPages(fullPages);
+                    } else
+                        setTotalPages(fullPages + 1);
                 }
 
             }).finally(() => {

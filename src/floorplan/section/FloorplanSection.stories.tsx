@@ -16,7 +16,7 @@ Default.args = {
     applyClickHandler: () => {
         console.log("apply clicked");
     },
-    floorplanId: "villa",
+    floorplanId: "merci-grand",
 
 }
 
