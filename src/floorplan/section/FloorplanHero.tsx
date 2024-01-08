@@ -29,6 +29,8 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
     const [assetIndex, setAssetIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
+    const FIRST_PAGE_ASSET_COUNT = 5;
+    const GRID_SIZE = 8;
     const imageClickedHandler = (image: Asset) => {
         setShowModal(true);
         setAssetInFocus(image);
@@ -48,47 +50,55 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
             tourLinks.push(floorplan.threeSixtyVideoTourLink);
         setVideoTours(tourLinks);
 
-        let count = (tourLinks.length > 0 ? 1 : 0) + (floorplan.virtualTourLink ? 1 : 0);
-        setToursCount(count);
-        const currentAssets: Asset[] = [];
-        currentAssets.push({id: extractIdFrom(floorplan.coverImage), name: "cover image"} as Asset);
+        let otherAssetCounts = (tourLinks.length > 0 ? 1 : 0) + (floorplan.virtualTourLink ? 1 : 0);
+        setToursCount(otherAssetCounts);
+        const images: Asset[] = [];
+        images.push({id: extractIdFrom(floorplan.coverImage), name: "cover image"} as Asset);
 
         if (floorplan.photosFolderId) {
             getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
-                currentAssets.push(...galleryAssets);
+                images.push(...galleryAssets);
 
-                let total = 0;
-                let totalToShow = currentAssets.length + count;
+                let totalAssets = images.length + otherAssetCounts;
 
-                if (totalToShow > 5) {
+                if (totalAssets > FIRST_PAGE_ASSET_COUNT) {
 
-                    let fullPages = Math.trunc(total + ((totalToShow - 5) / 8) + 1);
+                    let pages = Math.trunc(((totalAssets - FIRST_PAGE_ASSET_COUNT) / 8) + 1);
 
-                    if ((totalToShow - 5) % 8 === 0) {
-                        setTotalPages(fullPages);
+                    if ((totalAssets - FIRST_PAGE_ASSET_COUNT) % 8 === 0) {
+                        setTotalPages(pages);
                     } else
-                        setTotalPages(fullPages + 1);
+                        setTotalPages(pages + 1);
                 }
 
             }).finally(() => {
-                setAssets(currentAssets);
+                setAssets(images);
                 setIsAssetsLoading(false);
             });
         } else {
-            setAssets(currentAssets);
+            setAssets(images);
+            console.log(images)
             setIsAssetsLoading(false);
         }
 
     }, [floorplan])
 
-    const assetsToShow = (i: number) => {
+    const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
 
-        if (i === 0)
-            return assets.slice(0, assets.length >= (5 - toursCount) ? 5 - toursCount : assets.length);
-        else {
-            let prevCount = i * 8 + (i - 1) - (8 - toursCount - 1);
-            return assets.slice(prevCount, prevCount + 8);
-        }
+    const imageCountForFirstPage = () => FIRST_PAGE_ASSET_COUNT - toursCount;
+
+
+    const getImagesForFirstSliderPage = assets.slice(0, assets.length >= imageCountForFirstPage() ? imageCountForFirstPage() : assets.length);
+    const assetsToShow = (slideIndex: number) => {
+
+        if (isFirstSliderPage(slideIndex))
+            return getImagesForFirstSliderPage;
+
+        const startIndex = imageCountForFirstPage() + (slideIndex - 1) * 8;
+        const endIndex = startIndex + GRID_SIZE;
+
+        return assets.slice(startIndex, endIndex);
+
 
     };
 
