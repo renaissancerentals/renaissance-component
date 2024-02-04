@@ -33,7 +33,6 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
             sendRentalApplicationRequest(
                 {
                     ...rentalApplication,
-                    to: propertyEmail ? propertyEmail : PropertiesEmail[rentalApplication.property]
                 }).then((response) => {
                 setSubmissionState("complete");
             }).catch((e) => {

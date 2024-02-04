@@ -104,10 +104,7 @@ export const PropertiesEmail: any = {
     "Scholar's Rock": "scholars@renaissancerentals.com",
     "Scholar's Rooftop": "scholars@renaissancerentals.com",
     "SummerHouse at Indiana": "summerhouse@renaissancerentals.com",
-    "Verona Park": "veronapark@renaissancerentals.com",
-    "Porto Flats": "veronapark@renaissancerentals.com",
-    "Cape Dutch Villas": "veronapark@renaissancerentals.com",
-    "Courtyard Villas": "veronapark@renaissancerentals.com",
+    "Verona Park": "veronapark@renaissancerentals.com"
 };
 
 export type PropertyType =
@@ -119,6 +116,4 @@ export type PropertyType =
     | "Scholar's Rooftop"
     | "SummerHouse at Indiana"
     | "Verona Park"
-    | "Porto Flats"
-    | "Cape Dutch Villas"
-    | "Courtyard Villas"
+

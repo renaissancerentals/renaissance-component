@@ -1,12 +1,12 @@
 import React, {Fragment, useState} from 'react';
 import './assets/Contact.scss';
-import {Button, Checkbox, Icon, Input, RangeSlider, Select, Spinner, Textarea} from "@contentmunch/muncher-ui";
+import {Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
 import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
 import {ContactMessage} from "./data/ContactMessage";
 import {Captcha} from "../input/Captcha";
 import {sendContactMail, sendToConversionTracking} from "./service/ContactService";
-import {PropertiesEmail} from "../property/data/Property";
 import {formatPhoneNumber} from "../utils/Utils";
+import {PropertiesEmail} from "../property/data/Property";
 
 export const ContactSection: React.FC<ContactSectionProps> = (
     {
@@ -44,7 +44,7 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                 phonePreferred: form.phonePreferred.checked,
                 textPreferred: form.textPreferred.checked,
                 question: form.question.value,
-                communities: variant === "long" ? Array.from(form.neighborhood.selectedOptions, (item: HTMLOptionElement) => item.value).join(", ") : ""
+                communities: Object.keys(PropertiesEmail).filter(value => form[value].checked).join(", ")
             };
 
             const mailWithAddition: ContactMessage = {
@@ -114,12 +114,13 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                         <Checkbox label="Email OK" name="emailPreferred" checked={true}/>
                     </div>
                     {variant === "long" ?
-                        <div className="form-element multi-select">
-                            <Select name="neighborhood" options={Object.keys(PropertiesEmail)}
-                                    label="Which community are you interested in (select all that apply)"
-                                    multiple={true}/>
-
-                        </div> : ""}
+                        <div className="checkboxes form-element">
+                            <label>Which community are you interested in?</label>
+                            {Object.keys(PropertiesEmail).map(value =>
+                                <Checkbox label={value} name={value} key={value}/>
+                            )}
+                        </div>
+                        : ""}
                     {"long" === variant ?
                         <p className="additional-info form-element" onClick={handleAdditionalInfoToggle}>
                             <b>{additionalInfoClicked ? <Icon name="minus"/> : <Icon name="plus"/>} Tap here to
