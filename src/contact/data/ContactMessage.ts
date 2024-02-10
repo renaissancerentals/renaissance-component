@@ -10,6 +10,7 @@ export interface ContactMessage {
     textPreferred: boolean;
     question: string;
     communities: string;
+    currentPage: string;
     additionalInfo?: AdditionalInfo;
 }
 

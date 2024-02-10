@@ -6,4 +6,5 @@ export interface RentalApplication {
     phone?: string;
     questions?:string;
     captchaResponse: string;
+    currentPage: string;
 }

@@ -15,8 +15,7 @@ const Template: Story<ContactSectionProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    subject: "Test subject",
-    to: "asikpradhan@icloud.com",
+    subject: "Test email from ui.renaissancerentals.com",
 }
 
 export const WithContactNumber = Template.bind({});
@@ -28,6 +27,6 @@ WithContactNumber.args = {
 export const Long = Template.bind({});
 
 Long.args = {
-    subject: "Test subject",
+    subject: "Test email from ui.renaissancerentals.com",
     variant: "long"
 }

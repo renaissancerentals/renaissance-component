@@ -30,12 +30,10 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
         setSubmissionState("start");
         if (isFormValid()) {
             setSubmissionState("submitting");
-            sendRentalApplicationRequest(
-                {
-                    ...rentalApplication,
-                }).then((response) => {
-                setSubmissionState("complete");
-            }).catch((e) => {
+            sendRentalApplicationRequest({...rentalApplication, currentPage: window.location.href})
+                .then((response) => {
+                    setSubmissionState("complete");
+                }).catch((e) => {
                 if (e.response && e.response.data) {
                     setErrorMessage(e.response.data.message);
                 } else {
