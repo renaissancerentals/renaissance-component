@@ -8,7 +8,7 @@ import {GalleryHeroMain} from "../../gallery/GalleryHeroMain";
 import {extractIdFrom, rangeFrom} from "../../utils/Utils";
 import {Floorplan} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
-import {isFloorplanAvailable} from "../service/FloorplanService";
+import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanService";
 import {VideoTours} from "../../gallery/VideoTours";
 import {VirtualTour} from "../../gallery/VirtualTour";
 import {GalleryModal} from "../../gallery/GalleryModal";
@@ -84,9 +84,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
     }, [floorplan])
 
     const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
-
     const imageCountForFirstPage = () => FIRST_PAGE_ASSET_COUNT - toursCount;
-
 
     const getImagesForFirstSliderPage = assets.slice(0, assets.length >= imageCountForFirstPage() ? imageCountForFirstPage() : assets.length);
     const assetsToShow = (slideIndex: number) => {
@@ -98,10 +96,12 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
         const endIndex = startIndex + GRID_SIZE;
 
         return assets.slice(startIndex, endIndex);
-
-
     };
 
+    const printFloorplanAddress = () => {
+        const address = floorplanAddress(floorplan);
+        return address.address + ", " + address.city + " " + address.state + ", " + address.zipcode;
+    }
     return (
         <section className="section-floorplan--hero">
             {isAssetsLoading ? <GalleryHeroSkeleton/> :
@@ -150,33 +150,32 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                 <div className="floorplan--two-columns">
                     <div className="floorplan-column-left">
                         <h3>{floorplan.name}</h3>
-                        {floorplan.units.length > 0 ? <>
-                            <h4>${rangeFrom(floorplan.units, "rent")}/mo</h4>
-                            <p className="floorplan--description">{floorplan.property.address}, {floorplan.property.zipcode}</p>
-
-                        </> : ""}
-
+                        {
+                            floorplan.units.length > 0 ?
+                                <>
+                                    <h4>${rangeFrom(floorplan.units, "rent")}/mo</h4>
+                                    <p className="floorplan--description">{printFloorplanAddress()}</p>
+                                </> : <></>
+                        }
                         <div className="floorplan--featured">
-                            <Button size="small" onClick={() => setShowFloorplanModal(true)}><Icon name="max"
-                                                                                                   orientation="right">View
-                                Floorplan</Icon> </Button>|&nbsp;&nbsp;<Button size="small"
-                                                                               onClick={() => handleRefToMap()}><Icon
-                            orientation="right"
-                            name="map">View
-                            on Map</Icon> </Button>
+                            <Button size="small" onClick={() => setShowFloorplanModal(true)}>
+                                <Icon name="max" orientation="right">ViewFloorplan</Icon>
+                            </Button>
+                            |&nbsp;&nbsp;
+                            <Button size="small" onClick={() => handleRefToMap()}>
+                                <Icon orientation="right" name="map">View on Map</Icon>
+                            </Button>
                             {floorplan.property.busRoutes.length > 0 ?
                                 <p>Bus Routes:&nbsp;
-
                                     {floorplan.property.busRoutes.map((busRoute, index) =>
                                         <span key={"bus-route-" + index}>
-                                            <a href={busRoute.busRouteLink} target="_blank">{busRoute.busRoute}</a>
+                                            <a href={busRoute.busRouteLink} target="_blank" rel="noreferrer">{busRoute.busRoute}</a>
                                             {index < floorplan.property.busRoutes.length - 1 ? ", " : ""}
                                         </span>
                                     )}
                                 </p>
                                 : ""}
                         </div>
-
                     </div>
                     <div className="main">
                         <div className=" floorplan-column-right">

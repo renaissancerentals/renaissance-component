@@ -9,7 +9,7 @@ export const Banner: React.FC<BannerProps> = ({delay, children}) => {
         }, delay);
         return () => clearTimeout(timer);
 
-    }, []);
+    }, [delay]);
     return (
         <Fragment>
             {

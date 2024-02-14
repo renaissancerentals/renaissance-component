@@ -6,7 +6,7 @@ import {Card} from "../../card/Card";
 import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
 import {rangeFrom} from "../../utils/Utils";
 import "./assets/SimilarFloorplanCard.scss"
-import {getFloorplan} from "../service/FloorplanService";
+import {floorplanAddress, getFloorplan} from "../service/FloorplanService";
 
 export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({similarFloorplans}) => {
     const [floorplans, setFloorplans] = useState<Floorplan[]>([]);
@@ -15,7 +15,7 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
 
     useEffect(() => {
         const promises: Promise<Floorplan>[] = [];
-        similarFloorplans.map(similarFloorplan => {
+        similarFloorplans.forEach(similarFloorplan => {
             promises.push(getFloorplan(similarFloorplan.similarTo.id));
         });
         Promise.all(promises).then(data => {
@@ -31,6 +31,10 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
             return DEFAULT_IMAGE_URL;
 
     };
+    const printFloorplanAddress = (floorplan: Floorplan) => {
+        const address = floorplanAddress(floorplan);
+        return address.address + ", " + address.city + " " + address.state + ", " + address.zipcode;
+    }
     return (
 
         <div className="similar-floorplans-card">
@@ -45,7 +49,7 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
                             <div className="card-slider-footer">
                                 <h3><a href={"/floorplans/" + floorplan.id}>{floorplan.name}</a>
                                 </h3>
-                                <p>{floorplan.units[0]?.address}</p>
+                                <p>{printFloorplanAddress(floorplan)}</p>
                                 <p> {floorplan.bedroom} Bedroom
                                     ${rangeFrom(floorplan.units, "rent")}/mo</p>
                             </div>

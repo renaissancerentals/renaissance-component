@@ -8,6 +8,7 @@ import {
     UtilityType
 } from "../data/Floorplan";
 import {
+    floorplanAddress,
     getFloorplan,
     getFloorplanVariations,
     getSimilarFloorplans,
@@ -20,10 +21,10 @@ import "./assets/FloorplanSection.scss";
 import {GalleryHeroSkeleton} from "../../gallery/GalleryHeroSkeleton";
 import {FloorplanHero} from "./FloorplanHero";
 import {
-    addressToGoogleMap,
     capitalizeFirstLetter,
     dateToMoment,
     enumToString,
+    floorplanAddressToGoogleMap,
     formatPhoneNumber,
     rangeFrom,
     toUSD
@@ -89,7 +90,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
     const availableDates = (): string[] => {
         const monthYearFormat = "MMMM YYYY";
-        const sortAvailabileDates = (a: string, b: string) => moment(a, monthYearFormat).diff(moment(b, monthYearFormat));
+        const sortAvailableDates = (a: string, b: string) => moment(a, monthYearFormat).diff(moment(b, monthYearFormat));
         const dates = new Set<string>();
         const today = moment();
 
@@ -105,12 +106,13 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                 dates.add(moveInDate.format(monthYearFormat));
         });
 
-        return Array.from(dates).sort(sortAvailabileDates);
+        return Array.from(dates).sort(sortAvailableDates);
     }
 
     const residentUtilityDetails = (utility: UtilityName) =>
-
-        utility.averageMonthlyBill ? capitalizeFirstLetter(utility.name) + " - Avg/Mo " + toUSD(utility.averageMonthlyBill) : capitalizeFirstLetter(utility.name);
+        utility.averageMonthlyBill ?
+            capitalizeFirstLetter(utility.name) + " - Avg/Mo " + toUSD(utility.averageMonthlyBill)
+            : capitalizeFirstLetter(utility.name);
 
     const isAverageMonthlyBillPresent = () => floorplan.utilities.filter(utility => utility.type === UtilityType.RESIDENT_UTILITY).some(utility => utility.averageMonthlyBill != null);
 
@@ -206,7 +208,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
                                         </div>
                                         <MapSection
-                                            src={addressToGoogleMap(floorplan.property.address, floorplan.property.zipcode)}/>
+                                            src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
                                     </Card>
 
                                     <Card title="Pets">

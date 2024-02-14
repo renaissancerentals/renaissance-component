@@ -4,7 +4,7 @@ import {youtubeUrlToEmbedUrl} from "../utils/Utils";
 export const VideoTours: React.FC<VideoToursProps> = ({videoTourUrls}) => {
     return (
         <div className="video-tour-view">
-            {videoTourUrls.length == 1 ?
+            {videoTourUrls.length === 1 ?
                 <div className="single-video-layout">
                     <iframe src={youtubeUrlToEmbedUrl(videoTourUrls[0])}
                             title="YouTube video player" frameBorder="0"

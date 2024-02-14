@@ -7,7 +7,7 @@ export const HeroImageCard: React.FC<HeroImageCardProps> = (
         <div
             className={isForMobile ? "gallery-hero-mobile--image hero-image-card" : "gallery-hero--image hero-image-card"}
             onClick={onClick}>
-            <img className="hero-image" src={backgroundImage} alt="hero image card"/>
+            <img className="hero-image" src={backgroundImage} alt="hero card"/>
             <div className="hero-image-info">
                 <div className="hero-image--content">
                     {children}

@@ -37,8 +37,9 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
             {isAssetLoaded && assets.length > 0 ? <ItemSlider navButtonSize="medium"
                                                               sliderItems={assets.map(asset => <img
                                                                   className="card--image"
+                                                                  alt="card"
                                                                   src={assetUrlFrom(asset.id, propertyId)}/>)}/> :
-                <img className="card--image"
+                <img className="card--image" alt="cover"
                      src={floorplan.coverImage ? getAssetUrl(floorplan.coverImage, propertyId) : DEFAULT_IMAGE_URL}/>}
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}
 

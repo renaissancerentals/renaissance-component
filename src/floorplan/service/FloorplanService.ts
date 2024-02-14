@@ -251,3 +251,24 @@ const unitWithMostAllowedPet = (units: Unit[]): Unit | undefined => {
     return units.sort((a, b) => petOrdinal(b.allowedPet) - petOrdinal(a.allowedPet)).pop();
 }
 
+export const floorplanAddress = (currentFloorplan: Floorplan): FloorplanAddress => {
+    const address: FloorplanAddress = {address: "", city: "Bloomington", state: "IN", zipcode: ""};
+    if (currentFloorplan.units.length === 1) {
+        return {
+            ...address, address: currentFloorplan.units[0].address,
+            zipcode: currentFloorplan.units[0].zipcode
+        }
+    }
+    return {
+        ...address, address: currentFloorplan.property.address,
+        zipcode: currentFloorplan.property.zipcode
+    }
+}
+
+
+export interface FloorplanAddress {
+    address: string;
+    city: string;
+    state: string;
+    zipcode: string;
+}

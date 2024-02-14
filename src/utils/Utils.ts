@@ -1,6 +1,7 @@
 import _ from "lodash";
 import moment, {Moment} from "moment";
 import {decodeEntity} from "html-entities";
+import {FloorplanAddress} from "../floorplan/service/FloorplanService";
 
 export const MIN_VALUE = 0;
 export const MAX_VALUE = 4000;
@@ -16,6 +17,9 @@ export const formatPhoneNumber = (phone?: string): string => {
 const cleanAddressForGoogle = (address?: string): string => address ? address.replace(/apt. /gi, "") : "";
 export const addressToGoogleMapLink = (address?: string, zipcode?: string) => "https://maps.google.com/?q=" + cleanAddressForGoogle(address) + "," + zipcode;
 export const addressToGoogleMap = (address?: string, zipcode?: string) => "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address) + "," + zipcode;
+
+export const floorplanAddressToGoogleMap = (floorplanAddress: FloorplanAddress) =>
+    "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(floorplanAddress.address) + ", " + floorplanAddress.city + " " + floorplanAddress.state + ", " + floorplanAddress.zipcode;
 export const enumToString = (value?: string): string => {
 
     return value && !isEmpty(value) ? value.replaceAll("_", " ").toLowerCase() : "";

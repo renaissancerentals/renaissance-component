@@ -18,7 +18,7 @@ export const ReviewSection: React.FC<ReviewSectionProps> = ({property, starColor
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const promises: Promise<Testimonial[]>[] = [];
-        property.floorplans.map(floorplan => {
+        property.floorplans.forEach(floorplan => {
             promises.push(getTestimonials(floorplan.id));
         });
         Promise.all(promises).then(data => {
@@ -63,7 +63,7 @@ export const ReviewSection: React.FC<ReviewSectionProps> = ({property, starColor
                     {property.rating ? <div className="review-footer">
                         <Star rating={property.rating} size="medium" color={starColor ? starColor : "blue"}/>
                         <h3>&nbsp;{property.ratingLink ?
-                            <a href={property.ratingLink} target="_blank">{property.rating} Stars on
+                            <a href={property.ratingLink} target="_blank" rel="noreferrer">{property.rating} Stars on
                                 Google</a> : <>{property.rating} Stars on Google</>}</h3>
                     </div> : ""}
                 </>

@@ -23,7 +23,7 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                 <div className="property--body">
                                     <p><i>Located at:</i><br/>
                                         <a href={addressToGoogleMapLink(property.address, property.zipcode)}
-                                           target="_blank">{property.address + ", " + property.zipcode}</a>
+                                           target="_blank" rel="noreferrer">{property.address + ", " + property.zipcode}</a>
                                     </p>
                                     <p><i><a
                                         href={"tel:" + property.phone}>{formatPhoneNumber(property.phone)}</a></i></p>
@@ -38,7 +38,7 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                             {property.busRoutes.map((busRoute, index) =>
                                                 <span key={"property-bus-route" + index}>
                                                     <a href={busRoute.busRouteLink}
-                                                       target="_blank">{busRoute.busRoute}</a>
+                                                       target="_blank" rel="noreferrer">{busRoute.busRoute}</a>
                                                     {index < property.busRoutes.length - 1 ? ", " : ""}
                                                 </span>
                                             )}
@@ -71,7 +71,7 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                     <p><i>Located{property.leasingOfficeType === LeasingOfficeType.OFF_SITE ?
                                         <span> (Off-site) </span> : ""} at:</i><br/>
                                         <a href={addressToGoogleMapLink(property.leasingOffice?.address, property.leasingOffice?.zipcode)}
-                                           target="_blank">{property.leasingOffice?.address + ", " + property.leasingOffice?.zipcode}</a>
+                                           target="_blank" rel="noreferrer">{property.leasingOffice?.address + ", " + property.leasingOffice?.zipcode}</a>
                                     </p>
                                     <p>{property.leasingOffice?.phone ?
                                         <a href={"tel:" + property.leasingOffice?.phone}>

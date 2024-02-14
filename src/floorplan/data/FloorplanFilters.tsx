@@ -1,6 +1,4 @@
 import React, {Fragment} from "react";
-
-import {Month} from "./Calendar";
 import {Icon} from "@contentmunch/muncher-ui";
 import {FloorplanStyle} from "./Floorplan";
 

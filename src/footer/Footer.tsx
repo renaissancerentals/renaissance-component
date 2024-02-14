@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({nav, accessibilityLink}) => {
                         <img src={renrenMobile} alt="renaissance rentals " height="90"/>
                     </a>
                     <div>
-                        <a href="https://www.chamberbloomington.org/" target="_blank">
+                        <a href="https://www.chamberbloomington.org/" target="_blank" rel="noreferrer">
                             <img src={chamberLogo} alt="chamber member  " height="60"/>
                         </a>
                     </div>
@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({nav, accessibilityLink}) => {
                         <div className="first">
                             <div><img src={equalHousingLogo} alt="equal housing opportunity " height="60"/></div>
                             <div>
-                                <a href="https://www.chamberbloomington.org/" target="_blank">
+                                <a href="https://www.chamberbloomington.org/" target="_blank" rel="noreferrer">
                                     <img src={chamberLogo} alt="chamber member  " height="60"/>
                                 </a>
                             </div>
