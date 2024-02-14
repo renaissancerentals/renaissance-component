@@ -88,10 +88,21 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     }, [floorplanId]);
 
     const availableDates = (): string[] => {
-        const sortAvailabileDates = (a: string, b: string) => moment(a, "MMMM YYYY").diff(moment(b, "MMMM YYYY"));
+        const monthYearFormat = "MMMM YYYY";
+        const sortAvailabileDates = (a: string, b: string) => moment(a, monthYearFormat).diff(moment(b, monthYearFormat));
         const dates = new Set<string>();
+        const today = moment();
+
+        const tomorrow = today.add(1, "day");
+        const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow);
+
         floorplan.units.forEach(unit => {
-            dates.add(dateToMoment(unit.moveInDate).format("MMMM YYYY"));
+            const moveInDate = dateToMoment(unit.moveInDate);
+            if (isAvailableNow(moveInDate))
+                dates.add(today.format(monthYearFormat));
+
+            else
+                dates.add(moveInDate.format(monthYearFormat));
         });
 
         return Array.from(dates).sort(sortAvailabileDates);
@@ -109,6 +120,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
         const twelveMonthsFromNow = moment().add(1, "year");
         return current.isBefore(twelveMonthsFromNow);
     }
+
     return (
         <section className="section-floorplan">
             {
@@ -194,12 +206,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
                                         </div>
                                         <MapSection
-                                            src={
-                                                floorplan.address ?
-                                                    addressToGoogleMap(floorplan.address, floorplan.zipcode)
-                                                    :
-                                                    addressToGoogleMap(floorplan.property.address, floorplan.property.zipcode)
-                                            }/>
+                                            src={addressToGoogleMap(floorplan.property.address, floorplan.property.zipcode)}/>
                                     </Card>
 
                                     <Card title="Pets">

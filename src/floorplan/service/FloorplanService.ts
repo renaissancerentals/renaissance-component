@@ -88,6 +88,10 @@ export const isDateWithinTwelveMonths = (date: string) => {
     const diff = moment(date, "YYYY-MM-DD").diff(today, 'months', false);
     return diff >= 0 && diff <= 12;
 }
+export const isDateAfterToday = (date: string) => {
+    const today = moment();
+    return moment(date, "YYYY-MM-DD").isAfter(today);
+}
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format('MMM YYYY');
 
 export const defaultAvailabilityToMonthYear = (dateString: string): string =>
@@ -161,7 +165,7 @@ export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters =
         styleFilters.add(floorplan.style);
 
         floorplan.units.forEach((value) => {
-            if (value.moveInDate && isDateWithinTwelveMonths(value.moveInDate))
+            if (value.moveInDate && isDateWithinTwelveMonths(value.moveInDate) && isDateAfterToday(value.moveInDate))
                 availabilityFilters.add(dateToMonthYear(value.moveInDate));
         });
     });

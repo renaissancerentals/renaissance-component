@@ -152,7 +152,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                         <h3>{floorplan.name}</h3>
                         {floorplan.units.length > 0 ? <>
                             <h4>${rangeFrom(floorplan.units, "rent")}/mo</h4>
-                            <p className="floorplan--description">{floorplan.units[0]?.address}, {floorplan.units[0]?.zipcode}</p>
+                            <p className="floorplan--description">{floorplan.property.address}, {floorplan.property.zipcode}</p>
 
                         </> : ""}
 
