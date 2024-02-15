@@ -100,7 +100,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
 
     const printFloorplanAddress = () => {
         const address = floorplanAddress(floorplan);
-        return address.address + ", " + address.city + " " + address.state + ", " + address.zipcode;
+        return address.address + ", " + address.city + ", " + address.state + " " + address.zipcode;
     }
     return (
         <section className="section-floorplan--hero">
