@@ -37,7 +37,7 @@ export const toUSD = (num: number) => new Intl.NumberFormat('en-US', {
     currency: 'USD'
 }).format(num);
 export const toDate = (date: string) => new Date(date).toLocaleString('en-US');
-export const youtubeUrlToEmbedUrl = (youtubeUrl: string) => "https://www.youtube.com/embed/" + youtubeUrl.split("/").pop();
+export const youtubeUrlToEmbedUrl = (youtubeUrl: string) => "https://www.youtube.com/embed/" + youtubeUrl.split("/").pop() + "?rel=0";
 
 
 export const isGoogleDriveImage = (imageUrl: string) => imageUrl && true && imageUrl.includes("drive.google.com");
