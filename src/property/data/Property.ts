@@ -105,7 +105,8 @@ export const PropertiesEmail: any = {
     "Scholar's Rooftop": "scholars@renaissancerentals.com",
     "SummerHouse at Indiana": "summerhouse@renaissancerentals.com",
     "Townhomes At MeadowCreek": "meadowcreek@renaissancerentals.com",
-    "Verona Park": "veronapark@renaissancerentals.com"
+    "Verona Park": "veronapark@renaissancerentals.com",
+    "Other": "inquiries@renaissancerentals.com"
 };
 
 export type PropertyType =

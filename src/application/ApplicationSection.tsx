@@ -48,7 +48,6 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
             setErrorMessage("Fill all the required fields");
         }
     }
-
     const isEmpty = (field: string | null | undefined) => {
         return field === undefined || field === null || field === "";
     }
@@ -59,10 +58,11 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                 <div className="application-heading">
                     <h2 className="heading">
                         <span className="emphasized">Rental Application Request Form</span></h2>
-                    <p>If you have spoken to our team and are ready to apply, please submit a request for an application
-                        below. We'll email you a link to our free online application shortly.</p>
-                    <p>If this is your first time contacting us, we recommend submitting an inquiry on our <Button
-                        variant="transparent" onClick={contactClickHandler}>contact page</Button> first.</p>
+                    <p>If you are ready to apply for your next apartment, please fill out the short form below
+                        (Applications are always FREE).</p>
+                    <p>If you have general inquiries or would like more information about our apartments, please use
+                        our <Button
+                            variant="transparent" onClick={contactClickHandler}>CONTACT FORM</Button>.</p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-element">
@@ -111,8 +111,14 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                         </div>}
 
                     <div className="form-element">
+                        <Input label="Address or Floor plan you are applying for" name="address" icon="map"
+                               onChange={e => {
+                                   setRentalApplication({...rentalApplication, address: e.target.value})
+                               }}/>
+                    </div>
+                    <div className="form-element">
                         <Textarea
-                            label="Questions"
+                            label="Additional Information or Questions"
                             name="question"
                             onChange={e => {
                                 setRentalApplication({...rentalApplication, questions: e.target.value})
