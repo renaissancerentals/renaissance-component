@@ -18,7 +18,10 @@ export const SummerHousePricing: React.FC = () => {
                             sq. ft.
                         </div>
                         <div className="col head tall">
-                            2-13 days <br/>immediate only
+                            2-4 days <br/>immediate only
+                        </div>
+                        <div className="col head tall">
+                            5-13 days
                         </div>
                         <div className="col head">
                             14-29 days
@@ -42,13 +45,16 @@ export const SummerHousePricing: React.FC = () => {
                             Call or Text
                         </div>
                         <div className="col">
-                            $95/day + tax
+                            $121/day + tax
                         </div>
                         <div className="col">
-                            $71/day/ $2,166/mo
+                            $99/day + tax
                         </div>
                         <div className="col">
-                            $59/day/ $1,795/mo
+                            $73/day/ $2,190/mo
+                        </div>
+                        <div className="col">
+                            $61/day/ $1,830/mo
                         </div>
                         <div className="col">
                             2-Flat
@@ -63,13 +69,16 @@ export const SummerHousePricing: React.FC = () => {
                             Call or Text
                         </div>
                         <div className="col">
-                            $114/day + tax
+                            $143/day + tax
                         </div>
                         <div className="col">
-                            $90/day/ $2,738/mo
+                            $119/day + tax
                         </div>
                         <div className="col">
-                            $78/day/ $2,373/mo
+                            $93/day/ $2,790/mo
+                        </div>
+                        <div className="col">
+                            $81/day/ $2,430/mo
                         </div>
                         <div className="col">
                             2-Townhome
@@ -84,13 +93,16 @@ export const SummerHousePricing: React.FC = () => {
                             Call or Text
                         </div>
                         <div className="col">
-                            $122/day + tax
+                            $163/day + tax
                         </div>
                         <div className="col">
-                            $98/day/ $2,981/mo
+                            $127/day + tax
                         </div>
                         <div className="col">
-                            $86/day/ $2,616/mo
+                            $101/day/ $3,030/mo
+                        </div>
+                        <div className="col">
+                            $89/day/ $2,670/mo
                         </div>
                     </div>
                 </div>
