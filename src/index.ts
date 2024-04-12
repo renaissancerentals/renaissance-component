@@ -1,5 +1,5 @@
 export {Banner} from "./announcement/Banner";
-export {ContactSectionV1} from "./contact/ContactSectionV1";
+export {ContactSection} from "./contact/ContactSection";
 export {ContactModal} from "./contact/ContactModal";
 export {ContactSectionSkeleton} from "./contact/ContactSectionSkeleton";
 export {FeatureSection} from "./feature/FeatureSection";

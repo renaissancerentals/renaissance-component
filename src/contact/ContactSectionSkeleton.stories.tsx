@@ -1,6 +1,6 @@
 import React from "react";
 import {Meta, Story} from "@storybook/react";
-import {ContactSectionProps} from "./ContactSectionV1";
+import {ContactSectionProps} from "./ContactSection";
 import {ContactSectionSkeleton} from "./ContactSectionSkeleton";
 
 export default {
