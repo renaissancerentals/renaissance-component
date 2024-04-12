@@ -1,5 +1,5 @@
 export {Banner} from "./announcement/Banner";
-export {ContactSection} from "./contact/ContactSection";
+export {ContactSectionV1} from "./contact/ContactSectionV1";
 export {ContactModal} from "./contact/ContactModal";
 export {ContactSectionSkeleton} from "./contact/ContactSectionSkeleton";
 export {FeatureSection} from "./feature/FeatureSection";
@@ -131,3 +131,6 @@ export {
     propertyIdToDomain, propertyFragment, assetUrlFrom, getAssetUrl, getAssetsFrom, getAsset
 } from "./asset/service/AssetService";
 
+export {
+    trackContactClicked, trackContactSubmitted, sendContactMail, sendToConversionTracking
+} from "./contact/service/ContactService";

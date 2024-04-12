@@ -1,32 +1,34 @@
-import React from "react";
-import {Meta, Story} from "@storybook/react";
-import {ContactSection, ContactSectionProps} from "./ContactSection";
+import type {Meta, StoryObj} from '@storybook/react';
+import React from 'react';
+import {ContactSection} from "./ContactSection";
 
-export default {
-    title: "Section/Contact",
-    component: ContactSection
-} as Meta;
 
-const Template: Story<ContactSectionProps> = (args) => {
-    return (
-        <ContactSection {...args}/>
-    );
+const meta: Meta<typeof ContactSection> = {
+    component: ContactSection,
+    title: 'Section/Contact',
+    render: (args) => <ContactSection {...args}/>,
 };
-export const Default = Template.bind({});
+export default meta;
+type Story = StoryObj<typeof ContactSection>;
 
-Default.args = {
-    subject: "Test email from ui.renaissancerentals.com",
-}
 
-export const WithContactNumber = Template.bind({});
+export const Default: Story = {
+    args: {
+        subject: "Test email from ui.renaissancerentals.com"
+    }
+};
+export const WithContactNumber: Story = {
+    args: {
+        ...Default.args,
+        contactNumber: "8123456789"
+    }
+};
 
-WithContactNumber.args = {
-    ...Default.args,
-    contactNumber: "8123456789"
-}
-export const Long = Template.bind({});
+export const Long: Story = {
+    args: {
+        ...Default.args,
+        subject: "Test email from ui.renaissancerentals.com",
+        variant: "long"
+    }
+};
 
-Long.args = {
-    subject: "Test email from ui.renaissancerentals.com",
-    variant: "long"
-}

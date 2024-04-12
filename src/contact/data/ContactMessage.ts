@@ -1,3 +1,5 @@
+import {MAX_RENT, MIN_RENT} from "../../floorplan/data/Floorplan";
+
 export interface ContactMessage {
     to?: string;
     subject?: string;
@@ -23,4 +25,22 @@ export interface AdditionalInfo {
     hearAboutUs?: string;
     lowerRent: number;
     upperRent: number;
+}
+
+export const defaultContactMessage: ContactMessage = {
+    captchaResponse: "",
+    name: "",
+    phone: 0,
+    email: "",
+    emailPreferred: true,
+    phonePreferred: false,
+    textPreferred: false,
+    question: "",
+    communities: "",
+    currentPage: "",
+    additionalInfo: {
+        lowerRent: MIN_RENT,
+        upperRent: MAX_RENT
+    }
+
 }

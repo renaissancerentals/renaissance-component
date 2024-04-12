@@ -74,12 +74,13 @@
     "webpack": "^5.88.2"
   },
   "dependencies": {
-    "@contentmunch/muncher-ui": "^3.0.3",
+    "@contentmunch/muncher-ui": "^5.0.3",
     "axios": "^1.5.0",
     "ga-gtag": "^1.1.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react-google-recaptcha": "^3.1.0",
+    "react-google-recaptcha-v3": "^1.10.1",
     "react-loading-skeleton": "^3.3.1"
   },
   "bugs": {

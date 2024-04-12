@@ -1,0 +1,201 @@
+@import "src/assets/variables";
+@import "../../assets/form";
+
+$contact-section-background-color: $primary-background-color !default;
+.section-contact {
+  padding-top: 2em;
+  text-align: center;
+  background: $contact-section-background-color;
+
+  .muncher-badge {
+    border-radius: 0;
+    padding: .8rem 1rem;
+    font-weight: bold;
+    font-family: $sans-serif-font;
+  }
+
+  .container {
+    @media (min-width: $medium-size) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+
+  form {
+    column-count: 1;
+    font-weight: 200;
+    font-size: .8rem;
+
+    .form-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 1rem;
+    }
+
+    .item-left {
+      width: 6rem;
+    }
+
+    .item-right {
+      width: 20rem;
+
+      p {
+        text-align: left;
+      }
+    }
+
+    .item-left--range {
+      width: 10vw;
+    }
+
+    .item-right--range {
+      width: 50vw;
+      @media (min-width: $medium-size) {
+        width: 30vw;
+      }
+    }
+
+    .items-inline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      .muncher-input--div {
+        margin-right: 1.5rem;
+      }
+    }
+
+    .error {
+      color: $danger-color;
+
+      .muncher-icon {
+        margin: .2rem 0;
+      }
+    }
+
+
+    .checkboxes {
+      width: 36rem;
+    }
+
+    .long {
+      .muncher-input--div {
+        width: 100%;
+      }
+    }
+
+    .button-right {
+      text-align: right;
+    }
+
+  }
+
+  .muncher-input--div {
+    text-align: left;
+
+  }
+
+  .with-sub {
+    width: 99%;
+    @media (min-width: $medium-size) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sub-item {
+      display: flex;
+      align-items: center;
+      margin: 1rem;
+    }
+
+    label {
+      margin-right: .5rem;
+      white-space: nowrap;
+    }
+
+    .item--small {
+      input {
+        width: 3rem;
+      }
+    }
+
+    .item--medium {
+      input {
+        width: 9rem;
+      }
+    }
+  }
+
+
+  .submit-button--div {
+    margin: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .muncher-button {
+      letter-spacing: .1rem;
+      border-radius: .4rem .4rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin: 1rem;
+
+      i {
+        margin: 0 .5rem;
+        font-weight: 100;
+        font-size: .8rem;
+      }
+    }
+  }
+
+  .first--step {
+    justify-content: center;
+  }
+
+
+  .inactive {
+    opacity: 60%;
+  }
+
+  .active {
+    opacity: 100%;
+  }
+
+  .left, .right {
+    @media (min-width: $medium-size) {
+      width: 50vw;
+    }
+  }
+
+  .muncher-slider {
+    margin-top: 0;
+    height: 2rem;
+  }
+
+  .step-div {
+    @media (min-width: $small-size) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      .active, .inactive {
+        width: 50vw;
+      }
+    }
+    @media (min-width: $medium-size) {
+      display: block;
+
+      .active, .inactive {
+        width: 100%;
+      }
+    }
+
+  }
+
+}
+

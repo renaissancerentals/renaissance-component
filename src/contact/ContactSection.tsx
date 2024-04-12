@@ -1,42 +1,45 @@
-import React, {Fragment, useState} from 'react';
-import './assets/Contact.scss';
-import {Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
-import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
-import {ContactMessage} from "./data/ContactMessage";
-import {Captcha} from "../input/Captcha";
-import {sendContactMail, sendToConversionTracking} from "./service/ContactService";
+import React, {useEffect, useState} from 'react';
+import './assets/ContactSection.scss';
 import {formatPhoneNumber} from "../utils/Utils";
-import {PropertiesEmail} from "../property/data/Property";
+import {GoogleReCaptchaProvider, useGoogleReCaptcha} from "react-google-recaptcha-v3";
+import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
+import {PropertiesEmail, PropertyId} from "../property/data/Property";
+import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
+import {ContactMessage, defaultContactMessage} from "./data/ContactMessage";
+import {sendContactMail, sendToConversionTracking, trackContactSubmitted} from "./service/ContactService";
 
-export const ContactSection: React.FC<ContactSectionProps> = (
-    {
-        subject,
-        to,
-        conversionTrackingId1,
-        conversionTrackingId2,
-        contactNumber,
-        variant
-    }) => {
 
+const Contact: React.FC<ContactSectionProps> = ({
+                                                    propertyId,
+                                                    subject,
+                                                    to,
+                                                    contactNumber,
+                                                    conversionTrackingId1,
+                                                    conversionTrackingId2,
+                                                }) => {
+    const {executeRecaptcha} = useGoogleReCaptcha();
+    const [token, setToken] = useState('');
+    const [isFirstStep, setIsFirstStep] = useState(true);
+    const [lowerRent, setLowerRent] = useState(0);
+    const [upperRent, setUpperRent] = useState(4000);
+    const [hasContactError, setHasContactError] = useState(false);
+    const [hasCommunityError, setHasCommunityError] = useState(false);
+    const [contactMessage, setContactMessage] = useState(defaultContactMessage)
     const [submitted, setSubmitted] = useState(false);
-    const [additionalInfoClicked, setAdditionalInfoClicked] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionError, setSubmissionError] = useState(false);
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState("Message Failed!");
     const [submissionComplete, setSubmissionComplete] = useState(false);
-    const [captchaResponse, setCaptchaResponse] = useState("");
-    const [lowerRent, setLowerRent] = useState(0);
-    const [upperRent, setUpperRent] = useState(4000);
+    const nextButtonHandler = (event: React.FormEvent<HTMLFormElement>) => {
 
-    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
-
-        if (form.checkValidity() && captchaResponse !== "") {
-            setSubmitted(true);
-            const mailObject: ContactMessage = {
-                to, subject, captchaResponse,
+        setHasCommunityError(false);
+        setHasContactError(false);
+        if (form.checkValidity()) {
+            const currentMessage: ContactMessage = {
+                to, subject, captchaResponse: token,
                 name: form.fullName.value,
                 phone: form.phone.value,
                 email: form.email.value,
@@ -48,9 +51,28 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                 communities: Object.keys(PropertiesEmail).filter(value => form[value] && form[value].checked).join(", ")
             };
 
-            const mailWithAddition: ContactMessage = {
-                ...mailObject,
-                additionalInfo: {
+            if (currentMessage.communities === "" ||
+                (!currentMessage.emailPreferred && !currentMessage.phonePreferred && !currentMessage.textPreferred)) {
+                if (currentMessage.communities === "") {
+                    setHasCommunityError(true);
+                } else {
+                    setHasContactError(true);
+                }
+            } else {
+                setContactMessage(currentMessage);
+                setIsFirstStep(false);
+            }
+        }
+    }
+    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (form.checkValidity()) {
+            const contactMessageToSubmit: ContactMessage = ({
+                ...contactMessage, additionalInfo: {
                     bedrooms: form.bedrooms ? form.bedrooms.value : null,
                     moveInDate: form.moveInDate ? form.moveInDate.value : null,
                     amenities: form.amenities ? form.amenities.value : null,
@@ -59,9 +81,12 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                     hearAboutUs: form.hearAboutUs ? form.hearAboutUs.value : null,
                     lowerRent, upperRent
                 }
-            }
+            });
+
+            setSubmitted(true);
             setIsSubmitting(true);
-            sendContactMail(additionalInfoClicked ? mailWithAddition : mailObject)
+            trackContactSubmitted(propertyId);
+            sendContactMail(contactMessageToSubmit)
                 .then(() => {
                     setSubmissionComplete(true);
                 })
@@ -78,69 +103,153 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                     if (conversionTrackingId2)
                         sendToConversionTracking(conversionTrackingId2);
                     setIsSubmitting(false);
-
                 });
         }
-    };
+    }
+    useEffect(() => {
+        if (!executeRecaptcha) {
+            return;
+        }
+        executeRecaptcha().then(result => {
+            setToken(result);
+        });
 
-    const handleAdditionalInfoToggle = () => {
-
-        setAdditionalInfoClicked(!additionalInfoClicked);
-    };
-
+    }, [executeRecaptcha]);
     return (
         <section className="section-contact">
+
             <div className="container">
-                <h2 className="heading"><span className="emphasized">Contact Us</span></h2>
-                {contactNumber ? <p className="information">Text or call us at <a
-                    href={"tel:" + contactNumber}>{formatPhoneNumber(contactNumber)}</a></p> : ""}
+                <div className="left">
+                    <h2 className="heading"><span className="emphasized">Contact Us</span></h2>
 
-
-                <p className="information">Fill the form below to get in touch with a member
-                    of our
-                    professional leasing team. We can't wait to meet you!</p>
-                <form onSubmit={submitHandler}>
-                    <div className="form-element">
-                        <Input label="Name" name="fullName" icon="user" required/>
-                    </div>
-                    <div className="form-element">
-                        <Input label="Email" name="email" icon="mail" type="email" required/>
-                    </div>
-                    <div className="form-element">
-                        <Input label="Phone" name="phone" type="number" icon="phone" required/>
-                    </div>
-                    <div className="checkboxes form-element">
-                        <Checkbox label="Phone OK" name="phonePreferred"/>
-                        <Checkbox label="Text OK" name="textPreferred"/>
-                        <Checkbox label="Email OK" name="emailPreferred" checked={true}/>
-                    </div>
-                    {variant === "long" ?
-                        <div className="checkboxes form-element">
-                            <label>Which community are you interested in?</label>
-                            {Object.keys(PropertiesEmail).map(value =>
-                                <Checkbox label={value} name={value} key={value}/>
-                            )}
+                    {contactNumber ?
+                        <p className="information">Text or call us at <a
+                            href={"tel:" + contactNumber}>{formatPhoneNumber(contactNumber)}</a>
+                        </p>
+                        : ""}
+                    <p className="information">Please fill the contact form to get in touch with a member
+                        of our professional leasing team. We can't wait to meet you!</p>
+                    <br/>
+                    <div className="step-div">
+                        <div className={isFirstStep ? "active" : "inactive"}>
+                            <Badge variant="primary">1.</Badge>
+                            <p><i>Step 1 of 2</i></p>
+                            <p><b>*Required Fields</b></p>
                         </div>
-                        : ""}
-                    {"long" === variant ?
-                        <p className="additional-info form-element" onClick={handleAdditionalInfoToggle}>
-                            <b>{additionalInfoClicked ? <Icon name="minus"/> : <Icon name="plus"/>} Tap here to
-                                provide
-                                additional information about
-                                what you are looking for
-                                in your home.</b> (This info is very helpful to us, but not required.)</p>
-                        : ""}
+                        <div className={isFirstStep ? "inactive" : "active"}>
+                            <Badge variant="primary">2.</Badge>
+                            <p><i>Step 2 of 2</i></p>
+                            <p><b>Optional Fields</b></p>
+                            <p className="information">Additional info that helps us learn about your needs and assists
+                                us
+                                in finding you the perfect home.</p>
+                        </div>
+                    </div>
 
-                    {additionalInfoClicked ?
-                        <Fragment>
-                            <div className="form-element optional">
-                                <Input label="Bedrooms Requested" name="bedrooms" icon="inbox" type="number"/>
+                </div>
+                <div className="right">
+                    {isFirstStep ?
+                        <form onSubmit={nextButtonHandler}>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <p><i>Step 1 of 2</i></p>
+                                </div>
+                                <div className="item-right">
+                                    <p><b> *Required Fields</b></p>
+                                </div>
                             </div>
-                            <div className="form-element optional">
-                                <Input label="Desired Move-In Date" name="moveInDate" icon="calendar" type="date"
-                                       placeholder="format: mm/dd/yyyy"/>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <label htmlFor="fullName">Name*</label>
+                                </div>
+                                <div className="item-right">
+                                    <Input name="fullName" icon="user" required/>
+                                </div>
                             </div>
-                            <div className="form-element optional price-range">
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <label htmlFor="email">Email*</label>
+                                </div>
+                                <div className="item-right">
+                                    <Input name="email" icon="mail" type="email" required/>
+                                </div>
+                            </div>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <label htmlFor="phone">Phone*</label>
+                                </div>
+                                <div className="item-right">
+                                    <Input name="phone" icon="phone" type="number" required/>
+                                </div>
+                            </div>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <p className={hasContactError ? "error" : ""}>Preferred Contact*</p>
+                                </div>
+                                <div className="item-right">
+                                    <div className="items-inline error">
+                                        <Checkbox label="phone call" name="phonePreferred"/>
+                                        <Checkbox label="text" name="textPreferred"/>
+                                        <Checkbox label="email" name="emailPreferred" checked={true}/>
+                                    </div>
+                                    {hasContactError ? <div className="error">
+                                        <Icon name="alert">Please check one of the boxes</Icon>
+                                    </div> : <></>}
+                                </div>
+                            </div>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <label htmlFor="question">Question*</label>
+                                </div>
+                                <div className="item-right">
+                                    <Textarea
+                                        name="question"
+                                        required={true}
+                                    />
+                                </div>
+                            </div>
+                            <p className={hasCommunityError ? "error" : ""}>Which community are you interested in?*
+                                (<i>check all that
+                                    apply</i>)</p>
+                            <div className="checkboxes">
+                                {Object.keys(PropertiesEmail).map(value =>
+                                    <Checkbox label={value} name={value} key={value}/>
+                                )}
+                            </div>
+                            {hasCommunityError ? <div className="error">
+                                <Icon name="alert">Please check one of the boxes</Icon>
+                            </div> : <></>}
+
+                            <div className="submit-button--div first--step">
+                                <Button variant="primary" size="large" type="submit">
+                                    NEXT &gt; <i>step 2 of 2</i>
+                                </Button>
+
+                            </div>
+                        </form> :
+                        <form onSubmit={submitHandler}>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <p><i>Step 2 of 2</i></p>
+                                </div>
+                                <div className="item-right">
+                                    <p><b> Optional Fields</b></p>
+                                </div>
+                            </div>
+                            <div className="form-item">
+                                <div className="with-sub">
+                                    <div className="sub-item item--small">
+                                        <label htmlFor="bedrooms"># Bedrooms</label>
+                                        <Input name="bedrooms" type="number"/>
+                                    </div>
+                                    <div className="sub-item item--medium">
+                                        <label htmlFor="moveInDate">Move-In Date</label>
+                                        <Input name="moveInDate" type="date"
+                                               placeholder="format: mm/dd/yyyy"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-element">
                                 <label>Desired Price Range</label>
                                 <RangeSlider min={MIN_RENT} max={MAX_RENT}
                                              minValue={lowerRent} maxValue={upperRent} setMinValue={setLowerRent}
@@ -149,62 +258,69 @@ export const ContactSection: React.FC<ContactSectionProps> = (
                                     <i>click and drag to adjust price range</i>
                                 </RangeSlider>
                             </div>
-                            <div className="form-element optional">
+
+                            <div className="form-item long">
                                 <Input
                                     label="Which amenities and features are most important to you in your next home?"
                                     name="amenities" icon="type"/>
                             </div>
-                            <div className="form-element optional">
+                            <div className="form-item long">
                                 <Input label="Please list any pets that will be living with you" name="pets"
                                        icon="type"/>
                             </div>
-                            <div className="form-element optional">
+                            <div className="form-item long">
                                 <Input label="Is there a particular floor plan style that you are
                                     most interested in? (Please list all that apply)" name="floorPlan"
                                        icon="type"/>
                             </div>
-
-                            <div className="form-element optional">
+                            <div className="form-item long">
                                 <Input label="How did you hear about us?" name="hearAboutUs"
                                        icon="type"/>
                             </div>
+                            <div className="form-element">
+                                {submissionComplete ?
+                                    <p className="text-success message">Message Sent!</p> : ""}
+                                {submissionError ?
+                                    <p className="text-danger message">{submissionErrorMessage}</p> : ""}
+                            </div>
 
-                        </Fragment>
-                        : ""}
+                            <div className="submit-button--div button-right">
+                                {isSubmitting ? <Spinner size="tiny"/> : ""}
+                                <Button variant="primary" size="large" type="submit" disabled={submitted}>
+                                    SUBMIT &gt;
+                                </Button>
 
-
-                    <div className="form-element">
-                        <Textarea
-                            label="Question"
-                            name="question"
-                            required={true}
-                        />
-                    </div>
-
-                    <Captcha setCaptchaResponse={setCaptchaResponse}/>
-
-                    <div className="form-element">
-                        {submissionComplete ?
-                            <p className="text-success message">Message Sent!</p> : ""}
-                        {submissionError ?
-                            <p className="text-danger message">{submissionErrorMessage}</p> : ""}
-                    </div>
-
-                    <div className="form-element form-submit">
-                        <Button variant="primary" size="large" type="submit" disabled={submitted}>
-                            Submit
-                        </Button>
-                        {isSubmitting ? <Spinner size="small"/> : ""}
-                    </div>
-
-                </form>
+                            </div>
+                        </form>
+                    }
+                </div>
             </div>
-
         </section>
+    )
+};
+
+export const ContactSection: React.FC<ContactSectionProps> = (
+    {
+        propertyId,
+        subject,
+        to,
+        contactNumber,
+        conversionTrackingId1, conversionTrackingId2
+    }) => {
+
+    return (
+        <GoogleReCaptchaProvider
+            reCaptchaKey="6LfHwKIpAAAAAFdFDbvQiBrBn6DJv9q-cIN9GO7S">
+            <Contact contactNumber={contactNumber} to={to} conversionTrackingId1={conversionTrackingId1}
+                     conversionTrackingId2={conversionTrackingId2} subject={subject} propertyId={propertyId}/>
+        </GoogleReCaptchaProvider>
+
     );
 };
 
+
 export interface ContactSectionProps {
+    propertyId: AllPropertyId
     subject?: string;
     to?: string;
     variant?: "long";
@@ -212,3 +328,5 @@ export interface ContactSectionProps {
     conversionTrackingId1?: string
     conversionTrackingId2?: string
 }
+
+export type AllPropertyId = PropertyId | "renaissance-rentals";

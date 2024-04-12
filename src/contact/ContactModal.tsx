@@ -5,7 +5,7 @@ import {ContactSection, ContactSectionProps} from "./ContactSection";
 
 export const ContactModal: React.FC<ContactModalProps> = (
     {
-        showContactModal, contactModalCloseHandler, to, subject,
+        showContactModal, contactModalCloseHandler, propertyId, to, subject,
         variant, conversionTrackingId2, conversionTrackingId1, contactNumber,
     }) => {
 
@@ -18,7 +18,7 @@ export const ContactModal: React.FC<ContactModalProps> = (
                 <ContactSection subject={subject} variant={variant} to={to}
                                 conversionTrackingId1={conversionTrackingId1}
                                 conversionTrackingId2={conversionTrackingId2}
-                                contactNumber={contactNumber}
+                                contactNumber={contactNumber} propertyId={propertyId}
                 />
             </Modal>
         </div>
