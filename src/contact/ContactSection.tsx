@@ -324,4 +324,4 @@ export interface ContactSectionProps {
     conversionTrackingId2?: string
 }
 
-export type AllPropertyId = PropertyId | "renaissance-rentals";
+export type AllPropertyId = PropertyId | "renaissance-rentals" | "apartments-in-bloomington" | "bloomington-apartments";
