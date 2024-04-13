@@ -16,7 +16,6 @@ import {dateToMoment, minumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
 import {Pet, Unit} from "../data/Unit";
 import {get} from "../../service/RoundRobin";
-import {graphql} from "../../service/GraphqlQuery";
 
 export const AVAILABLE_NOW = "Available Now";
 
@@ -25,24 +24,9 @@ export const convertToHttps = (url: string): string => {
         return "";
     return url.replace(/^http:\/\//i, 'https://');
 };
-const getAllPropertyFilterDataQuery = () => {
-    return '{                                                       \
-        properties {                                                \
-            name active                                             \
-            floorplans {                                            \
-                id name active bedroom bathroom coverImage featured \
-                virtualTourLink videoTourLink style                 \
-                photosFolderId                                      \
-                units {                                             \
-                    rent squareFoot active moveInDate               \
-                }                                                   \
-            }                                                       \
-        }                                                           \
-    }'
-}
 export const getAllPropertyFilterData = (): Promise<PropertyFilterData[]> => {
-    return graphql(getAllPropertyFilterDataQuery()).then(response => {
-            const properties: PropertyFilterData[] = response.data.data.properties.filter((property: PropertyFilterData) => property.active);
+    return get("properties?projection=filter").then(response => {
+            const properties: PropertyFilterData[] = response.data._embedded.properties.filter((property: PropertyFilterData) => property.active);
 
             properties.forEach(property => {
                 property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
@@ -54,22 +38,8 @@ export const getAllPropertyFilterData = (): Promise<PropertyFilterData[]> => {
         }
     );
 }
-const getFloorplansFilterDataQuery = (propertyId: String) => {
-    return '{                                                       \
-        property(id: "' + propertyId + '") {                        \
-            floorplans {                                            \
-                id name active bedroom bathroom coverImage featured \
-                virtualTourLink videoTourLink style                 \
-                photosFolderId                                      \
-                units {                                             \
-                    rent squareFoot active moveInDate               \
-                }                                                   \
-            }                                                       \
-        }                                                           \
-    }'
-}
 export const getFloorplansFilterData = (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    return graphql(getFloorplansFilterDataQuery(propertyId)).then(response => {
+    return get("properties/" + propertyId + "?projection=filter").then(response => {
             const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
             floorplans.forEach(floorplan => {
                 floorplan.units = floorplan.units.filter(unit => unit.active);
