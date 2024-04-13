@@ -23,7 +23,6 @@ const Contact: React.FC<ContactSectionProps> = ({
     const [lowerRent, setLowerRent] = useState(0);
     const [upperRent, setUpperRent] = useState(4000);
     const [hasContactError, setHasContactError] = useState(false);
-    const [hasCommunityError, setHasCommunityError] = useState(false);
     const [contactMessage, setContactMessage] = useState(defaultContactMessage)
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +34,6 @@ const Contact: React.FC<ContactSectionProps> = ({
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
-        setHasCommunityError(false);
         setHasContactError(false);
         if (form.checkValidity()) {
             const currentMessage: ContactMessage = {
@@ -51,13 +49,10 @@ const Contact: React.FC<ContactSectionProps> = ({
                 communities: Object.keys(PropertiesEmail).filter(value => form[value] && form[value].checked).join(", ")
             };
 
-            if (currentMessage.communities === "" ||
-                (!currentMessage.emailPreferred && !currentMessage.phonePreferred && !currentMessage.textPreferred)) {
-                if (currentMessage.communities === "") {
-                    setHasCommunityError(true);
-                } else {
-                    setHasContactError(true);
-                }
+            if (!currentMessage.emailPreferred && !currentMessage.phonePreferred && !currentMessage.textPreferred) {
+
+                setHasContactError(true);
+
             } else {
                 setContactMessage(currentMessage);
                 setIsFirstStep(false);
@@ -208,17 +203,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                                     />
                                 </div>
                             </div>
-                            <p className={hasCommunityError ? "error" : ""}>Which community are you interested in?*
-                                (<i>check all that
-                                    apply</i>)</p>
-                            <div className="checkboxes">
-                                {Object.keys(PropertiesEmail).map(value =>
-                                    <Checkbox label={value} name={value} key={value}/>
-                                )}
-                            </div>
-                            {hasCommunityError ? <div className="error">
-                                <Icon name="alert">Please check one of the boxes</Icon>
-                            </div> : <></>}
+
 
                             <div className="submit-button--div first--step">
                                 <Button variant="primary" size="large" type="submit">
@@ -236,6 +221,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                                     <p><b> Optional Fields</b></p>
                                 </div>
                             </div>
+
                             <div className="form-item">
                                 <div className="with-sub">
                                     <div className="sub-item item--small">
@@ -259,6 +245,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                                 </RangeSlider>
                             </div>
 
+
                             <div className="form-item long">
                                 <Input
                                     label="Which amenities and features are most important to you in your next home?"
@@ -276,6 +263,14 @@ const Contact: React.FC<ContactSectionProps> = ({
                             <div className="form-item long">
                                 <Input label="How did you hear about us?" name="hearAboutUs"
                                        icon="type"/>
+                            </div>
+                            <div>
+                                <p>Which community are you interested in? (<i>check all that apply</i>)</p>
+                                <div className="checkboxes">
+                                    {Object.keys(PropertiesEmail).map(value =>
+                                        <Checkbox label={value} name={value} key={value}/>
+                                    )}
+                                </div>
                             </div>
                             <div className="form-element">
                                 {submissionComplete ?
