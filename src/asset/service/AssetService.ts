@@ -31,29 +31,19 @@ export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
             console.log(reason);
         });
 }
-export const propertyIdToDomain = (propertyId: string): string => {
 
-    switch (propertyId) {
-        case "verona-park":
-            return "https://verona-park.herokuapp.com/";
-        case "cov-affordable":
-        case "covenanter-hill" :
-            return "https://covenanter-hill.herokuapp.com/";
-        case "high-grove":
-        case "meadow-creek":
-            return "https://high-grove.herokuapp.com/";
-        case "scholars-quad":
-        case "huntington-gardens":
-            return "https://scholars-quad.herokuapp.com/";
-        case "scholars-rock":
-        case "scholars-rooftop":
-            return "https://scholars-rooftop.herokuapp.com/";
-        case "sh-garages":
-        case "summer-house" :
-            return "https://summer-house.herokuapp.com/";
-        default :
-            return "https://verona-park.herokuapp.com/";
-    }
+
+export const propertyIdToDomain = (propertyId: string): string => {
+    const assetDomains = [
+        "https://verona-park.herokuapp.com/",
+        "https://covenanter-hill.herokuapp.com/",
+        "https://high-grove.herokuapp.com/",
+        "https://scholars-quad.herokuapp.com/",
+        "https://summer-house.herokuapp.com/",
+        "https://verona-park.herokuapp.com/"
+    ];
+    const random = Math.ceil(Math.random() * 6) - 1;
+    return assetDomains[random];
 }
 
 export const getAsset = (imageUrl: string) => {
