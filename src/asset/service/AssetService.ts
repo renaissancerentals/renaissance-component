@@ -7,7 +7,8 @@ const ASSET_DOWNLOAD_FRAGMENT = "api/asset/download/";
 export const propertyFragment = (propertyId?: string): string => propertyId ? propertyId + "/" : "";
 export const getAssetUrl = (imageUrl: string, assetGatewayId: string): string => {
     if (isGoogleDriveImage(imageUrl)) {
-        return propertyIdToDomain(propertyFragment(assetGatewayId)) + ASSET_DOWNLOAD_FRAGMENT + extractIdFrom(imageUrl);
+
+        return propertyIdToDomain(assetGatewayId) + ASSET_DOWNLOAD_FRAGMENT + extractIdFrom(imageUrl);
     }
     return imageUrl;
 };
@@ -31,6 +32,7 @@ export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
         });
 }
 export const propertyIdToDomain = (propertyId: string): string => {
+
     switch (propertyId) {
         case "verona-park":
             return "https://verona-park.herokuapp.com/";
@@ -50,7 +52,7 @@ export const propertyIdToDomain = (propertyId: string): string => {
         case "summer-house" :
             return "https://summer-house.herokuapp.com/";
         default :
-            return "https://renaissancerentals.herokuapp.com/";
+            return "https://verona-park.herokuapp.com/";
     }
 }
 
