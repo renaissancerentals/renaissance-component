@@ -43,7 +43,8 @@ export const propertyIdToDomain = (propertyId: string): string => {
         "https://verona-park.herokuapp.com/"
     ];
     const random = Math.ceil(Math.random() * 6) - 1;
-    return assetDomains[random];
+
+    return random < 0 || random > assetDomains.length - 1 ? assetDomains[0] : assetDomains[random];
 }
 
 export const getAsset = (imageUrl: string) => {
