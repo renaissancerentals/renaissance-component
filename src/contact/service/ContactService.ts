@@ -29,3 +29,9 @@ export const trackContactSubmitted = (propertyId: AllPropertyId) => {
         "property": propertyId
     });
 }
+
+export const trackContactInitiated = (propertyId: AllPropertyId) => {
+    AdminApi.post("admin/analytics/contact/initiated", {
+        "property": propertyId
+    });
+}

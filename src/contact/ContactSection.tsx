@@ -6,7 +6,12 @@ import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} fr
 import {PropertiesEmail, PropertyId} from "../property/data/Property";
 import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
 import {ContactMessage, defaultContactMessage} from "./data/ContactMessage";
-import {sendContactMail, sendToConversionTracking, trackContactSubmitted} from "./service/ContactService";
+import {
+    sendContactMail,
+    sendToConversionTracking,
+    trackContactInitiated,
+    trackContactSubmitted
+} from "./service/ContactService";
 
 
 const Contact: React.FC<ContactSectionProps> = ({
@@ -56,6 +61,7 @@ const Contact: React.FC<ContactSectionProps> = ({
             } else {
                 setContactMessage(currentMessage);
                 setIsFirstStep(false);
+                trackContactInitiated(propertyId);
             }
         }
     }

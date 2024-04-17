@@ -132,5 +132,5 @@ export {
 } from "./asset/service/AssetService";
 
 export {
-    trackContactClicked, trackContactSubmitted, sendContactMail, sendToConversionTracking
+    trackContactClicked, trackContactSubmitted, trackContactInitiated, sendContactMail, sendToConversionTracking
 } from "./contact/service/ContactService";
