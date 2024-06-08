@@ -124,7 +124,8 @@ export {
     getAllActiveFloorplans,
     getFeaturedFloorplans,
     getTestimonials,
-    petPolicy
+    petPolicy,
+    getWebSpecials
 } from "./floorplan/service/FloorplanService";
 
 export {
