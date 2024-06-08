@@ -6,10 +6,11 @@ import {Badge} from "@contentmunch/muncher-ui";
 import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
+import {WebSpecial} from "../floorplan/data/Floorplan";
 
 export const GalleryHeroMain: React.FC<GalleryHeroProps> = (
     {
-        virtualTour, setCurrentView, isAvailableNow,
+        virtualTour, setCurrentView, isAvailableNow, webSpecials,
         assetsToShow, isFirst, toursCount, imageClickedHandler, propertyId
     }) => {
 
@@ -28,6 +29,10 @@ export const GalleryHeroMain: React.FC<GalleryHeroProps> = (
             {isFirst && isAvailableNow ?
                 <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
 
+            {
+                isFirst && webSpecials.length > 0 ?
+                    <div className="gallery--information"><Badge variant="secondary"><p>{webSpecials[0].description}</p></Badge></div> : <></>
+            }
             <div className="gallery-hero-two-columns">
                 {isFirst ?
                     <div
@@ -84,7 +89,7 @@ export interface GalleryHeroProps {
     isAvailableNow?: boolean;
     isFirst: boolean;
     toursCount: number;
-
+    webSpecials: WebSpecial[];
     setCurrentView: (view: "photo" | "virtual tour" | "video tour") => void;
     imageClickedHandler: (image: Asset) => void;
     propertyId: string;

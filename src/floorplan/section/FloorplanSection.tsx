@@ -5,7 +5,8 @@ import {
     SimilarFloorplan,
     Testimonial,
     UtilityName,
-    UtilityType
+    UtilityType,
+    WebSpecial
 } from "../data/Floorplan";
 import {
     floorplanAddress,
@@ -13,6 +14,7 @@ import {
     getFloorplanVariations,
     getSimilarFloorplans,
     getTestimonials,
+    getWebSpecials,
     notPermittedPets,
     permittedPets,
     petPolicy
@@ -48,6 +50,8 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     const [similarFloorplans, setSimilarFloorplans] = useState<SimilarFloorplan[]>([]);
     const [floorplanVariations, setFloorplanVariations] = useState<FloorplanVariation[]>([]);
     const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+    const [webSpecials, setWebSpecials] = useState<WebSpecial[]>([]);
+
     const [isLoading, setIsLoading] = useState(true);
     const [errorLoading, setErrorLoading] = useState(false);
 
@@ -68,16 +72,27 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
             getFloorplan(floorplanId),
             getFloorplanVariations(floorplanId),
             getSimilarFloorplans(floorplanId),
-            getTestimonials(floorplanId)
+            getTestimonials(floorplanId),
+            getWebSpecials(floorplanId)
         ])
             .then((data) => {
                 const floorplanData = {...data[0]};
                 const activeUnits = floorplanData.units.filter(unit => unit.active);
+                const today = moment();
                 floorplanData.units = activeUnits;
                 setFloorplan(floorplanData);
                 setFloorplanVariations(data[1]);
                 setSimilarFloorplans(data[2]);
                 setTestimonials(data[3]);
+                const validWebSpecials: WebSpecial[] = [];
+                data[4].forEach(webSpecial => {
+                    if (dateToMoment(webSpecial.startDate).isBefore(today) &&
+                        dateToMoment(webSpecial.endDate).isAfter(today)
+                    ) {
+                        validWebSpecials.push(webSpecial);
+                    }
+                });
+                setWebSpecials(validWebSpecials);
             })
             .catch(() => {
                 setErrorLoading(true);
@@ -133,6 +148,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                         </section> :
                         <>
                             <FloorplanHero floorplan={floorplan} contactClickHandler={contactClickHandler}
+                                           webSpecials={webSpecials}
                                            applyClickHandler={applyClickHandler} handleRefToMap={handleRefToMap}/>
                             <div className="container">
                                 <div className="floorplan--cards">

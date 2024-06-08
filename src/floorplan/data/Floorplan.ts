@@ -161,3 +161,9 @@ export interface Testimonial {
     testimonial: string;
     tenant: string;
 }
+
+export interface WebSpecial {
+    description: string;
+    startDate: string;
+    endDate: string;
+}

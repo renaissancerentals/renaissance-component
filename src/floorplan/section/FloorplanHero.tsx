@@ -6,7 +6,7 @@ import {getAssetsFrom} from "../../asset/service/AssetService";
 import {GalleryHeroSkeleton} from "../../gallery/GalleryHeroSkeleton";
 import {GalleryHeroMain} from "../../gallery/GalleryHeroMain";
 import {extractIdFrom, rangeFrom} from "../../utils/Utils";
-import {Floorplan} from "../data/Floorplan";
+import {Floorplan, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
 import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanService";
 import {VideoTours} from "../../gallery/VideoTours";
@@ -16,7 +16,7 @@ import {GalleryHeroMobile} from "../../gallery/GalleryHeroMobile";
 import {HeroBadgeStats} from "./HeroBadgeStats";
 
 export const FloorplanHero: React.FC<FloorplanProps> = (
-    {floorplan, contactClickHandler, applyClickHandler, handleRefToMap}) => {
+    {floorplan, contactClickHandler, applyClickHandler, handleRefToMap, webSpecials}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
     const [isAssetsLoading, setIsAssetsLoading] = useState(true);
     const [videoTours, setVideoTours] = useState<string[]>([]);
@@ -119,6 +119,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                             <GalleryHeroMain isAvailableNow={isFloorplanAvailable(floorplan)}
                                                              virtualTour={virtualTour} isFirst={i === 0}
                                                              toursCount={toursCount}
+                                                             webSpecials={webSpecials}
                                                              setCurrentView={setCurrentView}
                                                              imageClickedHandler={imageClickedHandler}
                                                              assetsToShow={assetsToShow(i)}
@@ -130,6 +131,8 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}
+                                                       webSpecials={webSpecials}
+                                                       isAvailableNow={isFloorplanAvailable(floorplan)}
                                                        propertyId={floorplan.property.id}/>
                                 </div>
                             </> : ""
@@ -169,7 +172,8 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                 <p>Bus Routes:&nbsp;
                                     {floorplan.property.busRoutes.map((busRoute, index) =>
                                         <span key={"bus-route-" + index}>
-                                            <a href={busRoute.busRouteLink} target="_blank" rel="noreferrer">{busRoute.busRoute}</a>
+                                            <a href={busRoute.busRouteLink} target="_blank"
+                                               rel="noreferrer">{busRoute.busRoute}</a>
                                             {index < floorplan.property.busRoutes.length - 1 ? ", " : ""}
                                         </span>
                                     )}
@@ -192,6 +196,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
 
 export interface FloorplanProps {
     floorplan: Floorplan;
+    webSpecials: WebSpecial[];
     contactClickHandler: () => void;
     applyClickHandler: () => void;
     handleRefToMap: () => void;

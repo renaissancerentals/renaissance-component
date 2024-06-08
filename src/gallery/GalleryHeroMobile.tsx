@@ -2,22 +2,31 @@ import React, {ReactElement} from "react";
 import './assets/GalleryHero.scss';
 import {Asset} from "../asset/data/Asset";
 import {assetUrlFrom} from "../asset/service/AssetService";
-import {ItemSlider} from "@contentmunch/muncher-ui";
+import {Badge, ItemSlider} from "@contentmunch/muncher-ui";
 import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
+import {WebSpecial} from "../floorplan/data/Floorplan";
 
 export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
     {
-        assets, virtualTour, setCurrentView, toursCount, imageClickedHandler, propertyId
+        assets, virtualTour, setCurrentView, toursCount,
+        imageClickedHandler, isAvailableNow, propertyId, webSpecials,
     }) => {
 
-    const createImageItem = (asset: Asset) => <img src={assetUrlFrom(asset.id, propertyId)}
-                                                   alt={asset.name}
-                                                   key={asset.id}
-                                                   className="gallery-hero-mobile--image"
-                                                   onClick={() => imageClickedHandler(asset)}
-    />;
+    const createImageItem = (asset: Asset) =>
+        <>
+            {isAvailableNow ?
+                <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
+            {webSpecials.length > 0 ?
+                <div className="gallery--information"><Badge variant="secondary"><p>{webSpecials[0].description}</p>
+                </Badge></div> : <></>}
+            <img src={assetUrlFrom(asset.id, propertyId)}
+                 alt={asset.name}
+                 key={asset.id}
+                 className="gallery-hero-mobile--image"
+                 onClick={() => imageClickedHandler(asset)}/>
+        </>;
 
     const sliderItems = () => {
         const cardImageIcon = (i: number) => virtualTour && i === 0 ?
@@ -71,7 +80,9 @@ export interface GalleryHeroMobileProps {
     assets: Asset[];
     virtualTour?: string;
     toursCount: number;
+    webSpecials: WebSpecial[];
     setCurrentView: (view: "photo" | "virtual tour" | "video tour") => void;
     imageClickedHandler: (image: Asset) => void;
     propertyId: string;
+    isAvailableNow: boolean;
 }

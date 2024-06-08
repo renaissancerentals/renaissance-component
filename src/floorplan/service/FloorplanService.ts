@@ -10,7 +10,8 @@ import {
     FloorplanStyle,
     FloorplanVariation,
     SimilarFloorplan,
-    Testimonial
+    Testimonial,
+    WebSpecial
 } from "../data/Floorplan";
 import {dateToMoment, minumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
@@ -178,6 +179,8 @@ export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): 
 export const getTestimonials = (floorplanId: string): Promise<Testimonial[]> =>
     get("testimonials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.testimonials);
 
+export const getWebSpecials = (floorplanId: string): Promise<WebSpecial[]> =>
+    get("webSpecials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.webSpecials);
 
 export const permittedPets = (floorplan: Floorplan): string[] => {
 
