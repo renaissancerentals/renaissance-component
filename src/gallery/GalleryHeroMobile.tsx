@@ -14,13 +14,19 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
         imageClickedHandler, isAvailableNow, propertyId, webSpecials,
     }) => {
 
-    const createImageItem = (asset: Asset) =>
+    const createImageItem = (asset: Asset, index: number) =>
+
         <>
-            {isAvailableNow ?
-                <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
-            {webSpecials.length > 0 ?
-                <div className="gallery--information"><Badge variant="secondary"><p>{webSpecials[0].description}</p>
-                </Badge></div> : <></>}
+            {index === 0 ?
+                <>
+                    {isAvailableNow ?
+                        <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
+                    {webSpecials.length > 0 ?
+                        <div className="gallery--information"><Badge variant="secondary">
+                            <p>{webSpecials[0].description}</p>
+                        </Badge></div> : <></>}
+                </> : <></>
+            }
             <img src={assetUrlFrom(asset.id, propertyId)}
                  alt={asset.name}
                  key={asset.id}
@@ -39,7 +45,7 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
                 <p>Video Tour</p>
             </>
         const items: ReactElement[] = [];
-        items.push(createImageItem(assets[0]));
+        items.push(createImageItem(assets[0], 0));
         [...Array(toursCount)].forEach((x, i) => {
                 items.push(
                     <HeroImageCard backgroundImage={assetUrlFrom(assets[i].id, propertyId)}
@@ -54,8 +60,8 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
                 )
             }
         );
-        assets.slice(1, assets.length).forEach(asset => {
-            items.push(createImageItem(asset));
+        assets.slice(1, assets.length).forEach((asset, index) => {
+            items.push(createImageItem(asset, index+1));
         });
 
         return items;
