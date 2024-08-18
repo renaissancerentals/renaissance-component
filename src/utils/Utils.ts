@@ -34,7 +34,8 @@ export const capitalizeFirstLetter = (value: string): string => {
 }
 export const toUSD = (num: number) => new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: 'USD',
+    minimumFractionDigits: 0
 }).format(num);
 export const toDate = (date: string) => new Date(date).toLocaleString('en-US');
 export const youtubeUrlToEmbedUrl = (youtubeUrl: string) => "https://www.youtube.com/embed/" + youtubeUrl.split("/").pop() + "?rel=0";

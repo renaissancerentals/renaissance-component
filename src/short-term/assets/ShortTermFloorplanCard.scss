@@ -1,0 +1,232 @@
+@import "src/assets/variables";
+
+$floorplan-card-color: $primary-background-color !default;
+$floorplan-card-secondary-color: $secondary-color !default;
+.short-term-floorplan-card {
+  color: $floorplan-card-color;
+
+  a {
+    color: $floorplan-card-color;
+  }
+
+  a:hover {
+    color: inherit;
+  }
+
+  position: relative;
+  height: 16rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .small {
+    font-size: .7rem;
+  }
+  .muncher-spinner {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .muncher-button--navigate {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  //@media(min-width: $medium-size) {
+  //  width: 20rem;
+  //  height: 14rem;
+  //}
+  .card--image {
+    width: 100vw;
+    height: 16rem;
+    object-fit: cover;
+  }
+
+  @media(min-width: $large-size) {
+    width: 25rem;
+    height: 16rem;
+    .card--image {
+      width: 25rem;
+      height: 16rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+    height: 18rem;
+    .card--image {
+      width: 33rem;
+      height: 18rem;
+    }
+  }
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .muncher-badge {
+    font-size: .8rem;
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+  }
+
+  .icon-tour {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .icon-video {
+    position: absolute;
+    top: 3.5rem;
+    left: 1.1rem;
+  }
+
+
+  .icon-left, .icon-right {
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+  }
+
+  .icon-left:hover, .icon-right:hover {
+    opacity: .6;
+  }
+
+  .icon-left {
+    left: .1rem;
+  }
+
+  .icon-right {
+    right: .1rem;
+  }
+
+  .floorplan-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      text-align: left;
+      margin-bottom: .1rem;
+    }
+
+    .truncate {
+      text-overflow: ellipsis;
+      //@media(min-width: $medium-size) {
+      //  width: 10rem;
+      //}
+      @media(min-width: $large-size) {
+        width: 5rem;
+      }
+      @media(min-width: $extra-large-size) {
+        width: 8rem;
+      }
+      width: 55vw;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .left, .right {
+      padding: 0 .5rem;
+    }
+  }
+
+  .featured {
+    h3 {
+      text-transform: capitalize;
+      font-family: $serif-font;
+      font-weight: normal;
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: .8rem;
+      margin: .4rem;
+      text-align: right;
+    }
+
+    a {
+      color: $floorplan-card-secondary-color;
+      text-decoration: underline;
+    }
+
+    color: $floorplan-card-secondary-color;
+    background-color: rgba(213, 199, 181, .7);
+  }
+}
+
+.short-term-floorplan-card--small {
+  //@media(min-width: $medium-size) {
+  //  width: 15rem;
+  //  height: 14rem;
+  //}
+  @media(min-width: $large-size) {
+    width: 20rem;
+    height: 16rem;
+    .card--image {
+      width: 20rem;
+      height: 16rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 28rem;
+    height: 18rem;
+    .card--image {
+      width: 28rem;
+      height: 18rem;
+    }
+  }
+
+  .floorplan-card-footer {
+    .left {
+      //@media(min-width: $medium-size) {
+      //  max-width: 8rem;
+      //}
+      @media(min-width: $large-size) {
+        max-width: 12rem;
+      }
+      @media(min-width: $extra-large-size) {
+        max-width: 16rem;
+      }
+
+    }
+  }
+}
+
+.floorplan-card--slider {
+
+  width: 100vw;
+
+  @media(min-width: $large-size) {
+    width: 25rem;
+
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+
+  }
+
+  .muncher-item-slider .muncher-button--navigate {
+    top: 38%;
+  }
+}
+
+.floorplan-card-slider--small {
+
+  @media(min-width: $large-size) {
+    width: 20rem;
+  }
+  @media(min-width: $extra-large-size) {
+    width: 28rem;
+  }
+}

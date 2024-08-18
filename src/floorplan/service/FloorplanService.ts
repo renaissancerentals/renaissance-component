@@ -25,29 +25,24 @@ export const convertToHttps = (url: string): string => {
         return "";
     return url.replace(/^http:\/\//i, 'https://');
 };
-export const getAllPropertyFilterData = (): Promise<PropertyFilterData[]> => {
-    return get("properties?projection=filter").then(response => {
-            const properties: PropertyFilterData[] = response.data._embedded.properties.filter((property: PropertyFilterData) => property.active);
-
-            properties.forEach(property => {
-                property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
-                property.floorplans.forEach(floorplan => {
-                    floorplan.units = floorplan.units.filter(unit => unit.active);
-                });
-            });
-            return properties;
-        }
-    );
+export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
+    let response = await get("properties?projection=filter");
+    const properties: PropertyFilterData[] = response.data._embedded.properties.filter((property: PropertyFilterData) => property.active);
+    properties.forEach(property => {
+        property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
+        property.floorplans.forEach(floorplan => {
+            floorplan.units = floorplan.units.filter(unit => unit.active);
+        });
+    });
+    return properties;
 }
-export const getFloorplansFilterData = (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    return get("properties/" + propertyId + "?projection=filter").then(response => {
-            const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
-            floorplans.forEach(floorplan => {
-                floorplan.units = floorplan.units.filter(unit => unit.active);
-            });
-            return floorplans;
-        }
-    );
+export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
+    let response = await get("properties/" + propertyId + "?projection=filter");
+    const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
+    floorplans.forEach(floorplan => {
+        floorplan.units = floorplan.units.filter(unit => unit.active);
+    });
+    return floorplans;
 };
 export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: CurrentFilters): FloorplanCardData[] => {
     return sortFloorplans(floorplans.filter(floorplan => filterMatches(floorplan, currentFilters)), currentFilters.sortBy);
@@ -148,22 +143,18 @@ export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters =
 };
 
 
-export const getFeaturedFloorplans = (): Promise<FloorplanSpotlight[]> => {
+export const getFeaturedFloorplans = async (): Promise<FloorplanSpotlight[]> => {
 
-    return get("floorplans?projection=spotlight&size=200")
-        .then(response =>
-            response.data._embedded.floorplans.filter((floorplan: FloorplanSpotlight) => floorplan.featured && floorplan.property.active)
-        );
+    let response = await get("floorplans?projection=spotlight&size=200");
+    return await response.data._embedded.floorplans.filter((floorplan: FloorplanSpotlight) => floorplan.featured && floorplan.property.active);
 };
 
-export const getAllActiveFloorplans = (): Promise<FloorplanDetails[]> => {
+export const getAllActiveFloorplans = async (): Promise<FloorplanDetails[]> => {
 
-    return get("floorplans?projection=details&size=200")
-        .then(response =>
-            response.data._embedded.floorplans
-                .filter((floorplan: Floorplan) => floorplan.active)
-                .filter((floorplan: Floorplan) => floorplan.style !== "GARAGE")
-        );
+    const response = await get("floorplans?projection=details&size=200");
+    return response.data._embedded.floorplans
+        .filter((floorplan: Floorplan) => floorplan.active)
+        .filter((floorplan_1: Floorplan) => floorplan_1.style !== "GARAGE");
 };
 
 export const getFloorplan = (floorplanId: string): Promise<Floorplan> =>
@@ -237,7 +228,6 @@ export const floorplanAddress = (currentFloorplan: Floorplan): FloorplanAddress 
         zipcode: currentFloorplan.property.zipcode
     }
 }
-
 
 export interface FloorplanAddress {
     address: string;

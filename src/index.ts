@@ -42,6 +42,11 @@ export type {Asset} from "./asset/data/Asset"
 export type {GalleryType} from "./gallery/Gallery";
 export type {GalleryImage} from "./gallery/data/GalleryImage";
 
+
+export {ShortTermFloorplansSection} from "./short-term/ShortTermFloorplansSection";
+export {ShortTermFloorplanCard} from "./short-term/ShortTermFloorplanCard";
+export {ShortTermPricingCard} from "./short-term/ShortTermPricingCard";
+
 export type {
     FloorplanDetails,
     FloorplanCardData,
@@ -135,3 +140,5 @@ export {
 export {
     trackContactClicked, trackContactSubmitted, trackContactInitiated, sendContactMail, sendToConversionTracking
 } from "./contact/service/ContactService";
+
+export {getShortTermFloorplan, getShortTermFloorplansByPropertyId} from "./short-term/service/ShortTermService"

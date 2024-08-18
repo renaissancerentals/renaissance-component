@@ -110,7 +110,6 @@ export interface Floorplan {
     active: boolean;
 }
 
-
 export interface FloorplanSpotlight {
     id: string;
     name: string;

@@ -1,0 +1,59 @@
+@import "src/assets/variables";
+
+.section-pricing-card {
+  font-size: 80%;
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(8, 12.5%);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-auto-flow: column;
+    margin: .5rem;
+
+    .col {
+      border: 1px solid #a7bdb1;
+      height: 3rem;
+      padding: .5rem;
+
+    }
+
+    .head {
+      background: #a7bdb1;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: $heading-font;
+
+    }
+  }
+
+  @media (min-width: $medium-size) {
+    font-size: 90%;
+    .row {
+      grid-template-columns:  12% repeat(2, 8%) repeat(5, 14.3%);
+      grid-template-rows: repeat(4, 20%);
+      grid-auto-flow: row;
+
+
+      .col {
+        height: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+
+        &:nth-child(n) {
+          border-top: none;
+        }
+
+        &:nth-child(n+8) {
+          border-right: none;
+        }
+
+        &:nth-child(8n) {
+          border-right: 1px solid #a7bdb1;
+        }
+      }
+    }
+  }
+}
