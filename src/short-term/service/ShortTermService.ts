@@ -54,3 +54,4 @@ export const sortFloorplans = (floorplans: FloorplanShortTerm[], sortBy: ShortTe
 export const sortAndFilter = (floorplans: FloorplanShortTerm[], currentFilters: CurrentShortTermFilters): FloorplanShortTerm[] => {
     return sortFloorplans(floorplans.filter(floorplan => filterMatches(floorplan, currentFilters)), currentFilters.sortBy);
 };
+

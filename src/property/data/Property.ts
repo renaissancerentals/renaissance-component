@@ -35,6 +35,7 @@ export interface Property {
     conversionTrackingId2: string;
     teamMembers: PropertyTeamMember[];
     busRoutes: PropertyBusRoute[];
+    leaseType: LeaseType;
 }
 
 export interface PropertyBusRoute {
@@ -56,6 +57,10 @@ export interface PropertyFilterData {
 export enum LeasingOfficeType {
     OFF_SITE = "OFF_SITE", ON_SITE = "ON_SITE"
 }
+export enum LeaseType {
+    YEARLY = "YEARLY", SHORT_TERM = "SHORT_TERM"
+}
+
 
 export interface PropertyAmenityName {
     id: string;

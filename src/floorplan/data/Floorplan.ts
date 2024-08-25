@@ -1,5 +1,5 @@
 import {Unit, UnitCardData, UnitDetails} from "./Unit";
-import {PropertyBusRoute} from "../../property/data/Property";
+import {LeaseType, PropertyBusRoute} from "../../property/data/Property";
 
 export const MIN_RENT = 0;
 export const MAX_RENT = 4000;
@@ -140,6 +140,7 @@ export interface PropertyName {
     address: string;
     zipcode: string;
     busRoutes: PropertyBusRoute[];
+    leaseType: LeaseType;
 }
 
 export interface FloorplanName {

@@ -17,6 +17,7 @@ import {dateToMoment, minumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
 import {Pet, Unit} from "../data/Unit";
 import {get} from "../../service/RoundRobin";
+import {renaissance} from "../../data/RenaissanceData";
 
 export const AVAILABLE_NOW = "Available Now";
 
@@ -216,7 +217,7 @@ const unitWithMostAllowedPet = (units: Unit[]): Unit | undefined => {
 }
 
 export const floorplanAddress = (currentFloorplan: Floorplan): FloorplanAddress => {
-    const address: FloorplanAddress = {address: "", city: "Bloomington", state: "IN", zipcode: ""};
+    const address: FloorplanAddress = {address: "", city: renaissance.city, state: renaissance.state, zipcode: ""};
     if (currentFloorplan.units.length === 1) {
         return {
             ...address, address: currentFloorplan.units[0].address,

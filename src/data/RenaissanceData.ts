@@ -4,4 +4,6 @@ export const renaissance = {
         display: "(812) 333-2280"
     },
     propertyId: "renaissance-rentals",
+    city: "Bloomington",
+    state: "IN"
 }

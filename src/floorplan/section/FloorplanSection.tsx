@@ -79,6 +79,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                 const floorplanData = {...data[0]};
                 const activeUnits = floorplanData.units.filter(unit => unit.active);
                 const today = moment();
+
                 floorplanData.units = activeUnits;
                 setFloorplan(floorplanData);
                 setFloorplanVariations(data[1]);
