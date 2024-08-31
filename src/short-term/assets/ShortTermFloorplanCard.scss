@@ -122,14 +122,16 @@ $floorplan-card-secondary-color: $secondary-color !default;
 
     .truncate {
       text-overflow: ellipsis;
+      font-size: .9rem;
       //@media(min-width: $medium-size) {
       //  width: 10rem;
       //}
       @media(min-width: $large-size) {
-        width: 5rem;
+        width: 12rem;
       }
       @media(min-width: $extra-large-size) {
-        width: 8rem;
+        font-size: 1rem;
+        width: 20rem;
       }
       width: 55vw;
       white-space: nowrap;

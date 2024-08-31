@@ -24,7 +24,7 @@ export const Default: Story = {
     },
     floorplan: {
       id: "17789",
-      name: "2 Flat",
+      name: "2 Bedroom Flat at Verona Park",
       style: ShortTermStyle.APARTMENT,
       bedroom: 2,
       bathroom: 2,
