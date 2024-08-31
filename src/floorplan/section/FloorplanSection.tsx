@@ -37,6 +37,8 @@ import {MapSection} from "../../map/MapSection";
 import {SimilarFloorplanCard} from "../card/SimilarFloorplanCard";
 import {Button, Li, Ul} from "@contentmunch/muncher-ui";
 import moment from "moment";
+import {LeaseType} from "../../property/data/Property";
+import {ShortTermFloorplanSection} from "../../short-term/ShortTermFloorplanSection";
 
 export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     {
@@ -68,39 +70,44 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
     };
     useEffect(() => {
-        Promise.all([
-            getFloorplan(floorplanId),
-            getFloorplanVariations(floorplanId),
-            getSimilarFloorplans(floorplanId),
-            getTestimonials(floorplanId),
-            getWebSpecials(floorplanId)
-        ])
-            .then((data) => {
-                const floorplanData = {...data[0]};
-                const activeUnits = floorplanData.units.filter(unit => unit.active);
-                const today = moment();
-
-                floorplanData.units = activeUnits;
-                setFloorplan(floorplanData);
-                setFloorplanVariations(data[1]);
-                setSimilarFloorplans(data[2]);
-                setTestimonials(data[3]);
-                const validWebSpecials: WebSpecial[] = [];
-                data[4].forEach(webSpecial => {
-                    if (dateToMoment(webSpecial.startDate).isBefore(today) &&
-                        dateToMoment(webSpecial.endDate).isAfter(today)
-                    ) {
-                        validWebSpecials.push(webSpecial);
-                    }
-                });
-                setWebSpecials(validWebSpecials);
-            })
-            .catch(() => {
-                setErrorLoading(true);
-            })
-            .finally(() => {
+        getFloorplan(floorplanId).then(floorplanData => {
+            setFloorplan(floorplanData);
+            floorplanData.units = floorplanData.units.filter(unit => unit.active);
+            if (LeaseType.SHORT_TERM === floorplanData.property.leaseType) {
                 setIsLoading(false);
-            });
+            } else {
+                Promise.all([
+                    getFloorplanVariations(floorplanId),
+                    getSimilarFloorplans(floorplanId),
+                    getTestimonials(floorplanId),
+                    getWebSpecials(floorplanId)
+                ])
+                    .then((data) => {
+                        const today = moment();
+                        setFloorplanVariations(data[0]);
+                        setSimilarFloorplans(data[1]);
+                        setTestimonials(data[2]);
+                        const validWebSpecials: WebSpecial[] = [];
+                        data[3].forEach(webSpecial => {
+                            if (dateToMoment(webSpecial.startDate).isBefore(today) &&
+                                dateToMoment(webSpecial.endDate).isAfter(today)
+                            ) {
+                                validWebSpecials.push(webSpecial);
+                            }
+                        });
+                        setWebSpecials(validWebSpecials);
+                    })
+                    .catch(() => {
+                        setErrorLoading(true);
+                    })
+                    .finally(() => {
+                        setIsLoading(false);
+                    });
+            }
+        }).catch(() => {
+            setErrorLoading(true);
+            setIsLoading(false);
+        });
 
     }, [floorplanId]);
 
@@ -140,203 +147,208 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     }
 
     return (
-        <section className="section-floorplan">
-            {
-                isLoading ? <section className="section-floorplan--hero"><GalleryHeroSkeleton/></section> : <>
-                    {errorLoading ?
-                        <section className="div-full--center">
-                            <h2>Uh-oh, this is a 404</h2>
-                        </section> :
-                        <>
-                            <FloorplanHero floorplan={floorplan} contactClickHandler={contactClickHandler}
-                                           webSpecials={webSpecials}
-                                           applyClickHandler={applyClickHandler} handleRefToMap={handleRefToMap}/>
-                            <div className="container">
-                                <div className="floorplan--cards">
-                                    <Card title="Details">
-                                        <p className="floorplan-card--featured">
-                                            {floorplan.bedroom} Bedroom
-                                            | {floorplan.bathroom} Bathroom {enumToString(floorplan.style)}
-                                        </p>
-                                        {floorplan.units.length > 0 ? <>
+        LeaseType.SHORT_TERM === floorplan.property?.leaseType ?
+            <ShortTermFloorplanSection contactClickHandler={contactClickHandler} applyClickHandler={applyClickHandler}
+                                       floorplanId={floorplanId}/> :
+            <section className="section-floorplan">
+                {
+                    isLoading ? <section className="section-floorplan--hero"><GalleryHeroSkeleton/></section> : <>
+                        {errorLoading ?
+                            <section className="div-full--center">
+                                <h2>Uh-oh, this is a 404</h2>
+                            </section> :
+                            <>
+                                <FloorplanHero floorplan={floorplan} contactClickHandler={contactClickHandler}
+                                               webSpecials={webSpecials}
+                                               applyClickHandler={applyClickHandler} handleRefToMap={handleRefToMap}/>
+                                <div className="container">
+                                    <div className="floorplan--cards">
+                                        <Card title="Details">
                                             <p className="floorplan-card--featured">
-                                                {rangeFrom(floorplan.units, "squareFoot")} Square Feet
+                                                {floorplan.bedroom} Bedroom
+                                                | {floorplan.bathroom} Bathroom {enumToString(floorplan.style)}
                                             </p>
-                                            <p className="floorplan-card--featured">
-                                                ${rangeFrom(floorplan.units, "rent")}/mo
-                                            </p>
-                                            <p className="floorplan-card--featured">
-                                                ${rangeFrom(floorplan.units, "deposit")} Security Deposit
-                                            </p>
-                                        </> : ""}
-                                        <p>
-                                            {floorplan.description}
-                                        </p>
-                                    </Card>
-                                    {
-                                        floorplan.amenities.length > 0 ?
-                                            <Card title="Amenities">
-                                                <Ul>
-                                                    {
-                                                        floorplan.amenities.filter(amenity => amenity.featured).map(amenity =>
-                                                            <Li key={"floorplan-amenity-" + amenity.id}
-                                                                bulletIcon="star"
-                                                                isFeatured={true}>
-                                                                {amenity.name}
-
-                                                            </Li>
-                                                        )}
-                                                    {
-                                                        floorplan.amenities.filter(amenity => !amenity.featured).map(amenity =>
-                                                            <Li key={"floorplan-amenity-" + amenity.id}
-                                                                bulletIcon="dot">
-                                                                {amenity.name}
-
-                                                            </Li>
-                                                        )
-                                                    }
-                                                </Ul>
-                                                {
-                                                    floorplanVariations.length > 0 ?
-                                                        <>
-                                                            <h5>Variations</h5>
-                                                            <Ul>
-                                                                {
-                                                                    floorplanVariations.map((variation, i) =>
-                                                                        <Li key={"floorplan-variation-" + i}>
-                                                                            {variation.variation}
-                                                                        </Li>
-                                                                    )
-                                                                }
-                                                            </Ul>
-
-                                                        </> : ""}
-
-                                            </Card> : <></>
-                                    }
-
-                                    {
-                                        testimonials.length > 0 ?
-                                            <TestimonialsCard testimonials={testimonials}/> : <></>
-                                    }
-                                    <Card>
-                                        <div ref={locationRef ? locationRef : mapRef} id="location"
-                                             className="reference">
-
-                                        </div>
-                                        <MapSection
-                                            src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
-                                    </Card>
-
-                                    <Card title="Pets">
-                                        <h5>Permitted</h5>
-                                        <Ul>
-                                            {
-                                                permittedPets(floorplan).map((pet, i) =>
-                                                    <Li key={"floorplan-permitted-pet-" + i} bulletIcon="check"
-                                                        bulletColor="green">
-                                                        {pet}
-                                                    </Li>
-                                                )
-                                            }
-                                        </Ul>
-                                        {notPermittedPets(floorplan).length > 0 ?
-                                            <><h5>Not Permitted</h5>
-                                                <Ul>
-                                                    {
-                                                        notPermittedPets(floorplan).map((pet, i) =>
-                                                            <Li key={"floorplan-not-permitted-pet-" + i}
-                                                                bulletColor="brown" bulletIcon="close">
-                                                                {pet}
-                                                            </Li>
-                                                        )
-                                                    }
-                                                </Ul>
+                                            {floorplan.units.length > 0 ? <>
+                                                <p className="floorplan-card--featured">
+                                                    {rangeFrom(floorplan.units, "squareFoot")} Square Feet
+                                                </p>
+                                                <p className="floorplan-card--featured">
+                                                    ${rangeFrom(floorplan.units, "rent")}/mo
+                                                </p>
+                                                <p className="floorplan-card--featured">
+                                                    ${rangeFrom(floorplan.units, "deposit")} Security Deposit
+                                                </p>
                                             </> : ""}
-
+                                            <p>
+                                                {floorplan.description}
+                                            </p>
+                                        </Card>
                                         {
-                                            petPolicy(floorplan) ?
-                                                <>
-                                                    <h5>Additional Information</h5>
-                                                    <p>{petPolicy(floorplan)}</p>
-                                                </> : ""
+                                            floorplan.amenities.length > 0 ?
+                                                <Card title="Amenities">
+                                                    <Ul>
+                                                        {
+                                                            floorplan.amenities.filter(amenity => amenity.featured).map(amenity =>
+                                                                <Li key={"floorplan-amenity-" + amenity.id}
+                                                                    bulletIcon="star"
+                                                                    isFeatured={true}>
+                                                                    {amenity.name}
 
+                                                                </Li>
+                                                            )}
+                                                        {
+                                                            floorplan.amenities.filter(amenity => !amenity.featured).map(amenity =>
+                                                                <Li key={"floorplan-amenity-" + amenity.id}
+                                                                    bulletIcon="dot">
+                                                                    {amenity.name}
+
+                                                                </Li>
+                                                            )
+                                                        }
+                                                    </Ul>
+                                                    {
+                                                        floorplanVariations.length > 0 ?
+                                                            <>
+                                                                <h5>Variations</h5>
+                                                                <Ul>
+                                                                    {
+                                                                        floorplanVariations.map((variation, i) =>
+                                                                            <Li key={"floorplan-variation-" + i}>
+                                                                                {variation.variation}
+                                                                            </Li>
+                                                                        )
+                                                                    }
+                                                                </Ul>
+
+                                                            </> : ""}
+
+                                                </Card> : <></>
                                         }
 
-                                    </Card>
-                                    {floorplan.units.length > 0 ? <>
-                                        <Card title="Availability">
+                                        {
+                                            testimonials.length > 0 ?
+                                                <TestimonialsCard testimonials={testimonials}/> : <></>
+                                        }
+                                        <Card>
+                                            <div ref={locationRef ? locationRef : mapRef} id="location"
+                                                 className="reference">
+
+                                            </div>
+                                            <MapSection
+                                                src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
+                                        </Card>
+
+                                        <Card title="Pets">
+                                            <h5>Permitted</h5>
                                             <Ul>
                                                 {
-                                                    availableDates().filter(availableDate => isWithinTwelveMonths(availableDate)).map(availableDate =>
-                                                        <Li key={"floorplan-unit-availability-" + availableDate}
-                                                            bulletIcon="calendar">
-                                                            Available
-                                                            in <strong>{capitalizeFirstLetter(availableDate)}</strong>
+                                                    permittedPets(floorplan).map((pet, i) =>
+                                                        <Li key={"floorplan-permitted-pet-" + i} bulletIcon="check"
+                                                            bulletColor="green">
+                                                            {pet}
                                                         </Li>
                                                     )
                                                 }
                                             </Ul>
+                                            {notPermittedPets(floorplan).length > 0 ?
+                                                <><h5>Not Permitted</h5>
+                                                    <Ul>
+                                                        {
+                                                            notPermittedPets(floorplan).map((pet, i) =>
+                                                                <Li key={"floorplan-not-permitted-pet-" + i}
+                                                                    bulletColor="brown" bulletIcon="close">
+                                                                    {pet}
+                                                                </Li>
+                                                            )
+                                                        }
+                                                    </Ul>
+                                                </> : ""}
+
+                                            {
+                                                petPolicy(floorplan) ?
+                                                    <>
+                                                        <h5>Additional Information</h5>
+                                                        <p>{petPolicy(floorplan)}</p>
+                                                    </> : ""
+
+                                            }
 
                                         </Card>
+                                        {floorplan.units.length > 0 ? <>
+                                            <Card title="Availability">
+                                                <Ul>
+                                                    {
+                                                        availableDates().filter(availableDate => isWithinTwelveMonths(availableDate)).map(availableDate =>
+                                                            <Li key={"floorplan-unit-availability-" + availableDate}
+                                                                bulletIcon="calendar">
+                                                                Available
+                                                                in <strong>{capitalizeFirstLetter(availableDate)}</strong>
+                                                            </Li>
+                                                        )
+                                                    }
+                                                </Ul>
 
-                                        <Card title="Utilities">
-                                            <h5>Paid By Landlord</h5>
-                                            <Ul>
-                                                {
-                                                    floorplan.utilities.filter(utility => utility.type === UtilityType.INCLUDED_UTILITY).map(utility =>
-                                                        <Li key={"floorplan-included-utility-" + utility.id}
-                                                            bulletIcon="home">
-                                                            {capitalizeFirstLetter(utility.name)}
-                                                        </Li>
-                                                    )
-                                                }
-                                            </Ul>
-                                            <h5>Paid By Resident</h5>
-                                            <Ul>
-                                                {
-                                                    floorplan.utilities.filter(utility => utility.type === UtilityType.RESIDENT_UTILITY).map(utility =>
-                                                        <Li key={"floorplan-resident-utility-" + utility.id}
-                                                            bulletIcon="dollar">
-                                                            {residentUtilityDetails(utility)}
-                                                        </Li>
-                                                    )
-                                                }
-                                            </Ul>
-                                            {isAverageMonthlyBillPresent() ? <p><i>
-                                                **Average utilities shown above are an estimate. Actual monthly utility
-                                                costs can vary significantly based on individual usage, time of year,
-                                                the weather, and other factors
-                                            </i></p> : ""}
+                                            </Card>
 
-                                        </Card>
-                                    </> : ""}
-                                    {similarFloorplans.length > 0 ?
-                                        <SimilarFloorplanCard similarFloorplans={similarFloorplans}/> : ""}
+                                            <Card title="Utilities">
+                                                <h5>Paid By Landlord</h5>
+                                                <Ul>
+                                                    {
+                                                        floorplan.utilities.filter(utility => utility.type === UtilityType.INCLUDED_UTILITY).map(utility =>
+                                                            <Li key={"floorplan-included-utility-" + utility.id}
+                                                                bulletIcon="home">
+                                                                {capitalizeFirstLetter(utility.name)}
+                                                            </Li>
+                                                        )
+                                                    }
+                                                </Ul>
+                                                <h5>Paid By Resident</h5>
+                                                <Ul>
+                                                    {
+                                                        floorplan.utilities.filter(utility => utility.type === UtilityType.RESIDENT_UTILITY).map(utility =>
+                                                            <Li key={"floorplan-resident-utility-" + utility.id}
+                                                                bulletIcon="dollar">
+                                                                {residentUtilityDetails(utility)}
+                                                            </Li>
+                                                        )
+                                                    }
+                                                </Ul>
+                                                {isAverageMonthlyBillPresent() ? <p><i>
+                                                    **Average utilities shown above are an estimate. Actual monthly
+                                                    utility
+                                                    costs can vary significantly based on individual usage, time of
+                                                    year,
+                                                    the weather, and other factors
+                                                </i></p> : ""}
 
-                                    <div className="contact-card">
-                                        <Card featured={true}>
-                                            <p><i>Questions?</i></p>
-                                            <p><i>Call or text us anytime:</i></p>
-                                            {floorplan.property?.phone ?
-                                                <p><a
-                                                    href={"tel:" + floorplan.property.phone}>{formatPhoneNumber(floorplan.property.phone)}</a>
-                                                </p>
-                                                : ""}
-                                            <Button variant="tertiary" onClick={contactClickHandler} size="large">Contact
-                                                Us
-                                                »</Button>
-                                        </Card>
+                                            </Card>
+                                        </> : ""}
+                                        {similarFloorplans.length > 0 ?
+                                            <SimilarFloorplanCard similarFloorplans={similarFloorplans}/> : ""}
+
+                                        <div className="contact-card">
+                                            <Card featured={true}>
+                                                <p><i>Questions?</i></p>
+                                                <p><i>Call or text us anytime:</i></p>
+                                                {floorplan.property?.phone ?
+                                                    <p><a
+                                                        href={"tel:" + floorplan.property.phone}>{formatPhoneNumber(floorplan.property.phone)}</a>
+                                                    </p>
+                                                    : ""}
+                                                <Button variant="tertiary" onClick={contactClickHandler} size="large">Contact
+                                                    Us
+                                                    »</Button>
+                                            </Card>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </>
-                    }
+                            </>
+                        }
 
-                </>
-            }
+                    </>
+                }
 
-        </section>
+            </section>
     );
 };
 

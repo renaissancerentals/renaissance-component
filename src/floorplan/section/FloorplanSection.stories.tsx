@@ -24,8 +24,11 @@ Default.args = {
 export const OneImage = Template.bind({});
 OneImage.args = { ...Default.args, floorplanId: "view-deck" };
 
-export const OneSimilarFlorplan = Template.bind({});
-OneSimilarFlorplan.args = { ...Default.args, floorplanId: "showalter-loft" };
+export const OneSimilarFloorplan = Template.bind({});
+OneSimilarFloorplan.args = { ...Default.args, floorplanId: "showalter-loft" };
+
+export const ShortTermFloorplan = Template.bind({});
+ShortTermFloorplan.args = { ...Default.args, floorplanId: "1-bedroom-flat" };
 
 export const NoUnit = Template.bind({});
 NoUnit.args = { ...Default.args, floorplanId: "brighten-suite" };
