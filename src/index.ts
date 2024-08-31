@@ -52,7 +52,8 @@ export type {
     FloorplanCardData,
     UtilityName,
     Floorplan,
-    AmenityName, SimilarFloorplan, FloorplanVariation, FloorplanSpotlight, UnitSpotlight, Testimonial, FloorplanName
+    AmenityName, SimilarFloorplan, FloorplanVariation, FloorplanSpotlight, UnitSpotlight, Testimonial, FloorplanName,
+    WebSpecial
 } from "./floorplan/data/Floorplan";
 export type {UnitDetails, Unit, UnitCardData} from "./floorplan/data/Unit";
 export type {FloorplanFilters, SortField, CurrentFilters, SortBy, SortFields} from "./floorplan/data/FloorplanFilters";
@@ -68,8 +69,15 @@ export type {
     PropertyAmenityName,
     PropertyAmenityType,
     PropertyType,
-    PropertyName
+    PropertyName,
+    LeaseType,
+    PropertyBusRoute,
+    PropertiesEmail,
 } from "./property/data/Property";
+
+export type  {
+    ShortTerm, FloorplanShortTerm, ShortTermStyle
+} from "./short-term/data/ShortTerm"
 
 export type {
     PropertyTeamMember
