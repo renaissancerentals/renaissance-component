@@ -70,7 +70,7 @@ export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
                 </div>
                 : ''}
 
-            <a href={"/short-term-floorplans/" + floorplan.id}>
+            <a href={"/floorplans/" + floorplan.id}>
                 <div className="floorplan-card-footer">
                     <div className="left">
                         <h3 className="truncate">
