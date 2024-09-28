@@ -47,7 +47,9 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
             });
 
     }, [floorplanId]);
-    const generatePricing = (price: number) => price ? `${toUSD(price)}/day/ ${toUSD(price * 30)}/mo` : "-";
+    const generatePricing = (price: number, includeMonthly?: boolean) => price
+        ? `${toUSD(price)}/day${includeMonthly ? `/ ${toUSD(price * 30)}/mo` : " + tax"}`
+        : "-";
 
     return (
         <section className="section-short-term-floorplan">
@@ -75,7 +77,7 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
 
 
                                         <div className="row-content">
-                                                <h4 className="row-title">Pricing:</h4>
+                                            <h4 className="row-title">Pricing:</h4>
                                             <p className="floorplan-card--featured">
                                                 <span className="key">5-13 days:</span>
                                                 <span className="value">
@@ -91,13 +93,13 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                             <p className="floorplan-card--featured">
                                                 <span className="key">1-4 months:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor1To4Months)}
+                                                    {generatePricing(floorplan.shortTerm.priceFor1To4Months, true)}
                                                 </span>
                                             </p>
                                             <p className="floorplan-card--featured">
                                                 <span className="key">4+ months:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor4andMoreMonths)}
+                                                    {generatePricing(floorplan.shortTerm.priceFor4andMoreMonths, true)}
                                                 </span>
                                             </p>
                                         </div>

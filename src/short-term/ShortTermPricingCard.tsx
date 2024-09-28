@@ -8,7 +8,7 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
     const generatePricingRow = (floorplan: FloorplanShortTerm) =>
         <>
             <div className="col">
-                {floorplan.bedroom}-{capitalizeFirstLetter(enumToString(floorplan.style))}
+                {floorplan.bedroom}-Bedroom {capitalizeFirstLetter(enumToString(floorplan.style))}
             </div>
             <div className="col">
                 {floorplan.bathroom}

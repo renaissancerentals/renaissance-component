@@ -12,6 +12,6 @@ export default meta;
 type Story = StoryObj<typeof ShortTermFloorplanSection>;
 export const Default: Story = {
     args: {
-        floorplanId: "1-bedroom"
+        floorplanId: "1-bedroom-flat"
     },
 };
