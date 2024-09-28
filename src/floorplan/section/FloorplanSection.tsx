@@ -9,7 +9,7 @@ import {
     WebSpecial
 } from "../data/Floorplan";
 import {
-    floorplanAddress,
+    floorplanAddress, floorplanPrice,
     getFloorplan,
     getFloorplanVariations,
     getSimilarFloorplans,
@@ -173,7 +173,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                                     {rangeFrom(floorplan.units, "squareFoot")} Square Feet
                                                 </p>
                                                 <p className="floorplan-card--featured">
-                                                    ${rangeFrom(floorplan.units, "rent")}/mo
+                                                    ${floorplanPrice(floorplan.units)}/mo
                                                 </p>
                                                 <p className="floorplan-card--featured">
                                                     ${rangeFrom(floorplan.units, "deposit")} Security Deposit
