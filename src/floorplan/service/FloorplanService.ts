@@ -13,9 +13,9 @@ import {
     Testimonial,
     WebSpecial
 } from "../data/Floorplan";
-import {dateToMoment, minumMaximum} from "../../utils/Utils";
+import {dateToMoment, minimum, minimumMaximum} from "../../utils/Utils";
 import {PropertyFilterData, PropertyId} from "../../property/data/Property";
-import {Pet, Unit} from "../data/Unit";
+import {Pet, Unit, UnitCardData} from "../data/Unit";
 import {get} from "../../service/RoundRobin";
 import {renaissance} from "../../data/RenaissanceData";
 
@@ -93,7 +93,7 @@ const isStyleMatch = (floorplan: FloorplanCardData, styleFilters: FloorplanStyle
     return styleFilters.length === 0 ? true : styleFilters.indexOf(floorplan.style) > -1;
 }
 const isInPriceRange = (floorplan: FloorplanCardData, minRent: number, maxRent: number): boolean => {
-    const minMax = minumMaximum(floorplan.units, "rent");
+    const minMax = minimumMaximum(floorplan.units, "rent");
     return minMax.min >= minRent && minMax.max <= maxRent;
 }
 const isFloorplanIdsMatch = (floorplan: FloorplanCardData, floorplanIds: string[]): boolean => {
@@ -109,10 +109,10 @@ const filterMatches = (floorplan: FloorplanCardData, currentFilters: CurrentFilt
 export const sortFloorplans = (floorplans: FloorplanCardData[], sortBy: SortBy): FloorplanCardData[] => {
 
     if (SortFields[sortBy].sortField === "minRate" && SortFields[sortBy].order === "desc") {
-        return floorplans.sort((a, b) => minumMaximum(b.units, "rent").min - minumMaximum(a.units, "rent").min);
+        return floorplans.sort((a, b) => minimumMaximum(b.units, "rent").min - minimumMaximum(a.units, "rent").min);
     }
 
-    const minRateSorted = floorplans.sort((a, b) => minumMaximum(a.units, "rent").min - minumMaximum(b.units, "rent").min);
+    const minRateSorted = floorplans.sort((a, b) => minimumMaximum(a.units, "rent").min - minimumMaximum(b.units, "rent").min);
     if (SortFields[sortBy].sortField === "minRate" && SortFields[sortBy].order === "asc") {
         return minRateSorted
     }
@@ -235,4 +235,26 @@ export interface FloorplanAddress {
     city: string;
     state: string;
     zipcode: string;
+}
+
+
+
+export const floorplanPrice = (units: UnitCardData[]): string => {
+    if (units && units.length > 0) {
+        const minMax = minimumMaximum(units, "rent");
+
+
+        const minimumDiscountRent = minimum(units, "discountedRent");
+        if (minimumDiscountRent != 0 && minimumDiscountRent < minMax.min)
+            return minimumDiscountRent + " - " + minMax.max;
+
+        if(minMax.min === minMax.max){
+            return (minimumDiscountRent != 0 && minimumDiscountRent < minMax.min)?
+                minMax.min.toString():minMax.min.toString()
+        }
+        return (minMax.min === minMax.max) ?
+            minMax.min.toString() : minMax.min + " - " + minMax.max;
+    } else {
+        return "-";
+    }
 }

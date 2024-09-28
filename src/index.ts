@@ -111,7 +111,7 @@ export {
     isGoogleDriveImage,
     extractIdFrom,
     rangeFrom,
-    minumMaximum,
+    minimumMaximum,
     dateToMoment,
     youtubeUrlToEmbedUrl,
     decode,

@@ -8,6 +8,7 @@ import {Video} from "../../asset/data/Asset";
 import {Button} from "@contentmunch/muncher-ui";
 import tourIcon from "./assets/360-icon.png";
 import videoIcon from "./assets/video-icon.png";
+import {floorplanPrice} from "../service/FloorplanService";
 
 export const FloorplanSliderCard: React.FC<FloorplanSliderCardProps> = (
     {
@@ -58,7 +59,7 @@ export const FloorplanSliderCard: React.FC<FloorplanSliderCardProps> = (
                         <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
                         <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
                             ft.</> : <>&nbsp;</>}</p>
-                        <p>{floorplan.units.length > 0 ? <>${rangeFrom(floorplan.units, "rent")}/mo</> : <>&nbsp;</>}</p>
+                        <p>{floorplan.units.length > 0 ? <>${floorplanPrice(floorplan.units)}/mo</> : <>&nbsp;</>}</p>
                     </div>
                 </div>
             </a>

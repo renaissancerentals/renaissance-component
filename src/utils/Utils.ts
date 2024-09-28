@@ -57,7 +57,7 @@ export interface MinMax {
     max: number;
 }
 
-export const minumMaximum = (arr: any[], field: string): MinMax => {
+export const minimumMaximum = (arr: any[], field: string): MinMax => {
     try {
         const sorted = arr.filter(value => value.active ? value.active : true).sort((a, b) =>
             a[field] && b[field] ? a[field] - b[field] : 0
@@ -74,9 +74,18 @@ export const minumMaximum = (arr: any[], field: string): MinMax => {
         }
     }
 }
+
+export const minimum = (arr: any[], field: string): number => {
+    return arr.reduce((previous, current) => {
+        if (current[field] === null || current[field] === 0) return previous[field];
+        if (previous[field] === null || previous[field] < current[field])
+            return previous[field];
+        return current[field];
+    });
+}
 export const rangeFrom = (arr: any[], field: string): string => {
     if (arr && arr.length > 0) {
-        const minMax = minumMaximum(arr, field);
+        const minMax = minimumMaximum(arr, field);
 
         return (minMax.min === minMax.max) ? minMax.min.toString() : minMax.min + " - " + minMax.max;
     } else {

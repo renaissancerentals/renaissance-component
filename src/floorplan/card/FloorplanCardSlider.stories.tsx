@@ -220,10 +220,10 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
           squareFoot: 1000,
           rent: 1000.0,
           deposit: 0.0,
-          discountedRent: null,
+          discountedRent: 750,
           garages: 0,
           allowedPet: Pet.LARGE_DOG_SMALL_DOG_CAT,
-          moveInDate: null,
+          moveInDate: '2024-09-22',
           furnished: false,
         },
         {

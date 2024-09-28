@@ -2,27 +2,18 @@ export enum Pet {
     NO_PET = "NO_PET", CAT = "CAT", SMALL_DOG_CAT = "SMALL_DOG_CAT", LARGE_DOG_SMALL_DOG_CAT = "LARGE_DOG_SMALL_DOG_CAT"
 }
 
-export interface UnitDetails {
+export interface UnitDetails extends UnitCardData {
     id: string;
-    squareFoot: number;
     allowedPet: Pet;
-    rent: number;
-    discountedRent: number | null;
-    deposit: number;
     garages: number;
-    moveInDate: string | null;
     furnished: boolean;
-    active: boolean;
+
 }
 
-export interface Unit {
+export interface Unit extends UnitCardData {
     id: string;
-    squareFoot: number;
     allowedPet: Pet;
     petPolicy: string;
-    rent: number;
-    discountedRent: number;
-    deposit: number;
     endUnit: boolean;
     furnished: boolean;
     murphyBedProvided: boolean;
@@ -33,18 +24,18 @@ export interface Unit {
     address: string;
     zipcode: string;
     billingLink: string;
-    moveInDate: string;
     photosLink: string;
     videoTourLink: string;
     threeSixtyVideoTourLink: string;
     virtualTourLink: string;
     lastModifiedBy: string;
     lastModifiedDate: string;
-    active: boolean;
 }
 
 export interface UnitCardData {
     rent: number;
+    discountedRent: number;
+    deposit: number;
     squareFoot: number;
     active: boolean;
     moveInDate: string;

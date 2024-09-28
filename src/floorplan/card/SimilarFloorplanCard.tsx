@@ -6,7 +6,7 @@ import {Card} from "../../card/Card";
 import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
 import {rangeFrom} from "../../utils/Utils";
 import "./assets/SimilarFloorplanCard.scss"
-import {floorplanAddress, getFloorplan} from "../service/FloorplanService";
+import {floorplanAddress, floorplanPrice, getFloorplan} from "../service/FloorplanService";
 
 export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({similarFloorplans}) => {
     const [floorplans, setFloorplans] = useState<Floorplan[]>([]);
@@ -51,7 +51,7 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
                                 </h3>
                                 <p>{printFloorplanAddress(floorplan)}</p>
                                 <p> {floorplan.bedroom} Bedroom
-                                    ${rangeFrom(floorplan.units, "rent")}/mo</p>
+                                    ${floorplanPrice(floorplan.units)}/mo</p>
                             </div>
                         </div>
                     )}/>

@@ -8,7 +8,7 @@ import {GalleryHeroMain} from "../../gallery/GalleryHeroMain";
 import {extractIdFrom, rangeFrom} from "../../utils/Utils";
 import {Floorplan, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
-import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanService";
+import {floorplanAddress, floorplanPrice, isFloorplanAvailable} from "../service/FloorplanService";
 import {VideoTours} from "../../gallery/VideoTours";
 import {VirtualTour} from "../../gallery/VirtualTour";
 import {GalleryModal} from "../../gallery/GalleryModal";
@@ -156,7 +156,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                         {
                             floorplan.units.length > 0 ?
                                 <>
-                                    <h4>${rangeFrom(floorplan.units, "rent")}/mo</h4>
+                                    <h4>${floorplanPrice(floorplan.units)}/mo</h4>
                                     <p className="floorplan--description">{printFloorplanAddress()}</p>
                                 </> : <></>
                         }

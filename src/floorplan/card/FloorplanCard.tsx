@@ -6,9 +6,10 @@ import {Badge, Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
 import {FloorplanCardData} from "../data/Floorplan";
 import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
-import {rangeFrom} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
+import {rangeFrom} from "../../utils/Utils";
+import {FloorplanPrice} from "./FloorplanPrice";
 
 export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, videoClickHandler, propertyId}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
@@ -72,7 +73,7 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                         <h3 className="truncate">
                             {floorplan.name}
                         </h3>
-                        <p>{floorplan.units.length > 0 ? <>${rangeFrom(floorplan.units, "rent")}/mo</> : <>&nbsp;</>}</p>
+                        <p><FloorplanPrice units={floorplan.units}/></p>
                     </div>
                     <div className="right">
                         <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
