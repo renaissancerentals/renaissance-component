@@ -47,6 +47,9 @@ export interface FloorplanDetails {
     bedroom: number;
     bathroom: number;
     style: FloorplanStyle;
+    specialRent: 0,
+    specialRentStartDate: "",
+    specialRentEndDate: "",
     featured: boolean;
     greenCertified: boolean;
     videoTourLink: string | null;
