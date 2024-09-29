@@ -56,6 +56,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         "https://drive.google.com/uc?id=1w7shVoej3HEjVQdh7pWbq8GioITwVrF6&export=download",
       greenCertified: true,
       amenities: [],
+      specialRent: 0,
+      specialRentStartDate: "",
+      specialRentEndDate: "",
     },
     {
       name: "Madrid",
@@ -174,6 +177,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         "https://drive.google.com/uc?id=1A7SFA_TBc6RrhweDyphHFTPs9qsT6MUA&export=download",
       greenCertified: true,
       amenities: [],
+      specialRent: 0,
+      specialRentStartDate: "",
+      specialRentEndDate: "",
     },
     {
       name: "Palermo",
@@ -208,6 +214,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         "https://drive.google.com/uc?id=16Vp3oXvTbja6jdmAVvlrz-i8-P8h62WJ&export=download",
       greenCertified: true,
       amenities: [],
+      specialRent: 0,
+      specialRentStartDate: "",
+      specialRentEndDate: "",
     },
     {
       name: "Barcelona",
@@ -266,6 +275,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         "https://drive.google.com/uc?id=1pXtrJgJhTrdLeuwtP6lKSjULfF7TPJtf&export=download",
       greenCertified: true,
       amenities: [],
+      specialRent: 0,
+      specialRentStartDate: "",
+      specialRentEndDate: "",
     },
   ];
   return (
