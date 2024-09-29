@@ -9,6 +9,7 @@ import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
 import {rangeFrom} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
+import {FloorplanPrice} from "./FloorplanPrice";
 
 export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, videoClickHandler, propertyId}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
@@ -29,16 +30,17 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
             setIsAssetLoaded(true);
             setIsAssetLoading(false);
         }
-
     };
+
     return (
         <div className={size === "small" ? "floorplan-card floorplan-card--small" : "floorplan-card"}>
 
-            {isAssetLoaded && assets.length > 0 ? <ItemSlider navButtonSize="medium"
-                                                              sliderItems={assets.map(asset => <img
-                                                                  className="card--image"
-                                                                  alt="card"
-                                                                  src={assetUrlFrom(asset.id, propertyId)}/>)}/> :
+            {isAssetLoaded && assets.length > 0 ?
+                <ItemSlider navButtonSize="medium"
+                            sliderItems={assets.map(asset => <img
+                                className="card--image"
+                                alt="card"
+                                src={assetUrlFrom(asset.id, propertyId)}/>)}/> :
                 <img className="card--image" alt="cover"
                      src={floorplan.coverImage ? getAssetUrl(floorplan.coverImage, propertyId) : DEFAULT_IMAGE_URL}/>}
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}
@@ -72,7 +74,9 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                         <h3 className="truncate">
                             {floorplan.name}
                         </h3>
-                        <p>{floorplan.units.length > 0 ? <>${rangeFrom(floorplan.units, "rent")}/mo</> : <>&nbsp;</>}</p>
+                        <p>
+                            <FloorplanPrice floorplan={floorplan}/>
+                        </p>
                     </div>
                     <div className="right">
                         <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>

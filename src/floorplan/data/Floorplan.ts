@@ -70,6 +70,9 @@ export interface FloorplanCardData {
     coverImage: string;
     featured: boolean;
     style: FloorplanStyle;
+    specialRent: 0,
+    specialRentStartDate: "",
+    specialRentEndDate: "",
     virtualTourLink: string;
     videoTourLink: string;
     photosFolderId: string;
@@ -96,6 +99,9 @@ export interface Floorplan {
     zipcode: string;
     description: string;
     vanityLink: string;
+    specialRent: 0,
+    specialRentStartDate: "",
+    specialRentEndDate: "",
     htmlTitle: string;
     metaDescription: string;
     conversionTrackingId1: string;

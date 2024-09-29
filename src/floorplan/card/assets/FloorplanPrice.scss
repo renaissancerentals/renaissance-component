@@ -1,0 +1,24 @@
+@import "src/assets/variables";
+
+$floorplan-card-color: $primary-background-color !default;
+$floorplan-price-special-color: #c55e5e !default;
+.floorplan-price {
+  .strike-through {
+    text-decoration: line-through;
+    text-decoration-thickness: .3rem;
+    color: $floorplan-price-special-color;
+  }
+
+  .rent {
+    color: $floorplan-card-color;
+  }
+
+  .special {
+    padding-left: 1rem;
+    -webkit-text-stroke: .2rem $floorplan-price-special-color;
+    paint-order: stroke fill;
+    font-family: $serif-font;
+    font-weight: bold;
+    font-style: italic;
+  }
+}

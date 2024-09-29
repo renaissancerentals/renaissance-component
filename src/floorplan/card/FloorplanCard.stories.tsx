@@ -43,6 +43,9 @@ const Template: ComponentStory<typeof FloorplanCard> = (args) => {
     bedroom: 1,
     coverImage:
       "https://drive.google.com/uc?id=1pXtrJgJhTrdLeuwtP6lKSjULfF7TPJtf&export=download",
+    specialRent: 0,
+    specialRentStartDate: "",
+    specialRentEndDate: "",
   };
   return (
     <FloorplanCard
