@@ -51,12 +51,14 @@ export interface PropertyDetails extends Property {
 export interface PropertyFilterData {
     name: string;
     active: boolean;
+    leaseType: LeaseType;
     floorplans: FloorplanCardData[];
 }
 
 export enum LeasingOfficeType {
     OFF_SITE = "OFF_SITE", ON_SITE = "ON_SITE"
 }
+
 export enum LeaseType {
     YEARLY = "YEARLY", SHORT_TERM = "SHORT_TERM"
 }

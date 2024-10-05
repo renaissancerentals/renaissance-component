@@ -14,7 +14,7 @@ import {
     WebSpecial
 } from "../data/Floorplan";
 import {dateToMoment, minimumMaximum} from "../../utils/Utils";
-import {PropertyFilterData, PropertyId} from "../../property/data/Property";
+import {LeaseType, PropertyFilterData, PropertyId} from "../../property/data/Property";
 import {Pet, Unit} from "../data/Unit";
 import {get} from "../../service/RoundRobin";
 import {renaissance} from "../../data/RenaissanceData";
@@ -28,7 +28,12 @@ export const convertToHttps = (url: string): string => {
 };
 export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
     let response = await get("properties?projection=filter");
-    const properties: PropertyFilterData[] = response.data._embedded.properties.filter((property: PropertyFilterData) => property.active);
+
+    const properties: PropertyFilterData[] = response.data._embedded.properties
+        .filter((property: PropertyFilterData) => property.active)
+        .filter((property: PropertyFilterData) => property.leaseType === LeaseType.YEARLY)
+        .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));
+
     properties.forEach(property => {
         property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
         property.floorplans.forEach(floorplan => {
