@@ -51,7 +51,7 @@ export const Default: Story = {
       {
         id: "17789",
         name: "1 bedroom",
-        style: ShortTermStyle.APARTMENT,
+        style: ShortTermStyle.DELUXE_APARTMENT,
         bedroom: 1,
         bathroom: 1,
         shortTerm: {

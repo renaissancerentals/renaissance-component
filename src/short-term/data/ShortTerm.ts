@@ -3,6 +3,7 @@ import {AmenityName, PropertyName} from "../../floorplan/data/Floorplan";
 export enum ShortTermStyle {
     STUDIO = "STUDIO",
     APARTMENT = "APARTMENT",
+    DELUXE_APARTMENT = "DELUXE_APARTMENT",
     TOWN_HOME = "TOWN_HOME",
     SINGLE_FAMILY = "SINGLE_FAMILY"
 }

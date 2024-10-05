@@ -7,6 +7,7 @@ export const MAX_RENT = 4000;
 export enum FloorplanStyle {
     STUDIO = "STUDIO",
     APARTMENT = "APARTMENT",
+    DELUXE_APARTMENT = "DELUXE_APARTMENT",
     TOWN_HOME = "TOWN_HOME",
     SINGLE_FAMILY = "SINGLE_FAMILY",
     GARAGE = "GARAGE"
