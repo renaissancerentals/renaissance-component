@@ -27,7 +27,7 @@ export const convertToHttps = (url: string): string => {
     return url.replace(/^http:\/\//i, 'https://');
 };
 export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
-    let response = await get("properties?projection=filter");
+    let response = await get("properties/filter");
 
     const properties: PropertyFilterData[] = response.data._embedded.properties
         .filter((property: PropertyFilterData) => property.active)
@@ -40,14 +40,19 @@ export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> 
             floorplan.units = floorplan.units.filter(unit => unit.active);
         });
     });
+
     return properties;
 }
 export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    let response = await get("properties/" + propertyId + "?projection=filter");
-    const floorplans: FloorplanCardData[] = response.data.data.property.floorplans.filter((floorplan: FloorplanCardData) => floorplan.active);
+    let response = await get("properties/" + propertyId + "/floorplans/filter");
+
+    const floorplans: FloorplanCardData[] = response.data.data.property.floorplans
+        .filter((floorplan: FloorplanCardData) => floorplan.active);
+
     floorplans.forEach(floorplan => {
         floorplan.units = floorplan.units.filter(unit => unit.active);
     });
+
     return floorplans;
 };
 export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: CurrentFilters): FloorplanCardData[] => {

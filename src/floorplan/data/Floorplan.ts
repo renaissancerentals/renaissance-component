@@ -81,6 +81,7 @@ export interface FloorplanCardData {
     videoTourLink: string;
     photosFolderId: string;
     units: UnitCardData[];
+    webSpecials: string [];
 }
 
 export interface Floorplan {

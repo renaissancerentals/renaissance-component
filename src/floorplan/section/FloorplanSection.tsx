@@ -67,7 +67,6 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                 block: "start"
             });
         }
-
     };
     useEffect(() => {
         getFloorplan(floorplanId).then(floorplanData => {
@@ -124,7 +123,6 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
             const moveInDate = dateToMoment(unit.moveInDate);
             if (isAvailableNow(moveInDate))
                 dates.add(today.format(monthYearFormat));
-
             else
                 dates.add(moveInDate.format(monthYearFormat));
         });
@@ -347,7 +345,6 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
                     </>
                 }
-
             </section>
     );
 };

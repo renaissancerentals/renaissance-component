@@ -1,7 +1,7 @@
 @import "src/assets/variables";
 
 $floorplan-card-color: $primary-background-color !default;
-$floorplan-price-special-color: #c55e5e !default;
+$floorplan-price-special-color: $special-offer-color !default;
 .floorplan-price {
   .strike-through {
     text-decoration: line-through;

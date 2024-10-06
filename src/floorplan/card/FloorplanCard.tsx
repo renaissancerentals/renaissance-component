@@ -10,11 +10,14 @@ import {rangeFrom} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
+import {SpecialOfferButton} from "../../specialOffer/SpecialOfferButton";
 
 export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, videoClickHandler, propertyId}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
     const [isAssetLoading, setIsAssetLoading] = useState(false);
     const [isAssetLoaded, setIsAssetLoaded] = useState(false);
+    const [showSpecialOffer, setShowSpecialOffer] = useState(false);
+
     const loadAssets = () => {
 
         if (floorplan.photosFolderId) {
@@ -32,6 +35,7 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
         }
     };
 
+
     return (
         <div className={size === "small" ? "floorplan-card floorplan-card--small" : "floorplan-card"}>
 
@@ -47,43 +51,67 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
 
 
             {isAssetLoading ? <Spinner size="medium"/> : <></>}
-            {floorplan.featured ? (isFloorplanAvailable(floorplan) ? <Badge>Featured & Available Now</Badge> :
+            <div className="badges--right">
+                {
+                    floorplan.featured ? (isFloorplanAvailable(floorplan) ? <Badge>Featured & Available Now</Badge> :
+                        <Badge>Featured</Badge>) : isFloorplanAvailable(floorplan) ? <Badge>Available Now</Badge> : ''
+                }
+                {
+                    floorplan.webSpecials.length > 0 ?
+                        <SpecialOfferButton onMouseEnter={() => setShowSpecialOffer(true)}
+                                            onMouseLeave={() => setShowSpecialOffer(false)}/> : <></>
+                }
+            </div>
+            <div className="badges--left">
+                {floorplan.virtualTourLink ?
+                    <div className="icon-tour">
+                        <Button variant="transparent" size="small"
+                                onClick={() => videoClickHandler({
+                                    url: floorplan.virtualTourLink,
+                                    type: "virtual"
+                                })}>
+                            <img src={tourIcon} alt="tour icon" height={30}/>
+                        </Button>
 
-                <Badge>Featured</Badge>) : isFloorplanAvailable(floorplan) ? <Badge>Available Now</Badge> : ''}
-            {floorplan.virtualTourLink ?
-                <div className="icon-tour">
-                    <Button variant="transparent" size="small"
-                            onClick={() => videoClickHandler({url: floorplan.virtualTourLink, type: "virtual"})}>
-                        <img src={tourIcon} alt="tour icon" height={30}/>
-                    </Button>
+                    </div>
+                    : ''}
+                {floorplan.videoTourLink ?
+                    <div className="icon-video">
+                        <Button variant="transparent" size="small"
+                                onClick={() => videoClickHandler({url: floorplan.videoTourLink, type: "video"})}>
+                            <img src={videoIcon} alt="video icon" height={20}/>
+                        </Button>
+                    </div>
+                    : ''}
+            </div>
 
-                </div>
-                : ''}
-            {floorplan.videoTourLink ?
-                <div className="icon-video">
-                    <Button variant="transparent" size="small"
-                            onClick={() => videoClickHandler({url: floorplan.videoTourLink, type: "video"})}>
-                        <img src={videoIcon} alt="video icon" height={20}/>
-                    </Button>
-                </div>
-                : ''}
+
             <a href={"/floorplans/" + floorplan.id}
                title={floorplan.name}>
-                <div className="floorplan-card-footer">
-                    <div className="left">
-                        <h3 className="truncate">
-                            {floorplan.name}
-                        </h3>
-                        <p>
-                            <FloorplanPrice floorplan={floorplan}/>
-                        </p>
+                <div className="floorplan-card-content">
+                    <div className="floorplan-card-content--special">
+                        {showSpecialOffer && floorplan.webSpecials.length > 0 ?
+                            <div className="content--special">
+                                <p>{floorplan.webSpecials[0]}</p>
+                            </div> : <></>}
                     </div>
-                    <div className="right">
-                        <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
-                        <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
-                            ft.</> : <>&nbsp;</>}</p>
+                    <div className="floorplan-card-footer">
+                        <div className="left">
+                            <h3 className="truncate">
+                                {floorplan.name}
+                            </h3>
+                            <p>
+                                <FloorplanPrice floorplan={floorplan}/>
+                            </p>
+                        </div>
+                        <div className="right">
+                            <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
+                            <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
+                                ft.</> : <>&nbsp;</>}</p>
+                        </div>
                     </div>
                 </div>
+
             </a>
         </div>
     );

@@ -65,25 +65,30 @@ $floorplan-card-secondary-color: $secondary-color !default;
   background-position: center;
   background-size: cover;
 
-  .muncher-badge {
-    font-size: .8rem;
+  .badges--right {
     position: absolute;
     right: .5rem;
     top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .special-offer-button {
+      margin: .5rem 0;
+    }
   }
 
-  .icon-tour {
+  .badges--left {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
-  .icon-video {
-    position: absolute;
-    top: 3.5rem;
-    left: 1.1rem;
+  .muncher-badge {
+    font-size: .8rem;
   }
-
 
   .icon-left, .icon-right {
     position: absolute;
@@ -103,10 +108,25 @@ $floorplan-card-secondary-color: $secondary-color !default;
     right: .1rem;
   }
 
-  .floorplan-card-footer {
+  .floorplan-card-content {
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  .floorplan-card-content--special {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content--special {
+    text-align: center;
+    width: 45%;
+    background-color: $special-offer-color;
+    padding: 0 1rem;
+  }
+
+  .floorplan-card-footer {
     background-color: rgba(0, 0, 0, .4);
     width: 100%;
     display: flex;

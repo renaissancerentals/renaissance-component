@@ -49,6 +49,7 @@ export interface PropertyDetails extends Property {
 }
 
 export interface PropertyFilterData {
+    id: string
     name: string;
     active: boolean;
     leaseType: LeaseType;
