@@ -112,6 +112,7 @@ $floorplan-card-secondary-color: $secondary-color !default;
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
   }
 
   .floorplan-card-content--special {
@@ -125,7 +126,6 @@ $floorplan-card-secondary-color: $secondary-color !default;
     background-color: $special-offer-color;
     padding: 0 1rem;
   }
-
   .floorplan-card-footer {
     background-color: rgba(0, 0, 0, .4);
     width: 100%;

@@ -52,7 +52,7 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
 export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
     let response = await get("properties/filter");
 
-    const properties: PropertyFilterData[] = response.data._embedded.properties
+    const properties: PropertyFilterData[] = response.data
         .filter((property: PropertyFilterData) => property.active)
         .filter((property: PropertyFilterData) => property.leaseType === LeaseType.YEARLY)
         .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));
@@ -69,7 +69,7 @@ export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> 
 export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
     let response = await get("properties/" + propertyId + "/floorplans/filter");
 
-    const floorplans: FloorplanCardData[] = response.data.data.property.floorplans
+    const floorplans: FloorplanCardData[] = response.data
         .filter((floorplan: FloorplanCardData) => floorplan.active);
 
     floorplans.forEach(floorplan => {
