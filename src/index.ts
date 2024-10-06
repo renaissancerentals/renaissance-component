@@ -138,7 +138,8 @@ export {
     getFeaturedFloorplans,
     getTestimonials,
     petPolicy,
-    getWebSpecials
+    getWebSpecials,
+    convertToFloorplanCardData
 } from "./floorplan/service/FloorplanService";
 
 export {

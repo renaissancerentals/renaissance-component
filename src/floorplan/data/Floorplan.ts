@@ -63,6 +63,7 @@ export interface FloorplanDetails {
     amenities: AmenityName[];
     units: UnitDetails[];
     active: boolean;
+    webSpecials: WebSpecialDetails[];
 }
 
 export interface FloorplanCardData {
@@ -177,4 +178,8 @@ export interface WebSpecial {
     description: string;
     startDate: string;
     endDate: string;
+}
+
+export interface WebSpecialDetails extends WebSpecial {
+    id: string;
 }

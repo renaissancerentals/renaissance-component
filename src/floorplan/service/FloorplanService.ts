@@ -26,6 +26,29 @@ export const convertToHttps = (url: string): string => {
         return "";
     return url.replace(/^http:\/\//i, 'https://');
 };
+
+export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): FloorplanCardData => {
+    return {
+        id: floorplanDetails.id,
+        name: floorplanDetails.name,
+        active: floorplanDetails.active,
+        bedroom: floorplanDetails.bedroom,
+        bathroom: floorplanDetails.bathroom,
+        coverImage: floorplanDetails.coverImage,
+        featured: floorplanDetails.featured,
+        style: floorplanDetails.style,
+        specialRent: floorplanDetails.specialRent,
+        specialRentStartDate: floorplanDetails.specialRentStartDate,
+        specialRentEndDate: floorplanDetails.specialRentEndDate,
+        virtualTourLink: floorplanDetails.virtualTourLink,
+        videoTourLink: floorplanDetails.videoTourLink,
+        photosFolderId: floorplanDetails.photosFolderId,
+        units: floorplanDetails.units,
+        webSpecials: floorplanDetails.webSpecials
+            .filter(webSpecial => today.isBetween(dateToMoment(webSpecial.startDate), dateToMoment(webSpecial.endDate)))
+            .map(webSpecial => webSpecial.description)
+    } as FloorplanCardData;
+}
 export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
     let response = await get("properties/filter");
 
