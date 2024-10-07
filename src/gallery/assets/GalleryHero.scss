@@ -78,26 +78,27 @@
     position: absolute;
     top: 1.5rem;
     left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .muncher-badge {
+      margin-right: .5rem;
+    }
   }
 
   .gallery--information {
-    .muncher-badge {
-      border-radius: 0;
-      padding: 1rem;
-      text-align: center;
-      background-color: rgba(234, 233, 227, 0.6);
-    }
-
+    text-align: center;
+    color: $primary-background-color;
+    background-color: $special-offer-color;
+    padding: 0 1rem;
     position: absolute;
-    top: 4.5rem;
-    width: 70vw;
+    top: 5rem;
+    width: 50vw;
     left: 0;
     font-size: .8rem;
-    //font-weight: bold;
-    @media (min-width: $medium-size) {
-      width: 30vw;
-      font-size: 1rem;
+    @media (min-width: $large-size) {
+      font-size: 1.1rem;
+      width: 16rem;
     }
-
   }
 }

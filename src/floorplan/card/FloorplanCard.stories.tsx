@@ -3,6 +3,9 @@ import {type Meta, type StoryObj} from "@storybook/react";
 import {FloorplanCard} from "./FloorplanCard";
 import {FloorplanCardData, FloorplanStyle} from "../data/Floorplan";
 import {Video} from "../../asset/data/Asset";
+import {isDateAfterToday} from "../service/FloorplanService";
+import moment from "moment/moment";
+import {momentToDate} from "../../utils/Utils";
 
 const meta: Meta<typeof FloorplanCard> = {
     component: FloorplanCard,
@@ -94,6 +97,16 @@ export const WithSpecialOffer: Story = {
                 "$250 off your first month rent when you sign a 12-month lease",
                 "$250 off your second month rent when you sign a 12-month lease"
             ]
+        }
+    }
+}
+export const WithSpecialRent:Story = {
+    args:{
+        ...Default.args,
+        floorplan:{
+            ...floorplan,specialRent: 800,
+            specialRentStartDate: momentToDate(moment().subtract(2,"days")),
+            specialRentEndDate: momentToDate(moment().add(2,"days"))
         }
     }
 }

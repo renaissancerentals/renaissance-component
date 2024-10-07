@@ -101,7 +101,9 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                                 {floorplan.name}
                             </h3>
                             <p>
-                                <FloorplanPrice floorplan={floorplan}/>
+                                <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
+                                                specialRentEndDate={floorplan.specialRentEndDate}
+                                                specialRentStartDate={floorplan.specialRentStartDate}/>
                             </p>
                         </div>
                         <div className="right">

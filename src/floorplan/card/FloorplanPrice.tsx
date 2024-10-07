@@ -1,45 +1,56 @@
 import React from "react";
 import {dateToMoment, minimumMaximum, toUSD} from "../../utils/Utils";
 import moment from "moment/moment";
-import {FloorplanCardData} from "../data/Floorplan";
 import "./assets/FloorplanPrice.scss";
 
-export const FloorplanPrice: React.FC<FloorplanPriceProps> = ({floorplan}) => {
+export const FloorplanPrice: React.FC<FloorplanPriceProps> = (
+    {
+        unitRents,
+        specialRent,
+        specialRentStartDate,
+        specialRentEndDate,
+        invertColor
+    }) => {
 
     const hasSpecialRent = () => {
         const currentDate = moment();
 
-        if (!floorplan.specialRent || floorplan.specialRent < 1 || !floorplan.specialRentStartDate || !floorplan.specialRentEndDate)
+        if (!specialRent || specialRent < 1 || !specialRentStartDate || !specialRentEndDate)
             return false
 
-        const startDate = dateToMoment(floorplan.specialRentStartDate);
-        const endDate = dateToMoment(floorplan.specialRentEndDate);
+        const startDate = dateToMoment(specialRentStartDate);
+        const endDate = dateToMoment(specialRentEndDate);
 
         return currentDate.isBetween(startDate, endDate);
 
     }
 
-    const minMaxRent = minimumMaximum(floorplan.units, "rent");
+    const minMaxRent = minimumMaximum(unitRents, "rent");
 
     const getRentClass = () => hasSpecialRent() ? "strike-through" : "";
 
     const priceForSingleUnit = () =>
         <span className={getRentClass()}><span className="rent">{toUSD(minMaxRent.min)}</span></span>
     const priceForMultipleUnits = () =>
-        <><span className={getRentClass()}><span className="rent">{toUSD(minMaxRent.min)}</span></span> - {toUSD(minMaxRent.max)}</>
+        <><span className={getRentClass()}><span
+            className="rent">{toUSD(minMaxRent.min)}</span></span> - {toUSD(minMaxRent.max)}</>
 
     const priceForSpecialRent = () => hasSpecialRent() ? <span
-        className="special">Now starting at {toUSD(floorplan.specialRent)}/mo</span> : <></>
+        className="special">Now starting at {toUSD(specialRent!!)}/mo</span> : <></>
     return (
-        floorplan.units && floorplan.units.length > 0 ?
-            <span className="floorplan-price">
+        unitRents.length > 0 ?
+            <span className={invertColor ? "floorplan-price floorplan-price-inverted" : "floorplan-price"}>
                 {minMaxRent.min === minMaxRent.max ? priceForSingleUnit() : priceForMultipleUnits()}
-                {priceForSpecialRent()}
+                <span className="floorplan-special-price">{priceForSpecialRent()}</span>
             </span>
             : <>-</>
     );
 }
 
 export interface FloorplanPriceProps {
-    floorplan: FloorplanCardData;
+    unitRents: { rent: number }[],
+    specialRent?: number,
+    specialRentStartDate?: string,
+    specialRentEndDate?: string,
+    invertColor?: boolean
 }

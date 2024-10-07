@@ -7,6 +7,7 @@ import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
+import {SpecialOfferBadge} from "../specialOffer/SpecialOfferBadge";
 
 export const GalleryHeroMain: React.FC<GalleryHeroProps> = (
     {
@@ -26,13 +27,19 @@ export const GalleryHeroMain: React.FC<GalleryHeroProps> = (
 
     return (
         <div className="div-gallery">
-            {isFirst && isAvailableNow ?
-                <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
-
-            {
-                isFirst && webSpecials.length > 0 ?
-                    <div className="gallery--information"><Badge variant="secondary"><p>{webSpecials[0].description}</p></Badge></div> : <></>
+            <div className="badge--info">
+                {isFirst && isAvailableNow ?
+                    <Badge variant="secondary">Available Now</Badge>
+                    : <></>
+                }
+                {isFirst && webSpecials.length > 0 ?
+                    <SpecialOfferBadge/> : <></>
+                }
+            </div>
+            {isFirst && webSpecials.length > 0 ?
+                <div className="gallery--information"><p>{webSpecials[0].description}</p></div> : <></>
             }
+
             <div className="gallery-hero-two-columns">
                 {isFirst ?
                     <div

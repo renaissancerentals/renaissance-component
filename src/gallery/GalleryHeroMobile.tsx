@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import './assets/GalleryHero.scss';
 import {Asset} from "../asset/data/Asset";
 import {assetUrlFrom} from "../asset/service/AssetService";
@@ -7,24 +7,28 @@ import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
+import {SpecialOfferButton} from "../specialOffer/SpecialOfferButton";
 
 export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
     {
         assets, virtualTour, setCurrentView, toursCount,
         imageClickedHandler, isAvailableNow, propertyId, webSpecials,
     }) => {
+    const [showSpecialOffer, setShowSpecialOffer] = useState(false);
 
     const createImageItem = (asset: Asset, index: number) =>
 
         <>
             {index === 0 ?
                 <>
-                    {isAvailableNow ?
-                        <div className="badge--info"><Badge variant="secondary">Available Now</Badge></div> : <></>}
-                    {webSpecials.length > 0 ?
-                        <div className="gallery--information"><Badge variant="secondary">
-                            <p>{webSpecials[0].description}</p>
-                        </Badge></div> : <></>}
+                    <div className="badge--info">
+                        {isAvailableNow ?
+                            <Badge variant="secondary">Available Now</Badge> : <></>}
+                        {webSpecials.length > 0 ? <SpecialOfferButton onMouseEnter={() => setShowSpecialOffer(true)}
+                                                                      onMouseLeave={() => setShowSpecialOffer(false)}/> : <></>}
+                    </div>
+                    {showSpecialOffer ?
+                        <div className="gallery--information"><p>{webSpecials[0].description}</p></div> : <></>}
                 </> : <></>
             }
             <img src={assetUrlFrom(asset.id, propertyId)}
@@ -61,7 +65,7 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
             }
         );
         assets.slice(1, assets.length).forEach((asset, index) => {
-            items.push(createImageItem(asset, index+1));
+            items.push(createImageItem(asset, index + 1));
         });
 
         return items;

@@ -48,9 +48,9 @@ export interface FloorplanDetails {
     bedroom: number;
     bathroom: number;
     style: FloorplanStyle;
-    specialRent: 0,
-    specialRentStartDate: "",
-    specialRentEndDate: "",
+    specialRent: number,
+    specialRentStartDate: string,
+    specialRentEndDate: string,
     featured: boolean;
     greenCertified: boolean;
     videoTourLink: string | null;
@@ -75,9 +75,9 @@ export interface FloorplanCardData {
     coverImage: string;
     featured: boolean;
     style: FloorplanStyle;
-    specialRent: 0,
-    specialRentStartDate: "",
-    specialRentEndDate: "",
+    specialRent: number,
+    specialRentStartDate: string,
+    specialRentEndDate: string,
     virtualTourLink: string;
     videoTourLink: string;
     photosFolderId: string;
@@ -105,9 +105,9 @@ export interface Floorplan {
     zipcode: string;
     description: string;
     vanityLink: string;
-    specialRent: 0,
-    specialRentStartDate: "",
-    specialRentEndDate: "",
+    specialRent: number,
+    specialRentStartDate: string,
+    specialRentEndDate: string,
     htmlTitle: string;
     metaDescription: string;
     conversionTrackingId1: string;
@@ -120,6 +120,7 @@ export interface Floorplan {
     lastModifiedBy: string;
     lastModifiedDate: string;
     active: boolean;
+    webSpecials: WebSpecialDetails[];
 }
 
 export interface FloorplanSpotlight {

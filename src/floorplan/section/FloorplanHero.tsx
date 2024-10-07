@@ -5,7 +5,7 @@ import {Asset} from "../../asset/data/Asset";
 import {getAssetsFrom} from "../../asset/service/AssetService";
 import {GalleryHeroSkeleton} from "../../gallery/GalleryHeroSkeleton";
 import {GalleryHeroMain} from "../../gallery/GalleryHeroMain";
-import {extractIdFrom, rangeFrom} from "../../utils/Utils";
+import {extractIdFrom} from "../../utils/Utils";
 import {Floorplan, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
 import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanService";
@@ -14,6 +14,7 @@ import {VirtualTour} from "../../gallery/VirtualTour";
 import {GalleryModal} from "../../gallery/GalleryModal";
 import {GalleryHeroMobile} from "../../gallery/GalleryHeroMobile";
 import {HeroBadgeStats} from "./HeroBadgeStats";
+import {FloorplanPrice} from "../card/FloorplanPrice";
 
 export const FloorplanHero: React.FC<FloorplanProps> = (
     {floorplan, contactClickHandler, applyClickHandler, handleRefToMap, webSpecials}) => {
@@ -153,13 +154,14 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                 <div className="floorplan--two-columns">
                     <div className="floorplan-column-left">
                         <h3>{floorplan.name}</h3>
-                        {
-                            floorplan.units.length > 0 ?
-                                <>
-                                    <h4>${rangeFrom(floorplan.units, "rent")}/mo</h4>
-                                    <p className="floorplan--description">{printFloorplanAddress()}</p>
-                                </> : <></>
-                        }
+                        <h4><FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
+                                            specialRentStartDate={floorplan.specialRentStartDate}
+                                            specialRentEndDate={floorplan.specialRentEndDate}
+                                            invertColor={true}
+                        />
+                        </h4>
+                        <p className="floorplan--description">{printFloorplanAddress()}</p>
+
                         <div className="floorplan--featured">
                             <Button size="small" onClick={() => setShowFloorplanModal(true)}>
                                 <Icon name="max" orientation="right">ViewFloorplan</Icon>

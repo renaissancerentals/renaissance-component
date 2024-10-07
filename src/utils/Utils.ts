@@ -86,6 +86,8 @@ export const rangeFrom = (arr: any[], field: string): string => {
 
 export const dateToMoment = (date: string): Moment => moment(date, "YYYY-MM-DD");
 
+export const momentToDate = (date: Moment): string => date.format("YYYY-MM-DD");
+
 export const decode = (content: string) => {
     return decodeEntity(content);
 };

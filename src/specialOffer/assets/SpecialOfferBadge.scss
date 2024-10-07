@@ -1,0 +1,19 @@
+@import "src/assets/variables";
+
+.special-offer-badge {
+  .muncher-badge {
+    border-radius: .5rem;
+    background-color: $special-offer-color;
+    text-transform: none;
+    font-family: $serif-font;
+    font-weight: normal;
+    //font-size: .8rem;
+    padding: .3rem .5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    .star-icon {
+      width: 1.6rem;
+    }
+  }
+}
