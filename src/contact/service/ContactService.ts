@@ -1,7 +1,7 @@
 import Api from "../../service/Api";
 import gtag, {install} from 'ga-gtag';
 import {ContactMessage} from "../data/ContactMessage";
-import {AllPropertyId} from "../ContactSection";
+import {ContactPropertyIds} from "../ContactSection";
 import AdminApi from "../../service/AdminApi";
 
 export const sendContactMail = (message: ContactMessage) => {
@@ -18,19 +18,19 @@ export const sendToConversionTracking = (trackingId: string) => {
 
 };
 
-export const trackContactClicked = (propertyId: AllPropertyId) => {
+export const trackContactClicked = (propertyId: ContactPropertyIds) => {
     AdminApi.post("admin/analytics/contact/clicked", {
         "property": propertyId
     });
 }
 
-export const trackContactSubmitted = (propertyId: AllPropertyId) => {
+export const trackContactSubmitted = (propertyId: ContactPropertyIds) => {
     AdminApi.post("admin/analytics/contact/submitted", {
         "property": propertyId
     });
 }
 
-export const trackContactInitiated = (propertyId: AllPropertyId) => {
+export const trackContactInitiated = (propertyId: ContactPropertyIds) => {
     AdminApi.post("admin/analytics/contact/initiated", {
         "property": propertyId
     });

@@ -54,6 +54,6 @@ export const Default: Story = () => {
             setCookie('renaissanceSpecialModalClosed', false, {path: '/', maxAge: thirtyDays});
             window.location.reload();
         }}>Reset Cookie and Reload</Button>
-        <HomePageSpecialModal homePageSpecials={[special, special1]}/>
+        <HomePageSpecialModal homePageSpecials={[special, special1]} propertyId="renaissance-rentals"/>
     </>);
 }

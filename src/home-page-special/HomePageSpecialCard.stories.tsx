@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof HomePageSpecialCard>;
 export const Default: Story = {
     args: {
-        special: {
+        homePageSpecial: {
             id: "id",
             title: "Flash Sale: SPECIAL PRICING ON SELECT UNITS",
             description: "Paragraph text here and here and here and here and here and here and here and here and here and here and here and here and here and here and here.",
@@ -26,6 +26,7 @@ export const Default: Story = {
             properties: ["renaissance-rentals", "covenanter-hill"],
             startDate: momentToDate(moment().subtract(1, "days")),
             endDate: momentToDate(moment().add(1, "month")),
-        }
+        },
+        propertyId: "renaissance-rentals"
     },
 };

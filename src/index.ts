@@ -47,6 +47,7 @@ export {ShortTermFloorplansSection} from "./short-term/ShortTermFloorplansSectio
 export {ShortTermFloorplanCard} from "./short-term/ShortTermFloorplanCard";
 export {ShortTermPricingCard} from "./short-term/ShortTermPricingCard";
 
+export {HomePageSpecialSection} from "./home-page-special/HomePageSpecialSection";
 export {HomePageSpecialModal} from "./home-page-special/HomePageSpecialModal";
 export {HomePageSpecialCard} from "./home-page-special/HomePageSpecialCard";
 export type {

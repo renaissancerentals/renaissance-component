@@ -5,7 +5,7 @@ import {AllPropertyId} from "../../property/data/Property";
 
 const getHomeHomePageSpecialData = async (): Promise<HomePageSpecialData[]> => {
     let response = await get("homePageSpecials/filter");
-    return await response.data._embedded.homePageSpecials;
+    return await response.data;
 };
 
 const filterByPropertyId = (homePageSpecials: HomePageSpecial[], propertyId: AllPropertyId): HomePageSpecial[] =>

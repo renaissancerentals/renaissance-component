@@ -321,7 +321,7 @@ export const ContactSection: React.FC<ContactSectionProps> = (
 
 
 export interface ContactSectionProps {
-    propertyId: AllPropertyId
+    propertyId: ContactPropertyIds
     subject?: string;
     to?: string;
     variant?: "long";
@@ -330,4 +330,4 @@ export interface ContactSectionProps {
     conversionTrackingId2?: string
 }
 
-export type AllPropertyId = PropertyId | "renaissance-rentals" | "apartments-in-bloomington" | "bloomington-apartments";
+export type ContactPropertyIds = PropertyId | "renaissance-rentals" | "apartments-in-bloomington" | "bloomington-apartments";

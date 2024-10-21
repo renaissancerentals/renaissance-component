@@ -4,10 +4,11 @@ import "./assets/HomePageSpecialModal.scss";
 import {HomePageSpecialCard} from "./HomePageSpecialCard";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {useCookies} from 'react-cookie';
+import {AllPropertyId} from "../property/data/Property";
 
 export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     {
-        homePageSpecials
+        homePageSpecials, propertyId
     }) => {
     const [translate, setTranslate] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,8 +40,8 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 
     const modalCloseHandler = () => {
         setShowModal(false);
-        const thirtyDays = 60 * 60 * 24 * 30;
-        setCookie('renaissanceSpecialModalClosed', true, {path: '/', maxAge: thirtyDays});
+        const fiveDays = 60 * 60 * 24 * 5;
+        setCookie('renaissanceSpecialModalClosed', true, {path: '/', maxAge: fiveDays});
     }
 
     useEffect(() => {
@@ -67,11 +68,11 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 
                 <div className="slider">
                     <div className="slider-container" style={{width: `${100 * homePageSpecials.length}%`}}>
-                        {homePageSpecials.map((special, index) =>
+                        {homePageSpecials.map((homePageSpecial, index) =>
                             <div className="slider-item"
                                  style={{transform: `translateX(${translate}%)`}}
                                  key={"slider-item" + index}>
-                                <HomePageSpecialCard special={special}/>
+                                <HomePageSpecialCard homePageSpecial={homePageSpecial} propertyId={propertyId}/>
                             </div>
                         )}
                     </div>
@@ -89,5 +90,6 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 };
 
 export interface HomePageSpecialModalProps {
-    homePageSpecials: HomePageSpecial[]
+    homePageSpecials: HomePageSpecial[],
+    propertyId: AllPropertyId;
 }
