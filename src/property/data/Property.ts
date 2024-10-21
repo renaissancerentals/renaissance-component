@@ -104,6 +104,8 @@ export type PropertyId =
     "summer-house-short-term" |
     "verona-park";
 
+export type AllPropertyId = PropertyId | 'renaissance-rentals';
+
 export const PropertiesEmail: any = {
     "Covenanter Hill": "covenanterhill@renaissancerentals.com",
     "HighGrove": "meadowcreek@renaissancerentals.com",

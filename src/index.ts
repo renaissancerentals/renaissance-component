@@ -47,6 +47,8 @@ export {ShortTermFloorplansSection} from "./short-term/ShortTermFloorplansSectio
 export {ShortTermFloorplanCard} from "./short-term/ShortTermFloorplanCard";
 export {ShortTermPricingCard} from "./short-term/ShortTermPricingCard";
 
+export {HomePageSpecialModal} from "./home-page-special/HomePageSpecialModal";
+export {HomePageSpecialCard} from "./home-page-special/HomePageSpecialCard";
 export type {
     FloorplanDetails,
     FloorplanCardData,
@@ -151,3 +153,8 @@ export {
 } from "./contact/service/ContactService";
 
 export {getShortTermFloorplan, getShortTermFloorplansByPropertyId} from "./short-term/service/ShortTermService"
+
+export {getHomeHomePageSpecials} from "./home-page-special/service/HomePageSpecialService"
+export type  {
+    HomePageSpecial
+} from "./home-page-special/data/HomePageSpecial";

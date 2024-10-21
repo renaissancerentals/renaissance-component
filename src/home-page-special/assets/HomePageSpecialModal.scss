@@ -1,0 +1,112 @@
+@import "src/assets/variables";
+
+.home-page-special-modal {
+  position: relative;
+
+  .close {
+    position: fixed;
+    @media(min-width: $small-size) {
+      top: 1.5rem;
+      right: .2rem;
+    }
+    @media(min-width: $large-size) {
+      top: 2rem;
+      right: 1rem;
+    }
+
+    padding: .4rem;
+
+    .muncher-icon {
+      color: $secondary-background-color;
+    }
+
+    z-index: 1;
+  }
+
+  .muncher-modal {
+    overflow: hidden;
+    background: none;
+    @media(min-width: $small-size) {
+      width: 80vw;
+    }
+    @media(min-width: $large-size) {
+      padding: 1rem 1rem 5rem 1rem;
+      top: 10vh;
+      left: 20vw;
+      width: 62vw;
+      max-height: 25rem;
+    }
+  }
+
+  .muncher-icon--medium {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .left, .right {
+    position: fixed;
+    z-index: 1;
+    @media(min-width: $small-size) {
+      top: 13rem;
+    }
+    @media(min-width: $large-size) {
+      top: 50%;
+    }
+  }
+
+
+  .left {
+    left: .5rem;
+
+    .muncher-icon {
+      @media(min-width: $small-size) {
+        color: $secondary-background-color;
+      }
+      @media(min-width: $large-size) {
+        color: $secondary-color;
+      }
+
+    }
+
+    .muncher-button:disabled {
+      .muncher-icon {
+        color: $disabled-color;
+      }
+
+      cursor: default;
+    }
+
+  }
+
+  .right {
+    right: .5rem;
+
+    .muncher-icon {
+      color: $secondary-background-color;
+    }
+
+    .muncher-button:disabled {
+      .muncher-icon {
+        color: $disabled-color;
+      }
+
+      cursor: default;
+    }
+  }
+
+  .slider {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slider-container {
+    display: flex;
+  }
+
+  .slider-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.7s;
+  }
+}
