@@ -59,7 +59,7 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
                         <Icon name="close" size="medium" weight={2}/>
                     </Button>
                 </div>
-                {homePageSpecials.length > 0 ?
+                {homePageSpecials.length > 1 ?
                     <div className="left">
                         <Button variant="transparent" onClick={decreaseIndex} disabled={currentIndex === 0}>
                             <Icon name="arrow-left" size="medium" weight={2}/>
@@ -77,7 +77,7 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
                         )}
                     </div>
                 </div>
-                {homePageSpecials.length > 0 ?
+                {homePageSpecials.length > 1 ?
                     <div className="right">
                         <Button variant="transparent" onClick={increaseIndex}
                                 disabled={currentIndex === homePageSpecials.length - 1}>
