@@ -41,14 +41,16 @@ const special1: HomePageSpecial = {
     startDate: momentToDate(moment().subtract(1, "days")),
     endDate: momentToDate(moment().add(1, "month")),
 }
+const cookieName = 'renaissance-rentals-specialModalClosed';
 export const Default: Story = () => {
-    const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
+
+    const [cookies, setCookie] = useCookies([cookieName]);
 
     return (<>
         This section loads after 3 seconds
         <Button variant="tertiary" onClick={() => {
             const thirtyDays = 60 * 60 * 24 * 30;
-            setCookie('renaissanceSpecialModalClosed', false, {path: '/', maxAge: thirtyDays});
+            setCookie(cookieName, false, {path: '/', maxAge: thirtyDays});
             window.location.reload();
         }}>Reset Cookie and Reload</Button>
         <HomePageSpecialModal homePageSpecials={[special, special1]} propertyId="renaissance-rentals"/>
@@ -57,13 +59,13 @@ export const Default: Story = () => {
 
 
 export const Single: Story = () => {
-    const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
+    const [cookies, setCookie] = useCookies([cookieName]);
 
     return (<>
         This section loads after 3 seconds
         <Button variant="tertiary" onClick={() => {
             const thirtyDays = 60 * 60 * 24 * 30;
-            setCookie('renaissanceSpecialModalClosed', false, {path: '/', maxAge: thirtyDays});
+            setCookie(cookieName, false, {path: '/', maxAge: thirtyDays});
             window.location.reload();
         }}>Reset Cookie and Reload</Button>
         <HomePageSpecialModal homePageSpecials={[special]} propertyId="renaissance-rentals"/>

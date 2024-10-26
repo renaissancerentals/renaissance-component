@@ -8,11 +8,12 @@ import {AllPropertyId} from "../property/data/Property";
 
 export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     {
-        homePageSpecials, propertyId
+        homePageSpecials, propertyId, parent
     }) => {
     const [translate, setTranslate] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
+    const cookieName = parent ? parent + "-" + propertyId + "-" + "specialModalClosed" : propertyId + "-" + "specialModalClosed";
+    const [cookies, setCookie] = useCookies([cookieName]);
     const [showModal, setShowModal] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
@@ -49,18 +50,18 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     const modalCloseHandler = () => {
         setShowModal(false);
         const oneDay = 60 * 60 * 24;
-        setCookie('renaissanceSpecialModalClosed', true, {path: '/', maxAge: oneDay});
+        setCookie(cookieName, true, {path: '/', maxAge: oneDay});
     }
 
     useEffect(() => {
-        if (homePageSpecials && homePageSpecials.length < 1 || cookies.renaissanceSpecialModalClosed) {
+        if (homePageSpecials && homePageSpecials.length < 1 || cookies[cookieName]) {
             setShowModal(false);
         } else {
             setShowModal(true);
         }
 
 
-    }, [cookies.renaissanceSpecialModalClosed]);
+    }, [cookies[cookieName]]);
 
 
     return (
@@ -109,4 +110,5 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 export interface HomePageSpecialModalProps {
     homePageSpecials: HomePageSpecial[],
     propertyId: AllPropertyId;
+    parent?: "renaissance-rentals"
 }

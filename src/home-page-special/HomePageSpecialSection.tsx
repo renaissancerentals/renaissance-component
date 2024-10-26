@@ -7,7 +7,7 @@ import {HomePageSpecialModal} from "./HomePageSpecialModal";
 
 export const HomePageSpecialSection: React.FC<HomePageSpecialSectionProps> = (
     {
-        propertyId
+        propertyId, parent
     }) => {
 
     const [homePageSpecials, setHomePageSpecials] = useState<HomePageSpecial[]>([]);
@@ -21,7 +21,7 @@ export const HomePageSpecialSection: React.FC<HomePageSpecialSectionProps> = (
         <section className="section-home-page-specials">
             {homePageSpecials.length > 0 ?
                 <>
-                    <HomePageSpecialModal homePageSpecials={homePageSpecials} propertyId={propertyId}/>
+                    <HomePageSpecialModal homePageSpecials={homePageSpecials} propertyId={propertyId} parent={parent}/>
                 </> : <></>}
 
         </section>
@@ -30,4 +30,5 @@ export const HomePageSpecialSection: React.FC<HomePageSpecialSectionProps> = (
 
 export interface HomePageSpecialSectionProps {
     propertyId: AllPropertyId;
+    parent?: "renaissance-rentals"
 }
