@@ -48,8 +48,8 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 
     const modalCloseHandler = () => {
         setShowModal(false);
-        const fiveDays = 60 * 60 * 24 * 5;
-        setCookie('renaissanceSpecialModalClosed', true, {path: '/', maxAge: fiveDays});
+        const oneDay = 60 * 60 * 24;
+        setCookie('renaissanceSpecialModalClosed', true, {path: '/', maxAge: oneDay});
     }
 
     useEffect(() => {
