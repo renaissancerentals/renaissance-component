@@ -12,7 +12,13 @@ import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
 import {SpecialOfferButton} from "../../specialOffer/SpecialOfferButton";
 
-export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, videoClickHandler, propertyId}) => {
+export const FloorplanCard: React.FC<FloorplanCardProps> = ({
+                                                                floorplan,
+                                                                size,
+                                                                videoClickHandler,
+                                                                propertyId,
+                                                                variant
+                                                            }) => {
     const [assets, setAssets] = useState<Asset[]>([]);
     const [isAssetLoading, setIsAssetLoading] = useState(false);
     const [isAssetLoaded, setIsAssetLoaded] = useState(false);
@@ -39,7 +45,7 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
     return (
         <div className={size === "small" ? "floorplan-card floorplan-card--small" : "floorplan-card"}>
 
-            {isAssetLoaded && assets.length > 0 ?
+            {!variant && isAssetLoaded && assets.length > 0 ?
                 <ItemSlider navButtonSize="medium"
                             sliderItems={assets.map(asset => <img
                                 className="card--image"
@@ -48,7 +54,6 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                 <img className="card--image" alt="cover"
                      src={floorplan.coverImage ? getAssetUrl(floorplan.coverImage, propertyId) : DEFAULT_IMAGE_URL}/>}
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}
-
 
             {isAssetLoading ? <Spinner size="medium"/> : <></>}
             <div className="badges--right">
@@ -84,8 +89,6 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                     </div>
                     : ''}
             </div>
-
-
             <a href={"/floorplans/" + floorplan.id}
                title={floorplan.name}>
                 <div className="floorplan-card-content">
@@ -95,23 +98,46 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({floorplan, size, vi
                                 <p>{floorplan.webSpecials[0]}</p>
                             </div> : <></>}
                     </div>
-                    <div className="floorplan-card-footer">
-                        <div className="left">
-                            <h3 className="truncate">
-                                {floorplan.name}
-                            </h3>
-                            <p>
-                                <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
-                                                specialRentEndDate={floorplan.specialRentEndDate}
-                                                specialRentStartDate={floorplan.specialRentStartDate}/>
-                            </p>
+                    {variant === "featured" ?
+                        <div className="floorplan-card-footer featured">
+                            <div className="left">
+                                <h3>
+                                    Featured Floorplan
+                                </h3>
+                                <h3 className="truncate">
+                                    {floorplan.name}
+                                </h3>
+                            </div>
+                            <div className="right">
+                                <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
+                                <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
+                                    ft.</> : <>&nbsp;</>}</p>
+                                <p>
+                                    <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
+                                                    specialRentEndDate={floorplan.specialRentEndDate}
+                                                    specialRentStartDate={floorplan.specialRentStartDate}/>
+                                </p>
+                            </div>
                         </div>
-                        <div className="right">
-                            <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
-                            <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
-                                ft.</> : <>&nbsp;</>}</p>
+                        :
+                        <div className="floorplan-card-footer">
+                            <div className="left">
+                                <h3 className="truncate">
+                                    {floorplan.name}
+                                </h3>
+                                <p>
+                                    <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
+                                                    specialRentEndDate={floorplan.specialRentEndDate}
+                                                    specialRentStartDate={floorplan.specialRentStartDate}/>
+                                </p>
+                            </div>
+                            <div className="right">
+                                <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
+                                <p>{floorplan.units.length > 0 ? <>{rangeFrom(floorplan.units, "squareFoot")} sq.
+                                    ft.</> : <>&nbsp;</>}</p>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
 
             </a>
@@ -124,5 +150,6 @@ export interface FloorplanCardProps {
     size?: "small" | "large"
     videoClickHandler: (video: Video) => void;
     propertyId: string;
+    variant?: "featured"
 }
 

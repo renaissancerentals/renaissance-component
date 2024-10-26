@@ -1,0 +1,29 @@
+@import "src/assets/variables";
+
+.floorplan-card--slider {
+
+  width: 100vw;
+
+  @media(min-width: $large-size) {
+    width: 25rem;
+
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+
+  }
+
+  .muncher-item-slider .muncher-button--navigate {
+    top: 38%;
+  }
+}
+
+.floorplan-card-slider--small {
+
+  @media(min-width: $large-size) {
+    width: 20rem;
+  }
+  @media(min-width: $extra-large-size) {
+    width: 28rem;
+  }
+}

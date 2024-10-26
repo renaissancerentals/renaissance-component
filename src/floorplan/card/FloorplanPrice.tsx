@@ -32,8 +32,8 @@ export const FloorplanPrice: React.FC<FloorplanPriceProps> = (
     const priceForSingleUnit = () =>
         <span className={getRentClass()}><span className="rent">{toUSD(minMaxRent.min)}</span></span>
     const priceForMultipleUnits = () =>
-        <><span className={getRentClass()}><span
-            className="rent">{toUSD(minMaxRent.min)}</span></span> - {toUSD(minMaxRent.max)}</>
+        <span className={getRentClass()}><span
+            className="rent">{toUSD(minMaxRent.min)} - {toUSD(minMaxRent.max)}</span></span>
 
     const priceForSpecialRent = () => hasSpecialRent() ? <span
         className="special">Now starting at {toUSD(specialRent!!)}/mo</span> : <></>
