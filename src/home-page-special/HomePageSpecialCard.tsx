@@ -10,12 +10,8 @@ export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePag
             <h2>{homePageSpecial.title}</h2>
             <div className="special-card-body">
                 <div className="body-left">
-                    <p>{homePageSpecial.description}</p>
-                    <ul>
-                        {homePageSpecial.information1 ? <li>{homePageSpecial.information1}</li> : ""}
-                        {homePageSpecial.information2 ? <li>{homePageSpecial.information2}</li> : ""}
-                        {homePageSpecial.information3 ? <li>{homePageSpecial.information3}</li> : ""}
-                    </ul>
+                    <p className="special-card--description">{homePageSpecial.description}</p>
+                    <div dangerouslySetInnerHTML={{__html: homePageSpecial.details}}/>
                 </div>
                 <div className="body-right">
                     <img src={getAssetUrl(homePageSpecial.image, propertyId)} alt="special image"/>

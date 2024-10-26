@@ -2,9 +2,7 @@ export interface HomePageSpecialBasic {
     id: string;
     title: string;
     description: string;
-    information1: string;
-    information2: string;
-    information3: string;
+    details: string;
     image: string;
     startDate: string;
     endDate: string;

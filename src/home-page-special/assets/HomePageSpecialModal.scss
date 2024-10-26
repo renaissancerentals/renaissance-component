@@ -27,7 +27,8 @@
     overflow: hidden;
     background: none;
     @media(min-width: $small-size) {
-      width: 80vw;
+      width: 100vw;
+      top: 10vh;
     }
     @media(min-width: $large-size) {
       padding: 1rem 1rem 5rem 1rem;
@@ -47,7 +48,8 @@
     position: fixed;
     z-index: 1;
     @media(min-width: $small-size) {
-      top: 13rem;
+      top: 18vh;
+
     }
     @media(min-width: $large-size) {
       top: 50%;

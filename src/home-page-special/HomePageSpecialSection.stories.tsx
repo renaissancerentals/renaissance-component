@@ -6,7 +6,8 @@ import {HomePageSpecialSection} from "./HomePageSpecialSection";
 const meta: Meta<typeof HomePageSpecialSection> = {
     component: HomePageSpecialSection,
     title: "Section/Home Page Special",
-    render: (args) => <HomePageSpecialSection {...args} />,
+    render: (args) => <><p>This section loads after 3 seconds (if cookie is set)</p>
+        <HomePageSpecialSection {...args} /></>,
 };
 
 export default meta;

@@ -20,35 +20,32 @@ const meta: Meta<typeof HomePageSpecialModal> = {
 };
 export default meta;
 type Story = StoryFn<typeof meta>;
+const special: HomePageSpecial = {
+    id: "id",
+    title: "Neque porro quisquam est qui dolorem ipsum quia dolor sit am",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet luctus consequat. Phasellus venenatis gravida pellentesque. Sed malesuada, libero eget ullamcorper tempor, leo nisl bibendum libero, id dictum metus libero ac arcu malesuada arcu.",
+    details: "<ul class=\"muncher-editor-list-ul\"><li value=\"1\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></li><li value=\"2\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Morbi fermentum neque in nulla tincidunt scelerisque.</span></li><li value=\"3\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Maecenas vel massa sed risus consectetur aliquet.</span></li><li value=\"4\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Praesent varius odio consectetur metus eui</span></li></ul>",
+    image: "https://scholars-quad.herokuapp.com/api/asset/download/16xiRBxWnwpDBGDF8YTnOHp3BqFgNICvo",
+    properties: ["renaissance-rentals", "covenanter-hill"],
+    startDate: momentToDate(moment().subtract(1, "days")),
+    endDate: momentToDate(moment().add(1, "month")),
+}
 
+const special1: HomePageSpecial = {
+    id: "id1",
+    title: "Flash Sale: SPECIAL PRICING ON SELECT UNITS",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dapibus, sapien a scelerisque imperdiet, enim lectus commodo augue, eu dapibus nunc neque ac elit. ",
+    details: "<ul class=\"muncher-editor-list-ul\"><li value=\"1\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></li><li value=\"2\" class=\"muncher-editor-listitem\"><span style=\"white-space: pre-wrap;\">Morbi fermentum neque in nulla tincidunt scelerisque.</span></li></ul>",
+    image: "https://scholars-quad.herokuapp.com/api/asset/download/1w7shVoej3HEjVQdh7pWbq8GioITwVrF6",
+    properties: ["renaissance-rentals", "covenanter-hill"],
+    startDate: momentToDate(moment().subtract(1, "days")),
+    endDate: momentToDate(moment().add(1, "month")),
+}
 export const Default: Story = () => {
     const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
-    const special: HomePageSpecial = {
-        id: "id",
-        title: "Neque porro quisquam est qui dolorem ipsum quia dolor sit am",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet luctus consequat. Phasellus venenatis gravida pellentesque. Sed malesuada, libero eget ullamcorper tempor, leo nisl bibendum libero, id dictum metus libero ac arcu malesuada arcu.",
-        information1: "Lorem ipsum dolor sit amet, consectetur adipiscing",
-        information2: "Fusce bibendum tortor et neque tempor, id ultricie",
-        information3: "Vestibulum convallis arcu in metus porta, sed frin",
-        image: "https://scholars-quad.herokuapp.com/api/asset/download/16xiRBxWnwpDBGDF8YTnOHp3BqFgNICvo",
-        properties: ["renaissance-rentals", "covenanter-hill"],
-        startDate: momentToDate(moment().subtract(1, "days")),
-        endDate: momentToDate(moment().add(1, "month")),
-    }
 
-    const special1: HomePageSpecial = {
-        id: "id1",
-        title: "Flash Sale: SPECIAL PRICING ON SELECT UNITS",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dapibus, sapien a scelerisque imperdiet, enim lectus commodo augue, eu dapibus nunc neque ac elit. ",
-        information1: "Information here",
-        information2: "Information here",
-        information3: "Information here",
-        image: "https://scholars-quad.herokuapp.com/api/asset/download/1w7shVoej3HEjVQdh7pWbq8GioITwVrF6",
-        properties: ["renaissance-rentals", "covenanter-hill"],
-        startDate: momentToDate(moment().subtract(1, "days")),
-        endDate: momentToDate(moment().add(1, "month")),
-    }
     return (<>
+        This section loads after 3 seconds
         <Button variant="tertiary" onClick={() => {
             const thirtyDays = 60 * 60 * 24 * 30;
             setCookie('renaissanceSpecialModalClosed', false, {path: '/', maxAge: thirtyDays});
@@ -57,3 +54,19 @@ export const Default: Story = () => {
         <HomePageSpecialModal homePageSpecials={[special, special1]} propertyId="renaissance-rentals"/>
     </>);
 }
+
+
+export const Single: Story = () => {
+    const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
+
+    return (<>
+        This section loads after 3 seconds
+        <Button variant="tertiary" onClick={() => {
+            const thirtyDays = 60 * 60 * 24 * 30;
+            setCookie('renaissanceSpecialModalClosed', false, {path: '/', maxAge: thirtyDays});
+            window.location.reload();
+        }}>Reset Cookie and Reload</Button>
+        <HomePageSpecialModal homePageSpecials={[special]} propertyId="renaissance-rentals"/>
+    </>);
+}
+

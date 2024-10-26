@@ -13,7 +13,15 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     const [translate, setTranslate] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cookies, setCookie] = useCookies(['renaissanceSpecialModalClosed']);
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 3000);
+        return () => clearTimeout(timer);
+
+    }, []);
     const increaseIndex = () => {
 
         if (currentIndex === homePageSpecials.length - 1) {
@@ -45,46 +53,55 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     }
 
     useEffect(() => {
-        if (homePageSpecials.length > 0 && cookies.renaissanceSpecialModalClosed) {
-            setShowModal(false)
+        if (homePageSpecials && homePageSpecials.length < 1 || cookies.renaissanceSpecialModalClosed) {
+            setShowModal(false);
+        } else {
+            setShowModal(true);
         }
+
+
     }, [cookies.renaissanceSpecialModalClosed]);
 
 
     return (
         <div className="home-page-special-modal">
-            <Modal show={showModal} setShow={modalCloseHandler}>
-                <div className="close" onClick={modalCloseHandler}>
-                    <Button variant="transparent" onClick={modalCloseHandler}>
-                        <Icon name="close" size="medium" weight={2}/>
-                    </Button>
-                </div>
-                {homePageSpecials.length > 1 ?
-                    <div className="left">
-                        <Button variant="transparent" onClick={decreaseIndex} disabled={currentIndex === 0}>
-                            <Icon name="arrow-left" size="medium" weight={2}/>
-                        </Button>
-                    </div> : ""}
+            {homePageSpecials.length > 0 ?
+                <>
+                    <Modal show={showModal && isVisible} setShow={modalCloseHandler}>
+                        <div className="close" onClick={modalCloseHandler}>
+                            <Button variant="transparent" onClick={modalCloseHandler}>
+                                <Icon name="close" size="medium" weight={2}/>
+                            </Button>
+                        </div>
+                        {homePageSpecials.length > 1 ?
+                            <div className="left">
+                                <Button variant="transparent" onClick={decreaseIndex} disabled={currentIndex === 0}>
+                                    <Icon name="arrow-left" size="medium" weight={2}/>
+                                </Button>
+                            </div> : ""}
 
-                <div className="slider">
-                    <div className="slider-container" style={{width: `${100 * homePageSpecials.length}%`}}>
-                        {homePageSpecials.map((homePageSpecial, index) =>
-                            <div className="slider-item"
-                                 style={{transform: `translateX(${translate}%)`}}
-                                 key={"slider-item" + index}>
-                                <HomePageSpecialCard homePageSpecial={homePageSpecial} propertyId={propertyId}/>
+                        <div className="slider">
+                            <div className="slider-container" style={{width: `${100 * homePageSpecials.length}%`}}>
+                                {homePageSpecials.map((homePageSpecial, index) =>
+                                    <div className="slider-item"
+                                         style={{transform: `translateX(${translate}%)`}}
+                                         key={"slider-item" + index}>
+                                        <HomePageSpecialCard homePageSpecial={homePageSpecial} propertyId={propertyId}/>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                </div>
-                {homePageSpecials.length > 1 ?
-                    <div className="right">
-                        <Button variant="transparent" onClick={increaseIndex}
-                                disabled={currentIndex === homePageSpecials.length - 1}>
-                            <Icon name="arrow-right" size="medium" weight={2}/>
-                        </Button>
-                    </div> : ""}
-            </Modal>
+                        </div>
+                        {homePageSpecials.length > 1 ?
+                            <div className="right">
+                                <Button variant="transparent" onClick={increaseIndex}
+                                        disabled={currentIndex === homePageSpecials.length - 1}>
+                                    <Icon name="arrow-right" size="medium" weight={2}/>
+                                </Button>
+                            </div> : ""}
+                    </Modal>
+                </> :
+                <></>}
+
         </div>
     )
 };
