@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import "./assets/HomePageSpecialSection.scss";
-import {AllPropertyId} from "../property/data/Property";
 import {getHomeHomePageSpecials} from "./service/HomePageSpecialService";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {HomePageSpecialModal} from "./HomePageSpecialModal";
@@ -29,6 +28,6 @@ export const HomePageSpecialSection: React.FC<HomePageSpecialSectionProps> = (
 };
 
 export interface HomePageSpecialSectionProps {
-    propertyId: AllPropertyId;
+    propertyId: string;
     parent?: "renaissance-rentals"
 }

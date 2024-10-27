@@ -1,7 +1,6 @@
 import React from "react";
 import "./assets/HomePageSpecialCard.scss";
 import {HomePageSpecial} from "./data/HomePageSpecial";
-import {AllPropertyId} from "../property/data/Property";
 import {getAssetUrl} from "../asset/service/AssetService";
 
 export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePageSpecial, propertyId}) => {
@@ -23,5 +22,5 @@ export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePag
 
 export interface HomePageSpecialCardProps {
     homePageSpecial: HomePageSpecial;
-    propertyId: AllPropertyId;
+    propertyId: string;
 }

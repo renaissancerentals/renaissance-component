@@ -1,6 +1,5 @@
 import {HomePageSpecial, HomePageSpecialData} from "../data/HomePageSpecial";
 import {get} from "../../service/RoundRobin";
-import {AllPropertyId} from "../../property/data/Property";
 
 
 const getHomeHomePageSpecialData = async (): Promise<HomePageSpecialData[]> => {
@@ -8,7 +7,7 @@ const getHomeHomePageSpecialData = async (): Promise<HomePageSpecialData[]> => {
     return await response.data;
 };
 
-const filterByPropertyId = (homePageSpecials: HomePageSpecial[], propertyId: AllPropertyId): HomePageSpecial[] =>
+const filterByPropertyId = (homePageSpecials: HomePageSpecial[], propertyId: string): HomePageSpecial[] =>
     homePageSpecials.filter(homePageSpecial => homePageSpecial.properties.includes(propertyId));
 
 const homePageSpecialFrom = (homePageSpecialData: HomePageSpecialData): HomePageSpecial => ({
@@ -22,7 +21,7 @@ const homePageSpecialsFrom = (homePageSpecialData: HomePageSpecialData[]): HomeP
     sortByDateAscending(homePageSpecialData.map(homePageSpecialData => homePageSpecialFrom(homePageSpecialData)))
 
 
-export const getHomeHomePageSpecials = async (propertyId: AllPropertyId): Promise<HomePageSpecial[]> => {
+export const getHomeHomePageSpecials = async (propertyId: string): Promise<HomePageSpecial[]> => {
 
     return await getHomeHomePageSpecialData().then(data => filterByPropertyId(homePageSpecialsFrom(data), propertyId))
 };

@@ -4,7 +4,6 @@ import "./assets/HomePageSpecialModal.scss";
 import {HomePageSpecialCard} from "./HomePageSpecialCard";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {useCookies} from 'react-cookie';
-import {AllPropertyId} from "../property/data/Property";
 
 export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     {
@@ -109,6 +108,6 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
 
 export interface HomePageSpecialModalProps {
     homePageSpecials: HomePageSpecial[],
-    propertyId: AllPropertyId;
+    propertyId: string;
     parent?: "renaissance-rentals"
 }
