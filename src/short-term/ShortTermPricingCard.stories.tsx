@@ -49,7 +49,22 @@ export const Default: Story = {
         } as ShortTerm,
       } as FloorplanShortTerm,
       {
-        id: "17789",
+        id: "17791",
+        name: "1 bedroom",
+        style: ShortTermStyle.DELUXE_APARTMENT,
+        bedroom: 1,
+        bathroom: 1,
+        shortTerm: {
+          priceFor2To4Days: 0.0,
+          priceFor5To13Days: 123.0,
+          priceFor14To29Days: 102.0,
+          priceFor1To4Months: 75.0,
+          priceFor4andMoreMonths: 63.0,
+          squareFoot: 501,
+        } as ShortTerm,
+      } as FloorplanShortTerm,
+      {
+        id: "17792",
         name: "1 bedroom",
         style: ShortTermStyle.DELUXE_APARTMENT,
         bedroom: 1,

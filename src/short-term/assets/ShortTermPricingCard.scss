@@ -3,9 +3,36 @@
 .section-pricing-card {
   font-size: 80%;
 
+  .table-container {
+    width: 100%;
+    overflow-x: scroll;
+    margin: 0 auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 1em;
+    border: 1px solid #a7bdb1;
+  }
+
+  th:first-child,
+  td:first-child {
+    position: sticky;
+    left: 0;
+    background: #a7bdb1;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-family: $heading-font;
+    font-weight: normal;
+  }
+
   .row {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns:  repeat(5, 10rem);
     grid-template-rows: repeat(8, 12.5%);
     text-align: center;
     align-items: center;
