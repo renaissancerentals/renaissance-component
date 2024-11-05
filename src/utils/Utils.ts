@@ -47,7 +47,7 @@ export const extractIdFrom = (imageUrl: string | null): string => {
         const paramString = imageUrl.split('?')[1];
         const queryString = new URLSearchParams(paramString);
         const id = queryString.get("id");
-        return id === null ? "" : id;
+        return id === null ? "" : id.trim();
     } else
         return "";
 };
