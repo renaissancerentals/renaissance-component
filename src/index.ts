@@ -85,8 +85,6 @@ export type  {
 export type {
     PropertyTeamMember
 } from "./team/data/TeamMember";
-
-export {SummerHousePricing} from "./summer-house/SummerHousePricing";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
 export {getProperty} from "./property/service/PropertyService";
 

@@ -33,11 +33,11 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
             </div>
         </>
 
-    const generateMobile = (displayName: string, values: string[]) =>
+    const generateMobile = (displayName: string | React.JSX.Element, values: string[]) =>
         <tr>
             <th>{displayName}</th>
             {values.map((value, index) =>
-                <td key={"td-" + displayName + index}>{value}</td>
+                <td key={"td-" + index}>{value}</td>
             )}
 
         </tr>
@@ -56,8 +56,11 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             {generateMobile("bedrooms", floorplans.map(floorplan => floorplan.bedroom + "-Bedroom " + capitalizeFirstLetter(enumToString(floorplan.style))))}
                             {generateMobile("bath", floorplans.map(floorplan => floorplan.bathroom + ""))}
                             {generateMobile("sq. ft.", floorplans.map(floorplan => floorplan.shortTerm.squareFoot + "+"))}
-                            {generateMobile("*2-4 days", floorplans.map(() => "Call or Text"))}
-                            {generateMobile("*5-13 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor5To13Days) + "/day + tax"))}
+                            {generateMobile(
+                                <><span className="asterix">*</span>2-4 days</>, floorplans.map(() => "Call or Text"))}
+                            {generateMobile(
+                                <><span className="asterix">*</span>5-13
+                                    days</>, floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor5To13Days) + "/day + tax"))}
                             {generateMobile("14-29 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor14To29Days) + "/day + tax"))}
                             {generateMobile("1-4 months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor1To4Months) + "/day/ " + toUSD(floorplan.shortTerm.priceFor1To4Months * 30) + "/mo"))}
                             {generateMobile("4+ months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor4andMoreMonths) + "/day/ " + toUSD(floorplan.shortTerm.priceFor4andMoreMonths * 30) + "/mo"))}
@@ -78,10 +81,10 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             sq. ft.
                         </div>
                         <div className="col head tall">
-                            *2-4 days
+                            <span className="asterix">*</span>2-4 days
                         </div>
                         <div className="col head tall">
-                            *5-13 days
+                            <span className="asterix">*</span>5-13 days
                         </div>
                         <div className="col head">
                             14-29 days

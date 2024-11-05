@@ -92,4 +92,11 @@
       font-size: .8rem;
     }
   }
+  .asterix{
+    font-weight: bold;
+    font-size: .8rem;
+    @media (min-width: $large-size) {
+      font-size: .9rem;
+    }
+  }
 }
