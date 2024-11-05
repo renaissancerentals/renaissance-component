@@ -56,17 +56,17 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             {generateMobile("bedrooms", floorplans.map(floorplan => floorplan.bedroom + "-Bedroom " + capitalizeFirstLetter(enumToString(floorplan.style))))}
                             {generateMobile("bath", floorplans.map(floorplan => floorplan.bathroom + ""))}
                             {generateMobile("sq. ft.", floorplans.map(floorplan => floorplan.shortTerm.squareFoot + "+"))}
-                            {generateMobile("2-4 days immediate only", floorplans.map(floorplan => "Call or Text"))}
-                            {generateMobile("5-13 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor5To13Days) + "/day + tax"))}
+                            {generateMobile("*2-4 days", floorplans.map(() => "Call or Text"))}
+                            {generateMobile("*5-13 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor5To13Days) + "/day + tax"))}
                             {generateMobile("14-29 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor14To29Days) + "/day + tax"))}
-                            {generateMobile("1-4 months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor1To4Months) + "/day/ " + toUSD(floorplan.shortTerm.priceFor1To4Months * 30)))}
-                            {generateMobile("4+ months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor4andMoreMonths) + "/day/ " + toUSD(floorplan.shortTerm.priceFor4andMoreMonths * 30)))}
+                            {generateMobile("1-4 months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor1To4Months) + "/day/ " + toUSD(floorplan.shortTerm.priceFor1To4Months * 30) + "/mo"))}
+                            {generateMobile("4+ months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor4andMoreMonths) + "/day/ " + toUSD(floorplan.shortTerm.priceFor4andMoreMonths * 30) + "/mo"))}
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div className="container main">
+                <div className="main">
                     <div className="row">
                         <div className="col head">
                             bedrooms
@@ -78,10 +78,10 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             sq. ft.
                         </div>
                         <div className="col head tall">
-                            2-4 days <br/>immediate only
+                            *2-4 days
                         </div>
                         <div className="col head tall">
-                            5-13 days
+                            *5-13 days
                         </div>
                         <div className="col head">
                             14-29 days
@@ -97,6 +97,8 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                         }
                     </div>
                 </div>
+
+                <p className="footnote">* for immediate arrivals only, call or text for availability</p>
 
             </div>
         </section>

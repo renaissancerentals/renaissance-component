@@ -84,4 +84,12 @@
       }
     }
   }
+  .footnote{
+    font-style: italic;
+    font-size: .7rem;
+    text-align: center;
+    @media (min-width: $large-size) {
+      font-size: .8rem;
+    }
+  }
 }
