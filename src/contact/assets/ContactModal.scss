@@ -2,6 +2,7 @@
 
 .div-contact--modal {
   position: relative;
+
   .close {
     position: fixed;
     top: 1rem;
@@ -16,22 +17,16 @@
   }
 
   .muncher-modal {
-    padding: 1rem 1rem 5rem 1rem;
+    margin: 1rem 0;
+    padding: 0;
+    @media (min-width: $medium-size) {
+      padding: 1rem 1rem 5rem 1rem;
+    }
+
     left: 0;
     top: 0;
     width: 100vw;
     overflow: scroll;
     max-height: 100vh;
-
-    .section__contact .form--element {
-      width: 70vw;
-      @media (min-width: $medium-size) {
-        max-width: 17rem;
-      }
-      @media (min-width: $large-size) {
-        max-width: 25rem;
-      }
-    }
-
   }
 }

@@ -76,9 +76,12 @@ $contact-section-background-color: $primary-background-color !default;
       }
     }
 
+    .checkboxes--div {
+      margin: 1rem;
+    }
 
     .checkboxes {
-      width: 36rem;
+      width: 100%;
     }
 
     .long {
@@ -170,6 +173,10 @@ $contact-section-background-color: $primary-background-color !default;
     @media (min-width: $medium-size) {
       width: 50vw;
     }
+  }
+
+  .right {
+    margin: 1rem;
   }
 
   .muncher-slider {

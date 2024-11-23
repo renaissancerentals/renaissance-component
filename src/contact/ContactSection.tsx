@@ -270,7 +270,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                                 <Input label="How did you hear about us?" name="hearAboutUs"
                                        icon="type"/>
                             </div>
-                            <div>
+                            <div className="checkboxes--div">
                                 <p>Which community are you interested in? (<i>check all that apply</i>)</p>
                                 <div className="checkboxes">
                                     {Object.keys(PropertiesEmail).map(value =>
