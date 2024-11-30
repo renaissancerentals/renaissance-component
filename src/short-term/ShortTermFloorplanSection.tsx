@@ -138,21 +138,6 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                     }
 
 
-                                    {isLoading ? "" :
-                                        <Card>
-                                            <div ref={locationRef ? locationRef : mapRef} id="location"
-                                                 className="reference">
-
-                                            </div>
-                                            <MapSection
-                                                src={floorplanAddressToGoogleMap({
-                                                    city: renaissance.city,
-                                                    state: renaissance.state,
-                                                    address: floorplan.address,
-                                                    zipcode: floorplan.zipcode
-                                                })}/>
-                                        </Card>
-                                    }
 
 
                                     <div className="contact-card">
@@ -170,6 +155,22 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                         </Card>
                                     </div>
                                 </div>
+                                {isLoading ? "" :
+                                    <Card>
+                                        <div ref={locationRef ? locationRef : mapRef} id="location"
+                                             className="reference">
+
+                                        </div>
+                                        <MapSection
+                                            src={floorplanAddressToGoogleMap({
+                                                city: renaissance.city,
+                                                state: renaissance.state,
+                                                address: floorplan.address,
+                                                zipcode: floorplan.zipcode
+                                            })}/>
+                                    </Card>
+                                }
+
                             </div>
                         </>
                     }
