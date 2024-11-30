@@ -227,14 +227,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                             testimonials.length > 0 ?
                                                 <TestimonialsCard testimonials={testimonials}/> : <></>
                                         }
-                                        <Card>
-                                            <div ref={locationRef ? locationRef : mapRef} id="location"
-                                                 className="reference">
 
-                                            </div>
-                                            <MapSection
-                                                src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
-                                        </Card>
 
                                         <Card title="Pets">
                                             <h5>Permitted</h5>
@@ -339,6 +332,14 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                             </Card>
                                         </div>
                                     </div>
+                                    <Card>
+                                        <div ref={locationRef ? locationRef : mapRef} id="location"
+                                             className="reference">
+
+                                        </div>
+                                        <MapSection
+                                            src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
+                                    </Card>
                                 </div>
                             </>
                         }

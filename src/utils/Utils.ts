@@ -19,7 +19,7 @@ export const addressToGoogleMapLink = (address?: string, zipcode?: string) => "h
 export const addressToGoogleMap = (address?: string, zipcode?: string) => "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address) + "," + zipcode;
 
 export const floorplanAddressToGoogleMap = (floorplanAddress: FloorplanAddress) =>
-    "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(floorplanAddress.address) + ", " + floorplanAddress.city + ", " + floorplanAddress.state + " " + floorplanAddress.zipcode;
+    "https://www.google.com/maps/embed/v1/place?key=AIzaSyAdG4u5YD2CZvQTv_hRtaKrmSNWZkY30oU&q=" + cleanAddressForGoogle(floorplanAddress.address) + ", " + floorplanAddress.city + ", " + floorplanAddress.state + " " + floorplanAddress.zipcode;
 export const enumToString = (value?: string): string => {
 
     return value && !isEmpty(value) ? value.replaceAll("_", " ").toLowerCase() : "";
