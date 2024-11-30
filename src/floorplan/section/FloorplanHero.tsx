@@ -59,17 +59,16 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
         if (floorplan.photosFolderId) {
             getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
                 images.push(...galleryAssets);
-
                 let totalAssets = images.length + otherAssetCounts;
-
                 if (totalAssets > FIRST_PAGE_ASSET_COUNT) {
 
-                    let pages = Math.trunc(((totalAssets - FIRST_PAGE_ASSET_COUNT) / 8) + 1);
+                    let pages = Math.trunc(((totalAssets - FIRST_PAGE_ASSET_COUNT) / GRID_SIZE) + 1);
 
-                    if ((totalAssets - FIRST_PAGE_ASSET_COUNT) % 8 === 0) {
+                    if ((totalAssets - FIRST_PAGE_ASSET_COUNT - 1) % GRID_SIZE === 0) {
                         setTotalPages(pages);
                     } else
                         setTotalPages(pages + 1);
+
                 }
 
             }).finally(() => {
