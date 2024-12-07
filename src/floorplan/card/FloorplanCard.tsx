@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import "./assets/FloorplanCard.scss";
 import tourIcon from "./assets/360-icon.png";
 import videoIcon from "./assets/video-icon.png";
-import {Badge, Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
+import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
 import {FloorplanCardData} from "../data/Floorplan";
 import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
-import {rangeFrom} from "../../utils/Utils";
+import {addressToGoogleMapLink, rangeFrom, renaissanceAddress} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
@@ -125,6 +125,10 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({
                                 <h3 className="truncate">
                                     {floorplan.name}
                                 </h3>
+                                {floorplan.address && floorplan.zipcode ?
+                                    <a className="address-link" target="_blank" rel="noreferrer"
+                                       href={addressToGoogleMapLink(floorplan.address, floorplan.zipcode)}>
+                                        <Icon name="map" size="small">{renaissanceAddress(floorplan.address, floorplan.zipcode)}</Icon></a> : <></>}
                                 <p>
                                     <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
                                                     specialRentEndDate={floorplan.specialRentEndDate}

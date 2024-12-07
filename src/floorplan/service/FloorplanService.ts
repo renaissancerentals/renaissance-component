@@ -40,6 +40,8 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
         specialRent: floorplanDetails.specialRent,
         specialRentStartDate: floorplanDetails.specialRentStartDate,
         specialRentEndDate: floorplanDetails.specialRentEndDate,
+        address: floorplanDetails.address,
+        zipcode: floorplanDetails.zipcode,
         virtualTourLink: floorplanDetails.virtualTourLink,
         videoTourLink: floorplanDetails.videoTourLink,
         photosFolderId: floorplanDetails.photosFolderId,

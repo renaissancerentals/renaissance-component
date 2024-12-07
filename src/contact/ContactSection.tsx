@@ -12,6 +12,7 @@ import {
     trackContactInitiated,
     trackContactSubmitted
 } from "./service/ContactService";
+import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
 
 
 const Contact: React.FC<ContactSectionProps> = ({
@@ -296,6 +297,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                     }
                 </div>
             </div>
+            <SubmissionRequestBanner/>
         </section>
     )
 };
@@ -330,4 +332,8 @@ export interface ContactSectionProps {
     conversionTrackingId2?: string
 }
 
-export type ContactPropertyIds = PropertyId | "renaissance-rentals" | "apartments-in-bloomington" | "bloomington-apartments";
+export type ContactPropertyIds =
+    PropertyId
+    | "renaissance-rentals"
+    | "apartments-in-bloomington"
+    | "bloomington-apartments";

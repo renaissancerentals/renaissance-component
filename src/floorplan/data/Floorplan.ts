@@ -48,16 +48,18 @@ export interface FloorplanDetails {
     bedroom: number;
     bathroom: number;
     style: FloorplanStyle;
-    specialRent: number,
-    specialRentStartDate: string,
-    specialRentEndDate: string,
+    specialRent: number;
+    specialRentStartDate: string;
+    specialRentEndDate: string;
+    address: string;
+    zipcode: string;
     featured: boolean;
     greenCertified: boolean;
     videoTourLink: string | null;
     threeSixtyVideoTourLink: string | null;
     virtualTourLink: string | null;
-    photo: string,
-    coverImage: string,
+    photo: string;
+    coverImage: string;
     floorPlanFolderId: string;
     photosFolderId: string;
     amenities: AmenityName[];
@@ -76,8 +78,10 @@ export interface FloorplanCardData {
     featured: boolean;
     style: FloorplanStyle;
     specialRent: number,
-    specialRentStartDate: string,
-    specialRentEndDate: string,
+    specialRentStartDate: string;
+    specialRentEndDate: string;
+    address: string;
+    zipcode: string;
     virtualTourLink: string;
     videoTourLink: string;
     photosFolderId: string;

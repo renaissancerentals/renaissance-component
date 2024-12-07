@@ -3,7 +3,6 @@ import {type Meta, type StoryObj} from "@storybook/react";
 import {FloorplanCard} from "./FloorplanCard";
 import {FloorplanCardData, FloorplanStyle} from "../data/Floorplan";
 import {Video} from "../../asset/data/Asset";
-import {isDateAfterToday} from "../service/FloorplanService";
 import moment from "moment/moment";
 import {momentToDate} from "../../utils/Utils";
 
@@ -49,6 +48,8 @@ const floorplan: FloorplanCardData = {
     specialRent: 0,
     specialRentStartDate: "",
     specialRentEndDate: "",
+    address: "1100 N Walnut St",
+    zipcode: "47404",
     webSpecials: []
 }
 export default meta;
@@ -100,13 +101,21 @@ export const WithSpecialOffer: Story = {
         }
     }
 }
-export const WithSpecialRent:Story = {
-    args:{
+export const WithSpecialRent: Story = {
+    args: {
         ...Default.args,
-        floorplan:{
-            ...floorplan,specialRent: 800,
-            specialRentStartDate: momentToDate(moment().subtract(2,"days")),
-            specialRentEndDate: momentToDate(moment().add(2,"days"))
+        floorplan: {
+            ...floorplan, specialRent: 800,
+            specialRentStartDate: momentToDate(moment().subtract(2, "days")),
+            specialRentEndDate: momentToDate(moment().add(2, "days"))
         }
     }
 }
+
+export const Featured: Story = {
+    args: {
+        ...Default.args,
+        variant: "featured"
+    }
+}
+

@@ -126,6 +126,7 @@ $floorplan-card-secondary-color: $secondary-color !default;
     background-color: $special-offer-color;
     padding: 0 1rem;
   }
+
   .floorplan-card-footer {
     background-color: rgba(0, 0, 0, .4);
     width: 100%;
@@ -133,8 +134,9 @@ $floorplan-card-secondary-color: $secondary-color !default;
     align-items: center;
     justify-content: space-between;
 
-    h3 {
+    h3, p {
       text-align: left;
+      margin: .5rem 0;
     }
 
     .truncate {
@@ -156,6 +158,17 @@ $floorplan-card-secondary-color: $secondary-color !default;
     .left, .right {
       padding: 0 .5rem;
     }
+
+    .address-link {
+      font-size: .7rem;
+
+      .muncher-icon--small {
+        width: .7rem;
+        height: .7rem;
+      }
+
+      margin: 0;
+    }
   }
 
   .featured {
@@ -164,6 +177,8 @@ $floorplan-card-secondary-color: $secondary-color !default;
       font-family: $serif-font;
       font-weight: normal;
       font-size: 1rem;
+      margin: 1rem 0;
+
     }
 
     p {

@@ -204,5 +204,12 @@ $contact-section-background-color: $primary-background-color !default;
 
   }
 
+  .information {
+    font-size: .8rem;
+    font-style: italic;
+    a {
+      text-decoration: underline;
+    }
+  }
 }
 

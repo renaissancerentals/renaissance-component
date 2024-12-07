@@ -38,6 +38,8 @@ export {PrettyPrintJson} from "./utils/PrettyPrintJson";
 export {Video} from "./video/Video";
 export {SubletSection, NEW_SUBLET} from "./sublet/SubletSection";
 export {SubletsSection} from "./sublet/SubletsSection";
+export {SubmissionRequestBanner} from "./banner/SubmissionRequestBanner";
+
 export type {Asset} from "./asset/data/Asset"
 export type {GalleryType} from "./gallery/Gallery";
 export type {GalleryImage} from "./gallery/data/GalleryImage";
@@ -104,6 +106,7 @@ export {
     formatPhoneNumber,
     addressToGoogleMapLink,
     addressToGoogleMap,
+    renaissanceAddress,
     capitalizeFirstLetter,
     enumToString,
     toUSD,

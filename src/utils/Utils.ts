@@ -2,6 +2,7 @@ import _ from "lodash";
 import moment, {Moment} from "moment";
 import {decodeEntity} from "html-entities";
 import {FloorplanAddress} from "../floorplan/service/FloorplanService";
+import {renaissance} from "../data/RenaissanceData";
 
 export const MIN_VALUE = 0;
 export const MAX_VALUE = 4000;
@@ -13,6 +14,7 @@ export const formatPhoneNumber = (phone?: string): string => {
     const match = phone.toString().match(/^(\d{3})(\d{3})(\d{4})$/);
     return match ? "(" + match[1] + ")-" + match[2] + "-" + match[3] : phone;
 }
+export const renaissanceAddress = (address: string, zipcode: string) => `${address}, ${renaissance.city},${renaissance.state} ${zipcode}`
 
 const cleanAddressForGoogle = (address?: string): string => address ? address.replace(/apt. /gi, "") : "";
 export const addressToGoogleMapLink = (address?: string, zipcode?: string) => "https://maps.google.com/?q=" + cleanAddressForGoogle(address) + "," + zipcode;

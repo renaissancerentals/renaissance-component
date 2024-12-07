@@ -59,6 +59,8 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
             specialRent: 0,
             specialRentStartDate: "",
             specialRentEndDate: "",
+            address: "1100 N Walnut St",
+            zipcode: "47404",
             webSpecials: []
         },
         {
@@ -181,6 +183,8 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
             specialRent: 0,
             specialRentStartDate: "",
             specialRentEndDate: "",
+            address: "1100 N Walnut St",
+            zipcode: "47404",
             webSpecials: []
         },
         {
@@ -219,6 +223,8 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
             specialRent: 0,
             specialRentStartDate: "",
             specialRentEndDate: "",
+            address: "1100 N Walnut St",
+            zipcode: "47404",
             webSpecials: []
         },
         {
@@ -281,6 +287,8 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
             specialRent: 0,
             specialRentStartDate: "",
             specialRentEndDate: "",
+            address: "1100 N Walnut St",
+            zipcode: "47404",
             webSpecials: []
         },
     ];

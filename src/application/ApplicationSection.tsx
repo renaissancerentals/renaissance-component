@@ -5,6 +5,7 @@ import {Captcha} from "../input/Captcha";
 import {sendRentalApplicationRequest} from "./service/ApplicationService";
 import {RentalApplication} from "./data/RentalApplication";
 import {PropertiesEmail} from "../property/data/Property";
+import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
 
 export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                                                           contactClickHandler,
@@ -144,6 +145,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                     </div>
                 </form>
             </div>
+            <SubmissionRequestBanner/>
         </section>
     );
 }
