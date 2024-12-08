@@ -1,7 +1,7 @@
 import React from "react";
-import {Asset} from "../../lib";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import './assets/GridGallery.scss';
+import {Asset} from "../asset/data/Asset";
 
 export const GridGallery: React.FC<GridGalleryProps> = (
     {

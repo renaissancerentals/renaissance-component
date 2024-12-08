@@ -1,5 +1,4 @@
 import React from "react";
-import {Asset} from "../../lib";
 import {FloorplanAddress} from "../floorplan/service/FloorplanService";
 import {Badge} from "@contentmunch/muncher-ui";
 import {SpecialOfferBadge} from "../specialOffer/SpecialOfferBadge";
@@ -11,6 +10,7 @@ import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {MapSection} from "../map/MapSection";
 import {floorplanAddressToGoogleMap} from "../utils/Utils";
+import {Asset} from "../asset/data/Asset";
 
 export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
     {
