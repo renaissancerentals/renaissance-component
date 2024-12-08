@@ -56,9 +56,6 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
         if (floorplan.photosFolderId) {
             getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
 
-                if (galleryAssets.length > 0)
-                    images.pop();
-
                 images.push(...galleryAssets);
 
                 if (images.length > 1) {

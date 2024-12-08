@@ -54,8 +54,6 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
 
         if (floorplan.photosFolderId) {
             getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
-                if (galleryAssets.length > 0)
-                    images.pop();
 
                 images.push(...galleryAssets);
 
