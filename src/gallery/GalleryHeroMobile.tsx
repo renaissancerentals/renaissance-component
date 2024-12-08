@@ -8,6 +8,7 @@ import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {SpecialOfferButton} from "../specialOffer/SpecialOfferButton";
+import {TourType} from "./GridGalleryCover";
 
 export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
     {
@@ -56,7 +57,7 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
                                    isForMobile={true}
                                    key={"tour" + i}
                                    onClick={() => {
-                                       virtualTour && i === 0 ? setCurrentView("virtual tour") : setCurrentView("video tour");
+                                       virtualTour && i === 0 ? setCurrentView("Virtual Tour") : setCurrentView("Video Tour");
                                    }}
                     >
                         {cardImageIcon(i)}
@@ -91,7 +92,7 @@ export interface GalleryHeroMobileProps {
     virtualTour?: string;
     toursCount: number;
     webSpecials: WebSpecial[];
-    setCurrentView: (view: "photo" | "virtual tour" | "video tour") => void;
+    setCurrentView: (view: "photo" | TourType) => void;
     imageClickedHandler: (image: Asset) => void;
     propertyId: string;
     isAvailableNow: boolean;

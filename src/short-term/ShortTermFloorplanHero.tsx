@@ -4,17 +4,18 @@ import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/muncher-ui";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 import {Asset} from "../asset/data/Asset";
 import {extractIdFrom} from "../utils/Utils";
-import {getAssetsFrom} from "../asset/service/AssetService";
+import {assetUrlFrom, getAssetsFrom} from "../asset/service/AssetService";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {renaissance} from "../data/RenaissanceData";
 import {GalleryHeroSkeleton} from "../gallery/GalleryHeroSkeleton";
 import {GalleryModal} from "../gallery/GalleryModal";
-import {GalleryHeroMain} from "../gallery/GalleryHeroMain";
 import {GalleryHeroMobile} from "../gallery/GalleryHeroMobile";
 import {VideoTours} from "../gallery/VideoTours";
 import {VirtualTour} from "../gallery/VirtualTour";
 import {HeroBadgeStats} from "../floorplan/section/HeroBadgeStats";
 import {AssetModal} from "../asset/AssetModal";
+import {GridGalleryCover, TourType} from "../gallery/GridGalleryCover";
+import {GridGallery} from "../gallery/GridGallery";
 
 export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
     {floorplan, contactClickHandler, applyClickHandler, handleRefToMap, webSpecials}) => {
@@ -22,15 +23,19 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
     const [isAssetsLoading, setIsAssetsLoading] = useState(true);
     const [videoTours, setVideoTours] = useState<string[]>([]);
     const [virtualTour, setVirtualTour] = useState<string | undefined>(undefined);
+
+    const [videoTourImageBackground, setVideoTourImageBackground] = useState<string>();
+    const [virtualTourImageBackground, setVirtualTourImageBackground] = useState<string>();
+
     const [showFloorplanModal, setShowFloorplanModal] = useState(false);
     const [totalPages, setTotalPages] = useState(1);
-    const [toursCount, setToursCount] = useState(0);
-    const [currentView, setCurrentView] = useState<"photo" | "virtual tour" | "video tour">("photo");
+    const [toursCount, setToursCount] = useState(1);
+    const [currentView, setCurrentView] = useState<"photo" | TourType>("photo");
     const [assetInFocus, setAssetInFocus] = useState<Asset>({} as Asset);
     const [assetIndex, setAssetIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
+    const [firstPageImageCount, setFirstPageImageCount] = useState(4);
 
-    const FIRST_PAGE_ASSET_COUNT = 5;
     const GRID_SIZE = 8;
     const imageClickedHandler = (image: Asset) => {
         setShowModal(true);
@@ -42,66 +47,85 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
         setAssetInFocus({} as Asset);
     };
     useEffect(() => {
-        if (floorplan.virtualTourLink)
-            setVirtualTour(floorplan.virtualTourLink);
-        const tourLinks = [];
-        if (floorplan.videoTourLink)
-            tourLinks.push(floorplan.videoTourLink);
-        if (floorplan.threeSixtyVideoTourLink)
-            tourLinks.push(floorplan.threeSixtyVideoTourLink);
-        setVideoTours(tourLinks);
-
-        let otherAssetCounts = (tourLinks.length > 0 ? 1 : 0) + (floorplan.virtualTourLink ? 1 : 0);
-        setToursCount(otherAssetCounts);
         const images: Asset[] = [];
         images.push({id: extractIdFrom(floorplan.coverImage), name: "cover image"} as Asset);
 
+        let firstPageCount = firstPageImageCount;
+
         if (floorplan.photosFolderId) {
             getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
+                if (galleryAssets.length > 0)
+                    images.pop();
+
                 images.push(...galleryAssets);
-                let totalAssets = images.length + otherAssetCounts;
-                if (totalAssets > FIRST_PAGE_ASSET_COUNT) {
 
-                    let pages = Math.trunc(((totalAssets - FIRST_PAGE_ASSET_COUNT) / GRID_SIZE) + 1);
+                if (images.length > 1) {
+                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id);
+                    if (floorplan.virtualTourLink) {
+                        setVirtualTour(floorplan.virtualTourLink);
+                        setVirtualTourImageBackground(backgroundImageUrl);
+                        firstPageCount -= 1;
+                    }
 
-                    if ((totalAssets - FIRST_PAGE_ASSET_COUNT - 1) % GRID_SIZE === 0) {
-                        setTotalPages(pages);
-                    } else
-                        setTotalPages(pages + 1);
+                    const tourLinks = [];
+                    if (floorplan.videoTourLink)
+                        tourLinks.push(floorplan.videoTourLink);
+                    if (floorplan.threeSixtyVideoTourLink)
+                        tourLinks.push(floorplan.threeSixtyVideoTourLink);
+                    setVideoTours(tourLinks);
+                    if (tourLinks.length > 0) {
+                        setVideoTourImageBackground(backgroundImageUrl);
+                        firstPageCount -= 1;
+                    }
+
+                    let otherAssetCounts = (tourLinks.length > 0 ? 1 : 0) + (floorplan.virtualTourLink ? 1 : 0);
+                    setToursCount(otherAssetCounts);
 
                 }
 
             }).finally(() => {
+
+                let pages = 1;
+
+                if (images.length > firstPageCount) {
+                    const remaining = images.length - firstPageCount;
+                    pages += remaining / 8;
+                    if (remaining % 8 > 0)
+                        pages += 1;
+                }
+
+                setTotalPages(Math.trunc(pages));
+                setFirstPageImageCount(firstPageCount);
                 setAssets(images);
                 setIsAssetsLoading(false);
             });
         } else {
             setAssets(images);
-            console.log(images)
             setIsAssetsLoading(false);
         }
 
     }, [floorplan])
 
-    const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
-    const imageCountForFirstPage = () => FIRST_PAGE_ASSET_COUNT - toursCount;
-
-    const getImagesForFirstSliderPage = assets.slice(0, assets.length >= imageCountForFirstPage() ? imageCountForFirstPage() : assets.length);
-    const assetsToShow = (slideIndex: number) => {
-
-        if (isFirstSliderPage(slideIndex))
-            return getImagesForFirstSliderPage;
-
-        const startIndex = imageCountForFirstPage() + (slideIndex - 1) * 8;
-        const endIndex = startIndex + GRID_SIZE;
-
-        return assets.slice(startIndex, endIndex);
-    };
 
     const printFloorplanAddress = () => {
 
         return floorplan.address + ", " + renaissance.city + ", " + renaissance.state + " " + floorplan.zipcode;
     }
+    const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
+
+    const assetsToShow = (slideIndex: number) => {
+
+        if (isFirstSliderPage(slideIndex)) {
+            console.log("firstPageImageCount", firstPageImageCount);
+            return assets.slice(0, firstPageImageCount - 1);
+        }
+
+
+        const startIndex = firstPageImageCount - 1 + (GRID_SIZE * (slideIndex - 1))
+        const endIndex = firstPageImageCount - 1 + (GRID_SIZE * slideIndex)
+
+        return assets.slice(startIndex, endIndex > assets.length ? assets.length : endIndex);
+    };
     return (
         <section className="section-short-term-floorplan--hero">
             {isAssetsLoading ? <GalleryHeroSkeleton/> :
@@ -116,14 +140,29 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                                 <div className="photo-view main">
                                     <ItemSlider
                                         sliderItems={[...Array(totalPages)].map((x, i) =>
-                                            <GalleryHeroMain isAvailableNow={false}
-                                                             virtualTour={virtualTour} isFirst={i === 0}
-                                                             toursCount={toursCount}
-                                                             webSpecials={webSpecials}
-                                                             setCurrentView={setCurrentView}
-                                                             imageClickedHandler={imageClickedHandler}
-                                                             assetsToShow={assetsToShow(i)}
-                                                             propertyId={floorplan.property.id}/>
+                                            (i == 0) ? <GridGalleryCover
+                                                    assets={assetsToShow(i)}
+                                                    floorplanAddress={{
+                                                        address: floorplan.address,
+                                                        city: renaissance.city,
+                                                        state: renaissance.state,
+                                                        zipcode: floorplan.zipcode
+                                                    }}
+                                                    propertyId={floorplan.property.id}
+                                                    heroImage={assets[0]}
+                                                    imageClickedHandler={imageClickedHandler}
+                                                    webSpecials={webSpecials}
+                                                    isAvailableNow={false}
+                                                    setCurrentView={setCurrentView}
+                                                    videoTourImageBackground={videoTourImageBackground}
+                                                    virtualTourImageBackground={virtualTourImageBackground}
+                                                    showOnlyHeroImage={assets.length === 1}
+                                                /> :
+                                                <GridGallery
+                                                    imageClickedHandler={imageClickedHandler}
+                                                    propertyId={floorplan.property.id}
+                                                    assets={assetsToShow(i)}
+                                                />
                                         )}/>
                                 </div>
                                 <div className="photo-view mobile">
@@ -138,8 +177,8 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                             </> : ""
                         }
 
-                        {currentView === "video tour" ? <VideoTours videoTourUrls={videoTours}/> : ""}
-                        {currentView === "virtual tour" ? <VirtualTour virtualTourUrl={virtualTour}/> : ""}
+                        {currentView === "Video Tour" ? <VideoTours videoTourUrls={videoTours}/> : ""}
+                        {currentView === "Virtual Tour" ? <VirtualTour virtualTourUrl={virtualTour}/> : ""}
                         <HeroBadgeStats currentView={currentView} setCurrentView={setCurrentView}
                                         totalAssets={assets?.length} videoTours={videoTours} virtualTour={virtualTour}/>
 

@@ -89,6 +89,19 @@ export interface FloorplanCardData {
     webSpecials: string [];
 }
 
+export interface FloorplanAssets {
+    id: string;
+    videoTourLink: string;
+    threeSixtyVideoTourLink: string;
+    virtualTourLink: string;
+    photo: string | null,
+    coverImage: string | null,
+    floorPlanFolderId: string;
+    photosFolderId: string;
+    webSpecials: WebSpecialDetails[];
+    property: PropertyName;
+}
+
 export interface Floorplan {
     id: string;
     name: string;
