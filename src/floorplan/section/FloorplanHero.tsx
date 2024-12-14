@@ -3,7 +3,7 @@ import "./assets/FloorplanHero.scss";
 import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/muncher-ui";
 import {Asset} from "../../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
-import {GalleryHeroSkeleton} from "../../gallery/GalleryHeroSkeleton";
+import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {extractIdFrom} from "../../utils/Utils";
 import {Floorplan, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
@@ -11,7 +11,7 @@ import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanServic
 import {VideoTours} from "../../gallery/VideoTours";
 import {VirtualTour} from "../../gallery/VirtualTour";
 import {GalleryModal} from "../../gallery/GalleryModal";
-import {GalleryHeroMobile} from "../../gallery/GalleryHeroMobile";
+import {GridGalleryMobile} from "../../gallery/GridGalleryMobile";
 import {HeroBadgeStats} from "./HeroBadgeStats";
 import {FloorplanPrice} from "../card/FloorplanPrice";
 import {GridGalleryCover, TourType} from "../../gallery/GridGalleryCover";
@@ -127,7 +127,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
     };
     return (
         <section className="section-floorplan--hero">
-            {isAssetsLoading ? <GalleryHeroSkeleton/> :
+            {isAssetsLoading ? <GridGallerySkeleton/> :
                 <>
                     <div className="gallery-hero">
                         <GalleryModal assets={assets} assetInFocus={assetInFocus}
@@ -162,7 +162,8 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                         )}/>
                                 </div>
                                 <div className="photo-view mobile">
-                                    <GalleryHeroMobile assets={assets} toursCount={toursCount}
+                                    <GridGalleryMobile assets={assets} toursCount={toursCount}
+                                                       floorplanAddress={floorplanAddress(floorplan)}
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}

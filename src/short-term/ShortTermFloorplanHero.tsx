@@ -7,9 +7,9 @@ import {extractIdFrom} from "../utils/Utils";
 import {assetUrlFrom, getAssetsFrom} from "../asset/service/AssetService";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {renaissance} from "../data/RenaissanceData";
-import {GalleryHeroSkeleton} from "../gallery/GalleryHeroSkeleton";
+import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";
 import {GalleryModal} from "../gallery/GalleryModal";
-import {GalleryHeroMobile} from "../gallery/GalleryHeroMobile";
+import {GridGalleryMobile} from "../gallery/GridGalleryMobile";
 import {VideoTours} from "../gallery/VideoTours";
 import {VirtualTour} from "../gallery/VirtualTour";
 import {HeroBadgeStats} from "../floorplan/section/HeroBadgeStats";
@@ -126,7 +126,7 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
     };
     return (
         <section className="section-short-term-floorplan--hero">
-            {isAssetsLoading ? <GalleryHeroSkeleton/> :
+            {isAssetsLoading ? <GridGallerySkeleton/> :
                 <>
                     <div className="gallery-hero">
                         <GalleryModal assets={assets} assetInFocus={assetInFocus}
@@ -164,7 +164,13 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                                         )}/>
                                 </div>
                                 <div className="photo-view mobile">
-                                    <GalleryHeroMobile assets={assets} toursCount={toursCount}
+                                    <GridGalleryMobile assets={assets} toursCount={toursCount}
+                                                       floorplanAddress={{
+                                                           address: floorplan.address,
+                                                           city: renaissance.city,
+                                                           state: renaissance.state,
+                                                           zipcode: floorplan.zipcode
+                                                       }}
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}

@@ -1,5 +1,5 @@
 import React, {ReactElement, useState} from "react";
-import './assets/GalleryHero.scss';
+import './assets/GridGalleryMobile.scss';
 import {Asset} from "../asset/data/Asset";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {Badge, ItemSlider} from "@contentmunch/muncher-ui";
@@ -9,10 +9,13 @@ import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {SpecialOfferButton} from "../specialOffer/SpecialOfferButton";
 import {TourType} from "./GridGalleryCover";
+import {FloorplanAddress} from "../floorplan/service/FloorplanService";
+import {MapSection} from "../map/MapSection";
+import {floorplanAddressToGoogleMap} from "../utils/Utils";
 
-export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
+export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
     {
-        assets, virtualTour, setCurrentView, toursCount,
+        assets, virtualTour, setCurrentView, toursCount, floorplanAddress,
         imageClickedHandler, isAvailableNow, propertyId, webSpecials,
     }) => {
     const [showSpecialOffer, setShowSpecialOffer] = useState(false);
@@ -65,6 +68,8 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
                 )
             }
         );
+        items.push(<MapSection
+            src={floorplanAddressToGoogleMap(floorplanAddress)}/>)
         assets.slice(1, assets.length).forEach((asset, index) => {
             items.push(createImageItem(asset, index + 1));
         });
@@ -74,21 +79,18 @@ export const GalleryHeroMobile: React.FC<GalleryHeroMobileProps> = (
 
 
     return (
-        <div className="div-gallery">
-            <div className="gallery-hero-two-columns">
+        <div className="grid-gallery--mobile">
                 <div className="gallery-hero-column">
                     <ItemSlider sliderItems={sliderItems()}/>
 
                 </div>
             </div>
-
-
-        </div>
     );
 };
 
-export interface GalleryHeroMobileProps {
+export interface GridGalleryMobileProps {
     assets: Asset[];
+    floorplanAddress: FloorplanAddress;
     virtualTour?: string;
     toursCount: number;
     webSpecials: WebSpecial[];

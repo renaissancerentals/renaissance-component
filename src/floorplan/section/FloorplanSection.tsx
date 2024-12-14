@@ -20,7 +20,7 @@ import {
     petPolicy
 } from "../service/FloorplanService";
 import "./assets/FloorplanSection.scss";
-import {GalleryHeroSkeleton} from "../../gallery/GalleryHeroSkeleton";
+import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {FloorplanHero} from "./FloorplanHero";
 import {
     capitalizeFirstLetter,
@@ -150,7 +150,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                        floorplanId={floorplanId}/> :
             <section className="section-floorplan">
                 {
-                    isLoading ? <section className="section-floorplan--hero"><GalleryHeroSkeleton/></section> : <>
+                    isLoading ? <section className="section-floorplan--hero"><GridGallerySkeleton/></section> : <>
                         {errorLoading ?
                             <section className="div-full--center">
                                 <h2>Uh-oh, this is a 404</h2>

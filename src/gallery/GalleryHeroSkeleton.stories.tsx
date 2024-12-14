@@ -1,12 +1,12 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { GalleryHeroSkeleton } from "./GalleryHeroSkeleton";
+import { GridGallerySkeleton } from "./GridGallerySkeleton";
 
 export default {
   title: "Section/GalleryHeroMain Skeleton",
-  component: GalleryHeroSkeleton,
-} as ComponentMeta<typeof GalleryHeroSkeleton>;
+  component: GridGallerySkeleton,
+} as ComponentMeta<typeof GridGallerySkeleton>;
 
-export const Default: ComponentStory<typeof GalleryHeroSkeleton> = (args) => (
-  <GalleryHeroSkeleton />
+export const Default: ComponentStory<typeof GridGallerySkeleton> = (args) => (
+  <GridGallerySkeleton />
 );

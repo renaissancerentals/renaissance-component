@@ -3,7 +3,7 @@ import "./assets/ShortTermFloorplanSection.scss";
 import {Button, Li, Ul} from "@contentmunch/muncher-ui";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 import {getShortTermFloorplan} from "./service/ShortTermService";
-import {GalleryHeroSkeleton} from "../gallery/GalleryHeroSkeleton";
+import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";
 import {ShortTermFloorplanHero} from "./ShortTermFloorplanHero";
 import {Card} from "../card/Card";
 import {enumToString, floorplanAddressToGoogleMap, formatPhoneNumber, toUSD} from "../utils/Utils";
@@ -54,7 +54,7 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
     return (
         <section className="section-short-term-floorplan">
             {
-                isLoading ? <section className="section-floorplan--hero"><GalleryHeroSkeleton/></section> : <>
+                isLoading ? <section className="section-floorplan--hero"><GridGallerySkeleton/></section> : <>
                     {errorLoading ?
                         <section className="div-full--center">
                             <h2>Uh-oh, this is a 404</h2>
