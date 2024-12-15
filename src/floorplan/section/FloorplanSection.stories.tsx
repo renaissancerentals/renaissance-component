@@ -31,7 +31,7 @@ export const ShortTermFloorplan = Template.bind({});
 ShortTermFloorplan.args = { ...Default.args, floorplanId: "1-bedroom-flat" };
 
 export const NoUnit = Template.bind({});
-NoUnit.args = { ...Default.args, floorplanId: "brighten-suite" };
+NoUnit.args = { ...Default.args, floorplanId: "barcelona" };
 
 export const NotFound = Template.bind({});
 NotFound.args = { ...Default.args, floorplanId: "everhart-not-found" };

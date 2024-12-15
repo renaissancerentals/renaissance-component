@@ -1,11 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import React from "react";
-import {ShortTermPricingCard} from "./ShortTermPricingCard";
-import {
-    FloorplanShortTerm,
-    ShortTerm,
-    ShortTermStyle,
-} from "./data/ShortTerm";
+import {FloorplanShortTerm, ShortTerm,} from "./data/ShortTerm";
 import {ShortTermFloorplansSection} from "./ShortTermFloorplansSection";
 
 const meta: Meta<typeof ShortTermFloorplansSection> = {

@@ -11,6 +11,7 @@ export interface UnitDetails {
     deposit: number;
     garages: number;
     moveInDate: string | null;
+    availabilityExtensionMonths: number | null;
     furnished: boolean;
     active: boolean;
 }
@@ -34,6 +35,7 @@ export interface Unit {
     zipcode: string;
     billingLink: string;
     moveInDate: string;
+    availabilityExtensionMonths: number | null;
     photosLink: string;
     videoTourLink: string;
     threeSixtyVideoTourLink: string;
@@ -48,6 +50,7 @@ export interface UnitCardData {
     squareFoot: number;
     active: boolean;
     moveInDate: string;
+    availabilityExtensionMonths: number | null;
 }
 
 export enum Level {

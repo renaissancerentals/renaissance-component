@@ -11,7 +11,7 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     }) => {
     const [translate, setTranslate] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const cookieName = parent ? parent + "-" + propertyId + "-" + "specialModalClosed" : propertyId + "-" + "specialModalClosed";
+    const cookieName = parent ? parent + "-" + propertyId + "-specialModalClosed" : propertyId + "-specialModalClosed";
     const [cookies, setCookie] = useCookies([cookieName]);
     const [showModal, setShowModal] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -53,14 +53,14 @@ export const HomePageSpecialModal: React.FC<HomePageSpecialModalProps> = (
     }
 
     useEffect(() => {
-        if (homePageSpecials && homePageSpecials.length < 1 || cookies[cookieName]) {
+        if ((homePageSpecials && homePageSpecials.length < 1 )|| cookies[cookieName]) {
             setShowModal(false);
         } else {
             setShowModal(true);
         }
 
 
-    }, [cookies[cookieName]]);
+    }, [cookies,cookieName,homePageSpecials]);
 
 
     return (

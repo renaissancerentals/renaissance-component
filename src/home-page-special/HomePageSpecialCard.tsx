@@ -13,7 +13,7 @@ export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePag
                     <div dangerouslySetInnerHTML={{__html: homePageSpecial.details}}/>
                 </div>
                 <div className="body-right">
-                    <img src={getAssetUrl(homePageSpecial.image, propertyId)} alt="special image"/>
+                    <img src={getAssetUrl(homePageSpecial.image, propertyId)} alt="special"/>
                 </div>
             </div>
         </section>

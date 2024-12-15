@@ -15,6 +15,7 @@ import {
     getSimilarFloorplans,
     getTestimonials,
     getWebSpecials,
+    MONTH_YEAR_FORMAT,
     notPermittedPets,
     permittedPets,
     petPolicy
@@ -111,8 +112,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     }, [floorplanId]);
 
     const availableDates = (): string[] => {
-        const monthYearFormat = "MMMM YYYY";
-        const sortAvailableDates = (a: string, b: string) => moment(a, monthYearFormat).diff(moment(b, monthYearFormat));
+        const sortAvailableDates = (a: string, b: string) => moment(a, MONTH_YEAR_FORMAT).diff(moment(b, MONTH_YEAR_FORMAT));
         const dates = new Set<string>();
         const today = moment();
 
@@ -122,9 +122,17 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
         floorplan.units.forEach(unit => {
             const moveInDate = dateToMoment(unit.moveInDate);
             if (isAvailableNow(moveInDate))
-                dates.add(today.format(monthYearFormat));
-            else
-                dates.add(moveInDate.format(monthYearFormat));
+                dates.add(today.format(MONTH_YEAR_FORMAT));
+            else {
+                dates.add(moveInDate.format(MONTH_YEAR_FORMAT));
+                if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
+                    for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
+                        let extensionDate = dateToMoment(unit.moveInDate).add(i, 'month');
+                        dates.add(extensionDate.format(MONTH_YEAR_FORMAT));
+                    }
+                }
+            }
+
         });
 
         return Array.from(dates).sort(sortAvailableDates);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   AVAILABLE_NOW,
-  getAllPropertyFilterData,
+  getAllPropertyFilterData, getFloorplansFilterData,
   sortFloorplans,
 } from "../service/FloorplanService";
 import { FloorplanCardData } from "../data/Floorplan";
@@ -19,15 +19,10 @@ const Template: ComponentStory<typeof FloorplansSection> = (args) => {
   const [floorplans, setFloorplans] = useState<FloorplanCardData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    getAllPropertyFilterData()
-      .then((properties) => {
-        const floorplans: FloorplanCardData[] = [];
-        properties.forEach((property) => {
-          property.floorplans.forEach((floorplan) => {
-            floorplans.push(floorplan);
-          });
-        });
-        setFloorplans(sortFloorplans(floorplans, "featured"));
+    getFloorplansFilterData("scholars-rooftop")
+      .then((floorplanData) => {
+
+        setFloorplans(sortFloorplans(floorplanData, "featured"));
       })
       // getFloorplansFilterData("verona-park").then(floorplans => {
       //
@@ -45,7 +40,7 @@ const Template: ComponentStory<typeof FloorplansSection> = (args) => {
     <FloorplansSection
       {...args}
       floorplans={floorplans}
-      propertyId="verona-park"
+      propertyId="scholars-rooftop"
     />
   );
 };

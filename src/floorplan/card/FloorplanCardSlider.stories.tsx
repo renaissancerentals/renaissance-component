@@ -26,6 +26,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-07-27",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -38,6 +39,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-01",
+                    availabilityExtensionMonths: null,
                     furnished: true,
                 },
             ],
@@ -78,6 +80,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-07-28",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -90,6 +93,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-02",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -102,6 +106,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2022-07-22",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -114,6 +119,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-01",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -126,6 +132,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-05",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -138,6 +145,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-06-13",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -150,6 +158,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-07-22",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -162,6 +171,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-07-15",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
             ],
@@ -202,6 +212,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.LARGE_DOG_SMALL_DOG_CAT,
                     moveInDate: "2023-07-19",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
             ],
@@ -242,7 +253,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.LARGE_DOG_SMALL_DOG_CAT,
                     moveInDate: null,
+                    availabilityExtensionMonths: null,
                     furnished: false,
+
                 },
                 {
                     id: "1100-8",
@@ -254,6 +267,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-04",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
                 {
@@ -266,6 +280,7 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                     garages: 0,
                     allowedPet: Pet.CAT,
                     moveInDate: "2023-08-09",
+                    availabilityExtensionMonths: null,
                     furnished: false,
                 },
             ],

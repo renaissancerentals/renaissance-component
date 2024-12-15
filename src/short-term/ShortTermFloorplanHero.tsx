@@ -102,7 +102,7 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
             setIsAssetsLoading(false);
         }
 
-    }, [floorplan])
+    }, [floorplan,firstPageImageCount])
 
 
     const printFloorplanAddress = () => {
@@ -138,7 +138,7 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                                 <div className="photo-view main">
                                     <ItemSlider
                                         sliderItems={[...Array(totalPages)].map((x, i) =>
-                                            (i == 0) ? <GridGalleryCover
+                                            (i === 0) ? <GridGalleryCover
                                                     assets={assetsToShow(i)}
                                                     floorplanAddress={{
                                                         address: floorplan.address,
