@@ -22,7 +22,7 @@ Default.args = {
 };
 
 export const OneImage = Template.bind({});
-OneImage.args = { ...Default.args, floorplanId: "view-deck" };
+OneImage.args = { ...Default.args, floorplanId: "aberdeen" };
 
 export const OneSimilarFloorplan = Template.bind({});
 OneSimilarFloorplan.args = { ...Default.args, floorplanId: "showalter-loft" };

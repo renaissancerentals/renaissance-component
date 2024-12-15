@@ -102,7 +102,7 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
             setIsAssetsLoading(false);
         }
 
-    }, [floorplan,firstPageImageCount])
+    }, [floorplan])
 
 
     const printFloorplanAddress = () => {
