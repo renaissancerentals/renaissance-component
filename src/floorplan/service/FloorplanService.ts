@@ -20,6 +20,9 @@ import {get} from "../../service/RoundRobin";
 import {renaissance} from "../../data/RenaissanceData";
 
 export const AVAILABLE_NOW = "Available Now";
+const today = moment();
+const tomorrow = today.add(1, "day");
+
 
 export const convertToHttps = (url: string): string => {
     if (url === null)
@@ -86,40 +89,39 @@ export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: C
 
 
 export const isDateWithinTwelveMonths = (date: string) => {
-    const today = moment();
     const diff = moment(date, "YYYY-MM-DD").diff(today, 'months', false);
     return diff >= 0 && diff <= 12;
 }
 export const isDateAfterToday = (date: string) => {
-    const today = moment();
     return moment(date, "YYYY-MM-DD").isAfter(today);
 }
 export const MONTH_YEAR_FORMAT = "MMMM YYYY";
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format(MONTH_YEAR_FORMAT);
 
+const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow);
+
 export const defaultAvailabilityToMonthYear = (dateString: string): string =>
     AVAILABLE_NOW === dateString ? dateString : moment(dateString, "MM-YYYY").format(MONTH_YEAR_FORMAT);
 
 export const momentToMonthYear = (date: Moment) => date.format(MONTH_YEAR_FORMAT);
+
+
 const isAvailable = (floorplan: FloorplanCardData, availabilityFilters: Month[]): boolean => {
 
     return availabilityFilters.length === 0 ? true :
 
         floorplan.units.some((unit) => {
-                if (availabilityFilters.indexOf(AVAILABLE_NOW) > -1) {
-                    if (isBeforeToday(unit.moveInDate)) {
+                const isUnitAvailableNow = isAvailableNow(moment(unit.moveInDate))
+                if (availabilityFilters.indexOf(AVAILABLE_NOW) > -1 || availabilityFilters.indexOf(momentToMonthYear(today)) > -1) {
+                    if (isUnitAvailableNow)
                         return true;
-                    }
-                }
-                if (availabilityFilters.indexOf(momentToMonthYear(today)) > -1) {
-                    if (isBeforeToday(unit.moveInDate)) {
-                        return true;
-                    }
                 }
 
                 if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
                     for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
-                        let extensionDate = dateToMoment(unit.moveInDate).add(i, 'month').format(MONTH_YEAR_FORMAT);
+                        let extensionDate = isUnitAvailableNow ?
+                            moment().add(i, 'month').format(MONTH_YEAR_FORMAT) :
+                            dateToMoment(unit.moveInDate).add(i, 'month').format(MONTH_YEAR_FORMAT);
                         if (availabilityFilters.indexOf(extensionDate) > -1) {
                             return true;
                         }
@@ -129,8 +131,6 @@ const isAvailable = (floorplan: FloorplanCardData, availabilityFilters: Month[])
             }
         );
 };
-
-const isBeforeToday = (date: string) => moment(date).isBefore(today);
 const isBedroomsMatch = (floorplan: FloorplanCardData, bedroomFilters: number[]): boolean => {
     return bedroomFilters.length === 0 ? true : bedroomFilters.indexOf(floorplan.bedroom) > -1;
 };
@@ -167,34 +167,48 @@ export const sortFloorplans = (floorplans: FloorplanCardData[], sortBy: SortBy):
 
 export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters => {
 
-    const bedroomFilters = new Set<number>();
-    const availabilityFilters = new Set<string>();
-    const styleFilters = new Set<FloorplanStyle>();
+        const bedroomFilters = new Set<number>();
+        const availabilityFilters = new Set<string>();
+        const styleFilters = new Set<FloorplanStyle>();
 
-    availabilityFilters.add(AVAILABLE_NOW);
-    floorplans.forEach(floorplan => {
-        bedroomFilters.add(floorplan.bedroom);
-        styleFilters.add(floorplan.style);
+        availabilityFilters.add(AVAILABLE_NOW);
+        floorplans.forEach(floorplan => {
+                bedroomFilters.add(floorplan.bedroom);
+                styleFilters.add(floorplan.style);
 
-        floorplan.units.forEach((unit) => {
-            if (unit.moveInDate && isDateWithinTwelveMonths(unit.moveInDate) && isDateAfterToday(unit.moveInDate)) {
-                availabilityFilters.add(dateToMonthYear(unit.moveInDate));
-                if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
-                    for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
-                        let extensionDate = dateToMoment(unit.moveInDate).add(i, 'month');
-                        availabilityFilters.add(extensionDate.format(MONTH_YEAR_FORMAT));
+                floorplan.units.forEach((unit) => {
+
+                    const isUnitAvailableNow = isAvailableNow(moment(unit.moveInDate));
+
+                    if (unit.moveInDate && isUnitAvailableNow) {
+                        if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
+                            for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
+                                let extensionDate = moment().add(i, 'month');
+                                availabilityFilters.add(extensionDate.format(MONTH_YEAR_FORMAT));
+                            }
+                        }
                     }
-                }
-            }
+                    if (unit.moveInDate && !isUnitAvailableNow && isDateWithinTwelveMonths(unit.moveInDate)) {
 
-        });
-    });
-    return {
-        bedroom: bedroomFilters,
-        availability: availabilityFilters,
-        style: styleFilters
+                        availabilityFilters.add(dateToMonthYear(unit.moveInDate));
+                        if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
+                            for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
+                                let extensionDate = dateToMoment(unit.moveInDate).add(i, 'month');
+                                availabilityFilters.add(extensionDate.format(MONTH_YEAR_FORMAT));
+                            }
+                        }
+                    }
+
+                });
+            }
+        );
+        return {
+            bedroom: bedroomFilters,
+            availability: availabilityFilters,
+            style: styleFilters
+        }
     }
-};
+;
 
 
 export const getFeaturedFloorplans = async (): Promise<FloorplanSpotlight[]> => {
@@ -219,7 +233,7 @@ export const getSimilarFloorplans = (floorplanId: string): Promise<SimilarFloorp
 
 export const getFloorplanVariations = (floorplanId: string): Promise<FloorplanVariation[]> =>
     get("floorplanVariations/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.floorplanVariations);
-const today = moment();
+
 export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): boolean => floorplan.units.some((unit) => today.isAfter(dateToMoment(unit.moveInDate)));
 export const getTestimonials = (floorplanId: string): Promise<Testimonial[]> =>
     get("testimonials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.testimonials);

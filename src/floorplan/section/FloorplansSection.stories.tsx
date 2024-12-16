@@ -19,17 +19,11 @@ const Template: ComponentStory<typeof FloorplansSection> = (args) => {
   const [floorplans, setFloorplans] = useState<FloorplanCardData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    getFloorplansFilterData("scholars-rooftop")
+    getFloorplansFilterData("high-grove")
       .then((floorplanData) => {
 
         setFloorplans(sortFloorplans(floorplanData, "featured"));
       })
-      // getFloorplansFilterData("verona-park").then(floorplans => {
-      //
-      //     const sortedFloorplans = sortFloorplans(floorplans, "featured");
-      //     setFloorplans(sortedFloorplans);
-      //
-      // })
       .finally(() => {
         setIsLoading(false);
       });

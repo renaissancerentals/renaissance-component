@@ -25,7 +25,7 @@ export const OneImage = Template.bind({});
 OneImage.args = { ...Default.args, floorplanId: "aberdeen" };
 
 export const OneSimilarFloorplan = Template.bind({});
-OneSimilarFloorplan.args = { ...Default.args, floorplanId: "showalter-loft" };
+OneSimilarFloorplan.args = { ...Default.args, floorplanId: "dorset" };
 
 export const ShortTermFloorplan = Template.bind({});
 ShortTermFloorplan.args = { ...Default.args, floorplanId: "1-bedroom-flat" };

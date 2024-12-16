@@ -121,9 +121,15 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
         floorplan.units.forEach(unit => {
             const moveInDate = dateToMoment(unit.moveInDate);
-            if (isAvailableNow(moveInDate))
+            if (isAvailableNow(moveInDate)) {
                 dates.add(today.format(MONTH_YEAR_FORMAT));
-            else {
+                if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
+                    for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
+                        let extensionDate = moment().add(i, 'month');
+                        dates.add(extensionDate.format(MONTH_YEAR_FORMAT));
+                    }
+                }
+            } else {
                 dates.add(moveInDate.format(MONTH_YEAR_FORMAT));
                 if (unit.availabilityExtensionMonths && unit.availabilityExtensionMonths > 0) {
                     for (let i = 1; i <= unit.availabilityExtensionMonths; i++) {
