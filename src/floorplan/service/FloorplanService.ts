@@ -186,6 +186,7 @@ export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters =
                                 let extensionDate = moment().add(i, 'month');
                                 availabilityFilters.add(extensionDate.format(MONTH_YEAR_FORMAT));
                             }
+                            availabilityFilters.add(moment().format(MONTH_YEAR_FORMAT));
                         }
                     }
                     if (unit.moveInDate && !isUnitAvailableNow && isDateWithinTwelveMonths(unit.moveInDate)) {
