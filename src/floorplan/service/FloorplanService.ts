@@ -244,40 +244,75 @@ export const getWebSpecials = (floorplanId: string): Promise<WebSpecial[]> =>
 
 export const permittedPets = (floorplan: Floorplan): string[] => {
 
-    const unit = unitWithMostAllowedPet([...floorplan.units]);
+    if (floorplan.allowedPet) {
+        switch (floorplan.allowedPet) {
+            case Pet.LARGE_DOG_SMALL_DOG_CAT:
+                return ['Large Dog', 'Small Dog', 'Cat'];
+            case Pet.SMALL_DOG_CAT:
+                return ['Small Dog', 'Cat'];
+            case Pet.CAT:
+                return ['Cat'];
+            default:
+                return ['None'];
+        }
+    } else {
+        const unit = unitWithMostAllowedPet([...floorplan.units]);
 
-    switch (unit?.allowedPet) {
-        case Pet.LARGE_DOG_SMALL_DOG_CAT:
-            return ['Large Dog', 'Small Dog', 'Cat'];
-        case Pet.SMALL_DOG_CAT:
-            return ['Small Dog', 'Cat'];
-        case Pet.CAT:
-            return ['Cat'];
-        default:
-            return ['None'];
+        switch (unit?.allowedPet) {
+            case Pet.LARGE_DOG_SMALL_DOG_CAT:
+                return ['Large Dog', 'Small Dog', 'Cat'];
+            case Pet.SMALL_DOG_CAT:
+                return ['Small Dog', 'Cat'];
+            case Pet.CAT:
+                return ['Cat'];
+            default:
+                return ['None'];
+        }
     }
+
 }
 
 export const notPermittedPets = (floorplan: Floorplan): string[] => {
+    if (floorplan.allowedPet) {
+        switch (floorplan.allowedPet) {
+            case Pet.LARGE_DOG_SMALL_DOG_CAT:
+                return [];
+            case Pet.SMALL_DOG_CAT:
+                return ['Large Dog'];
+            case Pet.CAT:
+                return ['Large Dog', 'Small Dog'];
+            case Pet.NO_PET:
+                return ['Large Dog', 'Small Dog', 'Cat'];
+            default:
+                return [];
+        }
+    } else {
+        const unit = unitWithMostAllowedPet([...floorplan.units]);
 
-    const unit = unitWithMostAllowedPet([...floorplan.units]);
-
-    switch (unit?.allowedPet) {
-        case Pet.LARGE_DOG_SMALL_DOG_CAT:
-            return [];
-        case Pet.SMALL_DOG_CAT:
-            return ['Large Dog'];
-        case Pet.CAT:
-            return ['Large Dog', 'Small Dog'];
-        case Pet.NO_PET:
-            return ['Large Dog', 'Small Dog', 'Cat'];
-        default:
-            return [];
+        switch (unit?.allowedPet) {
+            case Pet.LARGE_DOG_SMALL_DOG_CAT:
+                return [];
+            case Pet.SMALL_DOG_CAT:
+                return ['Large Dog'];
+            case Pet.CAT:
+                return ['Large Dog', 'Small Dog'];
+            case Pet.NO_PET:
+                return ['Large Dog', 'Small Dog', 'Cat'];
+            default:
+                return [];
+        }
     }
+
+
 }
 export const petPolicy = (floorplan: Floorplan): string | undefined => {
-    const unit = unitWithMostAllowedPet([...floorplan.units]);
-    return unit?.petPolicy;
+    if (floorplan.allowedPet) {
+        return floorplan.petPolicy;
+    } else {
+        const unit = unitWithMostAllowedPet([...floorplan.units]);
+        return unit?.petPolicy;
+    }
+
 }
 const unitWithMostAllowedPet = (units: Unit[]): Unit | undefined => {
     const petOrdinal = (pet: Pet) => Object.keys(Pet).indexOf(pet);

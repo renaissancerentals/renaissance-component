@@ -1,4 +1,4 @@
-import {Unit, UnitCardData, UnitDetails} from "./Unit";
+import {Pet, Unit, UnitCardData, UnitDetails} from "./Unit";
 import {LeaseType, PropertyBusRoute} from "../../property/data/Property";
 
 export const MIN_RENT = 0;
@@ -108,6 +108,8 @@ export interface Floorplan {
     bedroom: number;
     bathroom: number;
     style: FloorplanStyle;
+    allowedPet: Pet;
+    petPolicy: string;
     featured: boolean;
     patioIncluded: boolean;
     greenCertified: boolean;
