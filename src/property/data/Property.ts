@@ -27,6 +27,7 @@ export interface Property {
     leasingOfficeType: LeasingOfficeType;
     leasingOffice?: LeasingOffice;
     coverImage: string | null;
+    coverVideo: string | null;
     propertyFolderId: string;
     photosFolderId: string;
     youtubeLink: string;

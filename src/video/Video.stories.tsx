@@ -10,7 +10,7 @@ export default {
 const Template: Story<VideoProps> = () => {
   return (
     <div className="video-story">
-      <Video url="https://drive.google.com/uc?id=1q3uSFbf9Kxtc9CUk51kre0isUZIT1kUX&export=download" />
+      <Video url="https://www.googleapis.com/drive/v3/files/1_xNbnw0UM2FF3Jl5FLLWjAtcL1vGLtXE?alt=media&key=AIzaSyAdG4u5YD2CZvQTv_hRtaKrmSNWZkY30oU" />
     </div>
   );
 };

@@ -24,6 +24,7 @@ export {ApplicationModal} from "./application/ApplicationModal";
 export {PropertyLocation} from "./property/PropertyLocation";
 export {PropertyLocationSkeleton} from "./property/PropertyLocationSkeleton";
 export {LeaseOfficeSkeleton} from "./property/LeaseOfficeSkeleton";
+export {PropertyVideo} from "./property/PropertyVideo";
 
 export {FloorplanCard} from "./floorplan/card/FloorplanCard";
 export {FloorplanCardSlider} from "./floorplan/card/FloorplanCardSlider";
@@ -38,6 +39,7 @@ export {VideoModal} from "./asset/VideoModal";
 export {ReviewSection} from "./review/ReviewSection";
 export {PrettyPrintJson} from "./utils/PrettyPrintJson";
 export {Video} from "./video/Video";
+
 export {SubletSection, NEW_SUBLET} from "./sublet/SubletSection";
 export {SubletsSection} from "./sublet/SubletsSection";
 export {SubmissionRequestBanner} from "./banner/SubmissionRequestBanner";
@@ -90,7 +92,7 @@ export type {
     PropertyTeamMember
 } from "./team/data/TeamMember";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
-export {getProperty} from "./property/service/PropertyService";
+export {getProperty, generatePropertyVideoUrl} from "./property/service/PropertyService";
 
 export {getAllTeamMembers} from "./team/service/TeamService";
 export {RENAISSANCE_BASE_URL} from "./service/Api";
@@ -162,3 +164,4 @@ export {getHomeHomePageSpecials} from "./home-page-special/service/HomePageSpeci
 export type  {
     HomePageSpecial
 } from "./home-page-special/data/HomePageSpecial";
+
