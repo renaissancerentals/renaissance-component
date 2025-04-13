@@ -21,6 +21,7 @@ const floorplan: FloorplanCardData = {
     photosFolderId: "18BL3coOPSHfMFJyJdZ4duB63SmPbgDDI",
     units: [
         {
+            id: "1100-2",
             active: false,
             squareFoot: 1000,
             rent: 1000.0,
@@ -28,6 +29,7 @@ const floorplan: FloorplanCardData = {
             availabilityExtensionMonths: null,
         },
         {
+            id: "1100-8",
             active: true,
             squareFoot: 710,
             rent: 1195.0,
@@ -35,6 +37,7 @@ const floorplan: FloorplanCardData = {
             availabilityExtensionMonths: null,
         },
         {
+            id: "1100-9",
             active: true,
             squareFoot: 710,
             rent: 1165.0,

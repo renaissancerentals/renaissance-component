@@ -1,7 +1,7 @@
-import {FloorplanStyle} from "./Floorplan";
 import {SortBy} from "../../data/SortField";
+import {FloorplanStyle} from "../../floorplan/data/Floorplan";
 
-export interface CurrentFloorplanFilters {
+export interface CurrentFilters {
     bedroomFilters: number[];
     availabilityFilters: string[];
     styleFilters: FloorplanStyle[];
@@ -11,7 +11,7 @@ export interface CurrentFloorplanFilters {
     floorplanIds: string[];
 }
 
-export interface FloorplanFilters {
+export interface UnitFilters {
     bedroom: Set<number>;
     availability: Set<string>;
     style: Set<FloorplanStyle>;

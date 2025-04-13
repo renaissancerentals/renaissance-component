@@ -29,7 +29,7 @@ export {PropertyVideo} from "./property/PropertyVideo";
 export {FloorplanCard} from "./floorplan/card/FloorplanCard";
 export {FloorplanCardSlider} from "./floorplan/card/FloorplanCardSlider";
 export {FloorplanCardSkeleton} from "./floorplan/card/FloorplanCardSkeleton";
-
+export {UnitsSection} from "./unit/section/UnitsSection";
 export {FloorplansSection} from "./floorplan/section/FloorplansSection";
 export {FloorplanSection} from "./floorplan/section/FloorplanSection";
 export {FloorplanSectionSkeleton} from "./floorplan/section/FloorplanSectionSkeleton";
@@ -64,9 +64,10 @@ export type {
     AmenityName, SimilarFloorplan, FloorplanVariation, FloorplanSpotlight, UnitSpotlight, Testimonial, FloorplanName,
     WebSpecial
 } from "./floorplan/data/Floorplan";
-export type {UnitDetails, Unit, UnitCardData} from "./floorplan/data/Unit";
-export type {FloorplanFilters, SortField, CurrentFilters, SortBy, SortFields} from "./floorplan/data/FloorplanFilters";
+export type {UnitDetails, Unit, UnitCardData} from "./unit/data/Unit";
+export type {FloorplanFilters, CurrentFloorplanFilters} from "./floorplan/data/FloorplanFilters";
 
+export type {SortField, SortBy, SortFields} from "./data/SortField";
 
 export type {
     Property,
@@ -92,7 +93,16 @@ export type {
     PropertyTeamMember
 } from "./team/data/TeamMember";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
-export {getProperty, generatePropertyVideoUrl} from "./property/service/PropertyService";
+export {getProperty, generatePropertyVideoUrl, getAllPropertyFilterData} from "./property/service/PropertyService";
+export {
+    toUnits,
+    unitsFromFloorplans,
+    sortUnits,
+    sortAndFilterUnits,
+    unitsFromProperties,
+    isUnitAvailable,
+    filtersFromUnits
+} from "./unit/service/UnitService";
 
 export {getAllTeamMembers} from "./team/service/TeamService";
 export {RENAISSANCE_BASE_URL} from "./service/Api";
@@ -124,14 +134,17 @@ export {
     youtubeUrlToEmbedUrl,
     decode,
     formatDate,
-    isZipcodeValid
+    isZipcodeValid,
+    availabilityDate,
+    MAX_VALUE,
+    MIN_VALUE,
+    floorplanAddressToGoogleMap
 
 } from "./utils/Utils";
 export {sortBedrooms} from "./floorplan/section/filter/Bedroom";
 export {sortAvailability, AvailabilityFilter} from "./floorplan/section/filter/Availability";
 export {
     filtersFrom,
-    getAllPropertyFilterData,
     getFloorplansFilterData,
     sortFloorplans,
     sortAndFilter,

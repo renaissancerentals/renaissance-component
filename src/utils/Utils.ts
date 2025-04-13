@@ -104,3 +104,13 @@ export const isZipcodeValid = (zipcode?: string): boolean => {
     const zipcodePattern = /^\d{5}$/;
     return zipcodePattern.test(zipcode);
 };
+
+export const availabilityDate = (moveInDate: string): string => {
+    const date = dateToMoment(moveInDate);
+    const today = moment();
+    const todayOrBefore = date.isSame(today, 'day') || date.isBefore(today, 'day');
+    if (todayOrBefore)
+        return formatDate(momentToDate(today));
+
+    return formatDate(moveInDate)
+}

@@ -1,3 +1,5 @@
+import {FloorplanStyle} from "../../floorplan/data/Floorplan";
+
 export enum Pet {
     NO_PET = "NO_PET", CAT = "CAT", SMALL_DOG_CAT = "SMALL_DOG_CAT", LARGE_DOG_SMALL_DOG_CAT = "LARGE_DOG_SMALL_DOG_CAT"
 }
@@ -46,12 +48,29 @@ export interface Unit {
 }
 
 export interface UnitCardData {
+    id: string;
     rent: number;
     squareFoot: number;
-    active: boolean;
     moveInDate: string;
     availabilityExtensionMonths: number | null;
+    floorplanId: string;
+    floorplanName: string;
+    bedroom: number;
+    bathroom: number;
+    coverImage: string;
+    featured: boolean;
+    style: FloorplanStyle;
+    specialRent: number,
+    specialRentStartDate: string;
+    specialRentEndDate: string;
+    address: string;
+    zipcode: string;
+    virtualTourLink: string;
+    videoTourLink: string;
+    photosFolderId: string;
+    webSpecials: string [];
 }
+
 
 export enum Level {
     GROUND = "GROUND", MIDDLE = "MIDDLE", TOP = "TOP", MULTI = "MULTI"

@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import {Month} from "../data/Calendar";
-import {CurrentFilters, FloorplanFilters, SortBy, SortFields} from "../data/FloorplanFilters";
+import {CurrentFloorplanFilters, FloorplanFilters} from "../data/FloorplanFilters";
 import moment, {Moment} from "moment";
 import {
     Floorplan,
@@ -14,10 +13,12 @@ import {
     WebSpecial
 } from "../data/Floorplan";
 import {dateToMoment, minimumMaximum} from "../../utils/Utils";
-import {LeaseType, PropertyFilterData, PropertyId} from "../../property/data/Property";
-import {Pet, Unit} from "../data/Unit";
+import {PropertyId} from "../../property/data/Property";
 import {get} from "../../service/RoundRobin";
 import {renaissance} from "../../data/RenaissanceData";
+import {Pet, Unit} from "../../unit/data/Unit";
+import {Month} from "../../data/Calendar";
+import {SortBy, SortFields} from "../../data/SortField";
 
 export const AVAILABLE_NOW = "Available Now";
 const today = moment();
@@ -54,23 +55,6 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
             .map(webSpecial => webSpecial.description)
     } as FloorplanCardData;
 }
-export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
-    let response = await get("properties/filter");
-
-    const properties: PropertyFilterData[] = response.data
-        .filter((property: PropertyFilterData) => property.active)
-        .filter((property: PropertyFilterData) => property.leaseType === LeaseType.YEARLY)
-        .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));
-
-    properties.forEach(property => {
-        property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
-        property.floorplans.forEach(floorplan => {
-            floorplan.units = floorplan.units.filter(unit => unit.active);
-        });
-    });
-
-    return properties;
-}
 export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
     let response = await get("properties/" + propertyId + "/floorplans/filter");
 
@@ -83,10 +67,9 @@ export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<F
 
     return floorplans;
 };
-export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: CurrentFilters): FloorplanCardData[] => {
+export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: CurrentFloorplanFilters): FloorplanCardData[] => {
     return sortFloorplans(floorplans.filter(floorplan => filterMatches(floorplan, currentFilters)), currentFilters.sortBy);
 };
-
 
 export const isDateWithinTwelveMonths = (date: string) => {
     const diff = moment(date, "YYYY-MM-DD").diff(today, 'months', false);
@@ -98,7 +81,7 @@ export const isDateAfterToday = (date: string) => {
 export const MONTH_YEAR_FORMAT = "MMMM YYYY";
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format(MONTH_YEAR_FORMAT);
 
-const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow);
+export const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow);
 
 export const defaultAvailabilityToMonthYear = (dateString: string): string =>
     AVAILABLE_NOW === dateString ? dateString : moment(dateString, "MM-YYYY").format(MONTH_YEAR_FORMAT);
@@ -144,7 +127,7 @@ const isInPriceRange = (floorplan: FloorplanCardData, minRent: number, maxRent: 
 const isFloorplanIdsMatch = (floorplan: FloorplanCardData, floorplanIds: string[]): boolean => {
     return floorplanIds.length === 0 ? true : floorplanIds.indexOf(floorplan.id) > -1;
 };
-const filterMatches = (floorplan: FloorplanCardData, currentFilters: CurrentFilters) => {
+const filterMatches = (floorplan: FloorplanCardData, currentFilters: CurrentFloorplanFilters) => {
     return isAvailable(floorplan, currentFilters.availabilityFilters) &&
         isInPriceRange(floorplan, currentFilters.minRent, currentFilters.maxRent) &&
         isStyleMatch(floorplan, currentFilters.styleFilters) &&

@@ -1,0 +1,18 @@
+@import "src/assets/variables";
+
+.section-units {
+  padding: 0;
+  .units-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .unit-card {
+      margin: 1rem;
+    }
+  }
+  .units-banner {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

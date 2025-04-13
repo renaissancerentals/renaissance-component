@@ -1,0 +1,268 @@
+@import "src/assets/variables";
+
+$unit-card-color: $primary-background-color !default;
+$unit-card-secondary-color: $secondary-color !default;
+.unit-card {
+  color: $unit-card-color;
+
+  a {
+    color: $unit-card-color;
+  }
+
+  a:hover {
+    color: inherit;
+  }
+
+  position: relative;
+  height: 16rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .muncher-spinner {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .muncher-button--navigate {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  //@media(min-width: $medium-size) {
+  //  width: 20rem;
+  //  height: 14rem;
+  //}
+  .card--image {
+    width: 100vw;
+    height: 16rem;
+    object-fit: cover;
+  }
+
+  @media(min-width: $large-size) {
+    width: 25rem;
+    height: 16rem;
+    .card--image {
+      width: 25rem;
+      height: 16rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+    height: 18rem;
+    .card--image {
+      width: 33rem;
+      height: 18rem;
+    }
+  }
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .badges--right {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .special-offer-button {
+      margin: .5rem 0;
+    }
+  }
+
+  .badges--left {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .muncher-badge {
+    font-size: .8rem;
+  }
+  .icon-tour {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .icon-video {
+    position: absolute;
+    top: 3.5rem;
+    left: 1.1rem;
+  }
+  .icon-map {
+    position: absolute;
+    top: 5.7rem;
+    left: 1.5rem;
+    .muncher-icon--small{
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+
+  .icon-left, .icon-right {
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+  }
+
+  .icon-left:hover, .icon-right:hover {
+    opacity: .6;
+  }
+
+  .icon-left {
+    left: .1rem;
+  }
+
+  .icon-right {
+    right: .1rem;
+  }
+
+  .unit-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .unit-card-content--special {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content--special {
+    text-align: center;
+    width: 45%;
+    background-color: $special-offer-color;
+    padding: 0 1rem;
+  }
+
+  .unit-card-footer {
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .rent {
+      font-size: .8rem;
+    }
+
+    h3, p {
+      text-align: left;
+      margin: .5rem 0;
+    }
+
+    h3 {
+      font-size: .9rem;
+    }
+    p{
+      font-size: .8rem;
+    }
+    .truncate {
+      text-overflow: ellipsis;
+      //@media(min-width: $medium-size) {
+      //  width: 10rem;
+      //}
+      @media(min-width: $large-size) {
+        width: 15rem;
+      }
+      @media(min-width: $extra-large-size) {
+        width: 22rem;
+      }
+      width: 55vw;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .left, .right {
+      padding: 0 .5rem;
+    }
+
+    .address-link {
+      font-size: .7rem;
+
+      .muncher-icon--small {
+        width: .7rem;
+        height: .7rem;
+      }
+
+      margin: 0;
+    }
+  }
+}
+
+.unit-card--small {
+  //@media(min-width: $medium-size) {
+  //  width: 15rem;
+  //  height: 14rem;
+  //}
+  @media(min-width: $large-size) {
+    width: 20rem;
+    height: 16rem;
+    .card--image {
+      width: 20rem;
+      height: 16rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 28rem;
+    height: 18rem;
+    .card--image {
+      width: 28rem;
+      height: 18rem;
+    }
+  }
+
+  .unit-card-footer {
+    .left {
+      //@media(min-width: $medium-size) {
+      //  max-width: 8rem;
+      //}
+      @media(min-width: $large-size) {
+        max-width: 12rem;
+      }
+      @media(min-width: $extra-large-size) {
+        max-width: 16rem;
+      }
+
+    }
+  }
+}
+
+.unit-card--slider {
+
+  width: 100vw;
+
+  @media(min-width: $large-size) {
+    width: 25rem;
+
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+
+  }
+
+  .muncher-item-slider .muncher-button--navigate {
+    top: 38%;
+  }
+}
+
+.unit-card-slider--small {
+
+  @media(min-width: $large-size) {
+    width: 20rem;
+  }
+  @media(min-width: $extra-large-size) {
+    width: 28rem;
+  }
+}

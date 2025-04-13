@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   AVAILABLE_NOW,
-  getAllPropertyFilterData, getFloorplansFilterData,
+  getFloorplansFilterData,
   sortFloorplans,
 } from "../service/FloorplanService";
 import { FloorplanCardData } from "../data/Floorplan";
 import { FloorplanSectionSkeleton } from "./FloorplanSectionSkeleton";
 import { FloorplansSection } from "./FloorplansSection";
 import moment from "moment";
+import {getAllPropertyFilterData} from "../../property/service/PropertyService";
 
 export default {
   title: "Section/FloorplansSection",

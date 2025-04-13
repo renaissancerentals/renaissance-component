@@ -12,13 +12,14 @@ import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
 import {SpecialOfferButton} from "../../specialOffer/SpecialOfferButton";
 
-export const FloorplanCard: React.FC<FloorplanCardProps> = ({
-                                                                floorplan,
-                                                                size,
-                                                                videoClickHandler,
-                                                                propertyId,
-                                                                variant
-                                                            }) => {
+export const FloorplanCard: React.FC<FloorplanCardProps> = (
+    {
+        floorplan,
+        size,
+        videoClickHandler,
+        propertyId,
+        variant
+    }) => {
     const [assets, setAssets] = useState<Asset[]>([]);
     const [isAssetLoading, setIsAssetLoading] = useState(false);
     const [isAssetLoaded, setIsAssetLoaded] = useState(false);
@@ -70,7 +71,7 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({
             <div className="badges--left">
                 {floorplan.virtualTourLink ?
                     <div className="icon-tour">
-                        <Button variant="transparent" size="small"
+                        <Button variant="transparent" size="small" title="tour icon"
                                 onClick={() => videoClickHandler({
                                     url: floorplan.virtualTourLink,
                                     type: "virtual"
@@ -82,7 +83,7 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({
                     : ''}
                 {floorplan.videoTourLink ?
                     <div className="icon-video">
-                        <Button variant="transparent" size="small"
+                        <Button variant="transparent" size="small" title="video icon"
                                 onClick={() => videoClickHandler({url: floorplan.videoTourLink, type: "video"})}>
                             <img src={videoIcon} alt="video icon" height={20}/>
                         </Button>
@@ -128,7 +129,8 @@ export const FloorplanCard: React.FC<FloorplanCardProps> = ({
                                 {floorplan.address && floorplan.zipcode ?
                                     <a className="address-link" target="_blank" rel="noreferrer"
                                        href={addressToGoogleMapLink(floorplan.address, floorplan.zipcode)}>
-                                        <Icon name="map" size="small">{renaissanceAddress(floorplan.address, floorplan.zipcode)}</Icon></a> : <></>}
+                                        <Icon name="map"
+                                              size="small">{renaissanceAddress(floorplan.address, floorplan.zipcode)}</Icon></a> : <></>}
                                 <p>
                                     <FloorplanPrice unitRents={floorplan.units} specialRent={floorplan.specialRent}
                                                     specialRentEndDate={floorplan.specialRentEndDate}

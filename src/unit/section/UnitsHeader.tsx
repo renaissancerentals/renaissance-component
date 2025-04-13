@@ -1,28 +1,28 @@
 import React, {useState} from "react";
-import "./assets/FloorplansHeader.scss";
-import "../filter/assets/FloorplanDropDown.scss";
+import "./assets/UnitsHeader.scss";
 import {Icon, Pill, Range} from "@contentmunch/muncher-ui";
-
-import {CurrentFloorplanFilters, FloorplanFilters} from "../data/FloorplanFilters";
-import {FloorplanCardData, FloorplanStyle, MAX_RENT, MIN_RENT} from "../data/Floorplan";
-import {BedroomFilter, sortBedrooms} from "./filter/Bedroom";
-import {defaultAvailabilityToMonthYear, sortAndFilter} from "../service/FloorplanService";
-import {AvailabilityFilter, sortAvailability} from "./filter/Availability";
-import {PriceFilter} from "./filter/Price";
-import {StyleFilter} from "./filter/Style";
-import {Sort} from "./filter/Sort";
 import {capitalizeFirstLetter, enumToString} from "../../utils/Utils";
-import {DefaultFloorplanFilters} from "./FloorplansSection";
 import {SortBy} from "../../data/SortField";
+import {DefaultFloorplanFilters} from "../../floorplan/section/FloorplansSection";
+import {UnitCardData} from "../data/Unit";
+import {defaultAvailabilityToMonthYear} from "../../floorplan/service/FloorplanService";
+import {FloorplanStyle, MAX_RENT, MIN_RENT} from "../../floorplan/data/Floorplan";
+import {CurrentFloorplanFilters, FloorplanFilters} from "../../floorplan/data/FloorplanFilters";
+import {sortAndFilterUnits} from "../service/UnitService";
+import {BedroomFilter, sortBedrooms} from "../../floorplan/section/filter/Bedroom";
+import {AvailabilityFilter, sortAvailability} from "../../floorplan/section/filter/Availability";
+import {PriceFilter} from "../../floorplan/section/filter/Price";
+import {StyleFilter} from "../../floorplan/section/filter/Style";
+import {Sort} from "../../floorplan/section/filter/Sort";
 
-export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
+export const UnitsHeader: React.FC<UnitsHeaderProps> = (
     {
         title,
         filters,
-        floorplans,
-        setCurrentFloorplans,
+        units,
+        setCurrentUnits,
         isCondensed,
-        currentFloorplansCount,
+        currentUnitCounts,
         defaultFloorplanStyle, defaultBedRooms, defaultAvailability, defaultMaxRent, defaultMinRent, defaultFloorplanIds
     }) => {
 
@@ -39,7 +39,7 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
     };
 
     const handleSortAndFilter = (withCurrentFilters: CurrentFloorplanFilters) => {
-        setCurrentFloorplans(sortAndFilter(floorplans, withCurrentFilters));
+        setCurrentUnits(sortAndFilterUnits(units, withCurrentFilters));
     };
     const handleMinRentChange = (rent: number) => {
         setMinRent(rent);
@@ -169,7 +169,7 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
                         </Pill>
                     ))}
                     <div className="filter-result">
-                        <Icon name="filter"/>&nbsp;Total: {currentFloorplansCount} Results
+                        <Icon name="filter"/>&nbsp;Total: {currentUnitCounts} Results
                     </div>
                 </div>
             </div>
@@ -177,11 +177,11 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
     );
 }
 
-export interface FloorplansHeaderProps extends DefaultFloorplanFilters {
+export interface UnitsHeaderProps extends DefaultFloorplanFilters {
     title?: string;
     filters: FloorplanFilters;
-    floorplans: FloorplanCardData[];
-    setCurrentFloorplans: (floorplans: FloorplanCardData[]) => void;
+    units: UnitCardData[];
+    setCurrentUnits: (units: UnitCardData[]) => void;
     isCondensed?: boolean;
-    currentFloorplansCount: number;
+    currentUnitCounts: number;
 }

@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {Icon} from "@contentmunch/muncher-ui";
-import {SortField} from "../../floorplan/data/FloorplanFilters";
 import {ShortTermStyle} from "./ShortTerm";
+import {SortField} from "../../data/SortField";
 
 export interface CurrentShortTermFilters {
     bedroomFilters: number[];

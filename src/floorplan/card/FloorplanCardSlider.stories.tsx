@@ -1,8 +1,8 @@
 import React from "react";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import {FloorplanDetails, FloorplanStyle} from "../data/Floorplan";
-import {Pet} from "../data/Unit";
 import {FloorplanCardSlider} from "./FloorplanCardSlider";
+import {Pet} from "../../unit/data/Unit";
 
 export default {
     title: "Slider/Floorplan Card Slider",

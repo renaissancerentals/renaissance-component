@@ -1,5 +1,5 @@
-import {Pet, Unit, UnitCardData, UnitDetails} from "./Unit";
 import {LeaseType, PropertyBusRoute} from "../../property/data/Property";
+import {Pet, Unit, UnitDetails} from "../../unit/data/Unit";
 
 export const MIN_RENT = 0;
 export const MAX_RENT = 4000;
@@ -85,8 +85,17 @@ export interface FloorplanCardData {
     virtualTourLink: string;
     videoTourLink: string;
     photosFolderId: string;
-    units: UnitCardData[];
+    units: FloorplanUnitCardData[];
     webSpecials: string [];
+}
+
+export interface FloorplanUnitCardData {
+    id: string;
+    rent: number;
+    squareFoot: number;
+    active: boolean;
+    moveInDate: string;
+    availabilityExtensionMonths: number | null;
 }
 
 export interface FloorplanAssets {
