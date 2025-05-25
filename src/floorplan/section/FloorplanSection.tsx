@@ -47,7 +47,8 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
         applyClickHandler,
         floorplanId,
         locationRef,
-        handleRefToLocation
+        handleRefToLocation,
+        handleHtmlTitleUpdate
     }) => {
     const [floorplan, setFloorplan] = useState<Floorplan>({} as Floorplan);
     const [similarFloorplans, setSimilarFloorplans] = useState<SimilarFloorplan[]>([]);
@@ -72,6 +73,11 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     useEffect(() => {
         getFloorplan(floorplanId).then(floorplanData => {
             setFloorplan(floorplanData);
+
+            if (handleHtmlTitleUpdate) {
+                handleHtmlTitleUpdate(floorplanData.htmlTitle);
+            }
+
             floorplanData.units = floorplanData.units.filter(unit => unit.active);
             if (LeaseType.SHORT_TERM === floorplanData.property.leaseType) {
                 setIsLoading(false);
@@ -370,4 +376,5 @@ export interface FloorplanSectionProps {
     floorplanId: string;
     locationRef?: React.Ref<HTMLDivElement>;
     handleRefToLocation?: () => void;
+    handleHtmlTitleUpdate?: (title: string) => void;
 }
