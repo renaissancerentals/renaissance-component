@@ -1,0 +1,17 @@
+@import "src/assets/variables";
+
+.section-hostaway {
+
+  p {
+    text-align: center;
+  }
+  .hostaway-wrapper {
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #hostaway-booking-widget{
+    border: #a7bdb1 .8rem solid;
+  }
+}

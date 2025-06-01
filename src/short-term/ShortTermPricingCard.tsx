@@ -3,7 +3,7 @@ import "./assets/ShortTermPricingCard.scss";
 import {capitalizeFirstLetter, enumToString, toUSD} from "../utils/Utils";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 
-export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floorplans}) => {
+export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floorplans, contactNumber}) => {
 
     const generateMainPricingRow = (floorplan: FloorplanShortTerm) =>
         <>
@@ -41,6 +41,7 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
             )}
 
         </tr>
+
 
     return (
 
@@ -101,14 +102,18 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                     </div>
                 </div>
 
-                <p className="footnote">* for immediate arrivals only, call or text for availability</p>
+                <p className="footnote main">* for immediate arrivals only, call or text for availability</p>
+                <p className="footnote mobile">* for immediate arrivals only, <a href={`tel:${contactNumber}`}>call or
+                    text</a> for availability</p>
 
             </div>
+
         </section>
 
     );
 };
 
 export interface ShortTermPricingCardProps {
-    floorplans: FloorplanShortTerm[]
+    floorplans: FloorplanShortTerm[];
+    contactNumber: number;
 }

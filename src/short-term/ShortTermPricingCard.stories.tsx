@@ -17,6 +17,7 @@ export default meta;
 type Story = StoryObj<typeof ShortTermPricingCard>;
 export const Default: Story = {
   args: {
+    contactNumber: 8123332280,
     floorplans: [
       {
         id: "17789",
