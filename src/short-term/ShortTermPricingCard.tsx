@@ -115,5 +115,5 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
 
 export interface ShortTermPricingCardProps {
     floorplans: FloorplanShortTerm[];
-    contactNumber: number;
+    contactNumber: string;
 }

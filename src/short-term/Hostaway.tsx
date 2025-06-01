@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import "./assets/Hostaway.scss";
 
-export const Hostaway: React.FC = () => {
+export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -31,6 +31,8 @@ export const Hostaway: React.FC = () => {
                 <div className="hostaway-wrapper">
                     <div id="hostaway-booking-widget"></div>
                 </div>
+                <p className="footnote main">Not finding what you'd like? Call or Text us for more options</p>
+                <p className="footnote mobile">Not finding what you'd like? <a href={`tel:${contactNumber}`}>Call or Text</a> us for more options</p>
             </div>
         </section>
 
@@ -48,4 +50,8 @@ declare global {
             font: string;
         }) => void;
     }
+}
+
+interface HostawayProps {
+    contactNumber: string;
 }

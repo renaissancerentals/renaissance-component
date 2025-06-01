@@ -6,12 +6,21 @@
     text-align: center;
   }
   .hostaway-wrapper {
-    width: 60vw;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   #hostaway-booking-widget{
     border: #a7bdb1 .8rem solid;
+    z-index: 20;
+  }
+  .footnote{
+    font-style: normal;
+    font-size: .7rem;
+    text-align: center;
+    @media (min-width: $large-size) {
+      font-size: .8rem;
+    }
   }
 }
