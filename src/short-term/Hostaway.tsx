@@ -10,7 +10,7 @@ export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
         script.onload = () => {
             if (window.searchBar) {
                 window.searchBar({
-                    baseUrl: 'https://www.summerhouseatindiana.holidayfuture.com/',
+                    baseUrl: 'https://summerhouseatindiana.holidayfuture.com/',
                     showLocation: false,
                     color: '#13294b',
                     rounded: false,

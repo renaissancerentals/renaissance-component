@@ -45,4 +45,5 @@ export interface ShortTerm {
     priceFor14To29Days: number;
     priceFor1To4Months: number;
     priceFor4andMoreMonths: number;
+    contactInstructions: string;
 }

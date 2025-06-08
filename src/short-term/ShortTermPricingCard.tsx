@@ -17,7 +17,7 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                 {floorplan.shortTerm.squareFoot}+
             </div>
             <div className="col">
-                Call or Text
+                {floorplan.shortTerm.contactInstructions}
             </div>
             <div className="col">
                 {toUSD(floorplan.shortTerm.priceFor5To13Days)}/day + tax

@@ -17,7 +17,7 @@ export const Default: Story = {
         floorplans: [
             {
                 id: "17789",
-                name: "2 Flat",
+                name: "2 Bedroom Flat",
                 style: ShortTermStyle.APARTMENT,
                 bedroom: 2,
                 bathroom: 2,
@@ -28,6 +28,7 @@ export const Default: Story = {
                     priceFor1To4Months: 93.0,
                     priceFor4andMoreMonths: 81.0,
                     squareFoot: 750,
+                    contactInstructions: "Call or Text",
                 } as ShortTerm,
             } as FloorplanShortTerm,
             {
@@ -43,12 +44,13 @@ export const Default: Story = {
                     priceFor1To4Months: 101.0,
                     priceFor4andMoreMonths: 89.0,
                     squareFoot: 1132,
+                    contactInstructions: "Call or Text",
                 } as ShortTerm,
             } as FloorplanShortTerm,
             {
                 id: "17791",
                 name: "1 bedroom",
-                style: ShortTermStyle.DELUXE_APARTMENT,
+                style: ShortTermStyle.APARTMENT,
                 bedroom: 1,
                 bathroom: 1,
                 shortTerm: {
@@ -58,6 +60,7 @@ export const Default: Story = {
                     priceFor1To4Months: 75.0,
                     priceFor4andMoreMonths: 63.0,
                     squareFoot: 501,
+                    contactInstructions: "Call, Text, or Search below"
                 } as ShortTerm,
             } as FloorplanShortTerm,
             {
@@ -73,6 +76,7 @@ export const Default: Story = {
                     priceFor1To4Months: 75.0,
                     priceFor4andMoreMonths: 63.0,
                     squareFoot: 501,
+                    contactInstructions: "Call, Text, or Search below"
                 } as ShortTerm,
             } as FloorplanShortTerm,
         ],
