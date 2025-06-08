@@ -37,6 +37,16 @@ export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
         }
 
     };
+
+    const covertToUSD = (price: string) => {
+        const numeric = Number(price);
+
+        if (isNaN(numeric) || numeric <= 0) {
+            return price;
+        }
+
+        return (toUSD(numeric));
+    }
     return (
         <div
             className={size === "small" ? "short-term-floorplan-card short-term-floorplan-card--small" : "short-term-floorplan-card"}>
@@ -76,10 +86,10 @@ export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
                         <h3 className="truncate">
                             {floorplan.name}
                         </h3>
-                        <p className="small"> {toUSD(floorplan.shortTerm.priceFor5To13Days)}/day (5-13
-                            Days), {toUSD(floorplan.shortTerm.priceFor14To29Days)}/day (14-29 Days)</p>
-                        <p className="small">{toUSD(floorplan.shortTerm.priceFor1To4Months)}/day (1-4
-                            Months), {toUSD(floorplan.shortTerm.priceFor4andMoreMonths)}/day (4+ Months) </p>
+                        <p className="small"> {covertToUSD(floorplan.shortTerm.priceFor5To13Days)}/day (5-13
+                            Days), {covertToUSD(floorplan.shortTerm.priceFor14To29Days)}/day (14-29 Days)</p>
+                        <p className="small">{covertToUSD(floorplan.shortTerm.priceFor1To4Months)}/day (1-4
+                            Months), {covertToUSD(floorplan.shortTerm.priceFor4andMoreMonths)}/day (4+ Months) </p>
 
                     </div>
                     <div className="right">

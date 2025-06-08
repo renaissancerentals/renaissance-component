@@ -4,7 +4,15 @@ import {capitalizeFirstLetter, enumToString, toUSD} from "../utils/Utils";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 
 export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floorplans, contactNumber}) => {
+    const covertToUSD = (price: string, suffix: string, multiplier?: number) => {
+        const numeric = Number(price);
 
+        if (isNaN(numeric) || numeric <= 0) {
+            return price;
+        }
+
+        return (multiplier ? toUSD(numeric * multiplier) : toUSD(numeric)) + suffix;
+    }
     const generateMainPricingRow = (floorplan: FloorplanShortTerm) =>
         <>
             <div className="col">
@@ -17,19 +25,19 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                 {floorplan.shortTerm.squareFoot}+
             </div>
             <div className="col">
-                {floorplan.shortTerm.contactInstructions}
+                {covertToUSD(floorplan.shortTerm.priceFor2To4Days, "/day + tax")}
             </div>
             <div className="col">
-                {toUSD(floorplan.shortTerm.priceFor5To13Days)}/day + tax
+                {covertToUSD(floorplan.shortTerm.priceFor5To13Days, "/day + tax")}
             </div>
             <div className="col">
-                {toUSD(floorplan.shortTerm.priceFor14To29Days)}/day + tax
+                {covertToUSD(floorplan.shortTerm.priceFor14To29Days, "/day + tax")}
             </div>
             <div className="col">
-                {toUSD(floorplan.shortTerm.priceFor1To4Months)}/day/ {toUSD(floorplan.shortTerm.priceFor1To4Months * 30)}/mo
+                {covertToUSD(floorplan.shortTerm.priceFor1To4Months, "/day/")} {covertToUSD(floorplan.shortTerm.priceFor1To4Months, "/mo", 30)}
             </div>
             <div className="col">
-                {toUSD(floorplan.shortTerm.priceFor4andMoreMonths)}/day/ {toUSD(floorplan.shortTerm.priceFor4andMoreMonths * 30)}/mo
+                {covertToUSD(floorplan.shortTerm.priceFor4andMoreMonths, "/day/")} {covertToUSD(floorplan.shortTerm.priceFor4andMoreMonths, "/mo", 30)}
             </div>
         </>
 
@@ -58,13 +66,14 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             {generateMobile("bath", floorplans.map(floorplan => floorplan.bathroom + ""))}
                             {generateMobile("sq. ft.", floorplans.map(floorplan => floorplan.shortTerm.squareFoot + "+"))}
                             {generateMobile(
-                                <><span className="asterix">*</span>2-4 days</>, floorplans.map(() => "Call or Text"))}
+                                <><span className="asterix">*</span>2-4
+                                    days</>, floorplans.map(floorplan => covertToUSD(floorplan.shortTerm.priceFor2To4Days, "/day + tax")))}
                             {generateMobile(
                                 <><span className="asterix">*</span>5-13
-                                    days</>, floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor5To13Days) + "/day + tax"))}
-                            {generateMobile("14-29 days", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor14To29Days) + "/day + tax"))}
-                            {generateMobile("1-4 months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor1To4Months) + "/day/ " + toUSD(floorplan.shortTerm.priceFor1To4Months * 30) + "/mo"))}
-                            {generateMobile("4+ months", floorplans.map(floorplan => toUSD(floorplan.shortTerm.priceFor4andMoreMonths) + "/day/ " + toUSD(floorplan.shortTerm.priceFor4andMoreMonths * 30) + "/mo"))}
+                                    days</>, floorplans.map(floorplan => covertToUSD(floorplan.shortTerm.priceFor5To13Days, "/day + tax")))}
+                            {generateMobile("14-29 days", floorplans.map(floorplan => covertToUSD(floorplan.shortTerm.priceFor14To29Days, "/day + tax")))}
+                            {generateMobile("1-4 months", floorplans.map(floorplan => covertToUSD(floorplan.shortTerm.priceFor1To4Months, "/day/ ") + covertToUSD(floorplan.shortTerm.priceFor1To4Months, "/mo", 30)))}
+                            {generateMobile("4+ months", floorplans.map(floorplan => covertToUSD(floorplan.shortTerm.priceFor4andMoreMonths, "/day/ ") + covertToUSD(floorplan.shortTerm.priceFor4andMoreMonths, "/mo", 30)))}
 
                             </tbody>
                         </table>

@@ -47,9 +47,20 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
             });
 
     }, [floorplanId]);
-    const generatePricing = (price: number, includeMonthly?: boolean) => price
-        ? `${toUSD(price)}/day${includeMonthly ? `/ ${toUSD(price * 30)}/mo` : " + tax"}`
-        : "-";
+
+
+    const generatePricing = (price: string, includeMonthly?: boolean) => {
+       if(!price)
+           return "-";
+
+        const numeric = Number(price);
+
+        if (isNaN(numeric) || numeric <= 0) {
+            return price;
+        }
+
+        return `${toUSD(numeric)}/day${includeMonthly ? `/ ${toUSD(numeric * 30)}/mo` : " + tax"}`;
+    }
 
     return (
         <section className="section-short-term-floorplan">

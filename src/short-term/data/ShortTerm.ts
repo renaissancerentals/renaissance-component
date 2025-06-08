@@ -40,10 +40,9 @@ export interface FloorplanShortTerm {
 export interface ShortTerm {
     id: string;
     squareFoot: number;
-    priceFor2To4Days: number;
-    priceFor5To13Days: number;
-    priceFor14To29Days: number;
-    priceFor1To4Months: number;
-    priceFor4andMoreMonths: number;
-    contactInstructions: string;
+    priceFor2To4Days: string;
+    priceFor5To13Days: string;
+    priceFor14To29Days: string;
+    priceFor1To4Months: string;
+    priceFor4andMoreMonths: string;
 }
