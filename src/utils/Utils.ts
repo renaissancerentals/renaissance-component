@@ -59,23 +59,39 @@ export interface MinMax {
     max: number;
 }
 
-export const minimumMaximum = (arr: any[], field: string): MinMax => {
-    try {
-        const sorted = arr.filter(value => value.active ? value.active : true).sort((a, b) =>
-            a[field] && b[field] ? a[field] - b[field] : 0
-        );
-
-        return {
-            min: sorted[0][field],
-            max: sorted[sorted.length - 1][field]
-        }
-    } catch (e: any) {
-        return {
-            min: MIN_VALUE,
-            max: MIN_VALUE
-        }
+export const minimumMaximum = (arr: any[] = [], field: string): MinMax => {
+    if (!Array.isArray(arr) || arr.length === 0) {
+        return { min: MIN_VALUE, max: MIN_VALUE };
     }
-}
+
+    let min = Infinity;
+    let max = -Infinity;
+
+    for (const item of arr) {
+        // Only skip if active is explicitly false
+        if (item?.active === false) continue;
+
+        let val = item?.[field];
+
+        // Convert to number if it's a string like "$1377"
+        if (typeof val === "string") {
+            val = Number(val.replace(/[^\d.-]/g, ""));
+        }
+
+        if (typeof val !== "number" || Number.isNaN(val)) {
+            continue; // skip invalid or missing values
+        }
+
+        if (val < min) min = val;
+        if (val > max) max = val;
+    }
+
+    if (min === Infinity || max === -Infinity) {
+        return { min: MIN_VALUE, max: MIN_VALUE };
+    }
+
+    return { min, max };
+};
 export const rangeFrom = (arr: any[], field: string): string => {
     if (arr && arr.length > 0) {
         const minMax = minimumMaximum(arr, field);
@@ -114,3 +130,16 @@ export const availabilityDate = (moveInDate: string): string => {
 
     return formatDate(moveInDate)
 }
+
+export const toNumber = (v: unknown): number | null => {
+    if (v == null) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v === "string") {
+        // remove currency symbols, commas, whitespace
+        const cleaned = v.replace(/[^\d.-]/g, "");
+        if (cleaned === "") return null;
+        const n = Number(cleaned);
+        return Number.isFinite(n) ? n : null;
+    }
+    return null;
+};

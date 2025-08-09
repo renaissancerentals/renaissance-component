@@ -120,10 +120,26 @@ const isBedroomsMatch = (floorplan: FloorplanCardData, bedroomFilters: number[])
 const isStyleMatch = (floorplan: FloorplanCardData, styleFilters: FloorplanStyle[]): boolean => {
     return styleFilters.length === 0 ? true : styleFilters.indexOf(floorplan.style) > -1;
 }
-const isInPriceRange = (floorplan: FloorplanCardData, minRent: number, maxRent: number): boolean => {
-    const minMax = minimumMaximum(floorplan.units, "rent");
-    return minMax.min >= minRent && minMax.max <= maxRent;
-}
+
+const isInPriceRange = (
+    floorplan: FloorplanCardData,
+    minRent: number,
+    maxRent: number
+): boolean => {
+    const { min } = minimumMaximum(floorplan.units, "rent");
+
+    // If a special rent exists and is within range, show it
+    if (
+        floorplan.specialRent != null &&
+        floorplan.specialRent >= minRent &&
+        floorplan.specialRent <= maxRent
+    ) {
+        return true;
+    }
+
+    // Otherwise, just check if the cheapest unit fits
+    return min >= minRent && min <= maxRent;
+};
 const isFloorplanIdsMatch = (floorplan: FloorplanCardData, floorplanIds: string[]): boolean => {
     return floorplanIds.length === 0 ? true : floorplanIds.indexOf(floorplan.id) > -1;
 };

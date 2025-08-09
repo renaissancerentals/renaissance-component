@@ -26,6 +26,14 @@ const isStyleMatch = (unit: UnitCardData, styleFilters: FloorplanStyle[]): boole
     return styleFilters.length === 0 ? true : styleFilters.indexOf(unit.style) > -1;
 }
 const isInPriceRange = (unit: UnitCardData, minRent: number, maxRent: number): boolean => {
+
+    if (
+        unit.specialRent != null &&
+        unit.specialRent >= minRent &&
+        unit.specialRent <= maxRent
+    ) {
+        return true;
+    }
     return unit.rent >= minRent && unit.rent <= maxRent;
 }
 const isFloorplanIdsMatch = (unit: UnitCardData, floorplanIds: string[]): boolean => {
