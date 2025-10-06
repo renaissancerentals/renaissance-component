@@ -5,6 +5,7 @@ import {
     Floorplan,
     FloorplanCardData,
     FloorplanDetails,
+    FloorplanFaq,
     FloorplanSpotlight,
     FloorplanStyle,
     FloorplanVariation,
@@ -126,7 +127,7 @@ const isInPriceRange = (
     minRent: number,
     maxRent: number
 ): boolean => {
-    const { min } = minimumMaximum(floorplan.units, "rent");
+    const {min} = minimumMaximum(floorplan.units, "rent");
 
     // If a special rent exists and is within range, show it
     if (
@@ -338,3 +339,8 @@ export interface FloorplanAddress {
     state: string;
     zipcode: string;
 }
+
+export const getFloorplanFaqs = async (floorplanId: string): Promise<FloorplanFaq[]> => {
+    let response = await get("floorplanFaqs/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId);
+    return await response.data._embedded.floorplanFaqs;
+};

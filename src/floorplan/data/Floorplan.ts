@@ -212,3 +212,13 @@ export interface WebSpecial {
 export interface WebSpecialDetails extends WebSpecial {
     id: string;
 }
+
+export interface FloorplanFaq {
+    id: string;
+    question: string;
+    answer: string;
+    sortOrder: number;
+    floorplan: FloorplanName;
+    lastModifiedBy: string;
+    lastModifiedDate: string;
+}

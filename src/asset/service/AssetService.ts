@@ -35,12 +35,12 @@ export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
 
 export const propertyIdToDomain = (propertyId: string): string => {
     const assetDomains = [
-        "https://verona-park.herokuapp.com/",
-        "https://covenanter-hill.herokuapp.com/",
-        "https://high-grove.herokuapp.com/",
-        "https://scholars-quad.herokuapp.com/",
-        "https://summer-house.herokuapp.com/",
-        "https://verona-park.herokuapp.com/"
+        "https://www.veronaparkneighborhood.com/",
+        "https://www.covenanterhill.com/",
+        "https://www.highgrovebloomington.com/",
+        "https://www.scholarsquad.com/",
+        "https://www.summerhouseatindiana.com/",
+        "https://www.veronaparkneighborhood.com/"
     ];
     const random = Math.ceil(Math.random() * 6) - 1;
 

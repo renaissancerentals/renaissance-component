@@ -130,3 +130,12 @@ export type PropertyType =
     | "SummerHouse at Indiana"
     | "Verona Park"
 
+export interface PropertyFaq {
+    id: string;
+    question: string;
+    answer: string;
+    sortOrder: number;
+    property: PropertyName;
+    lastModifiedBy: string;
+    lastModifiedDate: string;
+}

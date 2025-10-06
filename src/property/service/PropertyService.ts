@@ -1,4 +1,4 @@
-import {LeaseType, PropertyDetails, PropertyFilterData, PropertyId} from "../data/Property";
+import {LeaseType, PropertyDetails, PropertyFaq, PropertyFilterData, PropertyId} from "../data/Property";
 import {get} from "../../service/RoundRobin";
 
 export const getProperty = async (propertyId: PropertyId): Promise<PropertyDetails> => {
@@ -48,3 +48,7 @@ export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> 
 
     return properties;
 }
+export const getPropertyFaqs = async (propertyId: string): Promise<PropertyFaq[]> => {
+    let response = await get("propertyFaqs/search/byPropertyId?projection=withId&propertyId=" + propertyId);
+    return await response.data._embedded.propertyFaqs;
+};
