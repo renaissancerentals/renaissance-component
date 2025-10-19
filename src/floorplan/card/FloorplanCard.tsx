@@ -10,7 +10,7 @@ import {addressToGoogleMapLink, rangeFrom, renaissanceAddress} from "../../utils
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
-import {SpecialOfferButton} from "../../specialOffer/SpecialOfferButton";
+import {SpecialOfferButton} from "../../special-offer/SpecialOfferButton";
 
 export const FloorplanCard: React.FC<FloorplanCardProps> = (
     {

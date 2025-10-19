@@ -7,7 +7,7 @@ import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
-import {SpecialOfferButton} from "../specialOffer/SpecialOfferButton";
+import {SpecialOfferButton} from "../special-offer/SpecialOfferButton";
 import {TourType} from "./GridGalleryCover";
 import {FloorplanAddress} from "../floorplan/service/FloorplanService";
 import {MapSection} from "../map/MapSection";

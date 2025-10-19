@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {
     Floorplan,
+    FloorplanFaq,
     FloorplanVariation,
     SimilarFloorplan,
     Testimonial,
@@ -11,6 +12,7 @@ import {
 import {
     floorplanAddress,
     getFloorplan,
+    getFloorplanFaqs,
     getFloorplanVariations,
     getSimilarFloorplans,
     getTestimonials,
@@ -40,6 +42,7 @@ import {Button, Li, Ul} from "@contentmunch/muncher-ui";
 import moment from "moment";
 import {LeaseType} from "../../property/data/Property";
 import {ShortTermFloorplanSection} from "../../short-term/ShortTermFloorplanSection";
+import {FloorplanFaqsCard} from "../card/FloorplanFaqsCard";
 
 export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     {
@@ -55,6 +58,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     const [floorplanVariations, setFloorplanVariations] = useState<FloorplanVariation[]>([]);
     const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
     const [webSpecials, setWebSpecials] = useState<WebSpecial[]>([]);
+    const [floorplanFaqs, setFloorplanFaqs] = useState<FloorplanFaq[]>([]);
 
     const [isLoading, setIsLoading] = useState(true);
     const [errorLoading, setErrorLoading] = useState(false);
@@ -86,7 +90,8 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                     getFloorplanVariations(floorplanId),
                     getSimilarFloorplans(floorplanId),
                     getTestimonials(floorplanId),
-                    getWebSpecials(floorplanId)
+                    getWebSpecials(floorplanId),
+                    getFloorplanFaqs(floorplanId),
                 ])
                     .then((data) => {
                         const today = moment();
@@ -102,6 +107,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                             }
                         });
                         setWebSpecials(validWebSpecials);
+                        setFloorplanFaqs(data[4]);
                     })
                     .catch(() => {
                         setErrorLoading(true);
@@ -336,6 +342,8 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                         </> : ""}
                                         {similarFloorplans.length > 0 ?
                                             <SimilarFloorplanCard similarFloorplans={similarFloorplans}/> : ""}
+                                        {floorplanFaqs.length > 0 ?
+                                            <FloorplanFaqsCard floorplanFaqs={floorplanFaqs}/> : ""}
 
                                         <div className="contact-card">
                                             <Card featured={true}>

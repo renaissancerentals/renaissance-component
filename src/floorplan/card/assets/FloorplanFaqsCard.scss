@@ -1,0 +1,23 @@
+@import 'src/assets/variables';
+
+.floorplan-faqs-card {
+  section {
+    padding: 0;
+  }
+
+  .card-body {
+    padding: 0;
+    font-size: .9rem;
+  }
+
+  .muncher-accordion {
+    .fold-button {
+      span {
+        font-size: 1rem;
+        text-transform: none;
+        color: $primary-color;
+      }
+    }
+  }
+}
+

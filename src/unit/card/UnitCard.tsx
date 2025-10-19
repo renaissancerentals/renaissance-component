@@ -7,7 +7,7 @@ import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/Asse
 import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
 import {addressToGoogleMapLink, availabilityDate, renaissanceAddress} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
-import {SpecialOfferButton} from "../../specialOffer/SpecialOfferButton";
+import {SpecialOfferButton} from "../../special-offer/SpecialOfferButton";
 import {UnitCardData} from "../data/Unit";
 import {isUnitAvailable} from "../service/UnitService";
 import {FloorplanPrice} from "../../floorplan/card/FloorplanPrice";

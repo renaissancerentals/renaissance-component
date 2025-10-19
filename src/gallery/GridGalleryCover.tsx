@@ -1,7 +1,7 @@
 import React from "react";
 import {FloorplanAddress} from "../floorplan/service/FloorplanService";
 import {Badge} from "@contentmunch/muncher-ui";
-import {SpecialOfferBadge} from "../specialOffer/SpecialOfferBadge";
+import {SpecialOfferBadge} from "../special-offer/SpecialOfferBadge";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import './assets/GridGallery.scss';

@@ -18,7 +18,7 @@ Default.args = {
   applyClickHandler: () => {
     console.log("apply clicked");
   },
-  floorplanId: "dorset",
+  floorplanId: "merci-grand",
 };
 
 export const OneImage = Template.bind({});
