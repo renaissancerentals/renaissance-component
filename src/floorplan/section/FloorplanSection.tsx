@@ -42,7 +42,7 @@ import {Button, Li, Ul} from "@contentmunch/muncher-ui";
 import moment from "moment";
 import {LeaseType} from "../../property/data/Property";
 import {ShortTermFloorplanSection} from "../../short-term/ShortTermFloorplanSection";
-import {FloorplanFaqsCard} from "../card/FloorplanFaqsCard";
+import {FaqsCard} from "../../faq/FaqsCard";
 
 export const FloorplanSection: React.FC<FloorplanSectionProps> = (
     {
@@ -343,7 +343,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                                         {similarFloorplans.length > 0 ?
                                             <SimilarFloorplanCard similarFloorplans={similarFloorplans}/> : ""}
                                         {floorplanFaqs.length > 0 ?
-                                            <FloorplanFaqsCard floorplanFaqs={floorplanFaqs}/> : ""}
+                                            <FaqsCard faqs={floorplanFaqs} title="Frequently Asked Questions"/> : ""}
 
                                         <div className="contact-card">
                                             <Card featured={true}>

@@ -56,6 +56,13 @@ export {ShortTermPricingCard} from "./short-term/ShortTermPricingCard";
 export {HomePageSpecialSection} from "./home-page-special/HomePageSpecialSection";
 export {HomePageSpecialModal} from "./home-page-special/HomePageSpecialModal";
 export {HomePageSpecialCard} from "./home-page-special/HomePageSpecialCard";
+
+export {FaqsCard} from "./faq/FaqsCard";
+export {FaqsSection} from "./faq/FaqsSection";
+export type {Faq} from "./faq/data/Faq";
+export {ResidentFaqSection} from "./faq/ResidentFaqSection";
+export {PropertyFaqSection} from "./faq/PropertyFaqSection";
+
 export type {
     FloorplanDetails,
     FloorplanCardData,
@@ -66,6 +73,7 @@ export type {
 } from "./floorplan/data/Floorplan";
 export type {UnitDetails, Unit, UnitCardData} from "./unit/data/Unit";
 export type {FloorplanFilters, CurrentFloorplanFilters} from "./floorplan/data/FloorplanFilters";
+
 
 export type {SortField, SortBy, SortFields} from "./data/SortField";
 

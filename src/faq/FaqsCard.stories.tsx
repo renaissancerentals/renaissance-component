@@ -1,27 +1,22 @@
 import React from "react";
 import type {Meta, StoryFn} from '@storybook/react';
-import {FloorplanFaqsCard} from "./FloorplanFaqsCard";
+import {FaqsCard} from "./FaqsCard";
 
 const meta = {
-    title: "Card/Floorplan Faqs Card",
-    component: FloorplanFaqsCard,
+    title: "Card/Faqs Card",
+    component: FaqsCard,
     parameters: {
         layout: 'fullscreen',
     },
-} satisfies Meta<typeof FloorplanFaqsCard>;
+} satisfies Meta<typeof FaqsCard>;
 export default meta;
 type Story = StoryFn<typeof meta>;
 export const Default: Story = (args) => {
 
     return (
-        <FloorplanFaqsCard floorplanFaqs={[
+        <FaqsCard faqs={[
             {
                 id: "67",
-                floorplan: {
-                    name: "Merci Grand",
-                    id: "merci-grand",
-                    active: true
-                },
                 lastModifiedBy: "asikpradhan",
                 lastModifiedDate: "2025-10-12T22:53:02.603246",
                 question: "Lorem Ipsum",
@@ -29,17 +24,12 @@ export const Default: Story = (args) => {
                 "sortOrder": 67.0,
             }, {
                 id: "68",
-                floorplan: {
-                    name: "Merci Grand",
-                    id: "merci-grand",
-                    active: true
-                },
                 lastModifiedBy: "asikpradhan",
                 lastModifiedDate: "2025-10-12T22:53:02.603246",
                 question: "In et aliquet lorem.",
                 answer: "Pellentesque maximus nec metus ac pretium. Sed facilisis tempor lacinia. Integer maximus maximus semper. Integer accumsan dolor at diam faucibus sollicitudin. Nunc faucibus leo justo, eget tristique orci auctor ut. Phasellus fermentum, magna sed fringilla aliquam, sem massa faucibus urna, id rutrum nunc ligula quis neque. Fusce at mauris feugiat, accumsan tortor a, mattis eros. Sed ac urna purus. Cras pulvinar mauris nulla, ut sollicitudin odio tristique sed. Vivamus pretium euismod massa quis vehicula. Praesent vel augue sed mi dictum volutpat sit amet ac est. Nam arcu erat, posuere id diam in, posuere ullamcorper felis. Donec cursus odio a lacus ultricies, ac bibendum massa cursus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris posuere rhoncus libero sit amet rhoncus.",
                 sortOrder: 68.0,
             }
-        ]}/>
+        ]} title="Frequently Asked Questions"/>
     );
 }

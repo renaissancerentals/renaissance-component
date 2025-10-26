@@ -1,0 +1,15 @@
+@import 'src/assets/variables';
+
+.faqs-section {
+
+  .muncher-accordion {
+    .fold-button {
+      span {
+        font-size: 1rem;
+        text-transform: none;
+        color: $primary-color;
+      }
+    }
+  }
+}
+

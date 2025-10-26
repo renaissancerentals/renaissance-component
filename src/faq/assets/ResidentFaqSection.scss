@@ -1,0 +1,16 @@
+@import 'src/assets/variables';
+
+.resident-faq-section {
+  .faq-cards{
+    @media (min-width: $medium-size) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      .faqs-div {
+        width: 50%;
+      }
+    }
+  }
+
+}
+
