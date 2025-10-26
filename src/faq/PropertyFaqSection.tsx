@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Faq} from "./data/Faq";
 import {getPropertyFaqs} from "../property/service/PropertyService";
-import {PropertyId} from "../property/data/Property";
 import {FaqsSection} from "./FaqsSection";
 import "./assets/PropertyFaqSection.scss"
 
@@ -24,5 +23,5 @@ export const PropertyFaqSection: React.FC<PropertyFaqSectionProps> = ({propertyI
 }
 
 export interface PropertyFaqSectionProps {
-    propertyId: PropertyId;
+    propertyId: string;
 }
