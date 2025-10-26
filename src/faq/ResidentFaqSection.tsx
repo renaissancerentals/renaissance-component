@@ -11,8 +11,8 @@ export const ResidentFaqSection: React.FC = () => {
     useEffect(() => {
         Promise.all([getResidentFaqs(), getMaintenanceFaqs()])
             .then(data => {
-                setResidentFaqs(data[0]);
-                setMaintenanceFaqs(data[1]);
+                setResidentFaqs(data[0].sort((a, b) => a.sortOrder - b.sortOrder));
+                setMaintenanceFaqs(data[1].sort((a, b) => a.sortOrder - b.sortOrder));
             });
     }, []);
     return (

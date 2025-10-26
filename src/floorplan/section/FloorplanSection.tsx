@@ -107,7 +107,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                             }
                         });
                         setWebSpecials(validWebSpecials);
-                        setFloorplanFaqs(data[4]);
+                        setFloorplanFaqs(data[4].sort((a, b) => a.sortOrder - b.sortOrder));
                     })
                     .catch(() => {
                         setErrorLoading(true);

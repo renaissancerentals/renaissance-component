@@ -11,7 +11,7 @@ export const PropertyFaqSection: React.FC<PropertyFaqSectionProps> = ({propertyI
     useEffect(() => {
         getPropertyFaqs(propertyId)
             .then(data => {
-                setPropertyFaqs(data);
+                setPropertyFaqs(data.sort((a, b) => a.sortOrder - b.sortOrder));
             });
     }, []);
     return (
