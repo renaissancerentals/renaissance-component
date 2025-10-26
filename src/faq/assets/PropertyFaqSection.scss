@@ -1,13 +1,28 @@
 @import 'src/assets/variables';
 
 .property-faq-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+
+  h4{
+    width: 30%;
+  }
+.faqs-section {
+  width: 50%;
+}
+.fold-button  {
+    text-align: left;
+  }
   section {
     padding: 0;
   }
+
   p {
     padding: 0;
     font-size: .9rem;
   }
+
 
 }
 

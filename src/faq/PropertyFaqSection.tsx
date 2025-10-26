@@ -14,11 +14,11 @@ export const PropertyFaqSection: React.FC<PropertyFaqSectionProps> = ({propertyI
             });
     }, []);
     return (
-        <section className="property-faq-section">
-            <div className="container">
+        propertyFaqs.length > 0 ?
+            <section className="property-faq-section">
+                <h4>Frequently Asked Questions</h4>
                 <FaqsSection faqs={propertyFaqs}/>
-            </div>
-        </section>
+            </section> : <></>
     );
 }
 
