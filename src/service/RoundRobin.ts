@@ -1,8 +1,8 @@
 import axios, {AxiosResponse} from "axios";
 
 export const REACT_APP_DATA_BASE_URLS: string[] = process.env.REACT_APP_DATA_BASE_URLS ? process.env.REACT_APP_DATA_BASE_URLS.split(",") : [
-    "https://scholars-rooftop.herokuapp.com/",
-    "https://renaissancerentals.herokuapp.com/",
+    "https://www.scholarsrooftop.com/",
+    "https://www.renaissancerentals.com/",
 ]
 let currentIndex = 0;
 const getBaseUrl = (): string => {
