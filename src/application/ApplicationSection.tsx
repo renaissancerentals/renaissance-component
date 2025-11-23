@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Button, Input, Select, Spinner, Textarea} from "@contentmunch/muncher-ui";
 import "./assets/ApplicationSection.scss";
-import {Captcha} from "../input/Captcha";
 import {sendRentalApplicationRequest} from "./service/ApplicationService";
 import {RentalApplication} from "./data/RentalApplication";
 import {PropertiesEmail} from "../property/data/Property";
@@ -22,7 +21,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
     } as RentalApplication);
 
     const isFormValid = (): boolean => {
-        return rentalApplication.captchaResponse != null && rentalApplication.property != null
+        return rentalApplication.property != null
             && rentalApplication.email != null && rentalApplication.name != null
     }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -77,6 +76,16 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                }
                                required/>
                     </div>
+                    <div className="hp-form-item">
+                        <label htmlFor="preferredName">Preferred Name</label>
+                        <input
+                            type="text"
+                            id="preferredName"
+                            name="preferredName"
+                            autoComplete="off"
+                            tabIndex={-1}
+                        />
+                    </div>
                     <div className="form-element">
                         <Input label="Email" name="email" icon="mail" type="email"
                                onChange={e => {
@@ -126,11 +135,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                             }}
                         />
                     </div>
-                    <Captcha setCaptchaResponse={token => {
-                        setRentalApplication({...rentalApplication, captchaResponse: token})
-                    }} error={
-                        submissionState === "formInvalid" && isEmpty(rentalApplication.captchaResponse) ?
-                            "Please check the captcha" : ""}/>
+
                     <div className="form-element">
                         {submissionState === "complete" ?
                             <p className="text-success message">Rental Application Request Complete!</p> : ""}

@@ -43,7 +43,7 @@ const Contact: React.FC<ContactSectionProps> = ({
         setHasContactError(false);
         if (form.checkValidity()) {
             const currentMessage: ContactMessage = {
-                to, subject, captchaResponse: token,
+                to, subject,
                 name: form.fullName.value,
                 phone: form.phone.value,
                 email: form.email.value,
@@ -167,6 +167,16 @@ const Contact: React.FC<ContactSectionProps> = ({
                                 <div className="item-right">
                                     <Input name="fullName" icon="user" required/>
                                 </div>
+                            </div>
+                            <div className="hp-form-item">
+                                <label htmlFor="preferredName">Preferred Name</label>
+                                <input
+                                    type="text"
+                                    id="preferredName"
+                                    name="preferredName"
+                                    autoComplete="off"
+                                    tabIndex={-1}
+                                />
                             </div>
                             <div className="form-item">
                                 <div className="item-left">

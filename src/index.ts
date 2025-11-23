@@ -93,6 +93,7 @@ export type {
     PropertiesEmail,
 } from "./property/data/Property";
 
+
 export type  {
     ShortTerm, FloorplanShortTerm, ShortTermStyle
 } from "./short-term/data/ShortTerm"

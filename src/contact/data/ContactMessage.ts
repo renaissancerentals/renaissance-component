@@ -1,9 +1,9 @@
 import {MAX_RENT, MIN_RENT} from "../../floorplan/data/Floorplan";
+import {CaptchaEnabledRequest} from "../../captcha/data/CaptchaEnabledRequest";
 
-export interface ContactMessage {
+export interface ContactMessage extends CaptchaEnabledRequest {
     to?: string;
     subject?: string;
-    captchaResponse: string;
     name: string;
     phone: number;
     email: string;
@@ -28,7 +28,6 @@ export interface AdditionalInfo {
 }
 
 export const defaultContactMessage: ContactMessage = {
-    captchaResponse: "",
     name: "",
     phone: 0,
     email: "",

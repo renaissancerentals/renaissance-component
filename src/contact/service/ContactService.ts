@@ -5,7 +5,7 @@ import {ContactPropertyIds} from "../ContactSection";
 import AdminApi from "../../service/AdminApi";
 
 export const sendContactMail = (message: ContactMessage) => {
-    return Api.post("mail/v3/contact", message).then(response => response.data);
+    return Api.post("mail/contact", message).then(response => response.data);
 };
 export const sendToConversionTracking = (trackingId: string) => {
     install('UA-142676339-1');
