@@ -4,7 +4,6 @@ import "./assets/SubletMessageModal.scss";
 import {Sublet} from "./data/Sublet";
 import {SubletMessage} from "./data/SubletMessage";
 import {sendMessage} from "./services/SubletService";
-import {Captcha} from "../input/Captcha";
 
 export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, showModal, modalCloseHandler}) => {
     const [submitted, setSubmitted] = useState(false);
@@ -12,14 +11,13 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
     const [submissionError, setSubmissionError] = useState(false);
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState("Message Failed!");
     const [submissionComplete, setSubmissionComplete] = useState(false);
-    const [captchaResponse, setCaptchaResponse] = useState("");
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
             const form = event.currentTarget;
             event.preventDefault();
             event.stopPropagation();
 
-            if (form.checkValidity() && captchaResponse !== "") {
+            if (form.checkValidity()) {
                 setSubmitted(true);
 
                 setIsSubmitting(true);
@@ -28,7 +26,7 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
                     email: form.email.value,
                     message: form.message.value
                 };
-                sendMessage(sublet.id, subletMessage, captchaResponse).then(() => {
+                sendMessage(sublet.assetKey, subletMessage).then(() => {
                     setSubmissionComplete(true);
                 }).catch((e: any) => {
                     if (e.response && e.response.data) {
@@ -66,8 +64,6 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
                                     required={true}
                                 />
                             </div>
-
-                            <Captcha setCaptchaResponse={setCaptchaResponse}/>
 
                             <div className="form-element">
                                 {submissionComplete ?

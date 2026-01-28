@@ -1,5 +1,4 @@
 export interface Sublet {
-    id: string;
     assetKey: string;
     email: string;
     firstName: string;
@@ -19,12 +18,9 @@ export interface Sublet {
     title: string;
     description: string;
     createdDate: string;
-    active: boolean;
-    approved: boolean;
 }
 
 export const defaultSublet: Sublet = {
-    id: "",
     assetKey: "",
     email: "",
     firstName: "",
@@ -44,6 +40,4 @@ export const defaultSublet: Sublet = {
     title: "",
     description: "",
     createdDate: "",
-    active: true,
-    approved: false,
 }

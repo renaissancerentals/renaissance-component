@@ -5,12 +5,10 @@ import {defaultSublet, Sublet} from "./data/Sublet";
 import {deleteSublet, getSublet, postAsset, postSublet} from "./services/SubletService";
 import {SubletNotFound} from "./SubletNotFound";
 import {dateToMoment, isZipcodeValid} from "../utils/Utils";
-import {Captcha} from "../input/Captcha";
 
 export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
     const [sublet, setSublet] = useState<Sublet>(defaultSublet);
     const [isFound, setIsFound] = useState<boolean>(true);
-    const [captchaResponse, setCaptchaResponse] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState("");
     const [submissionMessage, setSubmissionMessage] = useState("");
@@ -19,7 +17,6 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
     const [filesError, setFilesError] = useState("");
     const [zipcodeError, setZipcodeError] = useState("");
     const [availableToError, setAvailableToError] = useState("");
-    const [captchaError, setCaptchaError] = useState("");
     const [showDeactivationModal, setShowDeactivationModal] = useState(false);
     const bedroomOptions = ["0", "1", "2", "3", "4"];
     const isNewSublet = useCallback(() => uniqueId === NEW_SUBLET, [uniqueId]);
@@ -73,17 +70,12 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
                 setSubmissionErrorMessage("Fix field error(s)");
                 return;
             }
-            if (captchaResponse === "") {
-                setCaptchaError("Provide captcha");
-                setSubmissionErrorMessage("Fix field error(s)");
-                return;
-            }
 
             if (hasFileValidationError()) {
                 return;
             }
             setIsSubmitting(true);
-            postSublet({...sublet, address: sublet.address + ", " + localCity}, captchaResponse)
+            postSublet({...sublet, address: sublet.address + ", " + localCity})
                 .then((value) => {
                     setSublet(value);
                     if (files.length > 1) {
@@ -112,7 +104,6 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
     const resetMessages = () => {
         setAvailableToError("");
         setZipcodeError("");
-        setCaptchaError("");
         setFilesError("");
         setSubmissionErrorMessage("");
     };
@@ -366,7 +357,6 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
                                         <div className="info"><Icon name="info">Upto 5 images. First image will be cover
                                             image.</Icon></div>
                                     </div>
-                                    <Captcha setCaptchaResponse={setCaptchaResponse} error={captchaError}/>
                                 </>
                                 : ""
 
