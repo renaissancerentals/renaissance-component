@@ -173,7 +173,7 @@ export {
 } from "./floorplan/service/FloorplanService";
 
 export {
-    propertyIdToDomain, propertyFragment, assetUrlFrom, getAssetUrl, getAssetsFrom, getAsset
+    propertyIdToDomain, propertyFragment, assetUrlFrom, getAssetUrl, getAssetsFrom
 } from "./asset/service/AssetService";
 
 export {

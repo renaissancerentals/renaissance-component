@@ -5,10 +5,10 @@ import {Asset} from "../data/Asset";
 const ASSET_DOWNLOAD_FRAGMENT = "api/asset/download/";
 
 export const propertyFragment = (propertyId?: string): string => propertyId ? propertyId + "/" : "";
-export const getAssetUrl = (imageUrl: string, assetGatewayId: string): string => {
+export const getAssetUrl = (imageUrl: string, assetGatewayId?: string): string => {
     if (isGoogleDriveImage(imageUrl)) {
 
-        return propertyIdToDomain(assetGatewayId) + ASSET_DOWNLOAD_FRAGMENT + extractIdFrom(imageUrl);
+        return propertyIdToDomain() + ASSET_DOWNLOAD_FRAGMENT + extractIdFrom(imageUrl);
     }
     return imageUrl;
 };
@@ -33,7 +33,7 @@ export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
 }
 
 
-export const propertyIdToDomain = (propertyId: string): string => {
+export const propertyIdToDomain = (propertyId?: string): string => {
     const assetDomains = [
         "https://www.veronaparkneighborhood.com/",
         "https://www.covenanterhill.com/",
@@ -46,10 +46,3 @@ export const propertyIdToDomain = (propertyId: string): string => {
 
     return random < 0 || random > assetDomains.length - 1 ? assetDomains[0] : assetDomains[random];
 }
-
-export const getAsset = (imageUrl: string) => {
-    if (isGoogleDriveImage(imageUrl)) {
-        return "/api/asset/download/" + extractIdFrom(imageUrl);
-    }
-    return imageUrl;
-};
