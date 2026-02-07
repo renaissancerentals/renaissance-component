@@ -2,7 +2,7 @@ import Api from "../../service/Api";
 import gtag, {install} from 'ga-gtag';
 import {ContactMessage} from "../data/ContactMessage";
 import {ContactPropertyIds} from "../ContactSection";
-import AdminApi from "../../service/AdminApi";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 export const sendContactMail = (message: ContactMessage) => {
     return Api.post("mail/contact", message).then(response => response.data);
@@ -19,19 +19,22 @@ export const sendToConversionTracking = (trackingId: string) => {
 };
 
 export const trackContactClicked = (propertyId: ContactPropertyIds) => {
-    AdminApi.post("admin/analytics/contact/clicked", {
-        "property": propertyId
+    RenaissanceApi.post("analytics/contact-events", {
+        "property": propertyId,
+        "type": "clicked"
     });
 }
 
 export const trackContactSubmitted = (propertyId: ContactPropertyIds) => {
-    AdminApi.post("admin/analytics/contact/submitted", {
-        "property": propertyId
+    RenaissanceApi.post("analytics/contact-events", {
+        "property": propertyId,
+        "type": "submitted"
     });
 }
 
 export const trackContactInitiated = (propertyId: ContactPropertyIds) => {
-    AdminApi.post("admin/analytics/contact/initiated", {
-        "property": propertyId
+    RenaissanceApi.post("analytics/contact-events", {
+        "property": propertyId,
+        "type": "initiated"
     });
 }
