@@ -124,7 +124,7 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
     return (
         <section className="section-sublet">
             {isFound ?
-                <section className="section-contact">
+                <>
                     <div className="div-confirmation-modal">
                         <Modal show={showDeactivationModal} setShow={setShowDeactivationModal}>
                             <div className="div-alert">
@@ -179,6 +179,16 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
                                        required/>
                             </div>
 
+                            <div className="hp-form-item">
+                                <label htmlFor="preferredName">Preferred Name</label>
+                                <input
+                                    type="text"
+                                    id="preferredName"
+                                    name="preferredName"
+                                    autoComplete="off"
+                                    tabIndex={-1}
+                                />
+                            </div>
                             <div className="form-element">
                                 <Input label="Email" name="email" icon="mail" type="email"
                                        placeholder="Type your email"
@@ -391,7 +401,7 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
                         </form>
                     </div>
 
-                </section>
+                </>
                 :
                 <SubletNotFound/>
             }

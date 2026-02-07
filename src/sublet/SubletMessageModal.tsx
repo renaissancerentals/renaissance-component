@@ -53,6 +53,16 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
                             <div className="form-element form-element--long">
                                 <Input label="Name" name="fullName" icon="user" required/>
                             </div>
+                            <div className="hp-form-item">
+                                <label htmlFor="preferredName">Preferred Name</label>
+                                <input
+                                    type="text"
+                                    id="preferredName"
+                                    name="preferredName"
+                                    autoComplete="off"
+                                    tabIndex={-1}
+                                />
+                            </div>
                             <div className="form-element form-element--long">
                                 <Input label="Email" name="email" icon="mail" type="email" required/>
                             </div>
