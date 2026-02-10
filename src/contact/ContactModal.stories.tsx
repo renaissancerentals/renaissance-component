@@ -16,7 +16,6 @@ const Template: ComponentStory<typeof ContactModal> = (args) => {
       <ContactModal
         showContactModal={showContactModal}
         propertyId="scholars-quad"
-        subject="Test email from ui.renaissancerentals.com"
         contactModalCloseHandler={() => setShowContactModal(false)}
         contactNumber={"8123456789"}
       />

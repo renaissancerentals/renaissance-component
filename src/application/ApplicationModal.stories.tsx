@@ -13,10 +13,9 @@ const Template: ComponentStory<typeof ApplicationModal> = (args) => {
   return (
     <>
       <ApplicationModal
-        showApplicationModal={showApplicationModal}
-        applicationModalCloseHandler={() => setShowApplicationModal(false)}
-        contactClickHandler={() => console.log("contact clicked")}
-      />
+          showApplicationModal={showApplicationModal}
+          applicationModalCloseHandler={() => setShowApplicationModal(false)}
+          contactClickHandler={() => console.log("contact clicked")} propertyId="scholars-rooftop"      />
       <Button
         onClick={() => {
           setShowApplicationModal(true);

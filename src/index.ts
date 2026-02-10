@@ -14,7 +14,6 @@ export {GridGalleryMobile} from "./gallery/GridGalleryMobile";
 export {GridGallerySkeleton} from "./gallery/GridGallerySkeleton";
 export {Card} from "./card/Card";
 export {InfoHeader} from "./header/InfoHeader";
-export {Captcha} from "./input/Captcha";
 export {MapSection} from "./map/MapSection";
 export {TeamCard} from "./team/card/TeamCard";
 export {TeamCardSkeleton} from "./team/card/TeamCardSkeleton";

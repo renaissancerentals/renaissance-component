@@ -5,7 +5,7 @@ import {ContactSection, ContactSectionProps} from "./ContactSection";
 
 export const ContactModal: React.FC<ContactModalProps> = (
     {
-        showContactModal, contactModalCloseHandler, propertyId, to, subject,
+        showContactModal, contactModalCloseHandler, propertyId,
         variant, conversionTrackingId2, conversionTrackingId1, contactNumber,
     }) => {
 
@@ -15,7 +15,7 @@ export const ContactModal: React.FC<ContactModalProps> = (
                 <div className="close" onClick={contactModalCloseHandler}>
                     <Icon name="close" size="medium"/>
                 </div>
-                <ContactSection subject={subject} variant={variant} to={to}
+                <ContactSection variant={variant}
                                 conversionTrackingId1={conversionTrackingId1}
                                 conversionTrackingId2={conversionTrackingId2}
                                 contactNumber={contactNumber} propertyId={propertyId}

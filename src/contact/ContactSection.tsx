@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './assets/ContactSection.scss';
 import {formatPhoneNumber} from "../utils/Utils";
-import {GoogleReCaptchaProvider, useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
 import {PropertiesEmail, PropertyId} from "../property/data/Property";
 import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
@@ -17,14 +16,11 @@ import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
 
 const Contact: React.FC<ContactSectionProps> = ({
                                                     propertyId,
-                                                    subject,
-                                                    to,
                                                     contactNumber,
                                                     conversionTrackingId1,
                                                     conversionTrackingId2,
                                                 }) => {
-    const {executeRecaptcha} = useGoogleReCaptcha();
-    const [token, setToken] = useState('');
+
     const [isFirstStep, setIsFirstStep] = useState(true);
     const [lowerRent, setLowerRent] = useState(0);
     const [upperRent, setUpperRent] = useState(4000);
@@ -43,7 +39,6 @@ const Contact: React.FC<ContactSectionProps> = ({
         setHasContactError(false);
         if (form.checkValidity()) {
             const currentMessage: ContactMessage = {
-                to, subject,
                 name: form.fullName.value,
                 phone: form.phone.value,
                 email: form.email.value,
@@ -52,7 +47,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                 textPreferred: form.textPreferred.checked,
                 question: form.question.value,
                 currentPage: window.location.href,
-                communities: Object.keys(PropertiesEmail).filter(value => form[value] && form[value].checked).join(", ")
+                property: propertyId,
             };
 
             if (!currentMessage.emailPreferred && !currentMessage.phonePreferred && !currentMessage.textPreferred) {
@@ -81,6 +76,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                     pets: form.pets ? form.pets.value : null,
                     floorPlan: form.floorPlan ? form.floorPlan.value : null,
                     hearAboutUs: form.hearAboutUs ? form.hearAboutUs.value : null,
+                    communities: Object.keys(PropertiesEmail).filter(value => form[value] && form[value].checked).join(", "),
                     lowerRent, upperRent
                 }
             });
@@ -108,15 +104,6 @@ const Contact: React.FC<ContactSectionProps> = ({
                 });
         }
     }
-    useEffect(() => {
-        if (!executeRecaptcha) {
-            return;
-        }
-        executeRecaptcha().then(result => {
-            setToken(result);
-        });
-
-    }, [executeRecaptcha]);
     return (
         <section className="section-contact">
 
@@ -315,27 +302,21 @@ const Contact: React.FC<ContactSectionProps> = ({
 export const ContactSection: React.FC<ContactSectionProps> = (
     {
         propertyId,
-        subject,
-        to,
         contactNumber,
         conversionTrackingId1, conversionTrackingId2
     }) => {
 
     return (
-        <GoogleReCaptchaProvider
-            reCaptchaKey="6LfHwKIpAAAAAFdFDbvQiBrBn6DJv9q-cIN9GO7S">
-            <Contact contactNumber={contactNumber} to={to} conversionTrackingId1={conversionTrackingId1}
-                     conversionTrackingId2={conversionTrackingId2} subject={subject} propertyId={propertyId}/>
-        </GoogleReCaptchaProvider>
+        <Contact contactNumber={contactNumber} conversionTrackingId1={conversionTrackingId1}
+                 conversionTrackingId2={conversionTrackingId2} propertyId={propertyId}/>
+
 
     );
 };
 
 
 export interface ContactSectionProps {
-    propertyId: ContactPropertyIds
-    subject?: string;
-    to?: string;
+    propertyId: ContactPropertyIds;
     variant?: "long";
     contactNumber?: string;
     conversionTrackingId1?: string

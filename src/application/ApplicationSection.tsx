@@ -2,23 +2,24 @@ import React, {useState} from "react";
 import {Button, Input, Select, Spinner, Textarea} from "@contentmunch/muncher-ui";
 import "./assets/ApplicationSection.scss";
 import {sendRentalApplicationRequest} from "./service/ApplicationService";
-import {RentalApplication} from "./data/RentalApplication";
+import {defaultRentalApplication, RentalApplication} from "./data/RentalApplication";
 import {PropertiesEmail} from "../property/data/Property";
 import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
+import {ContactPropertyIds} from "../contact/ContactSection";
 
 export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                                                           contactClickHandler,
-                                                                          propertyName,
-                                                                          propertyEmail
+                                                                          propertyId,
+                                                                          community
                                                                       }) => {
 
 
     const [submissionState, setSubmissionState] = useState<SubmissionState>("init");
     const [errorMessage, setErrorMessage] = useState("");
-    const [rentalApplication, setRentalApplication] = useState<RentalApplication>({
-        subject: "Rental Application Request",
-        property: propertyName ? propertyName : "",
-    } as RentalApplication);
+    const [rentalApplication, setRentalApplication] = useState<RentalApplication>(community ? {
+        ...defaultRentalApplication,
+        community: community
+    } : defaultRentalApplication);
 
     const isFormValid = (): boolean => {
         return rentalApplication.property != null
@@ -30,7 +31,11 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
         setSubmissionState("start");
         if (isFormValid()) {
             setSubmissionState("submitting");
-            sendRentalApplicationRequest({...rentalApplication, currentPage: window.location.href})
+            sendRentalApplicationRequest({
+                ...rentalApplication,
+                property: propertyId,
+                currentPage: window.location.href
+            })
                 .then((response) => {
                     setSubmissionState("complete");
                 }).catch((e) => {
@@ -105,12 +110,12 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                }}
                         />
                     </div>
-                    {propertyEmail ? "" :
+                    {community ? "" :
                         <div className="form-element">
                             <Select name="neighborhood" options={Object.keys(PropertiesEmail)}
                                     label="Community where you would like to apply"
                                     onChange={e => {
-                                        setRentalApplication({...rentalApplication, property: e.target.value})
+                                        setRentalApplication({...rentalApplication, community: e.target.value})
                                     }}
                                     error={
                                         submissionState === "formInvalid" && isEmpty(rentalApplication.property) ?
@@ -156,8 +161,8 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
 }
 
 export interface ApplicationSectionProps {
-    propertyName?: string;
-    propertyEmail?: string;
+    propertyId: ContactPropertyIds;
+    community?: string;
     contactClickHandler: () => void;
 }
 

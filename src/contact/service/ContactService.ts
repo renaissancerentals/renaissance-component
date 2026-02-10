@@ -5,7 +5,7 @@ import {ContactPropertyIds} from "../ContactSection";
 import RenaissanceApi from "../../service/RenaissanceApi";
 
 export const sendContactMail = (message: ContactMessage) => {
-    return Api.post("mail/contact", message).then(response => response.data);
+    return RenaissanceApi.post("contact", message).then(response => response.data);
 };
 export const sendToConversionTracking = (trackingId: string) => {
     install('UA-142676339-1');
