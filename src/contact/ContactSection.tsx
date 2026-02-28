@@ -198,12 +198,11 @@ const Contact: React.FC<ContactSectionProps> = ({
                             </div>
                             <div className="form-item">
                                 <div className="item-left">
-                                    <label htmlFor="question">Question*</label>
+                                    <label htmlFor="question">Question</label>
                                 </div>
                                 <div className="item-right">
                                     <Textarea
                                         name="question"
-                                        required={true}
                                     />
                                 </div>
                             </div>

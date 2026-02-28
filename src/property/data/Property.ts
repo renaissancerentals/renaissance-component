@@ -93,6 +93,7 @@ export interface LeasingOffice {
 
 export type PropertyId =
 
+    "arch-haven" |
     "cov-affordable" |
     "covenanter-hill" |
     "high-grove" |
@@ -105,9 +106,9 @@ export type PropertyId =
     "summer-house-short-term" |
     "verona-park";
 
-export type AllPropertyId = PropertyId | 'renaissance-rentals';
 
 export const PropertiesEmail: any = {
+    "Arch Haven": "inquiries@renaissancerentals.com",
     "Covenanter Hill": "covenanterhill@renaissancerentals.com",
     "HighGrove": "meadowcreek@renaissancerentals.com",
     "Huntington Gardens": "covenanterhill@renaissancerentals.com",
