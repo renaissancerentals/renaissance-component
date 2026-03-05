@@ -1,4 +1,4 @@
-import {PropertyDetails, PropertyFaq, PropertyId} from "../data/Property";
+import {PropertyDetails, PropertyFaq, PropertyFilterData, PropertyId} from "../data/Property";
 import renaissanceApi from "../../service/RenaissanceApi";
 
 export const getProperty = async (propertyId: PropertyId): Promise<PropertyDetails> => {
@@ -35,5 +35,9 @@ export const getPropertyFaqs = async (propertyId: string): Promise<PropertyFaq[]
     let response = await renaissanceApi.get("properties/" + propertyId + "/faqs");
     return response.data;
 };
+export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
+    let response = await renaissanceApi.get("properties?projection=filter");
 
-
+    return response.data
+        .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));
+}

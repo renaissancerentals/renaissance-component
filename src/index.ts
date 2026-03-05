@@ -104,7 +104,9 @@ export type {
     PropertyTeamMember
 } from "./team/data/TeamMember";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
-export {getProperty, generatePropertyVideoUrl} from "./property/service/PropertyService";
+export {
+    getProperty, getAllPropertyFilterData, getPropertyFaqs, generatePropertyVideoUrl
+} from "./property/service/PropertyService";
 export {
     toUnits,
     unitsFromFloorplans,
