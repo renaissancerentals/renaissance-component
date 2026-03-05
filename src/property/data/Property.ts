@@ -7,6 +7,16 @@ export interface PropertyName {
     active: boolean;
 }
 
+export interface PropertySpotlight extends Address {
+    id: string;
+    name: string;
+}
+
+export interface Address {
+    address: string;
+    zipcode: string;
+}
+
 export interface Property {
     name: string;
     id: string;
@@ -45,6 +55,18 @@ export interface PropertyBusRoute {
 
 }
 
+export interface PropertySummary {
+    name: string;
+    id: string;
+    active: boolean;
+    email: string;
+    phone: string;
+    address: string;
+    zipcode: string;
+    busRoutes: PropertyBusRoute[];
+    leaseType: LeaseType;
+}
+
 export interface PropertyDetails extends Property {
     floorplans: FloorplanDetails[];
 }
@@ -52,8 +74,6 @@ export interface PropertyDetails extends Property {
 export interface PropertyFilterData {
     id: string
     name: string;
-    active: boolean;
-    leaseType: LeaseType;
     floorplans: FloorplanCardData[];
 }
 
@@ -67,7 +87,6 @@ export enum LeaseType {
 
 
 export interface PropertyAmenityName {
-    id: string;
     name: string;
     type: PropertyAmenityType;
     featured: boolean;
@@ -107,18 +126,18 @@ export type PropertyId =
     "verona-park";
 
 
-export const PropertiesEmail: any = {
-    "Arch Haven": "inquiries@renaissancerentals.com",
-    "Covenanter Hill": "covenanterhill@renaissancerentals.com",
-    "HighGrove": "meadowcreek@renaissancerentals.com",
-    "Huntington Gardens": "covenanterhill@renaissancerentals.com",
-    "Scholar's Quad": "quad@renaissancerentals.com",
-    "Scholar's Rock": "scholars@renaissancerentals.com",
-    "Scholar's Rooftop": "scholars@renaissancerentals.com",
-    "SummerHouse at Indiana": "summerhouse@renaissancerentals.com",
-    "Townhomes At MeadowCreek": "meadowcreek@renaissancerentals.com",
-    "Verona Park": "veronapark@renaissancerentals.com",
-    "Other": "inquiries@renaissancerentals.com"
+export const PropertyNameIds: any = {
+    "Arch Haven": "arch-haven",
+    "Covenanter Hill": "covenanter-hill",
+    "HighGrove": "high-grove",
+    "Huntington Gardens": "huntington-gardens",
+    "Scholar's Quad": "scholars-quad",
+    "Scholar's Rock": "scholars-rock",
+    "Scholar's Rooftop": "scholars-rooftop",
+    "SummerHouse at Indiana": "summer-house",
+    "Townhomes At MeadowCreek": "meadow-creek",
+    "Verona Park": "verona-park",
+    "Other": "other"
 };
 
 export type PropertyType =

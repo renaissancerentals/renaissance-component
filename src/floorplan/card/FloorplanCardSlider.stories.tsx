@@ -14,11 +14,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         {
             name: "Valencia",
             id: "valencia",
-            active: true,
             units: [
                 {
                     id: "1100-13",
-                    active: true,
                     squareFoot: 710,
                     rent: 1229.0,
                     deposit: 600.0,
@@ -31,7 +29,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-7",
-                    active: true,
                     squareFoot: 710,
                     rent: 1199.0,
                     deposit: 600.0,
@@ -68,11 +65,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         {
             name: "Madrid",
             id: "madrid",
-            active: true,
             units: [
                 {
                     id: "1100-11",
-                    active: true,
                     squareFoot: 620,
                     rent: 1174.0,
                     deposit: 600.0,
@@ -85,7 +80,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-3",
-                    active: true,
                     squareFoot: 620,
                     rent: 1145.0,
                     deposit: 600.0,
@@ -98,7 +92,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-4",
-                    active: true,
                     squareFoot: 620,
                     rent: 1145.0,
                     deposit: 600.0,
@@ -111,7 +104,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-9",
-                    active: true,
                     squareFoot: 620,
                     rent: 1174.0,
                     deposit: 600.0,
@@ -124,7 +116,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-5",
-                    active: true,
                     squareFoot: 620,
                     rent: 1145.0,
                     deposit: 600.0,
@@ -137,7 +128,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-6",
-                    active: true,
                     squareFoot: 620,
                     rent: 1145.0,
                     deposit: 600.0,
@@ -150,7 +140,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-10",
-                    active: true,
                     squareFoot: 620,
                     rent: 1174.0,
                     deposit: 600.0,
@@ -163,7 +152,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-12",
-                    active: true,
                     squareFoot: 620,
                     rent: 1174.0,
                     deposit: 600.0,
@@ -200,11 +188,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         {
             name: "Palermo",
             id: "palermo",
-            active: true,
             units: [
                 {
                     id: "1100-1",
-                    active: true,
                     squareFoot: 710,
                     rent: 1155.0,
                     deposit: 600.0,
@@ -241,25 +227,9 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
         {
             name: "Barcelona",
             id: "barcelona",
-            active: true,
             units: [
                 {
-                    id: "asiktest",
-                    active: false,
-                    squareFoot: 1000,
-                    rent: 1000.0,
-                    deposit: 0.0,
-                    discountedRent: null,
-                    garages: 0,
-                    allowedPet: Pet.LARGE_DOG_SMALL_DOG_CAT,
-                    moveInDate: null,
-                    availabilityExtensionMonths: null,
-                    furnished: false,
-
-                },
-                {
                     id: "1100-8",
-                    active: true,
                     squareFoot: 710,
                     rent: 1195.0,
                     deposit: 600.0,
@@ -272,7 +242,6 @@ const Template: ComponentStory<typeof FloorplanCardSlider> = (args) => {
                 },
                 {
                     id: "1100-2",
-                    active: true,
                     squareFoot: 710,
                     rent: 1165.0,
                     deposit: 600.0,

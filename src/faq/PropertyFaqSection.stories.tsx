@@ -15,6 +15,6 @@ type Story = StoryFn<typeof meta>;
 export const Default: Story = (args) => {
 
     return (
-        <PropertyFaqSection propertyId="summer-house"/>
+        <PropertyFaqSection propertyId="covenanter-hill"/>
     );
 }

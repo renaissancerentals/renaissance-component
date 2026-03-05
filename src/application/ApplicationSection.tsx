@@ -3,7 +3,7 @@ import {Button, Input, Select, Spinner, Textarea} from "@contentmunch/muncher-ui
 import "./assets/ApplicationSection.scss";
 import {sendRentalApplicationRequest} from "./service/ApplicationService";
 import {defaultRentalApplication, RentalApplication} from "./data/RentalApplication";
-import {PropertiesEmail} from "../property/data/Property";
+import {PropertyNameIds} from "../property/data/Property";
 import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
 import {ContactPropertyIds} from "../contact/ContactSection";
 
@@ -25,6 +25,18 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
         return rentalApplication.property != null
             && rentalApplication.email != null && rentalApplication.name != null
     }
+    const resolvePropertyId = (): string => {
+        const isUmbrellaSiteId = () =>
+            propertyId === "renaissance-rentals" ||
+            propertyId === "apartments-in-bloomington" ||
+            propertyId === "bloomington-apartments"
+        if (!isUmbrellaSiteId()) {
+            return propertyId;
+        }
+
+        return PropertyNameIds[rentalApplication.community] || propertyId;
+
+    }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         event.stopPropagation();
@@ -33,7 +45,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
             setSubmissionState("submitting");
             sendRentalApplicationRequest({
                 ...rentalApplication,
-                property: propertyId,
+                property: resolvePropertyId(),
                 currentPage: window.location.href
             })
                 .then((response) => {
@@ -112,7 +124,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                     </div>
                     {community ? "" :
                         <div className="form-element">
-                            <Select name="neighborhood" options={Object.keys(PropertiesEmail)}
+                            <Select name="neighborhood" options={Object.keys(PropertyNameIds)}
                                     label="Community where you would like to apply"
                                     onChange={e => {
                                         setRentalApplication({...rentalApplication, community: e.target.value})

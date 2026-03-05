@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './assets/ContactSection.scss';
 import {formatPhoneNumber} from "../utils/Utils";
 import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
-import {PropertiesEmail, PropertyId} from "../property/data/Property";
+import {PropertyId, PropertyNameIds} from "../property/data/Property";
 import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
 import {ContactMessage, defaultContactMessage} from "./data/ContactMessage";
 import {
@@ -61,22 +61,38 @@ const Contact: React.FC<ContactSectionProps> = ({
             }
         }
     }
+
+
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 
+        const resolvePropertyId = (checkedCommunities: string[]): string => {
+            const isUmbrellaSiteId = () =>
+                propertyId === "renaissance-rentals" ||
+                propertyId === "apartments-in-bloomington" ||
+                propertyId === "bloomington-apartments"
+            if (!isUmbrellaSiteId() || !checkedCommunities || checkedCommunities.length === 0) {
+                return propertyId;
+            }
+
+            return PropertyNameIds[checkedCommunities[0]] || propertyId;
+
+        }
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
 
+        const checkedCommunities = Object.keys(PropertyNameIds).filter(value => form[value] && form[value].checked);
+
         if (form.checkValidity()) {
             const contactMessageToSubmit: ContactMessage = ({
-                ...contactMessage, additionalInfo: {
+                ...contactMessage, property: resolvePropertyId(checkedCommunities), additionalInfo: {
                     bedrooms: form.bedrooms ? form.bedrooms.value : null,
                     moveInDate: form.moveInDate ? form.moveInDate.value : null,
                     amenities: form.amenities ? form.amenities.value : null,
                     pets: form.pets ? form.pets.value : null,
                     floorPlan: form.floorPlan ? form.floorPlan.value : null,
                     hearAboutUs: form.hearAboutUs ? form.hearAboutUs.value : null,
-                    communities: Object.keys(PropertiesEmail).filter(value => form[value] && form[value].checked).join(", "),
+                    communities: checkedCommunities.join(", "),
                     lowerRent, upperRent
                 }
             });
@@ -270,7 +286,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                             <div className="checkboxes--div">
                                 <p>Which community are you interested in? (<i>check all that apply</i>)</p>
                                 <div className="checkboxes">
-                                    {Object.keys(PropertiesEmail).map(value =>
+                                    {Object.keys(PropertyNameIds).map(value =>
                                         <Checkbox label={value} name={value} key={value}/>
                                     )}
                                 </div>
@@ -322,8 +338,10 @@ export interface ContactSectionProps {
     conversionTrackingId2?: string
 }
 
-export type ContactPropertyIds =
-    PropertyId
+export type UmbrellaSiteId =
     | "renaissance-rentals"
     | "apartments-in-bloomington"
     | "bloomington-apartments";
+export type ContactPropertyIds =
+    | PropertyId | UmbrellaSiteId
+

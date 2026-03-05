@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {
-    Floorplan,
+    Floorplan, FloorplanDetails,
     FloorplanFaq,
     FloorplanVariation,
     SimilarFloorplan,
@@ -10,7 +10,7 @@ import {
     WebSpecial
 } from "../data/Floorplan";
 import {
-    floorplanAddress,
+    addressFromFloorplan,
     getFloorplan,
     getFloorplanFaqs,
     getFloorplanVariations,
@@ -366,7 +366,7 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
                                         </div>
                                         <MapSection
-                                            src={floorplanAddressToGoogleMap(floorplanAddress(floorplan))}/>
+                                            src={floorplanAddressToGoogleMap(addressFromFloorplan(floorplan))}/>
                                     </Card>
                                 </div>
                             </>

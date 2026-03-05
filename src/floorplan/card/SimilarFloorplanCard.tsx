@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from "react";
-import {Floorplan, SimilarFloorplan} from "../data/Floorplan";
+import {Floorplan, FloorplanSpotlight, SimilarFloorplan} from "../data/Floorplan";
 import {getAssetUrl} from "../../asset/service/AssetService";
 import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
 import {Card} from "../../card/Card";
 import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
 import {rangeFrom} from "../../utils/Utils";
 import "./assets/SimilarFloorplanCard.scss"
-import {floorplanAddress, getFloorplan} from "../service/FloorplanService";
+import {
+    addressFromFloorplan,
+    addressFromFloorplanSpotlight,
+    getFloorplan,
+    getFloorplanSpotlight
+} from "../service/FloorplanService";
 
 export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({similarFloorplans}) => {
-    const [floorplans, setFloorplans] = useState<Floorplan[]>([]);
+    const [floorplans, setFloorplans] = useState<FloorplanSpotlight[]>([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const promises: Promise<Floorplan>[] = [];
+        const promises: Promise<FloorplanSpotlight>[] = [];
         similarFloorplans.forEach(similarFloorplan => {
-            promises.push(getFloorplan(similarFloorplan.similarTo.id));
+            promises.push(getFloorplanSpotlight(similarFloorplan.similarTo.id));
         });
         Promise.all(promises).then(data => {
             setFloorplans(data);
@@ -24,15 +29,15 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
 
     }, [similarFloorplans]);
 
-    const imageUrl = (floorplan: Floorplan): string => {
+    const imageUrl = (floorplan: FloorplanSpotlight): string => {
         if (floorplan && floorplan.coverImage)
             return getAssetUrl(floorplan.coverImage, floorplan.property.id);
         else
             return DEFAULT_IMAGE_URL;
 
     };
-    const printFloorplanAddress = (floorplan: Floorplan) => {
-        const address = floorplanAddress(floorplan);
+    const printFloorplanAddress = (floorplan: FloorplanSpotlight) => {
+        const address = addressFromFloorplanSpotlight(floorplan);
         return address.address + ", " + address.city + " " + address.state + ", " + address.zipcode;
     }
     return (

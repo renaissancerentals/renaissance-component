@@ -1,9 +1,9 @@
-import {LeaseType, PropertyDetails, PropertyFaq, PropertyFilterData, PropertyId} from "../data/Property";
-import {get} from "../../service/RoundRobin";
+import {PropertyDetails, PropertyFaq, PropertyId} from "../data/Property";
+import renaissanceApi from "../../service/RenaissanceApi";
 
 export const getProperty = async (propertyId: PropertyId): Promise<PropertyDetails> => {
 
-    const response = await get("properties/" + propertyId + "?projection=details");
+    const response = await renaissanceApi.get("properties/" + propertyId + "?projection=details");
     return response.data;
 
 };
@@ -31,24 +31,9 @@ export const generatePropertyVideoUrl = (coverVideo: string): string | null => {
     return `https://www.googleapis.com/drive/v3/files/${videoId}?alt=media&key=AIzaSyAdG4u5YD2CZvQTv_hRtaKrmSNWZkY30oU`
 
 };
-export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
-    let response = await get("properties/filter");
-
-    const properties: PropertyFilterData[] = response.data
-        .filter((property: PropertyFilterData) => property.active)
-        .filter((property: PropertyFilterData) => property.leaseType === LeaseType.YEARLY)
-        .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));
-
-    properties.forEach(property => {
-        property.floorplans = property.floorplans.filter(floorplan => floorplan.active);
-        property.floorplans.forEach(floorplan => {
-            floorplan.units = floorplan.units.filter(unit => unit.active);
-        });
-    });
-
-    return properties;
-}
 export const getPropertyFaqs = async (propertyId: string): Promise<PropertyFaq[]> => {
-    let response = await get("propertyFaqs/search/byPropertyId?projection=withId&propertyId=" + propertyId);
-    return await response.data._embedded.propertyFaqs;
+    let response = await renaissanceApi.get("properties/" + propertyId + "/faqs");
+    return response.data;
 };
+
+

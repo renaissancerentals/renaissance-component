@@ -1,4 +1,5 @@
 import {FloorplanStyle} from "../../floorplan/data/Floorplan";
+import {Address} from "../../property/data/Property";
 
 export enum Pet {
     NO_PET = "NO_PET", CAT = "CAT", SMALL_DOG_CAT = "SMALL_DOG_CAT", LARGE_DOG_SMALL_DOG_CAT = "LARGE_DOG_SMALL_DOG_CAT"
@@ -15,9 +16,12 @@ export interface UnitDetails {
     moveInDate: string | null;
     availabilityExtensionMonths: number | null;
     furnished: boolean;
-    active: boolean;
 }
-
+export interface UnitSpotlight extends Address {
+    id: string;
+    squareFoot: number;
+    rent: number;
+}
 export interface Unit {
     id: string;
     squareFoot: number;

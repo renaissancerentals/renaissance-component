@@ -20,6 +20,8 @@ import {renaissance} from "../../data/RenaissanceData";
 import {Pet, Unit} from "../../unit/data/Unit";
 import {Month} from "../../data/Calendar";
 import {SortBy, SortFields} from "../../data/SortField";
+import renaissanceApi from "../../service/RenaissanceApi";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 export const AVAILABLE_NOW = "Available Now";
 const today = moment();
@@ -36,7 +38,6 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
     return {
         id: floorplanDetails.id,
         name: floorplanDetails.name,
-        active: floorplanDetails.active,
         bedroom: floorplanDetails.bedroom,
         bathroom: floorplanDetails.bathroom,
         coverImage: floorplanDetails.coverImage,
@@ -57,16 +58,8 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
     } as FloorplanCardData;
 }
 export const getFloorplansFilterData = async (propertyId: PropertyId): Promise<FloorplanCardData[]> => {
-    let response = await get("properties/" + propertyId + "/floorplans/filter");
-
-    const floorplans: FloorplanCardData[] = response.data
-        .filter((floorplan: FloorplanCardData) => floorplan.active);
-
-    floorplans.forEach(floorplan => {
-        floorplan.units = floorplan.units.filter(unit => unit.active);
-    });
-
-    return floorplans;
+    let response = await renaissanceApi.get("properties/" + propertyId + "/floorplans?projection=filter");
+    return response.data;
 };
 export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: CurrentFloorplanFilters): FloorplanCardData[] => {
     return sortFloorplans(floorplans.filter(floorplan => filterMatches(floorplan, currentFilters)), currentFilters.sortBy);
@@ -214,17 +207,18 @@ export const filtersFrom = (floorplans: FloorplanCardData[]): FloorplanFilters =
 
 export const getFeaturedFloorplans = async (): Promise<FloorplanSpotlight[]> => {
 
-    let response = await get("floorplans?projection=spotlight&size=200");
-    return await response.data._embedded.floorplans.filter((floorplan: FloorplanSpotlight) => floorplan.featured && floorplan.property.active);
+    let response = await RenaissanceApi.get("floorplans?filterBy=featured&projection=spotlight");
+    return await response.data;
 };
 
 export const getAllActiveFloorplans = async (): Promise<FloorplanDetails[]> => {
 
-    const response = await get("floorplans?projection=details&size=200");
-    return response.data._embedded.floorplans
-        .filter((floorplan: Floorplan) => floorplan.active)
-        .filter((floorplan_1: Floorplan) => floorplan_1.style !== "GARAGE");
+    const response = await RenaissanceApi.get("floorplans?projection=details");
+    return response.data;
 };
+
+export const getFloorplanSpotlight = (floorplanId: string): Promise<FloorplanSpotlight> =>
+    RenaissanceApi.get("floorplans/" + floorplanId + "?projection=spotlight").then(response => response.data);
 
 export const getFloorplan = (floorplanId: string): Promise<Floorplan> =>
     get("floorplans/" + floorplanId + "?projection=withId").then(response => response.data);
@@ -319,7 +313,12 @@ const unitWithMostAllowedPet = (units: Unit[]): Unit | undefined => {
     return units.sort((a, b) => petOrdinal(b.allowedPet) - petOrdinal(a.allowedPet)).pop();
 }
 
-export const floorplanAddress = (currentFloorplan: Floorplan): FloorplanAddress => {
+export const addressFromFloorplan = (currentFloorplan: Floorplan): FloorplanAddress => {
+    return addressFromFloorplanSpotlight(currentFloorplan as FloorplanSpotlight);
+
+}
+
+export const addressFromFloorplanSpotlight = (currentFloorplan: FloorplanSpotlight): FloorplanAddress => {
     const address: FloorplanAddress = {address: "", city: renaissance.city, state: renaissance.state, zipcode: ""};
     if (currentFloorplan.units.length === 1) {
         return {

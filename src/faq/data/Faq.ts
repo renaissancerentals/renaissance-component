@@ -3,6 +3,4 @@ export interface Faq {
     question: string;
     answer: string;
     sortOrder: number;
-    lastModifiedBy: string;
-    lastModifiedDate: string;
 }

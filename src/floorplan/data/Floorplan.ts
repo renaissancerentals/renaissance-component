@@ -1,5 +1,5 @@
-import {LeaseType, PropertyBusRoute} from "../../property/data/Property";
-import {Pet, Unit, UnitDetails} from "../../unit/data/Unit";
+import {PropertySpotlight, PropertySummary} from "../../property/data/Property";
+import {Pet, Unit, UnitDetails, UnitSpotlight} from "../../unit/data/Unit";
 
 export const MIN_RENT = 0;
 export const MAX_RENT = 4000;
@@ -64,14 +64,12 @@ export interface FloorplanDetails {
     photosFolderId: string;
     amenities: AmenityName[];
     units: UnitDetails[];
-    active: boolean;
     webSpecials: WebSpecialDetails[];
 }
 
 export interface FloorplanCardData {
     id: string;
     name: string;
-    active: boolean;
     bedroom: number;
     bathroom: number;
     coverImage: string;
@@ -93,22 +91,8 @@ export interface FloorplanUnitCardData {
     id: string;
     rent: number;
     squareFoot: number;
-    active: boolean;
     moveInDate: string;
     availabilityExtensionMonths: number | null;
-}
-
-export interface FloorplanAssets {
-    id: string;
-    videoTourLink: string;
-    threeSixtyVideoTourLink: string;
-    virtualTourLink: string;
-    photo: string | null,
-    coverImage: string | null,
-    floorPlanFolderId: string;
-    photosFolderId: string;
-    webSpecials: WebSpecialDetails[];
-    property: PropertyName;
 }
 
 export interface Floorplan {
@@ -143,7 +127,7 @@ export interface Floorplan {
     customCode: string;
     utilities: UtilityName[];
     amenities: AmenityName[];
-    property: PropertyName;
+    property: PropertySummary;
     units: Unit[];
     lastModifiedBy: string;
     lastModifiedDate: string;
@@ -158,31 +142,11 @@ export interface FloorplanSpotlight {
     bedroom: number;
     bathroom: number;
     style: FloorplanStyle;
-    featured: boolean;
     coverImage: string;
     units: UnitSpotlight[];
-    active: boolean;
-    property: PropertyName;
+    property: PropertySpotlight;
 }
 
-export interface UnitSpotlight {
-    id: string;
-    squareFoot: number;
-    rent: number;
-    active: boolean;
-}
-
-export interface PropertyName {
-    name: string;
-    id: string;
-    active: boolean;
-    email: string;
-    phone: string;
-    address: string;
-    zipcode: string;
-    busRoutes: PropertyBusRoute[];
-    leaseType: LeaseType;
-}
 
 export interface FloorplanName {
     name: string;

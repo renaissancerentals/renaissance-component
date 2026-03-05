@@ -1,4 +1,5 @@
-import {AmenityName, PropertyName} from "../../floorplan/data/Floorplan";
+import {AmenityName} from "../../floorplan/data/Floorplan";
+import {PropertySummary} from "../../property/data/Property";
 
 export enum ShortTermStyle {
     STUDIO = "STUDIO",
@@ -30,7 +31,7 @@ export interface FloorplanShortTerm {
     amenities: AmenityName[];
     active: boolean;
     shortTerm: ShortTerm;
-    property: PropertyName;
+    property: PropertySummary;
     description: string;
     address: string;
     zipcode: string;

@@ -3,6 +3,7 @@
 @import "~@contentmunch/muncher-ui/lib/assets/App";
 @import "~react-loading-skeleton/dist/skeleton.css";
 @import "variables";
+
 html {
   font-size: 100%;
   font-family: $main-font;
@@ -86,11 +87,9 @@ i {
 .information {
   padding: 0 .5rem;
 }
+
 .reference {
   margin-top: -5rem;
   height: 5rem;
 
-}
-.grecaptcha-badge {
-  visibility: hidden !important;
 }

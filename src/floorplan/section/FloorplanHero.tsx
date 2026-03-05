@@ -5,9 +5,9 @@ import {Asset} from "../../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {extractIdFrom} from "../../utils/Utils";
-import {Floorplan, WebSpecial} from "../data/Floorplan";
+import {Floorplan, FloorplanSpotlight, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
-import {floorplanAddress, isFloorplanAvailable} from "../service/FloorplanService";
+import {addressFromFloorplan, isFloorplanAvailable} from "../service/FloorplanService";
 import {VideoTours} from "../../gallery/VideoTours";
 import {VirtualTour} from "../../gallery/VirtualTour";
 import {GalleryModal} from "../../gallery/GalleryModal";
@@ -107,7 +107,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
 
 
     const printFloorplanAddress = () => {
-        const address = floorplanAddress(floorplan);
+        const address = addressFromFloorplan(floorplan);
         return address.address + ", " + address.city + ", " + address.state + " " + address.zipcode;
     }
     const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
@@ -142,7 +142,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                             (i == 0) ?
                                                 <GridGalleryCover
                                                     assets={assetsToShow(i)}
-                                                    floorplanAddress={floorplanAddress(floorplan)}
+                                                    floorplanAddress={addressFromFloorplan(floorplan)}
                                                     propertyId={floorplan.property.id}
                                                     heroImage={assets[0]}
                                                     imageClickedHandler={imageClickedHandler}
@@ -163,7 +163,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                 </div>
                                 <div className="photo-view mobile">
                                     <GridGalleryMobile assets={assets} toursCount={toursCount}
-                                                       floorplanAddress={floorplanAddress(floorplan)}
+                                                       floorplanAddress={addressFromFloorplan(floorplan)}
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}

@@ -15,22 +15,12 @@ const meta: Meta<typeof FloorplanCard> = {
 const floorplan: FloorplanCardData = {
     name: "Barcelona",
     id: "barcelona",
-    active: true,
     virtualTourLink: "https://www.paneek.net/#/tour/view/3712",
     videoTourLink: "https://youtu.be/UioR0vCXkUo",
     photosFolderId: "18BL3coOPSHfMFJyJdZ4duB63SmPbgDDI",
     units: [
         {
-            id: "1100-2",
-            active: false,
-            squareFoot: 1000,
-            rent: 1000.0,
-            moveInDate: "",
-            availabilityExtensionMonths: null,
-        },
-        {
             id: "1100-8",
-            active: true,
             squareFoot: 710,
             rent: 1195.0,
             moveInDate: "2023-08-04",
@@ -38,7 +28,6 @@ const floorplan: FloorplanCardData = {
         },
         {
             id: "1100-9",
-            active: true,
             squareFoot: 710,
             rent: 1165.0,
             moveInDate: "2023-08-09",

@@ -67,10 +67,10 @@ export type {
     FloorplanCardData,
     UtilityName,
     Floorplan,
-    AmenityName, SimilarFloorplan, FloorplanVariation, FloorplanSpotlight, UnitSpotlight, Testimonial, FloorplanName,
-    WebSpecial
+    AmenityName, SimilarFloorplan, FloorplanVariation, FloorplanSpotlight, Testimonial, FloorplanName,
+    WebSpecial, AmenityType, WebSpecialDetails, UtilityType, FloorplanUnitCardData, FloorplanFaq, FloorplanStyle
 } from "./floorplan/data/Floorplan";
-export type {UnitDetails, Unit, UnitCardData} from "./unit/data/Unit";
+export type {UnitDetails, Unit, UnitCardData, UnitSpotlight} from "./unit/data/Unit";
 export type {FloorplanFilters, CurrentFloorplanFilters} from "./floorplan/data/FloorplanFilters";
 
 
@@ -89,7 +89,10 @@ export type {
     PropertyName,
     LeaseType,
     PropertyBusRoute,
-    PropertiesEmail,
+    PropertyNameIds,
+    PropertySummary,
+    PropertySpotlight,
+    PropertyFaq
 } from "./property/data/Property";
 
 
@@ -101,7 +104,7 @@ export type {
     PropertyTeamMember
 } from "./team/data/TeamMember";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
-export {getProperty, generatePropertyVideoUrl, getAllPropertyFilterData} from "./property/service/PropertyService";
+export {getProperty, generatePropertyVideoUrl} from "./property/service/PropertyService";
 export {
     toUnits,
     unitsFromFloorplans,
