@@ -24,9 +24,9 @@ export const assetUrlFrom = (id: string, assetGatewayId: string): string => prop
 //         : [];
 // }
 export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
-    return AssetApi.get("assets/" + folderId)
-        .then(response => response.data._embedded ?
-            response.data._embedded.assets.sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name)) : [])
+    return AssetApi.get("folders/" + folderId+"/assets")
+        .then(response => response.data.items ?
+            response.data.items.sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name)) : [])
         .catch(reason => {
             console.log(reason);
         });

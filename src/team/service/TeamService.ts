@@ -1,7 +1,7 @@
-import {PropertyTeamMember} from "../data/TeamMember";
-import {get} from "../../service/RoundRobin";
+import {TeamMember} from "../data/TeamMember";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 
-export const getAllTeamMembers = (): Promise<PropertyTeamMember[]> => {
-    return get("teamMembers?projection=propertyTeamMember&size=100").then(response => response.data._embedded.teamMembers);
+export const getAllTeamMembers = (): Promise<TeamMember[]> => {
+    return RenaissanceApi.get("teamMembers").then(response => response.data);
 };

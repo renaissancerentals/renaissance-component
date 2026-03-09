@@ -1,4 +1,3 @@
-import {get} from "../../service/RoundRobin";
 import {FloorplanShortTerm, ShortTermStyle} from "../data/ShortTerm";
 import {
     CurrentShortTermFilters,
@@ -7,15 +6,15 @@ import {
     ShortTermSortFields
 } from "../data/ShortTermFilters";
 import _ from "lodash";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 export const getShortTermFloorplansByPropertyId = async (propertyId: string): Promise<FloorplanShortTerm[]> => {
-    let response = await get("floorplans/search/byPropertyId?projection=short-term&size=1000&id=" + propertyId);
-    return await response.data._embedded.floorplans
-        .filter((floorplan: FloorplanShortTerm) => floorplan.active);
+    let response = await RenaissanceApi.get("shortTermFloorplans/byPropertyId/" + propertyId + "?projection=details");
+    return await response.data
 };
 
 export const getShortTermFloorplan = async (id: string): Promise<FloorplanShortTerm> => {
-    let response = await get("floorplans/" + id + "?projection=short-term");
+    let response = await RenaissanceApi.get("shortTermFloorplans/" + id + "?projection=details");
     return await response.data;
 };
 

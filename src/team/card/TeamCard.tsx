@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {PropertyTeamMember} from "../..";
+import {TeamMember} from "../..";
 import defaultAvatar from "../../assets/default-avatar.png";
 import "./assets/TeamCard.scss";
 import {getAssetUrl} from "../../asset/service/AssetService";
@@ -33,6 +33,6 @@ export const TeamCard: React.FC<TeamCardProps> = ({member, propertyId}) => {
 }
 
 export interface TeamCardProps {
-    member?: PropertyTeamMember;
+    member?: TeamMember;
     propertyId: string;
 }

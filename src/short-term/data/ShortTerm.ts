@@ -30,16 +30,11 @@ export interface FloorplanShortTerm {
     customCode: string;
     amenities: AmenityName[];
     active: boolean;
-    shortTerm: ShortTerm;
     property: PropertySummary;
     description: string;
     address: string;
     zipcode: string;
     highlights: string;
-}
-
-export interface ShortTerm {
-    id: string;
     squareFoot: number;
     priceFor2To4Days: string;
     priceFor5To13Days: string;
@@ -47,3 +42,4 @@ export interface ShortTerm {
     priceFor1To4Months: string;
     priceFor4andMoreMonths: string;
 }
+

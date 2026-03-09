@@ -15,7 +15,6 @@ import {
 } from "../data/Floorplan";
 import {dateToMoment, minimumMaximum} from "../../utils/Utils";
 import {PropertyId} from "../../property/data/Property";
-import {get} from "../../service/RoundRobin";
 import {renaissance} from "../../data/RenaissanceData";
 import {Pet, Unit} from "../../unit/data/Unit";
 import {Month} from "../../data/Calendar";
@@ -221,20 +220,24 @@ export const getFloorplanSpotlight = (floorplanId: string): Promise<FloorplanSpo
     RenaissanceApi.get("floorplans/" + floorplanId + "?projection=spotlight").then(response => response.data);
 
 export const getFloorplan = (floorplanId: string): Promise<Floorplan> =>
-    get("floorplans/" + floorplanId + "?projection=withId").then(response => response.data);
+    RenaissanceApi.get("floorplans/" + floorplanId + "?projection=enriched").then(response => response.data);
 
 export const getSimilarFloorplans = (floorplanId: string): Promise<SimilarFloorplan[]> =>
-    get("similarFloorplans/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.similarFloorplans);
+    RenaissanceApi.get("floorplans/" + floorplanId + "/similar").then(response => response.data);
 
 export const getFloorplanVariations = (floorplanId: string): Promise<FloorplanVariation[]> =>
-    get("floorplanVariations/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.floorplanVariations);
+    RenaissanceApi.get("floorplans/" + floorplanId + "/variations").then(response => response.data);
 
 export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): boolean => floorplan.units.some((unit) => today.isAfter(dateToMoment(unit.moveInDate)));
 export const getTestimonials = (floorplanId: string): Promise<Testimonial[]> =>
-    get("testimonials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.testimonials);
+    RenaissanceApi.get("floorplans/" + floorplanId + "/testimonials").then(response => response.data);
 
 export const getWebSpecials = (floorplanId: string): Promise<WebSpecial[]> =>
-    get("webSpecials/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId).then(response => response.data._embedded.webSpecials);
+    RenaissanceApi.get("floorplans/" + floorplanId + "/webSpecials").then(response => response.data);
+
+
+export const getFloorplanFaqs = async (floorplanId: string): Promise<FloorplanFaq[]> =>
+    RenaissanceApi.get("floorplans/" + floorplanId + "/faqs").then(response => response.data);
 
 export const permittedPets = (floorplan: Floorplan): string[] => {
 
@@ -339,7 +342,3 @@ export interface FloorplanAddress {
     zipcode: string;
 }
 
-export const getFloorplanFaqs = async (floorplanId: string): Promise<FloorplanFaq[]> => {
-    let response = await get("floorplanFaqs/search/byFloorplanId?projection=withId&floorplanId=" + floorplanId);
-    return await response.data._embedded.floorplanFaqs;
-};

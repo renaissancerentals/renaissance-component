@@ -1,4 +1,3 @@
-import Api from "../../service/Api";
 import gtag, {install} from 'ga-gtag';
 import {ContactMessage} from "../data/ContactMessage";
 import {ContactPropertyIds} from "../ContactSection";

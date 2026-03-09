@@ -1,4 +1,4 @@
-export interface PropertyTeamMember {
+export interface TeamMember {
     name: string;
     jobTitle: string;
     email: string;

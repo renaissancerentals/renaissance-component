@@ -50,8 +50,8 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
 
 
     const generatePricing = (price: string, includeMonthly?: boolean) => {
-       if(!price)
-           return "-";
+        if (!price)
+            return "-";
 
         const numeric = Number(price);
 
@@ -83,7 +83,7 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                             | {floorplan.bathroom} Bathroom {enumToString(floorplan.style)}
                                         </p>
                                         <p className="floorplan-card--featured">
-                                            {floorplan.shortTerm.squareFoot} Square Feet
+                                            {floorplan.squareFoot} Square Feet
                                         </p>
 
 
@@ -92,25 +92,25 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                             <p className="floorplan-card--featured">
                                                 <span className="key">5-13 days:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor5To13Days)}
+                                                    {generatePricing(floorplan.priceFor5To13Days)}
                                                 </span>
                                             </p>
                                             <p className="floorplan-card--featured">
                                                 <span className="key">14-29 days:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor14To29Days)}
+                                                    {generatePricing(floorplan.priceFor14To29Days)}
                                                 </span>
                                             </p>
                                             <p className="floorplan-card--featured">
                                                 <span className="key">1-4 months:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor1To4Months, true)}
+                                                    {generatePricing(floorplan.priceFor1To4Months, true)}
                                                 </span>
                                             </p>
                                             <p className="floorplan-card--featured">
                                                 <span className="key">4+ months:</span>
                                                 <span className="value">
-                                                    {generatePricing(floorplan.shortTerm.priceFor4andMoreMonths, true)}
+                                                    {generatePricing(floorplan.priceFor4andMoreMonths, true)}
                                                 </span>
                                             </p>
                                         </div>
@@ -147,8 +147,6 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
 
                                             </Card> : <></>
                                     }
-
-
 
 
                                     <div className="contact-card">

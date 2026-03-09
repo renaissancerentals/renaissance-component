@@ -86,7 +86,6 @@ export type {
     PropertyAmenityName,
     PropertyAmenityType,
     PropertyType,
-    PropertyName,
     LeaseType,
     PropertyBusRoute,
     PropertyNameIds,
@@ -97,11 +96,11 @@ export type {
 
 
 export type  {
-    ShortTerm, FloorplanShortTerm, ShortTermStyle
+    FloorplanShortTerm, ShortTermStyle
 } from "./short-term/data/ShortTerm"
 
 export type {
-    PropertyTeamMember
+    TeamMember
 } from "./team/data/TeamMember";
 export {SummerHouseFeatures} from "./summer-house/SummerHouseFeatures";
 export {

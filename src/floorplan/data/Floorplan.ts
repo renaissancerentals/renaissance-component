@@ -155,7 +155,7 @@ export interface FloorplanName {
 }
 
 export interface SimilarFloorplan {
-    similarTo: FloorplanName;
+    similarFloorplanId: string;
 }
 
 export interface FloorplanVariation {
@@ -182,7 +182,4 @@ export interface FloorplanFaq {
     question: string;
     answer: string;
     sortOrder: number;
-    floorplan: FloorplanName;
-    lastModifiedBy: string;
-    lastModifiedDate: string;
 }

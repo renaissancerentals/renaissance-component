@@ -1,9 +1,10 @@
 import {HomePageSpecial, HomePageSpecialData} from "../data/HomePageSpecial";
 import {get} from "../../service/RoundRobin";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 
 const getHomeHomePageSpecialData = async (): Promise<HomePageSpecialData[]> => {
-    let response = await get("homePageSpecials/filter");
+    let response = await RenaissanceApi.get("homePageSpecials");
     return await response.data;
 };
 

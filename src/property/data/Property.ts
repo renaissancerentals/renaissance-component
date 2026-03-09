@@ -1,11 +1,5 @@
 import {FloorplanCardData, FloorplanDetails} from "../../floorplan/data/Floorplan";
-import {PropertyTeamMember} from "../../team/data/TeamMember";
-
-export interface PropertyName {
-    id: string;
-    name: string;
-    active: boolean;
-}
+import {TeamMember} from "../../team/data/TeamMember";
 
 export interface PropertySpotlight extends Address {
     id: string;
@@ -44,7 +38,7 @@ export interface Property {
     ratingLink: string;
     conversionTrackingId1: string;
     conversionTrackingId2: string;
-    teamMembers: PropertyTeamMember[];
+    teamMembers: TeamMember[];
     busRoutes: PropertyBusRoute[];
     leaseType: LeaseType;
 }
@@ -58,7 +52,6 @@ export interface PropertyBusRoute {
 export interface PropertySummary {
     name: string;
     id: string;
-    active: boolean;
     email: string;
     phone: string;
     address: string;
@@ -155,7 +148,4 @@ export interface PropertyFaq {
     question: string;
     answer: string;
     sortOrder: number;
-    property: PropertyName;
-    lastModifiedBy: string;
-    lastModifiedDate: string;
 }

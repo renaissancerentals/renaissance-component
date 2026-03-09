@@ -2,7 +2,7 @@ import React from 'react';
 import './assets/Team.scss';
 import {TeamCard} from "./card/TeamCard";
 import {TeamCardSkeleton} from "./card/TeamCardSkeleton";
-import {PropertyTeamMember} from "..";
+import {TeamMember} from "..";
 
 export const TeamSection: React.FC<TeamSectionProps> = ({teamMembers, isLoading, propertyId}) => {
 
@@ -24,7 +24,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({teamMembers, isLoading,
 };
 
 export interface TeamSectionProps {
-    teamMembers: PropertyTeamMember[];
+    teamMembers: TeamMember[];
     isLoading: boolean;
     propertyId: string;
 

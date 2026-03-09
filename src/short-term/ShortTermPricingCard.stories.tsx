@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import React from "react";
 import {ShortTermPricingCard} from "./ShortTermPricingCard";
-import {FloorplanShortTerm, ShortTerm, ShortTermStyle,} from "./data/ShortTerm";
+import {FloorplanShortTerm, ShortTermStyle,} from "./data/ShortTerm";
 
 const meta: Meta<typeof ShortTermPricingCard> = {
     component: ShortTermPricingCard,
@@ -21,14 +21,12 @@ export const Default: Story = {
                 style: ShortTermStyle.APARTMENT,
                 bedroom: 2,
                 bathroom: 2,
-                shortTerm: {
-                    priceFor2To4Days: "Call or Text",
-                    priceFor5To13Days: "143.0",
-                    priceFor14To29Days: "119.0",
-                    priceFor1To4Months: "93.0",
-                    priceFor4andMoreMonths: "81.0",
-                    squareFoot: 750,
-                } as ShortTerm,
+                priceFor2To4Days: "Call or Text",
+                priceFor5To13Days: "143.0",
+                priceFor14To29Days: "119.0",
+                priceFor1To4Months: "93.0",
+                priceFor4andMoreMonths: "81.0",
+                squareFoot: 750,
             } as FloorplanShortTerm,
             {
                 id: "17790",
@@ -36,14 +34,12 @@ export const Default: Story = {
                 style: ShortTermStyle.TOWN_HOME,
                 bedroom: 2,
                 bathroom: 2.5,
-                shortTerm: {
-                    priceFor2To4Days: "Call or Text",
-                    priceFor5To13Days: "163.0",
-                    priceFor14To29Days: "127.0",
-                    priceFor1To4Months: "101.0",
-                    priceFor4andMoreMonths: "89.0",
-                    squareFoot: 1132,
-                } as ShortTerm,
+                priceFor2To4Days: "Call or Text",
+                priceFor5To13Days: "163.0",
+                priceFor14To29Days: "127.0",
+                priceFor1To4Months: "101.0",
+                priceFor4andMoreMonths: "89.0",
+                squareFoot: 1132,
             } as FloorplanShortTerm,
             {
                 id: "17791",
@@ -51,14 +47,12 @@ export const Default: Story = {
                 style: ShortTermStyle.APARTMENT,
                 bedroom: 1,
                 bathroom: 1,
-                shortTerm: {
-                    priceFor2To4Days: "Call, Text, or Search below",
-                    priceFor5To13Days: "Call, Text, or Search below",
-                    priceFor14To29Days: "102.0",
-                    priceFor1To4Months: "75.0",
-                    priceFor4andMoreMonths: "63.0",
-                    squareFoot: 501,
-                } as ShortTerm,
+                priceFor2To4Days: "Call, Text, or Search below",
+                priceFor5To13Days: "Call, Text, or Search below",
+                priceFor14To29Days: "102.0",
+                priceFor1To4Months: "75.0",
+                priceFor4andMoreMonths: "63.0",
+                squareFoot: 501,
             } as FloorplanShortTerm,
             {
                 id: "17792",
@@ -66,14 +60,13 @@ export const Default: Story = {
                 style: ShortTermStyle.DELUXE_APARTMENT,
                 bedroom: 1,
                 bathroom: 1,
-                shortTerm: {
-                    priceFor2To4Days: "Call, Text, or Search below",
-                    priceFor5To13Days: "Call, Text, or Search below",
-                    priceFor14To29Days: "102.0",
-                    priceFor1To4Months: "75.0",
-                    priceFor4andMoreMonths: "63.0",
-                    squareFoot: 501
-                } as ShortTerm,
+                priceFor2To4Days: "Call, Text, or Search below",
+                priceFor5To13Days: "Call, Text, or Search below",
+                priceFor14To29Days: "102.0",
+                priceFor1To4Months: "75.0",
+                priceFor4andMoreMonths: "63.0",
+                squareFoot: 501
+
             } as FloorplanShortTerm,
         ],
     },

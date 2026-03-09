@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import React from "react";
-import {FloorplanShortTerm, ShortTerm,} from "./data/ShortTerm";
+import {FloorplanShortTerm,} from "./data/ShortTerm";
 import {ShortTermFloorplansSection} from "./ShortTermFloorplansSection";
 
 const meta: Meta<typeof ShortTermFloorplansSection> = {
@@ -30,14 +30,12 @@ export const Default: Story = {
                 floorPlanFolderId: "1CM51fpSEPVpjSxSi9Vd0ZvGMhetrxlnD",
                 photosFolderId: "1FN5Y5hYgqnJVu8hcwrOofY-uxQIIiQIl",
                 photosCount: 12,
-                shortTerm: {
-                    priceFor2To4Days: "Call or Text",
-                    priceFor5To13Days: "143.0",
-                    priceFor14To29Days: "119.0",
-                    priceFor1To4Months: "93.0",
-                    priceFor4andMoreMonths: "81.0",
-                    squareFoot: 750,
-                } as ShortTerm,
+                priceFor2To4Days: "Call or Text",
+                priceFor5To13Days: "143.0",
+                priceFor14To29Days: "119.0",
+                priceFor1To4Months: "93.0",
+                priceFor4andMoreMonths: "81.0",
+                squareFoot: 750,
             } as FloorplanShortTerm,
             {
                 name: "2 townhome",
@@ -54,14 +52,12 @@ export const Default: Story = {
                 floorPlanFolderId: "1k2JkyDm4vfQ7fjqVldMJbh148ETMQqqy",
                 photosFolderId: "1iwVLQvvXjT8RetsuJjQvqXkQfy7D0CLt",
                 photosCount: 16,
-                shortTerm: {
-                    priceFor2To4Days: "Call or Text",
-                    priceFor5To13Days: "163.0",
-                    priceFor14To29Days: "127.0",
-                    priceFor1To4Months: "101.0",
-                    priceFor4andMoreMonths: "89.0",
-                    squareFoot: 1132,
-                } as ShortTerm,
+                priceFor2To4Days: "Call or Text",
+                priceFor5To13Days: "163.0",
+                priceFor14To29Days: "127.0",
+                priceFor1To4Months: "101.0",
+                priceFor4andMoreMonths: "89.0",
+                squareFoot: 1132,
             } as FloorplanShortTerm,
             {
                 name: "1 bedroom",
@@ -78,14 +74,12 @@ export const Default: Story = {
                 floorPlanFolderId: "1PYtR2Z9ZEGXY_7WwGXHtl31FeeuLdyYZ",
                 photosFolderId: "1FdMOapUlUUuqWVVlDpobXwxp3Lp_cG3E",
                 photosCount: 11,
-                shortTerm: {
-                    priceFor2To4Days: "Call, Text, or Search below",
-                    priceFor5To13Days: "123.0",
-                    priceFor14To29Days: "102.0",
-                    priceFor1To4Months: "75.0",
-                    priceFor4andMoreMonths: "63.0",
-                    squareFoot: 501,
-                } as ShortTerm,
+                priceFor2To4Days: "Call, Text, or Search below",
+                priceFor5To13Days: "123.0",
+                priceFor14To29Days: "102.0",
+                priceFor1To4Months: "75.0",
+                priceFor4andMoreMonths: "63.0",
+                squareFoot: 501,
             } as FloorplanShortTerm,
         ],
     },

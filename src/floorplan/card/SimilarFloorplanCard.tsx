@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Floorplan, FloorplanSpotlight, SimilarFloorplan} from "../data/Floorplan";
+import {FloorplanSpotlight, SimilarFloorplan} from "../data/Floorplan";
 import {getAssetUrl} from "../../asset/service/AssetService";
 import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
 import {Card} from "../../card/Card";
 import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
 import {rangeFrom} from "../../utils/Utils";
 import "./assets/SimilarFloorplanCard.scss"
-import {
-    addressFromFloorplan,
-    addressFromFloorplanSpotlight,
-    getFloorplan,
-    getFloorplanSpotlight
-} from "../service/FloorplanService";
+import {addressFromFloorplanSpotlight, getFloorplanSpotlight} from "../service/FloorplanService";
 
 export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({similarFloorplans}) => {
     const [floorplans, setFloorplans] = useState<FloorplanSpotlight[]>([]);
@@ -21,7 +16,7 @@ export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({simil
     useEffect(() => {
         const promises: Promise<FloorplanSpotlight>[] = [];
         similarFloorplans.forEach(similarFloorplan => {
-            promises.push(getFloorplanSpotlight(similarFloorplan.similarTo.id));
+            promises.push(getFloorplanSpotlight(similarFloorplan.similarFloorplanId));
         });
         Promise.all(promises).then(data => {
             setFloorplans(data);

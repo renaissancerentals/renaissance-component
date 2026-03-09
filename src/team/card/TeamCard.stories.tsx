@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { TeamCard } from "./TeamCard";
-import { PropertyTeamMember } from "../data/TeamMember";
+import { TeamMember } from "../data/TeamMember";
 
 export default {
   title: "Card/Team Card",
@@ -9,11 +9,11 @@ export default {
 } as ComponentMeta<typeof TeamCard>;
 
 export const Default: ComponentStory<typeof TeamCard> = () => {
-  const member: PropertyTeamMember = {
+  const member: TeamMember = {
     name: "John Cena",
     jobTitle: "Wrestler",
     blogLink: "https://myblog.com",
     email: "johncena@gmail.com",
-  } as PropertyTeamMember;
+  } as TeamMember;
   return <TeamCard member={member} propertyId="verona-park" />;
 };

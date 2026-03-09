@@ -4,7 +4,7 @@ import { TeamSection } from "./TeamSection";
 import { PropertyDetails } from "../property/data/Property";
 import { getProperty } from "../property/service/PropertyService";
 import { getAllTeamMembers } from "./service/TeamService";
-import { PropertyTeamMember } from "./data/TeamMember";
+import { TeamMember } from "./data/TeamMember";
 
 export default {
   title: "Section/Team",
@@ -35,7 +35,7 @@ export const Default: ComponentStory<typeof TeamSection> = () => {
 };
 
 export const All: ComponentStory<typeof TeamSection> = () => {
-  const [teamMembers, setTeamMembers] = useState<PropertyTeamMember[]>([]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getAllTeamMembers()

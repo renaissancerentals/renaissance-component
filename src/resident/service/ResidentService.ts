@@ -1,12 +1,13 @@
 import {get} from "../../service/RoundRobin";
 import {Faq} from "../../faq/data/Faq";
+import RenaissanceApi from "../../service/RenaissanceApi";
 
 export const getResidentFaqs = async (): Promise<Faq[]> => {
-    let response = await get("residentFaqs?projection=withId&size=50");
-    return await response.data._embedded.residentFaqs;
+    let response = await RenaissanceApi.get("faqs/resident");
+    return await response.data;
 };
 
 export const getMaintenanceFaqs = async (): Promise<Faq[]> => {
-    let response = await get("maintenanceFaqs?projection=withId&size=50");
-    return await response.data._embedded.maintenanceFaqs;
+    let response = await RenaissanceApi.get("faqs/maintenance");
+    return await response.data;
 };
