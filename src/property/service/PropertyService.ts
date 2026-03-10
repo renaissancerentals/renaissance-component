@@ -1,9 +1,9 @@
 import {PropertyDetails, PropertyFaq, PropertyFilterData, PropertyId} from "../data/Property";
-import renaissanceApi from "../../service/RenaissanceApi";
+import Api from "../../service/Api";
 
 export const getProperty = async (propertyId: PropertyId): Promise<PropertyDetails> => {
 
-    const response = await renaissanceApi.get("properties/" + propertyId + "?projection=details");
+    const response = await Api.get("properties/" + propertyId + "?projection=details");
     return response.data;
 
 };
@@ -32,11 +32,11 @@ export const generatePropertyVideoUrl = (coverVideo: string): string | null => {
 
 };
 export const getPropertyFaqs = async (propertyId: string): Promise<PropertyFaq[]> => {
-    let response = await renaissanceApi.get("properties/" + propertyId + "/faqs");
+    let response = await Api.get("properties/" + propertyId + "/faqs");
     return response.data;
 };
 export const getAllPropertyFilterData = async (): Promise<PropertyFilterData[]> => {
-    let response = await renaissanceApi.get("properties?projection=filter");
+    let response = await Api.get("properties?projection=filter");
 
     return response.data
         .filter((property: PropertyFilterData) => !property.name.toLowerCase().includes("garage"));

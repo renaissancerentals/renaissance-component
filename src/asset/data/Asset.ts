@@ -6,8 +6,6 @@ export interface Asset {
     height: number;
     width: number;
     mimeType: string;
-    thumbnail: string;
-    original: string;
 }
 
 export interface Video {

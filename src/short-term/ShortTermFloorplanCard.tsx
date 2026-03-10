@@ -3,11 +3,11 @@ import "./assets/ShortTermFloorplanCard.scss"
 import {Asset, Video} from "../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../asset/service/AssetService";
 import {Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
-import {DEFAULT_IMAGE_URL} from "../service/AssetApi";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {toUSD} from "../utils/Utils";
 import {FloorplanShortTerm} from "./data/ShortTerm";
+import {DEFAULT_IMAGE_URL} from "../service/Api";
 
 export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
     {

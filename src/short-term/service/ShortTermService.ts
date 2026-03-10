@@ -6,15 +6,15 @@ import {
     ShortTermSortFields
 } from "../data/ShortTermFilters";
 import _ from "lodash";
-import RenaissanceApi from "../../service/RenaissanceApi";
+import Api from "../../service/Api";
 
 export const getShortTermFloorplansByPropertyId = async (propertyId: string): Promise<FloorplanShortTerm[]> => {
-    let response = await RenaissanceApi.get("shortTermFloorplans/byPropertyId/" + propertyId + "?projection=details");
+    let response = await Api.get("shortTermFloorplans/byPropertyId/" + propertyId + "?projection=details");
     return await response.data
 };
 
 export const getShortTermFloorplan = async (id: string): Promise<FloorplanShortTerm> => {
-    let response = await RenaissanceApi.get("shortTermFloorplans/" + id + "?projection=details");
+    let response = await Api.get("shortTermFloorplans/" + id + "?projection=details");
     return await response.data;
 };
 

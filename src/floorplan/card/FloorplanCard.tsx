@@ -5,12 +5,12 @@ import videoIcon from "./assets/video-icon.png";
 import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
 import {FloorplanCardData} from "../data/Floorplan";
-import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
 import {addressToGoogleMapLink, rangeFrom, renaissanceAddress} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
 import {isFloorplanAvailable} from "../service/FloorplanService";
 import {FloorplanPrice} from "./FloorplanPrice";
 import {SpecialOfferButton} from "../../special-offer/SpecialOfferButton";
+import {DEFAULT_IMAGE_URL} from "../../service/Api";
 
 export const FloorplanCard: React.FC<FloorplanCardProps> = (
     {

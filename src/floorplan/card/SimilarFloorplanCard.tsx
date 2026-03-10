@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FloorplanSpotlight, SimilarFloorplan} from "../data/Floorplan";
 import {getAssetUrl} from "../../asset/service/AssetService";
-import {DEFAULT_IMAGE_URL} from "../../service/AssetApi";
+import {DEFAULT_IMAGE_URL} from "../../service/Api";
 import {Card} from "../../card/Card";
 import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
 import {rangeFrom} from "../../utils/Utils";

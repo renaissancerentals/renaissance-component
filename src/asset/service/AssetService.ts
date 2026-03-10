@@ -1,6 +1,6 @@
 import {extractIdFrom, isGoogleDriveImage} from "../../utils/Utils";
-import AssetApi from "../../service/AssetApi";
 import {Asset} from "../data/Asset";
+import Api from "../../service/Api";
 
 const ASSET_DOWNLOAD_FRAGMENT = "api/asset/download/";
 
@@ -24,7 +24,7 @@ export const assetUrlFrom = (id: string, assetGatewayId: string): string => prop
 //         : [];
 // }
 export const getAssetsFrom = (folderId: string): Promise<Asset[]> => {
-    return AssetApi.get("folders/" + folderId+"/assets")
+    return Api.get("folders/" + folderId + "/assets")
         .then(response => response.data.items ?
             response.data.items.sort((a: Asset, b: Asset) => parseInt(a.name) - parseInt(b.name)) : [])
         .catch(reason => {

@@ -4,8 +4,8 @@ import {Testimonial} from "../floorplan/data/Floorplan";
 import {PropertyDetails} from "../property/data/Property";
 import {getTestimonials} from "../floorplan/service/FloorplanService";
 import {getAssetUrl} from "../asset/service/AssetService";
-import {DEFAULT_IMAGE_URL} from "../service/AssetApi";
 import "./assets/ReviewSection.scss";
+import {DEFAULT_IMAGE_URL} from "../service/Api";
 
 interface Review {
     left: Testimonial,

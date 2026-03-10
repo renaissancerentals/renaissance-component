@@ -1,10 +1,10 @@
 import gtag, {install} from 'ga-gtag';
 import {ContactMessage} from "../data/ContactMessage";
 import {ContactPropertyIds} from "../ContactSection";
-import RenaissanceApi from "../../service/RenaissanceApi";
+import Api from "../../service/Api";
 
 export const sendContactMail = (message: ContactMessage) => {
-    return RenaissanceApi.post("contact", message).then(response => response.data);
+    return Api.post("contact", message).then(response => response.data);
 };
 export const sendToConversionTracking = (trackingId: string) => {
     install('UA-142676339-1');
@@ -18,21 +18,21 @@ export const sendToConversionTracking = (trackingId: string) => {
 };
 
 export const trackContactClicked = (propertyId: ContactPropertyIds) => {
-    RenaissanceApi.post("analytics/contact-events", {
+    Api.post("analytics/contact-events", {
         "property": propertyId,
         "type": "clicked"
     });
 }
 
 export const trackContactSubmitted = (propertyId: ContactPropertyIds) => {
-    RenaissanceApi.post("analytics/contact-events", {
+    Api.post("analytics/contact-events", {
         "property": propertyId,
         "type": "submitted"
     });
 }
 
 export const trackContactInitiated = (propertyId: ContactPropertyIds) => {
-    RenaissanceApi.post("analytics/contact-events", {
+    Api.post("analytics/contact-events", {
         "property": propertyId,
         "type": "initiated"
     });

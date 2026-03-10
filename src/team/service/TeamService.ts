@@ -1,7 +1,7 @@
 import {TeamMember} from "../data/TeamMember";
-import RenaissanceApi from "../../service/RenaissanceApi";
+import Api from "../../service/Api";
 
 
 export const getAllTeamMembers = (): Promise<TeamMember[]> => {
-    return RenaissanceApi.get("teamMembers").then(response => response.data);
+    return Api.get("teamMembers").then(response => response.data);
 };

@@ -1,6 +1,6 @@
 import {RentalApplication} from "../data/RentalApplication";
-import RenaissanceApi from "../../service/RenaissanceApi";
+import Api from "../../service/Api";
 
 export const sendRentalApplicationRequest = (message: RentalApplication) => {
-    return RenaissanceApi.post("application-request", message).then(response => response.data);
+    return Api.post("application-request", message).then(response => response.data);
 };
