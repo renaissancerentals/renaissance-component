@@ -5,12 +5,17 @@ export const REACT_APP_DATA_BASE_URLS: string[] = process.env.REACT_APP_DATA_BAS
     "https://www.scholarsrooftop.com/",
     "https://www.renaissancerentals.com/",
 ]
-let currentIndex = 0;
 export const getBaseUrl = (): string => {
-    currentIndex = currentIndex >= REACT_APP_DATA_BASE_URLS.length - 1 ? 0 : currentIndex + 1;
-    return REACT_APP_DATA_BASE_URLS[currentIndex];
+    let index = Number(sessionStorage.getItem("baseUrlIndex") ?? 0);
 
-}
+    const url = REACT_APP_DATA_BASE_URLS[index];
+
+    index = (index + 1) % REACT_APP_DATA_BASE_URLS.length;
+
+    sessionStorage.setItem("baseUrlIndex", String(index));
+
+    return url;
+};
 export const DEFAULT_IMAGE_URL = getBaseUrl() + "img/default.png";
 export default axios.create({
     baseURL: getBaseUrl() + "api/"
