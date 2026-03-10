@@ -117,7 +117,7 @@ export {
 } from "./unit/service/UnitService";
 
 export {getAllTeamMembers} from "./team/service/TeamService";
-export {DEFAULT_IMAGE_URL} from "./service/Api";
+export {DEFAULT_IMAGE_URL, getBaseUrl, get} from "./service/Api";
 
 export type  {
     MinMax
