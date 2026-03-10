@@ -118,7 +118,6 @@ export {
 
 export {getAllTeamMembers} from "./team/service/TeamService";
 export {DEFAULT_IMAGE_URL} from "./service/Api";
-export {RENAISSANCE_ADMIN_BASE_URL} from "./service/AdminApi";
 
 export type  {
     MinMax
