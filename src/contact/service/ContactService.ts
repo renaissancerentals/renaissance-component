@@ -18,21 +18,21 @@ export const sendToConversionTracking = (trackingId: string) => {
 };
 
 export const trackContactClicked = (propertyId: ContactPropertyIds) => {
-    Api.post("analytics/contact-events", {
+    Api.post("analytics/contactEvents", {
         "property": propertyId,
         "type": "clicked"
     });
 }
 
 export const trackContactSubmitted = (propertyId: ContactPropertyIds) => {
-    Api.post("analytics/contact-events", {
+    Api.post("analytics/contactEvents", {
         "property": propertyId,
         "type": "submitted"
     });
 }
 
 export const trackContactInitiated = (propertyId: ContactPropertyIds) => {
-    Api.post("analytics/contact-events", {
+    Api.post("analytics/contactEvents", {
         "property": propertyId,
         "type": "initiated"
     });
