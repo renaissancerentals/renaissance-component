@@ -82,7 +82,6 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
                 handleHtmlTitleUpdate(floorplanData.htmlTitle);
             }
 
-            floorplanData.units = floorplanData.units.filter(unit => unit.active);
             if (LeaseType.SHORT_TERM === floorplanData.property.leaseType) {
                 setIsLoading(false);
             } else {

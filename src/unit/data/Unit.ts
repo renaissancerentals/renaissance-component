@@ -48,7 +48,6 @@ export interface Unit {
     virtualTourLink: string;
     lastModifiedBy: string;
     lastModifiedDate: string;
-    active: boolean;
 }
 
 export interface UnitCardData {

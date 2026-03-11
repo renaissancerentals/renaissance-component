@@ -129,9 +129,6 @@ export interface Floorplan {
     amenities: AmenityName[];
     property: PropertySummary;
     units: Unit[];
-    lastModifiedBy: string;
-    lastModifiedDate: string;
-    active: boolean;
     webSpecials: WebSpecialDetails[];
 }
 
@@ -151,7 +148,6 @@ export interface FloorplanSpotlight {
 export interface FloorplanName {
     name: string;
     id: string;
-    active: boolean;
 }
 
 export interface SimilarFloorplan {

@@ -16,7 +16,6 @@ export interface Property {
     id: string;
     address: string;
     zipcode: string;
-    active: boolean;
     phone: string;
     email: string;
     rating: number,
