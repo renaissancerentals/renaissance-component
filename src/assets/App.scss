@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Roboto&display=swap');
 
 @import "~@contentmunch/muncher-ui/lib/assets/App";
 @import "~react-loading-skeleton/dist/skeleton.css";
@@ -25,6 +25,7 @@ main {
   }
 
   @media (min-width: $medium-size) {
+
     ul {
       column-count: 2;
     }

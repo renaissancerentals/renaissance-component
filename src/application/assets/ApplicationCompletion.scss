@@ -1,0 +1,44 @@
+@import "src/assets/variables";
+
+$application-completion-background-color: $primary-background-color !default;
+$application-completion-banner-background-color: $primary-color !default;
+$application-completion-banner-color: $primary-background-color !default;
+
+.section-application-completion {
+  padding-top: 2em;
+  text-align: center;
+  background: $application-completion-background-color;
+  .completion-banner {
+    background: $application-completion-banner-background-color;
+    padding: .5rem 1rem 1.5rem 1rem;
+    color: $application-completion-banner-color;
+  }
+
+  .completion-step-banner {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .muncher-step .muncher-step--label {
+    font-family: $sans-serif-font;
+  }
+
+  .info, .emphasized-info {
+    padding: 1rem;
+  }
+
+  .emphasized-info {
+    text-transform: uppercase;
+    font-family: $sans-serif-font;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: $medium-size) {
+    .muncher-step--container {
+      margin: 2rem 10rem;
+    }
+  }
+}
+
