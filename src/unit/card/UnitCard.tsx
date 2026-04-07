@@ -99,8 +99,8 @@ export const UnitCard: React.FC<UnitCardProps> = (
                     </div>
                     : ''}
             </div>
-            <a href={"/units/" + unit.floorplanId}
-               title={unit.floorplanName + unit.id}>
+            <a href={"/units/" + unit.id}
+               title={unit.floorplanName + " (" + unit.id + ")"}>
                 <div className="unit-card-content">
                     <div className="unit-card-content--special">
                         {showSpecialOffer && unit.webSpecials.length > 0 ?
