@@ -125,7 +125,7 @@ type Story = StoryObj<typeof GridGalleryMobile>;
 export const Default: Story = {
     args: {
         assets: assetsData,
-        floorplanAddress: {
+        address: {
             address: "1100 N Walnut St",
             city: "Bloomington",
             state: "IN",

@@ -9,13 +9,13 @@ import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {SpecialOfferButton} from "../special-offer/SpecialOfferButton";
 import {TourType} from "./GridGalleryCover";
-import {FloorplanAddress} from "../floorplan/service/FloorplanService";
+import {Address} from "../floorplan/service/FloorplanService";
 import {MapSection} from "../map/MapSection";
 import {floorplanAddressToGoogleMap} from "../utils/Utils";
 
 export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
     {
-        assets, virtualTour, setCurrentView, toursCount, floorplanAddress,
+        assets, virtualTour, setCurrentView, toursCount, address,
         imageClickedHandler, isAvailableNow, propertyId, webSpecials,
     }) => {
     const [showSpecialOffer, setShowSpecialOffer] = useState(false);
@@ -69,7 +69,7 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
             }
         );
         items.push(<MapSection
-            src={floorplanAddressToGoogleMap(floorplanAddress)}/>)
+            src={floorplanAddressToGoogleMap(address)}/>)
         assets.slice(1, assets.length).forEach((asset, index) => {
             items.push(createImageItem(asset, index + 1));
         });
@@ -90,7 +90,7 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
 
 export interface GridGalleryMobileProps {
     assets: Asset[];
-    floorplanAddress: FloorplanAddress;
+    address: Address;
     virtualTour?: string;
     toursCount: number;
     webSpecials: WebSpecial[];

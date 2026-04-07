@@ -126,7 +126,7 @@ export const Default: Story = {
     args: {
         assets: assetsData.slice(1, 2),
         heroImage: assetsData[0],
-        floorplanAddress: {
+        address: {
             address: "1100 N Walnut St",
             city: "Bloomington",
             state: "IN",
@@ -151,7 +151,7 @@ export const withOnlyHeroImage: Story = {
         assets: [],
         showOnlyHeroImage: true,
         heroImage: assetsData[0],
-        floorplanAddress: {
+        address: {
             address: "1100 N Walnut St",
             city: "Bloomington",
             state: "IN",
@@ -175,7 +175,7 @@ export const withNoVirtualTour: Story = {
         assets: assetsData.slice(1, 3),
         heroImage: assetsData[0],
         videoTourImageBackground: assetUrlFrom(assetsData[1].id, "verona-park"),
-        floorplanAddress: {
+        address: {
             address: "1100 N Walnut St",
             city: "Bloomington",
             state: "IN",
@@ -198,7 +198,7 @@ export const withNoTours: Story = {
     args: {
         assets: assetsData.slice(1, 4),
         heroImage: assetsData[0],
-        floorplanAddress: {
+        address: {
             address: "1100 N Walnut St",
             city: "Bloomington",
             state: "IN",

@@ -142,7 +142,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                             (i == 0) ?
                                                 <GridGalleryCover
                                                     assets={assetsToShow(i)}
-                                                    floorplanAddress={addressFromFloorplan(floorplan)}
+                                                    address={addressFromFloorplan(floorplan)}
                                                     propertyId={floorplan.property.id}
                                                     heroImage={assets[0]}
                                                     imageClickedHandler={imageClickedHandler}
@@ -163,7 +163,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                 </div>
                                 <div className="photo-view mobile">
                                     <GridGalleryMobile assets={assets} toursCount={toursCount}
-                                                       floorplanAddress={addressFromFloorplan(floorplan)}
+                                                       address={addressFromFloorplan(floorplan)}
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}

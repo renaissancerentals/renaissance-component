@@ -1,9 +1,10 @@
 import {dateToMoment} from "../../utils/Utils";
-import {UnitCardData} from "../data/Unit";
+import {Pet, UnitCardData, UnitFloorplan} from "../data/Unit";
 import moment from "moment/moment";
 import {FloorplanCardData, FloorplanStyle} from "../../floorplan/data/Floorplan";
 import {CurrentFloorplanFilters, FloorplanFilters} from "../../floorplan/data/FloorplanFilters";
 import {
+    Address,
     AVAILABLE_NOW,
     isAvailableNow,
     isDateWithinTwelveMonths,
@@ -14,6 +15,8 @@ import {SortBy, SortFields} from "../../data/SortField";
 import _ from "lodash";
 import {Month} from "../../data/Calendar";
 import {PropertyFilterData} from "../../property/data/Property";
+import Api from "../../service/Api";
+import {renaissance} from "../../data/RenaissanceData";
 
 const today = moment();
 const tomorrow = today.add(1, "day");
@@ -47,7 +50,7 @@ const filterMatches = (unit: UnitCardData, currentFilters: CurrentFloorplanFilte
         isFloorplanIdsMatch(unit, currentFilters.floorplanIds);
 }
 
-export const isUnitAvailable = (unit: UnitCardData): boolean => today.isAfter(dateToMoment(unit.moveInDate));
+export const isUnitAvailable = (unit: UnitCardData | UnitFloorplan): boolean => today.isAfter(dateToMoment(unit.moveInDate));
 
 const isAvailable = (unit: UnitCardData, availabilityFilters: Month[]): boolean => {
     if (availabilityFilters.length === 0)
@@ -162,4 +165,48 @@ export const toUnits = (floorplan: FloorplanCardData): UnitCardData[] => {
         photosFolderId: floorplan.photosFolderId,
         webSpecials: floorplan.webSpecials
     }));
+}
+
+export const getUnit = (unitId: string): Promise<UnitFloorplan> =>
+    Api.get(`units/${unitId}?projection=unit-floorplan`).then(response => response.data);
+
+export const addressFromUnit = (unit: UnitFloorplan): Address => {
+    return {
+        address: unit.address ? unit.address : unit.floorplan.address,
+        city: renaissance.city,
+        state: renaissance.state,
+        zipcode: unit.zipcode ? unit.zipcode : unit.floorplan.zipcode
+    };
+}
+
+export const permittedPets = (unit: UnitFloorplan): string[] => {
+
+    switch (unit.allowedPet) {
+        case Pet.LARGE_DOG_SMALL_DOG_CAT:
+            return ['Large Dog', 'Small Dog', 'Cat'];
+        case Pet.SMALL_DOG_CAT:
+            return ['Small Dog', 'Cat'];
+        case Pet.CAT:
+            return ['Cat'];
+        default:
+            return ['None'];
+    }
+}
+
+
+export const notPermittedPets = (unit: UnitFloorplan): string[] => {
+
+    switch (unit.allowedPet) {
+        case Pet.LARGE_DOG_SMALL_DOG_CAT:
+            return [];
+        case Pet.SMALL_DOG_CAT:
+            return ['Large Dog'];
+        case Pet.CAT:
+            return ['Large Dog', 'Small Dog'];
+        case Pet.NO_PET:
+            return ['Large Dog', 'Small Dog', 'Cat'];
+        default:
+            return [];
+    }
+
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {FloorplanAddress} from "../floorplan/service/FloorplanService";
+import {Address} from "../floorplan/service/FloorplanService";
 import {Badge} from "@contentmunch/muncher-ui";
 import {SpecialOfferBadge} from "../special-offer/SpecialOfferBadge";
 import {assetUrlFrom} from "../asset/service/AssetService";
@@ -20,7 +20,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
         virtualTourImageBackground,
         webSpecials,
         isAvailableNow,
-        floorplanAddress,
+        address,
         propertyId,
         imageClickedHandler,
         setCurrentView,
@@ -88,7 +88,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                             </HeroImageCard> : ""}
 
                             <MapSection
-                                src={floorplanAddressToGoogleMap(floorplanAddress)}/>
+                                src={floorplanAddressToGoogleMap(address)}/>
                             {
 
                                 assets.map((asset) =>
@@ -112,7 +112,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
 export interface GridGalleryCoverProps {
     assets: Asset[];
     heroImage: Asset;
-    floorplanAddress: FloorplanAddress;
+    address: Address;
     isAvailableNow: boolean;
     videoTourImageBackground?: string;
     virtualTourImageBackground?: string;

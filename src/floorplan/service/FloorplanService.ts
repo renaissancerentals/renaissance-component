@@ -315,13 +315,13 @@ const unitWithMostAllowedPet = (units: Unit[]): Unit | undefined => {
     return units.sort((a, b) => petOrdinal(b.allowedPet) - petOrdinal(a.allowedPet)).pop();
 }
 
-export const addressFromFloorplan = (currentFloorplan: Floorplan): FloorplanAddress => {
+export const addressFromFloorplan = (currentFloorplan: Floorplan): Address => {
     return addressFromFloorplanSpotlight(currentFloorplan as FloorplanSpotlight);
 
 }
 
-export const addressFromFloorplanSpotlight = (currentFloorplan: FloorplanSpotlight): FloorplanAddress => {
-    const address: FloorplanAddress = {address: "", city: renaissance.city, state: renaissance.state, zipcode: ""};
+export const addressFromFloorplanSpotlight = (currentFloorplan: FloorplanSpotlight): Address => {
+    const address: Address = {address: "", city: renaissance.city, state: renaissance.state, zipcode: ""};
     if (currentFloorplan.units.length === 1) {
         return {
             ...address, address: currentFloorplan.units[0].address,
@@ -334,7 +334,7 @@ export const addressFromFloorplanSpotlight = (currentFloorplan: FloorplanSpotlig
     }
 }
 
-export interface FloorplanAddress {
+export interface Address {
     address: string;
     city: string;
     state: string;

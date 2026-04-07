@@ -1,7 +1,7 @@
 import _ from "lodash";
 import moment, {Moment} from "moment";
 import {decodeEntity} from "html-entities";
-import {FloorplanAddress} from "../floorplan/service/FloorplanService";
+import {Address} from "../floorplan/service/FloorplanService";
 import {renaissance} from "../data/RenaissanceData";
 
 export const MIN_VALUE = 0;
@@ -20,8 +20,8 @@ const cleanAddressForGoogle = (address?: string): string => address ? address.re
 export const addressToGoogleMapLink = (address?: string, zipcode?: string) => "https://maps.google.com/?q=" + cleanAddressForGoogle(address) + "," + zipcode;
 export const addressToGoogleMap = (address?: string, zipcode?: string) => "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address) + "," + zipcode;
 
-export const floorplanAddressToGoogleMap = (floorplanAddress: FloorplanAddress) =>
-    "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(floorplanAddress.address) + ", " + floorplanAddress.city + ", " + floorplanAddress.state + " " + floorplanAddress.zipcode;
+export const floorplanAddressToGoogleMap = (address: Address) =>
+    "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode;
 export const enumToString = (value?: string): string => {
 
     return value && !isEmpty(value) ? value.replaceAll("_", " ").toLowerCase() : "";

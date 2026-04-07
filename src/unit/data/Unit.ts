@@ -1,4 +1,4 @@
-import {FloorplanStyle} from "../../floorplan/data/Floorplan";
+import {Floorplan, FloorplanStyle} from "../../floorplan/data/Floorplan";
 import {Address} from "../../property/data/Property";
 
 export enum Pet {
@@ -17,11 +17,13 @@ export interface UnitDetails {
     availabilityExtensionMonths: number | null;
     furnished: boolean;
 }
+
 export interface UnitSpotlight extends Address {
     id: string;
     squareFoot: number;
     rent: number;
 }
+
 export interface Unit {
     id: string;
     squareFoot: number;
@@ -29,6 +31,9 @@ export interface Unit {
     petPolicy: string;
     rent: number;
     discountedRent: number;
+    discountedRentStartDate: string;
+    discountedRentEndDate: string;
+    discountedRentDescription: string;
     deposit: number;
     endUnit: boolean;
     furnished: boolean;
@@ -37,11 +42,18 @@ export interface Unit {
     level: Level;
     garages: number;
     turnoverRate: UnitTurnoverRate;
+    features: string;
+    patioIncluded: boolean;
     address: string;
     zipcode: string;
     billingLink: string;
     moveInDate: string;
     availabilityExtensionMonths: number | null;
+    unitFolderId: string;
+    photosFolderId: string;
+    photosCount: number;
+    coverImage: string;
+    floorplanImage: string;
     photosLink: string;
     videoTourLink: string;
     threeSixtyVideoTourLink: string;
@@ -74,6 +86,10 @@ export interface UnitCardData {
     webSpecials: string [];
 }
 
+
+export interface UnitFloorplan extends Unit {
+    floorplan: Floorplan
+}
 
 export enum Level {
     GROUND = "GROUND", MIDDLE = "MIDDLE", TOP = "TOP", MULTI = "MULTI"

@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from "react";
-import "./assets/ShortTermFloorplanHero.scss";
+import "../../floorplan/section/assets/FloorplanHero.scss";
 import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/muncher-ui";
-import {FloorplanShortTerm} from "./data/ShortTerm";
-import {Asset} from "../asset/data/Asset";
-import {extractIdFrom} from "../utils/Utils";
-import {assetUrlFrom, getAssetsFrom} from "../asset/service/AssetService";
-import {WebSpecial} from "../floorplan/data/Floorplan";
-import {renaissance} from "../data/RenaissanceData";
-import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";
-import {GalleryModal} from "../gallery/GalleryModal";
-import {GridGalleryMobile} from "../gallery/GridGalleryMobile";
-import {VideoTours} from "../gallery/VideoTours";
-import {VirtualTour} from "../gallery/VirtualTour";
-import {HeroBadgeStats} from "../floorplan/section/HeroBadgeStats";
-import {AssetModal} from "../asset/AssetModal";
-import {GridGalleryCover, TourType} from "../gallery/GridGalleryCover";
-import {GridGallery} from "../gallery/GridGallery";
+import {Asset} from "../../asset/data/Asset";
+import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
+import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
+import {extractIdFrom} from "../../utils/Utils";
+import {AssetModal} from "../../asset/AssetModal";
+import {VideoTours} from "../../gallery/VideoTours";
+import {VirtualTour} from "../../gallery/VirtualTour";
+import {GalleryModal} from "../../gallery/GalleryModal";
+import {GridGalleryMobile} from "../../gallery/GridGalleryMobile";
+import {GridGalleryCover, TourType} from "../../gallery/GridGalleryCover";
+import {GridGallery} from "../../gallery/GridGallery";
+import {UnitFloorplan} from "../data/Unit";
+import {addressFromUnit, isUnitAvailable} from "../service/UnitService";
+import {HeroBadgeStats} from "../../floorplan/section/HeroBadgeStats";
+import {WebSpecial} from "../../floorplan/data/Floorplan";
+import {UnitPrice} from "./UnitPrice";
 
-export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
-    {floorplan, contactClickHandler, applyClickHandler, handleRefToMap, webSpecials}) => {
+export const UnitHero: React.FC<UnitHeroProps> = (
+    {unit, contactClickHandler, applyClickHandler, handleRefToMap, webSpecials}) => {
     const [assets, setAssets] = useState<Asset[]>([]);
     const [isAssetsLoading, setIsAssetsLoading] = useState(true);
     const [videoTours, setVideoTours] = useState<string[]>([]);
@@ -47,36 +48,42 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
         setAssetInFocus({} as Asset);
     };
     useEffect(() => {
+
+
         const images: Asset[] = [];
-        images.push({id: extractIdFrom(floorplan.coverImage), name: "cover image"} as Asset);
+        if (unit.coverImage)
+            images.push({id: extractIdFrom(unit.coverImage), name: "cover image"} as Asset);
+        else if (unit.floorplan.coverImage)
+            images.push({id: extractIdFrom(unit.floorplan.coverImage), name: "cover image"} as Asset);
+
 
         let firstPageCount = firstPageImageCount;
 
-        if (floorplan.photosFolderId) {
-            getAssetsFrom(floorplan.photosFolderId).then(galleryAssets => {
+        if (unit.photosFolderId) {
+            getAssetsFrom(unit.photosFolderId).then(galleryAssets => {
 
                 images.push(...galleryAssets);
 
                 if (images.length > 1) {
-                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id);
-                    if (floorplan.virtualTourLink) {
-                        setVirtualTour(floorplan.virtualTourLink);
+                    const backgroundImageUrl = assetUrlFrom(images[1].id, unit.floorplan.property.id);
+                    if (unit.virtualTourLink) {
+                        setVirtualTour(unit.virtualTourLink);
                         setVirtualTourImageBackground(backgroundImageUrl);
                         firstPageCount -= 1;
                     }
 
                     const tourLinks = [];
-                    if (floorplan.videoTourLink)
-                        tourLinks.push(floorplan.videoTourLink);
-                    if (floorplan.threeSixtyVideoTourLink)
-                        tourLinks.push(floorplan.threeSixtyVideoTourLink);
+                    if (unit.videoTourLink)
+                        tourLinks.push(unit.videoTourLink);
+                    if (unit.threeSixtyVideoTourLink)
+                        tourLinks.push(unit.threeSixtyVideoTourLink);
                     setVideoTours(tourLinks);
                     if (tourLinks.length > 0) {
                         setVideoTourImageBackground(backgroundImageUrl);
                         firstPageCount -= 1;
                     }
 
-                    let otherAssetCounts = (tourLinks.length > 0 ? 1 : 0) + (floorplan.virtualTourLink ? 1 : 0);
+                    let otherAssetCounts = (tourLinks.length > 0 ? 1 : 0) + (unit.virtualTourLink ? 1 : 0);
                     setToursCount(otherAssetCounts);
 
                 }
@@ -102,12 +109,18 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
             setIsAssetsLoading(false);
         }
 
-    }, [floorplan])
+    }, [unit])
 
 
-    const printFloorplanAddress = () => {
+    const printUnitAddress = () => {
+        const address = addressFromUnit(unit);
 
-        return floorplan.address + ", " + renaissance.city + ", " + renaissance.state + " " + floorplan.zipcode;
+        let printAddress = "";
+        if (address.address) {
+            printAddress += address.address + ", ";
+        }
+        printAddress += address.city + ", " + address.state + " " + address.zipcode;
+        return printAddress;
     }
     const isFirstSliderPage = (slideIndex: number) => slideIndex === 0;
 
@@ -125,58 +138,50 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
         return assets.slice(startIndex, endIndex > assets.length ? assets.length : endIndex);
     };
     return (
-        <section className="section-short-term-floorplan--hero">
+        <section className="section-floorplan--hero">
             {isAssetsLoading ? <GridGallerySkeleton/> :
                 <>
                     <div className="gallery-hero">
                         <GalleryModal assets={assets} assetInFocus={assetInFocus}
                                       setAssetInFocus={setAssetInFocus} showModal={showModal}
                                       assetIndex={assetIndex} setAssetIndex={setAssetIndex}
-                                      modalCloseHandler={modalCloseHandler} propertyId={floorplan.property.id}/>
+                                      modalCloseHandler={modalCloseHandler} propertyId={unit.floorplan.property.id}/>
                         {currentView === "photo" ?
                             <>
                                 <div className="photo-view main">
                                     <ItemSlider
                                         sliderItems={[...Array(totalPages)].map((x, i) =>
-                                            (i === 0) ? <GridGalleryCover
+                                            (i == 0) ?
+                                                <GridGalleryCover
                                                     assets={assetsToShow(i)}
-                                                    address={{
-                                                        address: floorplan.address,
-                                                        city: renaissance.city,
-                                                        state: renaissance.state,
-                                                        zipcode: floorplan.zipcode
-                                                    }}
-                                                    propertyId={floorplan.property.id}
+                                                    address={addressFromUnit(unit)}
+                                                    propertyId={unit.floorplan.property.id}
                                                     heroImage={assets[0]}
                                                     imageClickedHandler={imageClickedHandler}
                                                     webSpecials={webSpecials}
-                                                    isAvailableNow={false}
+                                                    isAvailableNow={isUnitAvailable(unit)}
                                                     setCurrentView={setCurrentView}
                                                     videoTourImageBackground={videoTourImageBackground}
                                                     virtualTourImageBackground={virtualTourImageBackground}
                                                     showOnlyHeroImage={assets.length === 1}
-                                                /> :
+                                                />
+                                                :
                                                 <GridGallery
                                                     imageClickedHandler={imageClickedHandler}
-                                                    propertyId={floorplan.property.id}
+                                                    propertyId={unit.floorplan.property.id}
                                                     assets={assetsToShow(i)}
                                                 />
                                         )}/>
                                 </div>
                                 <div className="photo-view mobile">
                                     <GridGalleryMobile assets={assets} toursCount={toursCount}
-                                                       address={{
-                                                           address: floorplan.address,
-                                                           city: renaissance.city,
-                                                           state: renaissance.state,
-                                                           zipcode: floorplan.zipcode
-                                                       }}
+                                                       address={addressFromUnit(unit)}
                                                        virtualTour={virtualTour}
                                                        setCurrentView={setCurrentView}
                                                        imageClickedHandler={imageClickedHandler}
                                                        webSpecials={webSpecials}
-                                                       isAvailableNow={false}
-                                                       propertyId={floorplan.property.id}/>
+                                                       isAvailableNow={isUnitAvailable(unit)}
+                                                       propertyId={unit.floorplan.property.id}/>
                                 </div>
                             </> : ""
                         }
@@ -190,15 +195,15 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                 </>
 
             }
-            <AssetModal assetUrl={floorplan.photo} assetTitle="Floorplan image" showModal={showFloorplanModal}
-                        setShowModal={setShowFloorplanModal} propertyId={floorplan.property.id}/>
+            <AssetModal assetUrl={unit.floorplanImage ? unit.floorplanImage : unit.floorplan.photo}
+                        assetTitle="Floorplan image" showModal={showFloorplanModal}
+                        setShowModal={setShowFloorplanModal} propertyId={unit.floorplan.property.id}/>
             <div className="container">
                 <div className="floorplan--two-columns">
                     <div className="floorplan-column-left">
-                        <h3>{floorplan.name}</h3>
-                        <h4>${floorplan.priceFor4andMoreMonths} -
-                            ${floorplan.priceFor5To13Days}/Day</h4>
-                        <p className="floorplan--description">{printFloorplanAddress()}</p>
+                        <h3>{unit.floorplan.name}</h3>
+                        <h4><UnitPrice unit={unit} invertColor={true}/></h4>
+                        <p className="floorplan--description">{printUnitAddress()}</p>
 
                         <div className="floorplan--featured">
                             <Button size="small" onClick={() => setShowFloorplanModal(true)}>
@@ -208,13 +213,13 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                             <Button size="small" onClick={() => handleRefToMap()}>
                                 <Icon orientation="right" name="map">View on Map</Icon>
                             </Button>
-                            {floorplan.property.busRoutes.length > 0 ?
+                            {unit.floorplan.property.busRoutes.length > 0 ?
                                 <p>Bus Routes:&nbsp;
-                                    {floorplan.property.busRoutes.map((busRoute, index) =>
+                                    {unit.floorplan.property.busRoutes.map((busRoute, index) =>
                                         <span key={"bus-route-" + index}>
                                             <a href={busRoute.busRouteLink} target="_blank"
                                                rel="noreferrer">{busRoute.busRoute}</a>
-                                            {index < floorplan.property.busRoutes.length - 1 ? ", " : ""}
+                                            {index < unit.floorplan.property.busRoutes.length - 1 ? ", " : ""}
                                         </span>
                                     )}
                                 </p>
@@ -234,8 +239,8 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
     );
 };
 
-export interface ShortTermFloorplanHeroProps {
-    floorplan: FloorplanShortTerm;
+export interface UnitHeroProps {
+    unit: UnitFloorplan;
     webSpecials: WebSpecial[];
     contactClickHandler: () => void;
     applyClickHandler: () => void;
