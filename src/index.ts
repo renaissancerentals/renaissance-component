@@ -29,6 +29,7 @@ export {FloorplanCard} from "./floorplan/card/FloorplanCard";
 export {FloorplanCardSlider} from "./floorplan/card/FloorplanCardSlider";
 export {FloorplanCardSkeleton} from "./floorplan/card/FloorplanCardSkeleton";
 export {UnitsSection} from "./unit/section/UnitsSection";
+export {UnitSection} from "./unit/section/UnitSection";
 export {FloorplansSection} from "./floorplan/section/FloorplansSection";
 export {FloorplanSection} from "./floorplan/section/FloorplanSection";
 export {FloorplanSectionSkeleton} from "./floorplan/section/FloorplanSectionSkeleton";
