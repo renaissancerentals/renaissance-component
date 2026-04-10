@@ -43,7 +43,7 @@ export const UnitsSection: React.FC<UnitsSectionProps> = (
                 <VideoModal video={video} showModal={showVideoModal} setShowModal={setShowVideoModal}/>
                 <div className={isCondensed ? "container" : ""}>
                     <UnitsHeader title={title} filters={filtersFromUnits(units)} units={units}
-                                 setCurrentUnits={setCurrentUnits} currentUnitCounts={0}
+                                 setCurrentUnits={setCurrentUnits} currentUnitCounts={filteredUnits.length}
                                  isCondensed={isCondensed}
                                  defaultFloorplanStyle={defaultFloorplanStyle}
                                  defaultBedRooms={defaultBedRooms}
