@@ -5,7 +5,7 @@ import {capitalizeFirstLetter, enumToString} from "../../utils/Utils";
 import {SortBy} from "../../data/SortField";
 import {DefaultFloorplanFilters} from "../../floorplan/section/FloorplansSection";
 import {UnitCardData} from "../data/Unit";
-import {defaultAvailabilityToMonthYear} from "../../floorplan/service/FloorplanService";
+import {AVAILABLE_NOW, defaultAvailabilityToMonthYear} from "../../floorplan/service/FloorplanService";
 import {FloorplanStyle, MAX_RENT, MIN_RENT} from "../../floorplan/data/Floorplan";
 import {CurrentFloorplanFilters, FloorplanFilters} from "../../floorplan/data/FloorplanFilters";
 import {sortAndFilterUnits} from "../service/UnitService";
@@ -140,7 +140,7 @@ export const UnitsHeader: React.FC<UnitsHeaderProps> = (
                         <Pill key={availability.toString()} pillCloseHandler={() => {
                             handleAvailabilityFilterChange(availability)
                         }}>
-                            {availability.toString() + " availability"}
+                            {AVAILABLE_NOW === availability ? availability.toString() : availability.toString() + " availability"}
                         </Pill>
                     ))}
                     {

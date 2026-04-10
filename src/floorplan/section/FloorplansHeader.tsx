@@ -6,7 +6,7 @@ import {Icon, Pill, Range} from "@contentmunch/muncher-ui";
 import {CurrentFloorplanFilters, FloorplanFilters} from "../data/FloorplanFilters";
 import {FloorplanCardData, FloorplanStyle, MAX_RENT, MIN_RENT} from "../data/Floorplan";
 import {BedroomFilter, sortBedrooms} from "./filter/Bedroom";
-import {defaultAvailabilityToMonthYear, sortAndFilter} from "../service/FloorplanService";
+import {AVAILABLE_NOW, defaultAvailabilityToMonthYear, sortAndFilter} from "../service/FloorplanService";
 import {AvailabilityFilter, sortAvailability} from "./filter/Availability";
 import {PriceFilter} from "./filter/Price";
 import {StyleFilter} from "./filter/Style";
@@ -140,7 +140,7 @@ export const FloorplansHeader: React.FC<FloorplansHeaderProps> = (
                         <Pill key={availability.toString()} pillCloseHandler={() => {
                             handleAvailabilityFilterChange(availability)
                         }}>
-                            {availability.toString() + " availability"}
+                            {AVAILABLE_NOW === availability ? availability.toString() : availability.toString() + " availability"}
                         </Pill>
                     ))}
                     {

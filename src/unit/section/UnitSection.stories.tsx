@@ -4,7 +4,7 @@ import {UnitSection} from "./UnitSection";
 
 const meta: Meta<typeof UnitSection> = {
     component: UnitSection,
-    title: "Unit/Unit Section",
+    title: "Section/Unit Section",
     render: (args) => <UnitSection {...args} />,
 };
 
