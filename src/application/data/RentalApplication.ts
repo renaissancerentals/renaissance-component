@@ -2,7 +2,8 @@ import {CaptchaEnabledRequest} from "../../captcha/data/CaptchaEnabledRequest";
 
 
 export interface RentalApplication extends CaptchaEnabledRequest {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone?: string;
     property: string;
@@ -13,7 +14,8 @@ export interface RentalApplication extends CaptchaEnabledRequest {
 }
 
 export const defaultRentalApplication: RentalApplication = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     property: "",
     currentPage: "",

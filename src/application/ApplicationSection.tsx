@@ -28,7 +28,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
 
     const isFormValid = (): boolean => {
         return rentalApplication.property != null
-            && rentalApplication.email != null && rentalApplication.name != null
+            && rentalApplication.email != null && rentalApplication.firstName != null && rentalApplication.lastName != null
     }
     const resolvePropertyId = (): string => {
         const isUmbrellaSiteId = () =>
@@ -114,16 +114,28 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                 <div className="container">
                     <form onSubmit={handleSubmit}>
                         <div className="form-element">
-                            <Input label="Name" name="fullName" icon="user"
+                            <Input label="First Name" name="firstName" icon="user"
                                    onChange={e => {
-                                       setRentalApplication({...rentalApplication, name: e.target.value})
+                                       setRentalApplication({...rentalApplication, firstName: e.target.value})
                                    }}
                                    error={
-                                       submissionState === "formInvalid" && isEmpty(rentalApplication.name) ?
-                                           "Please provide Name" : ""
+                                       submissionState === "formInvalid" && isEmpty(rentalApplication.firstName) ?
+                                           "Please provide First Name" : ""
                                    }
                                    required/>
                         </div>
+                        <div className="form-element">
+                            <Input label="Last Name" name="lastName" icon="user"
+                                   onChange={e => {
+                                       setRentalApplication({...rentalApplication, lastName: e.target.value})
+                                   }}
+                                   error={
+                                       submissionState === "formInvalid" && isEmpty(rentalApplication.lastName) ?
+                                           "Please provide Last Name" : ""
+                                   }
+                                   required/>
+                        </div>
+
                         <div className="hp-form-item">
                             <label htmlFor="preferredName">Preferred Name</label>
                             <input
@@ -140,7 +152,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                        setRentalApplication({...rentalApplication, email: e.target.value})
                                    }}
                                    error={
-                                       submissionState === "formInvalid" && isEmpty(rentalApplication.name) ?
+                                       submissionState === "formInvalid" && isEmpty(rentalApplication.email) ?
                                            "Please provide Email" : ""
                                    }
                                    required/>

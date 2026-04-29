@@ -39,7 +39,8 @@ const Contact: React.FC<ContactSectionProps> = ({
         setHasContactError(false);
         if (form.checkValidity()) {
             const currentMessage: ContactMessage = {
-                name: form.fullName.value,
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
                 phone: form.phone.value,
                 email: form.email.value,
                 emailPreferred: form.emailPreferred.checked,
@@ -165,10 +166,18 @@ const Contact: React.FC<ContactSectionProps> = ({
                             </div>
                             <div className="form-item">
                                 <div className="item-left">
-                                    <label htmlFor="fullName">Name*</label>
+                                    <label htmlFor="firstName">First Name*</label>
                                 </div>
                                 <div className="item-right">
-                                    <Input name="fullName" icon="user" required/>
+                                    <Input name="firstName" icon="user" required/>
+                                </div>
+                            </div>
+                            <div className="form-item">
+                                <div className="item-left">
+                                    <label htmlFor="lastName">Last Name*</label>
+                                </div>
+                                <div className="item-right">
+                                    <Input name="lastName" icon="user" required/>
                                 </div>
                             </div>
                             <div className="hp-form-item">
