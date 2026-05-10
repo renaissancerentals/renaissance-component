@@ -20,7 +20,7 @@ export const HomePageSpecialSection: React.FC<HomePageSpecialSectionProps> = (
         <section className="section-home-page-specials">
             {homePageSpecials.length > 0 ?
                 <>
-                    <HomePageSpecialModal homePageSpecials={homePageSpecials} propertyId={propertyId} parent={parent}/>
+                    <HomePageSpecialModal homePageSpecial={homePageSpecials[0]} propertyId={propertyId} parent={parent}/>
                 </> : <></>}
 
         </section>

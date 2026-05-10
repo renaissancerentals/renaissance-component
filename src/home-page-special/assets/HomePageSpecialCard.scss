@@ -1,114 +1,27 @@
 @import "src/assets/variables";
 
 .special-card {
-  background-color: $special-offer-color;
+  width: 100%;
+  box-sizing: border-box;
 
-  padding: 0;
-  @media(min-width: $small-size) {
-    width: 95vw;
-  }
-  @media(min-width: $large-size) {
-    width: 60vw;
-  }
-
-  h2 {
-    color: $secondary-background-color;
-    font-family: $sans-serif-font;
-    text-transform: none;
-    font-weight: normal;
-
-    @media(min-width: $small-size) {
-      font-size: 1rem;
-    }
-    @media(min-width: $large-size) {
-      font-size: 1.4rem;
-    }
-    width: 90%;
-  }
-
-  .special-card--description {
-    font-weight: bold;
-  }
-
-  p, li {
-    @media(min-width: $small-size) {
-      font-size: .9rem;
-    }
-    @media(min-width: $large-size) {
-      font-size: 1rem;
-    }
+  &--image-wrapper {
+    position: relative;
     width: 100%;
-  }
 
-  ul {
-    column-count: 1;
-    padding: 0 .5rem 0 1rem;
-    margin: 0 0 .5rem;
-
-
-  }
-
-  .muncher-editor-link {
-    color: $link-color;
-    text-decoration: none;
-  }
-
-  li {
-    width: 95%;
-    font-size: .9rem;
-  }
-
-  .special-card-body {
-    background-color: $secondary-background-color;
-    color: $secondary-color;
-    display: flex;
-    @media(min-width: $small-size) {
-      flex-direction: column-reverse;
-    }
-    @media(min-width: $large-size) {
-      flex-direction: row;
-    }
-  }
-
-  .body-left, .body-right {
-
-    @media(min-width: $small-size) {
-      width: 100%;
-    }
-    @media(min-width: $large-size) {
-      min-height: 18rem;
-      max-height: 19rem;
-    }
-  }
-
-  .body-left {
-    @media(min-width: $small-size) {
-      padding: 1rem;
-    }
-    @media(min-width: $large-size) {
-      padding: 0 1rem 1rem 2rem;
-    }
-
-    p, li {
-      text-align: left;
-      width: 90%;
-    }
-  }
-
-  .body-right {
     img {
-      @media(min-width: $small-size) {
-        width: 100%;
-        height: 20vh;
-        object-fit: cover;
-      }
-      @media(min-width: $large-size) {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
+      width: 100%;
+      height: auto;
+      display: block;
     }
   }
 
+  &--region {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
