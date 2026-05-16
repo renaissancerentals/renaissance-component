@@ -60,10 +60,9 @@
   @media (min-width: $medium-size) {
     font-size: 90%;
     .row {
-      grid-template-columns:  12% repeat(2, 8%) repeat(5, 14.3%);
+      grid-template-columns: 18% repeat(2, 10%) repeat(3, 20%);
       grid-template-rows: repeat(4, 20%);
       grid-auto-flow: row;
-
 
       .col {
         height: 2rem;
@@ -74,11 +73,11 @@
           border-top: none;
         }
 
-        &:nth-child(n+8) {
+        &:nth-child(n+6) {
           border-right: none;
         }
 
-        &:nth-child(8n) {
+        &:nth-child(6n) {
           border-right: 1px solid #a7bdb1;
         }
       }

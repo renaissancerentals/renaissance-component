@@ -1,21 +1,176 @@
 @import "src/assets/variables";
 
 .section-hostaway {
+  .two-column-layout {
+    font-family: Libre Baskerville, serif;
+    background-color: #E2E4E2FF;
+    //padding: 2rem;
+    @media(min-width: $medium-size) {
+      display: flex;
+    }
+
+    align-items: center;
+    justify-content: center;
+
+
+    .first-column,
+    .second-column {
+      flex: 1;
+      min-width: 0;
+      padding: 1rem 2rem;
+    }
+
+    h3 {
+      font-family: Libre Baskerville, serif;
+      text-transform: none;
+      font-style: italic;
+      letter-spacing: .01rem;
+      color: #13294b;
+      text-align: left;
+    }
+
+    h4 {
+      font-family: BenchNine, sans-serif;
+      letter-spacing: .15rem;
+      text-align: left;
+    }
+
+
+    p {
+      font-size: .8rem;
+
+    }
+
+    .muncher-badge {
+      background-color: white;
+      border-radius: 1rem;
+      border: #a7bdb1 .1rem solid;
+      font-family: BenchNine, sans-serif;
+      text-transform: uppercase;
+      font-size: .9rem;
+      letter-spacing: .05rem;
+      padding: .5rem 1rem;
+      @media(min-width: $medium-size) {
+        margin: 2rem 0;
+      }
+    }
+
+    .first-column {
+      position: relative;
+
+      p {
+        text-align: left;
+
+      }
+
+      @media(min-width: $medium-size) {
+        padding-right: 2rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 1px;
+          background-color: #ccc; // adjust colour to taste
+        }
+      }
+    }
+
+    .second-column {
+      p {
+        font-size: .7rem;
+      }
+
+      @media(min-width: $medium-size) {
+        padding-left: 2rem;
+      }
+    }
+  }
 
   p {
     text-align: center;
   }
+
   .hostaway-wrapper {
-    width: auto;
+    width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  #hostaway-booking-widget{
-    border: #a7bdb1 .8rem solid;
-   // z-index: 20;
+
+  #hostaway-booking-widget {
+    border: #a7bdb1 .1rem solid;
+    width: 100%;
+
+    .hsbw-field {
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    // SVG icons
+    .hsbw-field-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    // Labels (Check-in, Check-out, Guests)
+    .hsbw-label {
+      font-size: 0.7rem;
+    }
+
+    // Values (dates, guest count)
+    .hsbw-value {
+      font-size: 0.8rem;
+    }
+
+    // Override widget's internal grid to prevent button overflow
+    .hsbw-grid {
+      @media screen and (min-width: 900px) and (max-width: 1430px) {
+        display: grid;
+        grid-template-areas:
+                "dates guests"
+                "buttons buttons";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      @media screen and (min-width: 1430px) {
+        grid-template-columns: 1fr 1fr auto;
+      }
+    }
+
+    .hsbw-dates {
+      grid-area: dates;
+    }
+
+    .hsbw-grid_guests {
+      grid-area: guests;
+    }
+
+    .hsbw-grid_buttons {
+      grid-area: buttons;
+    }
+
+    .hsbw-grid_buttons {
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .hsbw-main-button {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      width: 100%;
+    }
   }
-  .footnote{
+
+  .footnote {
     font-style: normal;
     font-size: .7rem;
     text-align: center;

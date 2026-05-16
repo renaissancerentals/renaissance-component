@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import "./assets/Hostaway.scss";
+import {Badge, Icon} from "@contentmunch/muncher-ui";
 
 export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
 
@@ -27,12 +28,24 @@ export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
                 <h2 className="heading">
                     <span className="emphasized">Stays under 2 weeks</span>
                 </h2>
-                <p>Search our availability and book directly</p>
-                <div className="hostaway-wrapper">
-                    <div id="hostaway-booking-widget"></div>
+                <div className="two-column-layout">
+                    <div className="first-column">
+                        <h3>Need a stay user 2 weeks?</h3>
+                        <p>Short stays are available - search our live availability and book directly, or call us to
+                            discuss options.</p>
+                        <Badge><Icon name="uneven-hamburger">Rates vary by unit and season</Icon></Badge>
+                    </div>
+                    <div className="second-column">
+                        <h4>Search Availability</h4>
+                        <div className="hostaway-wrapper">
+                            <div id="hostaway-booking-widget"></div>
+                        </div>
+                        <p className="footnote main">Not finding what you'd like? Call or Text us</p>
+                        <p className="footnote mobile">Not finding what you'd like? <a href={`tel:${contactNumber}`}>Call
+                            or
+                            Text</a> us</p>
+                    </div>
                 </div>
-                <p className="footnote main">Not finding what you'd like? Call or Text us for more options</p>
-                <p className="footnote mobile">Not finding what you'd like? <a href={`tel:${contactNumber}`}>Call or Text</a> us for more options</p>
             </div>
         </section>
 

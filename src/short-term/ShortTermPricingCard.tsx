@@ -25,12 +25,6 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                 {floorplan.squareFoot}+
             </div>
             <div className="col">
-                {covertToUSD(floorplan.priceFor2To4Days, "/day + tax")}
-            </div>
-            <div className="col">
-                {covertToUSD(floorplan.priceFor5To13Days, "/day + tax")}
-            </div>
-            <div className="col">
                 {covertToUSD(floorplan.priceFor14To29Days, "/day + tax")}
             </div>
             <div className="col">
@@ -47,12 +41,8 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
             {values.map((value, index) =>
                 <td key={"td-" + index}>{value}</td>
             )}
-
         </tr>
-
-
     return (
-
         <section className="section-pricing-card">
             <div className="container">
                 <h2 className="heading">
@@ -65,16 +55,9 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                             {generateMobile("bedrooms", floorplans.map(floorplan => floorplan.bedroom + "-Bedroom " + capitalizeFirstLetter(enumToString(floorplan.style))))}
                             {generateMobile("bath", floorplans.map(floorplan => floorplan.bathroom + ""))}
                             {generateMobile("sq. ft.", floorplans.map(floorplan => floorplan.squareFoot + "+"))}
-                            {generateMobile(
-                                <><span className="asterix">*</span>2-4
-                                    days</>, floorplans.map(floorplan => covertToUSD(floorplan.priceFor2To4Days, "/day + tax")))}
-                            {generateMobile(
-                                <><span className="asterix">*</span>5-13
-                                    days</>, floorplans.map(floorplan => covertToUSD(floorplan.priceFor5To13Days, "/day + tax")))}
                             {generateMobile("14-29 days", floorplans.map(floorplan => covertToUSD(floorplan.priceFor14To29Days, "/day + tax")))}
                             {generateMobile("1-4 months", floorplans.map(floorplan => covertToUSD(floorplan.priceFor1To4Months, "/day/ ") + covertToUSD(floorplan.priceFor1To4Months, "/mo", 30)))}
                             {generateMobile("4+ months", floorplans.map(floorplan => covertToUSD(floorplan.priceFor4andMoreMonths, "/day/ ") + covertToUSD(floorplan.priceFor4andMoreMonths, "/mo", 30)))}
-
                             </tbody>
                         </table>
                     </div>
@@ -89,12 +72,6 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                         </div>
                         <div className="col head">
                             sq. ft.
-                        </div>
-                        <div className="col head tall">
-                            <span className="asterix">*</span>2-4 days
-                        </div>
-                        <div className="col head tall">
-                            <span className="asterix">*</span>5-13 days
                         </div>
                         <div className="col head">
                             14-29 days
@@ -111,14 +88,8 @@ export const ShortTermPricingCard: React.FC<ShortTermPricingCardProps> = ({floor
                     </div>
                 </div>
 
-                <p className="footnote main">* for immediate arrivals only, call or text for availability</p>
-                <p className="footnote mobile">* for immediate arrivals only, <a href={`tel:${contactNumber}`}>call or
-                    text</a> for availability</p>
-
             </div>
-
         </section>
-
     );
 };
 
