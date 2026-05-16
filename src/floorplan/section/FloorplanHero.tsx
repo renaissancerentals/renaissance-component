@@ -5,7 +5,7 @@ import {Asset} from "../../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {extractIdFrom} from "../../utils/Utils";
-import {Floorplan, FloorplanSpotlight, WebSpecial} from "../data/Floorplan";
+import {Floorplan, WebSpecial} from "../data/Floorplan";
 import {AssetModal} from "../../asset/AssetModal";
 import {addressFromFloorplan, isFloorplanAvailable} from "../service/FloorplanService";
 import {VideoTours} from "../../gallery/VideoTours";
@@ -139,7 +139,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                                 <div className="photo-view main">
                                     <ItemSlider
                                         sliderItems={[...Array(totalPages)].map((x, i) =>
-                                            (i == 0) ?
+                                            (i === 0) ?
                                                 <GridGalleryCover
                                                     assets={assetsToShow(i)}
                                                     address={addressFromFloorplan(floorplan)}

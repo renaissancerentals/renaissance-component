@@ -12,7 +12,7 @@ export const PropertyFaqSection: React.FC<PropertyFaqSectionProps> = ({propertyI
             .then(data => {
                 setPropertyFaqs(data.sort((a, b) => a.sortOrder - b.sortOrder));
             });
-    }, []);
+    }, [propertyId]);
     return (
         propertyFaqs.length > 0 ?
             <section className="property-faq-section">

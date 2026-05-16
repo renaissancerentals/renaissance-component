@@ -19,7 +19,6 @@ import Api from "../../service/Api";
 import {renaissance} from "../../data/RenaissanceData";
 
 const today = moment();
-const tomorrow = today.add(1, "day");
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format(MONTH_YEAR_FORMAT);
 
 const isBedroomsMatch = (unit: UnitCardData, bedroomFilters: number[]): boolean => {

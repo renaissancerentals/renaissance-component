@@ -151,7 +151,7 @@ export const UnitHero: React.FC<UnitHeroProps> = (
                                 <div className="photo-view main">
                                     <ItemSlider
                                         sliderItems={[...Array(totalPages)].map((x, i) =>
-                                            (i == 0) ?
+                                            (i === 0) ?
                                                 <GridGalleryCover
                                                     assets={assetsToShow(i)}
                                                     address={addressFromUnit(unit)}

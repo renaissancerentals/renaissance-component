@@ -146,7 +146,7 @@ export const Default: Story = {
 
     },
 };
-export const withOnlyHeroImage: Story = {
+export const WithOnlyHeroImage: Story = {
     args: {
         assets: [],
         showOnlyHeroImage: true,
@@ -170,7 +170,7 @@ export const withOnlyHeroImage: Story = {
     }
 }
 
-export const withNoVirtualTour: Story = {
+export const WithNoVirtualTour: Story = {
     args: {
         assets: assetsData.slice(1, 3),
         heroImage: assetsData[0],
@@ -194,7 +194,7 @@ export const withNoVirtualTour: Story = {
     }
 }
 
-export const withNoTours: Story = {
+export const WithNoTours: Story = {
     args: {
         assets: assetsData.slice(1, 4),
         heroImage: assetsData[0],

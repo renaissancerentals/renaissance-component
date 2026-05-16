@@ -130,26 +130,26 @@ export const Default: Story = {
 
     },
 };
-export const withSix: Story = {
+export const WithSix: Story = {
     args: {
         ...Default.args,
         assets: assetsData.slice(0, 6)
     }
 }
 
-export const withThree: Story = {
+export const WithThree: Story = {
     args: {
         ...Default.args,
         assets: assetsData.slice(0, 3)
     }
 }
-export const withTwo: Story = {
+export const WithTwo: Story = {
     args: {
         ...Default.args,
         assets: assetsData.slice(0, 2)
     }
 }
-export const withOne: Story = {
+export const WithOne: Story = {
     args: {
         ...Default.args,
         assets: assetsData.slice(0, 1)

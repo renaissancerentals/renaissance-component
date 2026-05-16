@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {
-    Floorplan, FloorplanDetails,
+    Floorplan,
     FloorplanFaq,
     FloorplanVariation,
     SimilarFloorplan,

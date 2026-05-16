@@ -26,7 +26,7 @@ $hostaway-section-background-color: $secondary-background-color !default;
       text-transform: none;
       font-style: italic;
       letter-spacing: .01rem;
-      color: #13294b;
+      color: $primary-color;
       text-align: left;
     }
 
@@ -105,7 +105,11 @@ $hostaway-section-background-color: $secondary-background-color !default;
   #hostaway-booking-widget {
     border: #a7bdb1 .1rem solid;
     width: 100%;
+    z-index: 400;
 
+    .hsbw {
+      z-index: 400;
+    }
     .hsbw-field {
       cursor: pointer;
       transition: background-color 0.2s ease;

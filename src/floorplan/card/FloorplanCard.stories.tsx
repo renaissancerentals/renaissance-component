@@ -58,7 +58,7 @@ export const Default: Story = {
 
     },
 };
-export const without360Icon: Story = {
+export const Without360Icon: Story = {
     args: {
         ...Default.args,
         floorplan: {
@@ -67,7 +67,7 @@ export const without360Icon: Story = {
         }
     }
 }
-export const withoutLeftIcons: Story = {
+export const WithoutLeftIcons: Story = {
     args: {
         ...Default.args,
         floorplan: {
