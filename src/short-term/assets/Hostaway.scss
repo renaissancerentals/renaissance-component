@@ -1,9 +1,10 @@
 @import "src/assets/variables";
 
+$hostaway-section-background-color: $secondary-background-color !default;
 .section-hostaway {
   .two-column-layout {
     font-family: Libre Baskerville, serif;
-    background-color: #E2E4E2FF;
+    background-color: $hostaway-section-background-color;
     //padding: 2rem;
     @media(min-width: $medium-size) {
       display: flex;
