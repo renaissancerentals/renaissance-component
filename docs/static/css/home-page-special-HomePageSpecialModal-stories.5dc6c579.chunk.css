@@ -1,6 +1,0 @@
-.home-page-special-modal .muncher-modal{position:fixed !important;left:50% !important;top:50% !important;transform:translate(-50%, -50%) !important;width:min(90vw, 600px) !important;max-width:90vw !important;padding:0 !important;background:none !important;overflow:visible !important;box-sizing:border-box}.home-page-special-modal .muncher-icon--medium{width:1.5rem;height:1.5rem}.home-page-special-modal .close{position:absolute;top:-1.5rem;right:-1rem;z-index:1050}@media (max-height: 500px){.home-page-special-modal .close{top:0.5rem;right:0.5rem}}.home-page-special-modal .close .muncher-icon{color:#eae9e3}.home-page-special-modal .special-card{width:100%;box-sizing:border-box}
-
-.special-card{width:100%;box-sizing:border-box}.special-card--image-wrapper{position:relative;width:100%}.special-card--image-wrapper img{width:100%;height:auto;display:block}.special-card--region{position:absolute;display:block;cursor:pointer}.special-card--region:hover{background-color:rgba(255,255,255,0.2)}
-
-
-/*# sourceMappingURL=home-page-special-HomePageSpecialModal-stories.5dc6c579.chunk.css.map*/
