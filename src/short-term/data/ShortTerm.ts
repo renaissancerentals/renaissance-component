@@ -36,8 +36,6 @@ export interface FloorplanShortTerm {
     zipcode: string;
     highlights: string;
     squareFoot: number;
-    priceFor2To4Days: string;
-    priceFor5To13Days: string;
     priceFor14To29Days: string;
     priceFor1To4Months: string;
     priceFor4andMoreMonths: string;

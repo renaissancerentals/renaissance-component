@@ -29,8 +29,6 @@ export const Default: Story = {
             photosFolderId: "18BL3coOPSHfMFJyJdZ4duB63SmPbgDDI",
             coverImage:
                 "https://drive.google.com/uc?id=1pXtrJgJhTrdLeuwtP6lKSjULfF7TPJtf&export=download",
-            priceFor2To4Days: "Call or Text",
-            priceFor5To13Days: "143.0",
             priceFor14To29Days: "119.0",
             priceFor1To4Months: "93.0",
             priceFor4andMoreMonths: "81.0",

@@ -196,8 +196,8 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                 <div className="floorplan--two-columns">
                     <div className="floorplan-column-left">
                         <h3>{floorplan.name}</h3>
-                        <h4>${floorplan.priceFor4andMoreMonths} -
-                            ${floorplan.priceFor5To13Days}/Day</h4>
+                        <h4>${floorplan.priceFor14To29Days} -
+                            ${floorplan.priceFor4andMoreMonths}/Day</h4>
                         <p className="floorplan--description">{printFloorplanAddress()}</p>
 
                         <div className="floorplan--featured">

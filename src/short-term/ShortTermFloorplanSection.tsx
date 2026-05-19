@@ -90,12 +90,6 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                         <div className="row-content">
                                             <h4 className="row-title">Pricing:</h4>
                                             <p className="floorplan-card--featured">
-                                                <span className="key">5-13 days:</span>
-                                                <span className="value">
-                                                    {generatePricing(floorplan.priceFor5To13Days)}
-                                                </span>
-                                            </p>
-                                            <p className="floorplan-card--featured">
                                                 <span className="key">14-29 days:</span>
                                                 <span className="value">
                                                     {generatePricing(floorplan.priceFor14To29Days)}
