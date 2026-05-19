@@ -86,14 +86,11 @@ export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
                         <h3 className="truncate">
                             {floorplan.name}
                         </h3>
-                        <p className="small"> {covertToUSD(floorplan.priceFor5To13Days)}/day (5-13
-                            Days), {covertToUSD(floorplan.priceFor14To29Days)}/day (14-29 Days)</p>
-                        <p className="small">{covertToUSD(floorplan.priceFor1To4Months)}/day (1-4
-                            Months), {covertToUSD(floorplan.priceFor4andMoreMonths)}/day (4+ Months) </p>
-
+                        <p className="small">{covertToUSD(floorplan.priceFor14To29Days)}/day (14-29 Days), {covertToUSD(floorplan.priceFor1To4Months)}/day (1-4
+                            Months), </p>
+                        <p className="small">{covertToUSD(floorplan.priceFor4andMoreMonths)}/day (4+ Months) </p>
                     </div>
                     <div className="right">
-
                         <p>{floorplan.bedroom} bed, {floorplan.bathroom} bath</p>
                         <p>{floorplan.squareFoot} sq.ft.</p>
                     </div>

@@ -3,6 +3,31 @@
 $floorplan-card-color: $primary-background-color !default;
 $floorplan-card-secondary-color: $secondary-color !default;
 .short-term-floorplan-card {
+  position: relative;
+  height: 16rem;
+  width: 100%;
+  .card--image {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+  }
+  @media(min-width: $large-size) {
+    width: 25rem;
+    .card--image {
+      width: 25rem;
+    }
+  }
+  @media(min-width: $extra-large-size) {
+    width: 33rem;
+    height: 18rem;
+    .card--image {
+      width: 33rem;
+      height: 18rem;
+    }
+  }
+
+
+
   color: $floorplan-card-color;
 
   a {
@@ -13,9 +38,7 @@ $floorplan-card-secondary-color: $secondary-color !default;
     color: inherit;
   }
 
-  position: relative;
-  height: 16rem;
-  width: 100vw;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +46,7 @@ $floorplan-card-secondary-color: $secondary-color !default;
   .small {
     font-size: .7rem;
   }
+
   .muncher-spinner {
     position: absolute;
     top: 40%;
@@ -35,34 +59,6 @@ $floorplan-card-secondary-color: $secondary-color !default;
     top: 40%;
     right: 0;
   }
-
-  //@media(min-width: $medium-size) {
-  //  width: 20rem;
-  //  height: 14rem;
-  //}
-  .card--image {
-    width: 100vw;
-    height: 16rem;
-    object-fit: cover;
-  }
-
-  @media(min-width: $large-size) {
-    width: 25rem;
-    height: 16rem;
-    .card--image {
-      width: 25rem;
-      height: 16rem;
-    }
-  }
-  @media(min-width: $extra-large-size) {
-    width: 33rem;
-    height: 18rem;
-    .card--image {
-      width: 33rem;
-      height: 18rem;
-    }
-  }
-
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -122,24 +118,22 @@ $floorplan-card-secondary-color: $secondary-color !default;
 
     .truncate {
       text-overflow: ellipsis;
-      font-size: .9rem;
-      //@media(min-width: $medium-size) {
-      //  width: 10rem;
-      //}
-      @media(min-width: $large-size) {
-        width: 12rem;
-      }
+      font-size: .8rem;
       @media(min-width: $extra-large-size) {
-        font-size: 1rem;
-        width: 20rem;
+        font-size: .9rem;
       }
-      width: 55vw;
       white-space: nowrap;
       overflow: hidden;
     }
 
     .left, .right {
       padding: 0 .5rem;
+    }
+    .right {
+      p {
+        font-size: .8rem;
+      }
+
     }
   }
 
@@ -168,10 +162,6 @@ $floorplan-card-secondary-color: $secondary-color !default;
 }
 
 .short-term-floorplan-card--small {
-  //@media(min-width: $medium-size) {
-  //  width: 15rem;
-  //  height: 14rem;
-  //}
   @media(min-width: $large-size) {
     width: 20rem;
     height: 16rem;
@@ -191,18 +181,15 @@ $floorplan-card-secondary-color: $secondary-color !default;
 
   .floorplan-card-footer {
     .left {
-      //@media(min-width: $medium-size) {
-      //  max-width: 8rem;
-      //}
       @media(min-width: $large-size) {
         max-width: 12rem;
       }
       @media(min-width: $extra-large-size) {
         max-width: 16rem;
       }
-
     }
   }
+
 }
 
 .floorplan-card--slider {

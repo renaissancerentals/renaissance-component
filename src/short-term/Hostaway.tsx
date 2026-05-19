@@ -30,7 +30,7 @@ export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
                 </h2>
                 <div className="two-column-layout">
                     <div className="first-column">
-                        <h3>Need a stay user 2 weeks?</h3>
+                        <h3>Need a stay under 2 weeks?</h3>
                         <p>Short stays are available - search our live availability and book directly, or call us to
                             discuss options.</p>
                         <Badge><Icon name="uneven-hamburger">Rates vary by unit and season</Icon></Badge>
