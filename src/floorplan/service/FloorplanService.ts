@@ -22,8 +22,11 @@ import {SortBy, SortFields} from "../../data/SortField";
 import Api from "../../service/Api";
 
 export const AVAILABLE_NOW = "Available Now";
-const today = moment();
-const tomorrow = today.add(1, "day");
+
+// Always compute fresh — never cache moment() at module load time,
+// and never derive one from the other since moment#add mutates in place.
+const today = (): Moment => moment();
+const tomorrow = (): Moment => moment().add(1, "day");
 
 
 export const convertToHttps = (url: string): string => {
@@ -51,7 +54,7 @@ export const convertToFloorplanCardData = (floorplanDetails: FloorplanDetails): 
         photosFolderId: floorplanDetails.photosFolderId,
         units: floorplanDetails.units,
         webSpecials: floorplanDetails.webSpecials
-            .filter(webSpecial => today.isBetween(dateToMoment(webSpecial.startDate), dateToMoment(webSpecial.endDate)))
+            .filter(webSpecial => today().isBetween(dateToMoment(webSpecial.startDate), dateToMoment(webSpecial.endDate)))
             .map(webSpecial => webSpecial.description)
     } as FloorplanCardData;
 }
@@ -64,16 +67,16 @@ export const sortAndFilter = (floorplans: FloorplanCardData[], currentFilters: C
 };
 
 export const isDateWithinTwelveMonths = (date: string) => {
-    const diff = moment(date, "YYYY-MM-DD").diff(today, 'months', false);
+    const diff = moment(date, "YYYY-MM-DD").diff(today(), 'months', false);
     return diff >= 0 && diff <= 12;
 }
 export const isDateAfterToday = (date: string) => {
-    return moment(date, "YYYY-MM-DD").isAfter(today);
+    return moment(date, "YYYY-MM-DD").isAfter(today());
 }
 export const MONTH_YEAR_FORMAT = "MMMM YYYY";
 const dateToMonthYear = (dateString: string | null): string => moment(dateString, "YYYY-MM-DD").format(MONTH_YEAR_FORMAT);
 
-export const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow);
+export const isAvailableNow = (moveInDate: moment.Moment) => moveInDate.isBefore(tomorrow());
 
 export const defaultAvailabilityToMonthYear = (dateString: string): string =>
     AVAILABLE_NOW === dateString ? dateString : moment(dateString, "MM-YYYY").format(MONTH_YEAR_FORMAT);
@@ -87,7 +90,7 @@ const isAvailable = (floorplan: FloorplanCardData, availabilityFilters: Month[])
 
         floorplan.units.some((unit) => {
                 const isUnitAvailableNow = isAvailableNow(moment(unit.moveInDate))
-                if (availabilityFilters.indexOf(AVAILABLE_NOW) > -1 || availabilityFilters.indexOf(momentToMonthYear(today)) > -1) {
+                if (availabilityFilters.indexOf(AVAILABLE_NOW) > -1 || availabilityFilters.indexOf(momentToMonthYear(today())) > -1) {
                     if (isUnitAvailableNow)
                         return true;
                 }
@@ -142,13 +145,17 @@ const filterMatches = (floorplan: FloorplanCardData, currentFilters: CurrentFloo
         isBedroomsMatch(floorplan, currentFilters.bedroomFilters) &&
         isFloorplanIdsMatch(floorplan, currentFilters.floorplanIds);
 }
+
+// Never mutate the input array — always sort a copy so callers who compare
+// the returned reference against the original (memoization, useMemo, etc.)
+// can correctly detect that something changed.
 export const sortFloorplans = (floorplans: FloorplanCardData[], sortBy: SortBy): FloorplanCardData[] => {
 
     if (SortFields[sortBy].sortField === "minRate" && SortFields[sortBy].order === "desc") {
-        return floorplans.sort((a, b) => minimumMaximum(b.units, "rent").min - minimumMaximum(a.units, "rent").min);
+        return [...floorplans].sort((a, b) => minimumMaximum(b.units, "rent").min - minimumMaximum(a.units, "rent").min);
     }
 
-    const minRateSorted = floorplans.sort((a, b) => minimumMaximum(a.units, "rent").min - minimumMaximum(b.units, "rent").min);
+    const minRateSorted = [...floorplans].sort((a, b) => minimumMaximum(a.units, "rent").min - minimumMaximum(b.units, "rent").min);
     if (SortFields[sortBy].sortField === "minRate" && SortFields[sortBy].order === "asc") {
         return minRateSorted
     }
@@ -227,7 +234,7 @@ export const getSimilarFloorplans = (floorplanId: string): Promise<SimilarFloorp
 export const getFloorplanVariations = (floorplanId: string): Promise<FloorplanVariation[]> =>
     Api.get("floorplans/" + floorplanId + "/variations").then(response => response.data);
 
-export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): boolean => floorplan.units.some((unit) => today.isAfter(dateToMoment(unit.moveInDate)));
+export const isFloorplanAvailable = (floorplan: Floorplan | FloorplanCardData): boolean => floorplan.units.some((unit) => today().isAfter(dateToMoment(unit.moveInDate)));
 export const getTestimonials = (floorplanId: string): Promise<Testimonial[]> =>
     Api.get("floorplans/" + floorplanId + "/testimonials").then(response => response.data);
 
@@ -340,4 +347,3 @@ export interface Address {
     state: string;
     zipcode: string;
 }
-
