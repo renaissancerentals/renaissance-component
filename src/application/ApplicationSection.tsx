@@ -26,8 +26,9 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
     } : defaultRentalApplication);
 
     const isFormValid = (): boolean => {
-        return rentalApplication.property != null
-            && rentalApplication.email != null && rentalApplication.firstName != null && rentalApplication.lastName != null
+        // note: rentalApplication.property is never set in state (it's resolved separately via
+        // resolvePropertyId() at submit time), so it's intentionally not part of this check.
+        return !isEmpty(rentalApplication.email) && !isEmpty(rentalApplication.firstName) && !isEmpty(rentalApplication.lastName)
     }
     const resolvePropertyId = (): string => {
         const isUmbrellaSiteId = () =>
