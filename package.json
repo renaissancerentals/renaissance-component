@@ -1,6 +1,6 @@
 {
   "name": "@renaissancerentals/renaissance-component",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "Renaissance rentals UI component library",
   "author": "asikpradhan",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "build:types": "tsc -p tsconfig.types.json",
     "build:js": "vite build",
     "build": "npm run build:js && npm run build:types && mv lib/renaissance-component.css lib/index.css && npm run postbuild:js && npm run postbuild:clean",
-    "postbuild:js": "rsync -avz --exclude='*.ts' src/ lib/",
+    "postbuild:js": "rsync -avz --exclude='*.ts' --exclude='index.css' src/ lib/",
     "postbuild:clean": "npm run clean:stories && npm run clean:public && npm run clean:tsx",
     "lint": "eslint .",
     "preview": "vite preview",

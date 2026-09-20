@@ -1,3 +1,5 @@
+import './index.css';
+
 export {Banner} from "./announcement/Banner";
 export {ContactSection} from "./contact/ContactSection";
 export {ContactModal} from "./contact/ContactModal";

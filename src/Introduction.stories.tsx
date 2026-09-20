@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import "./assets/App.css";
+import "./index.css";
 
 const meta: Meta = {
     title: "Introduction",

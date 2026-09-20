@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import "../assets/App.css";
+import "../index.css";
 import "./assets/HeadingStory.css";
 export default {
   title: "Heading/Emphasized",
