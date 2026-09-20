@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/ImageCard.scss';
+import './assets/ImageCard.css';
 import Skeleton from "react-loading-skeleton";
 
 export const ImageCardSkeleton: React.FC<ImageCardSkeletonProps> = ({width, height}) => {

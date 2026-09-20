@@ -5,11 +5,11 @@ import {defaultAvailabilityToMonthYear, filtersFrom, sortAndFilter} from "../ser
 import {FloorplanCard} from "../card/FloorplanCard";
 import {VideoModal} from "../../asset/VideoModal";
 import {Video} from "../../asset/data/Asset";
-import "./assets/FloorplansSection.scss";
+import "./assets/FloorplansSection.css";
 
 export const FloorplansSection: React.FC<FloorplansSectionProps> = (
     {
-        floorplans, title, isCondensed, propertyId,
+        floorplans, title = "Floor plans", isCondensed = true, propertyId,
         defaultFloorplanStyle, defaultBedRooms, defaultAvailability, defaultMaxRent, defaultMinRent, defaultFloorplanIds
     }) => {
     const [filteredFloorplans, setFilteredFloorplans] = useState<FloorplanCardData[]>(sortAndFilter(floorplans, {
@@ -85,9 +85,4 @@ export interface DefaultFloorplanFilters {
     defaultMinRent?: number;
     defaultMaxRent?: number;
     defaultFloorplanIds?: string[];
-}
-
-FloorplansSection.defaultProps = {
-    title: "Floor plans",
-    isCondensed: true,
 }

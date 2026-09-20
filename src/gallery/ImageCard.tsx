@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/ImageCard.scss';
+import './assets/ImageCard.css';
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
 

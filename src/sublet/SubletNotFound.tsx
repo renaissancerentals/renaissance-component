@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/SubletNotFound.scss";
+import "./assets/SubletNotFound.css";
 
 export const SubletNotFound: React.FC = () => {
     return (

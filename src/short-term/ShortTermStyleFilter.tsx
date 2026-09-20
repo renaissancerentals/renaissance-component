@@ -1,5 +1,5 @@
 import React from "react";
-import {Checkbox} from "@contentmunch/muncher-ui";
+import {Checkbox} from "@contentmunch/contentmunch-ui";
 import {ShortTermStyle} from "./data/ShortTerm";
 import {DropDownFilter} from "../floorplan/filter/FloorplanDropDown";
 import {capitalizeFirstLetter, enumToString} from "../utils/Utils";

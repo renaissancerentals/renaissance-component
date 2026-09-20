@@ -1,9 +1,6 @@
 import React from "react";
-import "./assets/ApplicationCompletion.scss";
-import {StepContainer} from "@contentmunch/muncher-ui/lib/step/StepContainer";
-import {Step} from "@contentmunch/muncher-ui/lib/step/Step";
-import {StepLine} from "@contentmunch/muncher-ui/lib/step/StepLine";
-import {LargeRoundedBadge} from "@contentmunch/muncher-ui/lib/badge/LargeRoundedBadge";
+import "./assets/ApplicationCompletion.css";
+import {Step, StepContainer, StepLine, LargeRoundedBadge} from "@contentmunch/contentmunch-ui";
 
 export const ApplicationCompletion: React.FC = () =>
     <section className="section-application-completion">

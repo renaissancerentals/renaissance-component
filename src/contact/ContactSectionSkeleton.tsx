@@ -1,5 +1,5 @@
 import React from "react";
-import './assets/ContactSkeleton.scss';
+import './assets/ContactSkeleton.css';
 import Skeleton from "react-loading-skeleton";
 
 export const ContactSectionSkeleton: React.FC = () => {

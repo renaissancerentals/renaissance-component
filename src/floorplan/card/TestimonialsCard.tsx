@@ -1,6 +1,6 @@
 import React from "react";
-import {ItemSlider} from "@contentmunch/muncher-ui";
-import "./assets/TestimonialsCard.scss"
+import {ItemSlider} from "@contentmunch/contentmunch-ui";
+import "./assets/TestimonialsCard.css"
 import {Card} from "../../card/Card";
 import {Testimonial} from "../data/Floorplan";
 

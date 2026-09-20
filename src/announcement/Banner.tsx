@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
-import './assets/Banner.scss';
+import './assets/Banner.css';
 
-export const Banner: React.FC<BannerProps> = ({delay, children}) => {
+export const Banner: React.FC<BannerProps> = ({delay = 3000, children}) => {
     const [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -25,8 +25,4 @@ export const Banner: React.FC<BannerProps> = ({delay, children}) => {
 export interface BannerProps {
     delay?: number
     children?:any;
-}
-
-Banner.defaultProps = {
-    delay: 3000
 }

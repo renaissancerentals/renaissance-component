@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import "./assets/ShortTermFloorplanHero.scss";
-import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/muncher-ui";
+import "./assets/ShortTermFloorplanHero.css";
+import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/contentmunch-ui";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 import {Asset} from "../asset/data/Asset";
 import {extractIdFrom} from "../utils/Utils";

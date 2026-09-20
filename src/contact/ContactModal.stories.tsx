@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { ContactModal } from "./ContactModal";
-import { Button } from "@contentmunch/muncher-ui";
+import { Button } from "@contentmunch/contentmunch-ui";
 import { trackContactClicked } from "./service/ContactService";
 
 export default {

@@ -1,0 +1,27 @@
+.floorplan-card--slider {
+
+  width: 100vw;
+
+  @media (min-width: 62rem) {
+    width: 25rem;
+
+  }
+  @media (min-width: 75rem) {
+    width: 33rem;
+
+  }
+
+  .muncher-item-slider .muncher-button--navigate {
+    top: 38%;
+  }
+}
+
+.floorplan-card-slider--small {
+
+  @media (min-width: 62rem) {
+    width: 20rem;
+  }
+  @media (min-width: 75rem) {
+    width: 28rem;
+  }
+}

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {ItemSlider, Star} from "@contentmunch/muncher-ui";
+import {ItemSlider, Star} from "@contentmunch/contentmunch-ui";
 import {Testimonial} from "../floorplan/data/Floorplan";
 import {PropertyDetails} from "../property/data/Property";
 import {getTestimonials} from "../floorplan/service/FloorplanService";
 import {getAssetUrl} from "../asset/service/AssetService";
-import "./assets/ReviewSection.scss";
+import "./assets/ReviewSection.css";
 import {DEFAULT_IMAGE_URL} from "../service/Api";
 
 interface Review {

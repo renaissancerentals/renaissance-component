@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import './assets/Gallery.scss';
-import {Icon, Modal, Spinner} from "@contentmunch/muncher-ui";
+import './assets/Gallery.css';
+import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {ImageCard} from "./ImageCard";
 import {ImageCardSkeleton} from "./ImageCardSkeleton";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
 
-export const Gallery: React.FC<GalleryProps> = ({type, images, isLoading, showName, allImages, propertyId}) => {
+export const Gallery: React.FC<GalleryProps> = ({type = "simple", images, isLoading = false, showName = true, allImages, propertyId}) => {
     const [showModal, setShowModal] = useState(false);
     const [imageInFocus, setImageInFocus] = useState<Asset>({} as Asset);
     const [imageIndex, setImageIndex] = useState(-1);
@@ -112,9 +112,3 @@ export interface GalleryProps {
     showName?: boolean;
     propertyId: string;
 }
-
-Gallery.defaultProps = {
-    type: "simple",
-    isLoading: false,
-    showName: true
-};

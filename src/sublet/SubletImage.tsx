@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Sublet} from "./data/Sublet";
-import "./assets/SubletImage.scss";
-import {ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
+import "./assets/SubletImage.css";
+import {ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
 import {renaissance} from "../data/RenaissanceData";

@@ -1,10 +1,10 @@
 import React from "react";
 import {Address} from "../floorplan/service/FloorplanService";
-import {Badge} from "@contentmunch/muncher-ui";
+import {Badge} from "@contentmunch/contentmunch-ui";
 import {SpecialOfferBadge} from "../special-offer/SpecialOfferBadge";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {WebSpecial} from "../floorplan/data/Floorplan";
-import './assets/GridGallery.scss';
+import './assets/GridGallery.css';
 import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";

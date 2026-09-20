@@ -1,6 +1,6 @@
 import React from 'react';
-import {Icon, Modal} from "@contentmunch/muncher-ui";
-import "./assets/ApplicationModal.scss";
+import {Icon, Modal} from "@contentmunch/contentmunch-ui";
+import "./assets/ApplicationModal.css";
 import {ApplicationSection, ApplicationSectionProps} from "./ApplicationSection";
 
 export const ApplicationModal: React.FC<ApplicationModalProps> = (

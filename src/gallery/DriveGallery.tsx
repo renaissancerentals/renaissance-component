@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Gallery, GalleryType} from "./Gallery";
-import {Button} from "@contentmunch/muncher-ui";
-import "./assets/DriveGallery.scss";
+import {Button} from "@contentmunch/contentmunch-ui";
+import "./assets/DriveGallery.css";
 import {getAssetsFrom} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
 
-export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type, initialSize, showName, propertyId}) => {
+export const DriveGallery: React.FC<DriveGalleryProps> = ({driveId, type = "simple", initialSize, showName = true, propertyId}) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [images, setImages] = useState<Asset[]>([]);
     const [currentImages, setCurrentImages] = useState<Asset[]>([]);
@@ -54,9 +54,4 @@ export interface DriveGalleryProps {
     initialSize?: number;
     showName?: boolean;
     propertyId: string;
-}
-
-DriveGallery.defaultProps = {
-    type: "simple",
-    showName: true
 }

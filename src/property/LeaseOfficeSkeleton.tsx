@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/PropertyLocationSkeleton.scss";
+import "./assets/PropertyLocationSkeleton.css";
 import Skeleton from "react-loading-skeleton";
 
 export const LeaseOfficeSkeleton: React.FC = () => {

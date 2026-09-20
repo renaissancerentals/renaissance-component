@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import "./assets/ShortTermFloorplansHeader.scss";
-import "../floorplan/filter/assets/FloorplanDropDown.scss";
-import {Icon, Pill} from "@contentmunch/muncher-ui";
+import "./assets/ShortTermFloorplansHeader.css";
+import "../floorplan/filter/assets/FloorplanDropDown.css";
+import {Icon, Pill} from "@contentmunch/contentmunch-ui";
 import {DefaultShortTermFilters} from "./ShortTermFloorplansSection";
 import {CurrentShortTermFilters, ShortTermFilters, ShortTermSortBy} from "./data/ShortTermFilters";
 import {FloorplanShortTerm, ShortTermStyle} from "./data/ShortTerm";

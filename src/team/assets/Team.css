@@ -1,0 +1,10 @@
+.section-team {
+  text-align: center;
+
+  .members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+}

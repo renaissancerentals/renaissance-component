@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-D_zvdyIk.js";const o=({children:e})=>t.jsx("section",{className:"section-feature",children:e});o.__docgenInfo={description:"",methods:[],displayName:"FeatureSection",props:{children:{required:!0,tsType:{name:"ReactReactNode",raw:"React.ReactNode"},description:""}}};export{o as F};

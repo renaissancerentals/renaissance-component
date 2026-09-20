@@ -1,6 +1,6 @@
 import React from "react";
-import {Icon, Modal} from "@contentmunch/muncher-ui";
-import "./assets/VideoModal.scss";
+import {Icon, Modal} from "@contentmunch/contentmunch-ui";
+import "./assets/VideoModal.css";
 import {youtubeUrlToEmbedUrl} from "../utils/Utils";
 import {Video} from "./data/Asset";
 

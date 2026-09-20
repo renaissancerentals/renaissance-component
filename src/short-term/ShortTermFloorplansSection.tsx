@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./assets/ShortTermFloorplansSection.scss";
+import "./assets/ShortTermFloorplansSection.css";
 import {Video} from "../asset/data/Asset";
 import {VideoModal} from "../asset/VideoModal";
 import {FloorplanShortTerm, ShortTermStyle} from "./data/ShortTerm";
@@ -9,7 +9,7 @@ import {ShortTermFloorplansHeader} from "./ShortTermFloorplansHeader";
 
 export const ShortTermFloorplansSection: React.FC<ShortTermFloorplansSectionProps> = (
     {
-        floorplans, title, isCondensed, propertyId,
+        floorplans, title = "Floor plans", isCondensed = true, propertyId,
         defaultFloorplanStyle, defaultBedRooms, defaultMaxRent, defaultMinRent, defaultFloorplanIds
     }) => {
     const [filteredFloorplans, setFilteredFloorplans] = useState<FloorplanShortTerm[]>(sortAndFilter(floorplans, {
@@ -81,9 +81,4 @@ export interface DefaultShortTermFilters {
     defaultMinRent?: number;
     defaultMaxRent?: number;
     defaultFloorplanIds?: string[];
-}
-
-ShortTermFloorplansSection.defaultProps = {
-    title: "Floor plans",
-    isCondensed: true,
 }

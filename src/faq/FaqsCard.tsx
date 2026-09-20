@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/FaqsCard.scss";
+import "./assets/FaqsCard.css";
 import {FaqsSection, FaqsSectionProps} from "./FaqsSection";
 import {Card} from "../card/Card";
 

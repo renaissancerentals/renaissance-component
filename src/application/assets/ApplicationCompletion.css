@@ -1,0 +1,44 @@
+:root {
+    --application-completion-background-color: var(--primary-background-color);
+    --application-completion-banner-background-color: var(--primary-color);
+    --application-completion-banner-color: var(--primary-background-color);
+}
+
+.section-application-completion {
+  padding-top: 2em;
+  text-align: center;
+  background: var(--application-completion-background-color);
+  .completion-banner {
+    background: var(--application-completion-banner-background-color);
+    padding: .5rem 1rem 1.5rem 1rem;
+    color: var(--application-completion-banner-color);
+  }
+
+  .completion-step-banner {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .muncher-step .muncher-step--label {
+    font-family: var(--sans-serif-font);
+  }
+
+  .info, .emphasized-info {
+    padding: 1rem;
+  }
+
+  .emphasized-info {
+    text-transform: uppercase;
+    font-family: var(--sans-serif-font);
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 48rem) {
+    .muncher-step--container {
+      margin: 2rem 10rem;
+    }
+  }
+}
+

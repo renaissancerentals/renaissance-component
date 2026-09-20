@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
-import "./assets/SubletSection.scss";
-import {Button, Checkbox, Icon, ImageInput, Input, Modal, Spinner, Textarea} from "@contentmunch/muncher-ui";
+import "./assets/SubletSection.css";
+import {Button, Checkbox, Icon, ImageInput, Input, Modal, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
 import {defaultSublet, Sublet} from "./data/Sublet";
 import {deleteSublet, getSublet, postAsset, postSublet} from "./services/SubletService";
 import {SubletNotFound} from "./SubletNotFound";

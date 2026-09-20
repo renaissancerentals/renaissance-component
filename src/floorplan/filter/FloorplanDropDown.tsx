@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {DropdownButton} from "@contentmunch/muncher-ui";
-import "./assets/FloorplanDropDown.scss";
+import {DropdownButton} from "@contentmunch/contentmunch-ui";
+import "./assets/FloorplanDropDown.css";
 
 export const DropDownFilter: React.FC<UnitDropDownProps> = ({label, drop, children}) => {
     const [showContent, setShowContent] = useState(false);

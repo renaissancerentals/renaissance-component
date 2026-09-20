@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {Icon} from "@contentmunch/muncher-ui";
+import {Icon} from "@contentmunch/contentmunch-ui";
 import {ShortTermStyle} from "./ShortTerm";
 import {SortField} from "../../data/SortField";
 

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {VideoModal} from "../../asset/VideoModal";
 import {Video} from "../../asset/data/Asset";
-import "./assets/UnitsSection.scss";
+import "./assets/UnitsSection.css";
 import {UnitCardData} from "../data/Unit";
 import {filtersFromUnits, sortAndFilterUnits} from "../service/UnitService";
 import {UnitCard} from "../card/UnitCard";
@@ -12,7 +12,7 @@ import {UnitsHeader} from "./UnitsHeader";
 
 export const UnitsSection: React.FC<UnitsSectionProps> = (
     {
-        units, title, isCondensed, propertyId,
+        units, title = "Units", isCondensed = true, propertyId,
         defaultFloorplanStyle, defaultBedRooms, defaultAvailability, defaultMaxRent, defaultMinRent, defaultFloorplanIds
     }) => {
     const [filteredUnits, setFilteredUnits] = useState<UnitCardData[]>(sortAndFilterUnits(units, {
@@ -78,9 +78,4 @@ export interface UnitsSectionProps extends DefaultFloorplanFilters {
     title?: string;
     isCondensed?: boolean;
     propertyId: string;
-}
-
-UnitsSection.defaultProps = {
-    title: "Units",
-    isCondensed: true,
 }

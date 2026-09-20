@@ -1,0 +1,3 @@
+import{j as s}from"./jsx-runtime-D_zvdyIk.js";import{F as a}from"./FloorplanCardSkeleton-B_Z_6qjw.js";/* empty css                      */import"./index-yRdh6vnA.js";import"./index-DlV_ZNC-.js";import"./_commonjsHelpers-Cpj98o6Y.js";const c={title:"Card/Floorplan Card Skeleton",component:a},o=()=>s.jsx(a,{});o.__docgenInfo={description:"",methods:[],displayName:"Default"};var r,e,t;o.parameters={...o.parameters,docs:{...(r=o.parameters)==null?void 0:r.docs,source:{originalSource:`() => {
+  return <FloorplanCardSkeleton />;
+}`,...(t=(e=o.parameters)==null?void 0:e.docs)==null?void 0:t.source}}};const u=["Default"];export{o as Default,u as __namedExportsOrder,c as default};

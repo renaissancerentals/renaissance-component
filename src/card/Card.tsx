@@ -1,6 +1,6 @@
 import React from "react";
-import "./assets/Card.scss";
-import {Paper} from "@contentmunch/muncher-ui";
+import "./assets/Card.css";
+import {Paper} from "@contentmunch/contentmunch-ui";
 
 export const Card: React.FC<CardProps> = ({title, featured, children}) => {
     return (

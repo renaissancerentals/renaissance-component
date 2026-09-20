@@ -3,9 +3,9 @@ import {FloorplanSpotlight, SimilarFloorplan} from "../data/Floorplan";
 import {getAssetUrl} from "../../asset/service/AssetService";
 import {DEFAULT_IMAGE_URL} from "../../service/Api";
 import {Card} from "../../card/Card";
-import {ItemSlider, Spinner} from "@contentmunch/muncher-ui";
+import {ItemSlider, Spinner} from "@contentmunch/contentmunch-ui";
 import {rangeFrom} from "../../utils/Utils";
-import "./assets/SimilarFloorplanCard.scss"
+import "./assets/SimilarFloorplanCard.css"
 import {addressFromFloorplanSpotlight, getFloorplanSpotlight} from "../service/FloorplanService";
 
 export const SimilarFloorplanCard: React.FC<SimilarFloorplanCardProps> = ({similarFloorplans}) => {

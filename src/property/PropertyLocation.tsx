@@ -1,6 +1,6 @@
 import React from "react";
 import {LeasingOfficeType, Property} from "./data/Property";
-import "./assets/PropertyLocation.scss";
+import "./assets/PropertyLocation.css";
 import {MapSection} from "../map/MapSection";
 import {addressToGoogleMap, addressToGoogleMapLink, formatPhoneNumber} from "../utils/Utils";
 import {PropertyLocationSkeleton} from "./PropertyLocationSkeleton";

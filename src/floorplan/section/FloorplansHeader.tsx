@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import "./assets/FloorplansHeader.scss";
-import "../filter/assets/FloorplanDropDown.scss";
-import {Icon, Pill, Range} from "@contentmunch/muncher-ui";
+import "./assets/FloorplansHeader.css";
+import "../filter/assets/FloorplanDropDown.css";
+import {Icon, Pill, Range} from "@contentmunch/contentmunch-ui";
 
 import {CurrentFloorplanFilters, FloorplanFilters} from "../data/FloorplanFilters";
 import {FloorplanCardData, FloorplanStyle, MAX_RENT, MIN_RENT} from "../data/Floorplan";

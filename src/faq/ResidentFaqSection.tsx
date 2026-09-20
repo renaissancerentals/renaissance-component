@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Faq} from "./data/Faq";
 import {getMaintenanceFaqs, getResidentFaqs} from "../resident/service/ResidentService";
 import {FaqsCard} from "./FaqsCard";
-import "./assets/ResidentFaqSection.scss"
+import "./assets/ResidentFaqSection.css"
 
 export const ResidentFaqSection: React.FC = () => {
     const [residentFaqs, setResidentFaqs] = useState<Faq[]>([]);

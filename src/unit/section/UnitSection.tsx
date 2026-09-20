@@ -16,7 +16,7 @@ import {
     getWebSpecials,
     MONTH_YEAR_FORMAT
 } from "../../floorplan/service/FloorplanService";
-import "./assets/UnitSection.scss";
+import "./assets/UnitSection.css";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {
     capitalizeFirstLetter,
@@ -30,7 +30,7 @@ import {Card} from "../../card/Card";
 import {TestimonialsCard} from "../../floorplan/card/TestimonialsCard";
 import {MapSection} from "../../map/MapSection";
 import {SimilarFloorplanCard} from "../../floorplan/card/SimilarFloorplanCard";
-import {Button, Li, Ul} from "@contentmunch/muncher-ui";
+import {Button, Li, Ul} from "@contentmunch/contentmunch-ui";
 import moment from "moment";
 import {LeaseType} from "../../property/data/Property";
 import {ShortTermFloorplanSection} from "../../short-term/ShortTermFloorplanSection";

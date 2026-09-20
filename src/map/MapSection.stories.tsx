@@ -1,7 +1,7 @@
 import React from "react";
 import { MapSection, MapSectionProps } from "./MapSection";
 import { Meta, Story } from "@storybook/react";
-import "./assets/MapSection.stories.scss";
+import "./assets/MapSection.stories.css";
 export default {
   title: "Section/Map",
   component: MapSection,

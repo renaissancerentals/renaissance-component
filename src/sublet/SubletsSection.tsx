@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 
-import "./assets/SubletsSection.scss";
+import "./assets/SubletsSection.css";
 import {Sublet} from "./data/Sublet";
 import {getSublets} from "./services/SubletService";
-import {Button, Icon} from "@contentmunch/muncher-ui";
+import {Button, Icon} from "@contentmunch/contentmunch-ui";
 import {SubletCard} from "./SubletCard";
 
 export const SubletsSection: React.FC<SubletsSectionProps> = ({linkToSubletCreatePage}) => {

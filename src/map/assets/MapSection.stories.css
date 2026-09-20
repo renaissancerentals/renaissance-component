@@ -1,0 +1,5 @@
+.map-story {
+  @media (min-width: 48rem) {
+    width: 90vw;
+  }
+}

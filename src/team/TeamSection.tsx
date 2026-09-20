@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/Team.scss';
+import './assets/Team.css';
 import {TeamCard} from "./card/TeamCard";
 import {TeamCardSkeleton} from "./card/TeamCardSkeleton";
 import {TeamMember} from "..";

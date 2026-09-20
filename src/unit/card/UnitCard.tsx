@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import "./assets/UnitCard.scss";
+import "./assets/UnitCard.css";
 import tourIcon from "./assets/360-icon.png";
 import videoIcon from "./assets/video-icon.png";
-import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
+import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
 import {DEFAULT_IMAGE_URL} from "../../service/Api";
 import {addressToGoogleMapLink, availabilityDate, renaissanceAddress} from "../../utils/Utils";

@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import "./assets/TeamCard.scss";
+import "./assets/TeamCard.css";
 export const TeamCardSkeleton: React.FC = () => {
 
     return (

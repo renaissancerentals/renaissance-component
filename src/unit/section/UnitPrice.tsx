@@ -1,7 +1,7 @@
 import React from "react";
 import {dateToMoment, toUSD} from "../../utils/Utils";
 import moment from "moment/moment";
-import "../../floorplan/card/assets/FloorplanPrice.scss";
+import "../../floorplan/card/assets/FloorplanPrice.css";
 import {UnitFloorplan} from "../data/Unit";
 
 export const UnitPrice: React.FC<UnitPriceProps> = (

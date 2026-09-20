@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import "./assets/HomePageSpecialSection.scss";
+import "./assets/HomePageSpecialSection.css";
 import {getHomeHomePageSpecials} from "./service/HomePageSpecialService";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {HomePageSpecialModal} from "./HomePageSpecialModal";

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import './assets/ContactSection.scss';
+import './assets/ContactSection.css';
 import {formatPhoneNumber} from "../utils/Utils";
-import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/muncher-ui";
+import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
 import {PropertyId, PropertyNameIds} from "../property/data/Property";
 import {MAX_RENT, MIN_RENT} from "../floorplan/data/Floorplan";
 import {ContactMessage, defaultContactMessage} from "./data/ContactMessage";

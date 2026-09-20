@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import "./assets/ShortTermFloorplanSection.scss";
-import {Button, Li, Ul} from "@contentmunch/muncher-ui";
+import "./assets/ShortTermFloorplanSection.css";
+import {Button, Li, Ul} from "@contentmunch/contentmunch-ui";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 import {getShortTermFloorplan} from "./service/ShortTermService";
 import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";

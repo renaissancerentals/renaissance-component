@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Icon, Modal, Spinner} from "@contentmunch/muncher-ui";
+import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {getAssetUrl} from "./service/AssetService";
-import "./assets/AssetModal.scss";
+import "./assets/AssetModal.css";
 
 export const AssetModal: React.FC<AssetModalProps> = (
     {assetUrl, assetTitle, showModal, setShowModal, propertyId}) => {

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import "./assets/Hostaway.scss";
-import {Badge, Icon} from "@contentmunch/muncher-ui";
+import "./assets/Hostaway.css";
+import {Badge, Icon} from "@contentmunch/contentmunch-ui";
 
 export const Hostaway: React.FC<HostawayProps> = ({contactNumber}) => {
 

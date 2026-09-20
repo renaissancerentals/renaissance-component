@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/ShortTermPricingCard.scss";
+import "./assets/ShortTermPricingCard.css";
 import {capitalizeFirstLetter, enumToString, toUSD} from "../utils/Utils";
 import {FloorplanShortTerm} from "./data/ShortTerm";
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Icon, Modal} from "@contentmunch/muncher-ui";
-import "./assets/HomePageSpecialModal.scss";
+import {Button, Icon, Modal} from "@contentmunch/contentmunch-ui";
+import "./assets/HomePageSpecialModal.css";
 import {HomePageSpecialCard} from "./HomePageSpecialCard";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {useCookies} from 'react-cookie';

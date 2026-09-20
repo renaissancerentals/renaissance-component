@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/HomePageSpecialCard.scss";
+import "./assets/HomePageSpecialCard.css";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {getAssetUrl} from "../asset/service/AssetService";
 

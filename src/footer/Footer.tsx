@@ -5,7 +5,7 @@ import renrenLogo from './assets/renren-logo.png';
 import equalHousingLogo from './assets/equal-housing-logo.png';
 import chamberLogo from './assets/chamber-logo.png';
 import rainbowLogo from './assets/rainbow-logo.png';
-import './assets/Footer.scss';
+import './assets/Footer.css';
 
 export const Footer: React.FC<FooterProps> = ({nav, accessibilityLink}) => {
     return (

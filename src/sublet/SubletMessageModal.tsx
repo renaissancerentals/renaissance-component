@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Button, Icon, Input, Modal, Spinner, Textarea} from "@contentmunch/muncher-ui";
-import "./assets/SubletMessageModal.scss";
+import {Button, Icon, Input, Modal, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
+import "./assets/SubletMessageModal.css";
 import {Sublet} from "./data/Sublet";
 import {SubletMessage} from "./data/SubletMessage";
 import {sendMessage} from "./services/SubletService";

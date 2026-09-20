@@ -1,11 +1,23 @@
 {
   "name": "@renaissancerentals/renaissance-component",
-  "version": "12.4.24",
+  "version": "13.0.1",
   "description": "Renaissance rentals UI component library",
   "author": "asikpradhan",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.cjs.js",
+  "module": "./lib/index.es.js",
+  "types": "./lib/index.d.ts",
+  "style": "./lib/index.css",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.cjs.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./index.css": {
+      "default": "./lib/index.css"
+    }
+  },
   "files": [
     "lib/"
   ],
@@ -15,68 +27,62 @@
   },
   "scripts": {
     "start": "npm run storybook",
-    "prebuild": "rimraf lib",
-    "build": "npm run build:types && npm run build:js ",
+    "clean": "rimraf lib",
+    "prebuild": "npm run clean",
     "clean:tsx": "rimraf lib/*.tsx lib/**/*.tsx lib/**/**/*.tsx lib/**/**/**/*.tsx",
     "clean:stories": "rimraf  lib/*.stories.* lib/**/*.stories.* lib/**/**/*.stories.* lib/**/**/**/*.stories.*",
     "clean:tests": "rimraf lib/*.test.* lib/**/*.test.* lib/setupTests.* lib/__snapshots__/",
-    "clean:reactfiles": "rimraf lib/react-app-env.d.ts",
-    "postbuild": "npm run clean:tsx && npm run clean:reactfiles && npm run clean:stories && npm run clean:tests",
-    "build:types": "cp tsconfig-tsc.json tsconfig.json && tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "clean:public": "rimraf lib/CNAME lib/favicon/ lib/favicon.svg",
+    "clean:docs": "rimraf docs",
+    "build:types": "tsc -p tsconfig.types.json",
+    "build:js": "vite build",
+    "build": "npm run build:js && npm run build:types && mv lib/renaissance-component.css lib/index.css && npm run postbuild:js && npm run postbuild:clean",
     "postbuild:js": "rsync -avz --exclude='*.ts' src/ lib/",
+    "postbuild:clean": "npm run clean:stories && npm run clean:public && npm run clean:tsx",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "prepublishOnly": "npm run build",
-    "pretest": "cp tsconfig-test.json tsconfig.json",
-    "test": "react-scripts test -u",
     "deploy": "npm run build-storybook",
     "postdeploy": "cp public/CNAME docs/CNAME",
     "storybook": "storybook dev -p 6008",
     "build-storybook": "storybook build -o docs"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.20",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.22.20",
-    "@babel/preset-react": "^7.22.15",
-    "@babel/preset-typescript": "^7.22.15",
-    "@storybook/addon-a11y": "^7.6.15",
-    "@storybook/addon-essentials": "^7.6.15",
-    "@storybook/addon-interactions": "^7.6.15",
-    "@storybook/addon-links": "^7.6.15",
-    "@storybook/addon-mdx-gfm": "^7.6.15",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/addon-storyshots": "^7.6.15",
-    "@storybook/blocks": "^7.6.15",
-    "@storybook/preset-create-react-app": "^7.6.15",
-    "@storybook/react": "^7.6.15",
-    "@storybook/react-webpack5": "^7.6.15",
-    "@storybook/testing-library": "^0.2.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.52",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "babel-plugin-named-exports-order": "^0.0.2",
-    "eslint-plugin-storybook": "^0.6.13",
+    "@eslint/js": "^9.25.0",
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-docs": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/addon-interactions": "^8.6.18",
+    "@storybook/addon-onboarding": "^8.6.18",
+    "@storybook/blocks": "^8.6.18",
+    "@storybook/react": "^8.6.18",
+    "@storybook/react-vite": "^8.6.18",
+    "@storybook/test": "^8.6.18",
+    "@types/lodash": "^4.17.25",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-storybook": "^0.12.0",
+    "globals": "^16.0.0",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "react-test-renderer": "^18.2.0",
-    "rimraf": "^5.0.1",
-    "sass": "^1.99.0",
-    "storybook": "^7.6.15",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
-    "webpack": "^5.88.2"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rimraf": "^5.0.10",
+    "storybook": "^8.6.18",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.30.1",
+    "vite": "^6.3.5",
+    "web-vitals": "^2.1.4"
   },
   "dependencies": {
-    "@contentmunch/muncher-ui": "^5.1.4",
+    "@contentmunch/contentmunch-ui": "^1.1.105",
     "axios": "^1.7.7",
     "ga-gtag": "^1.1.7",
+    "html-entities": "^2.6.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react-cookie": "^7.2.1",
@@ -96,25 +102,6 @@
     "component",
     "driven",
     "renaissancerentals",
-    "muncher-ui"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "contentmunch-ui"
+  ]
 }

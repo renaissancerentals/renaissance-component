@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import "./assets/FloorplanCardSlider.scss";
+import "./assets/FloorplanCardSlider.css";
 import {FloorplanDetails} from "../data/Floorplan";
-import {ItemSlider} from "@contentmunch/muncher-ui";
+import {ItemSlider} from "@contentmunch/contentmunch-ui";
 import {VideoModal} from "../../asset/VideoModal";
 import {Video} from "../../asset/data/Asset";
 import {FloorplanCard} from "./FloorplanCard";

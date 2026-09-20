@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {TeamMember} from "../..";
 import defaultAvatar from "../../assets/default-avatar.png";
-import "./assets/TeamCard.scss";
+import "./assets/TeamCard.css";
 import {getAssetUrl} from "../../asset/service/AssetService";
 
 export const TeamCard: React.FC<TeamCardProps> = ({member, propertyId}) => {

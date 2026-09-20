@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/SubmissionRequestBanner.scss";
+import "./assets/SubmissionRequestBanner.css";
 
 export const SubmissionRequestBanner: React.FC = () => <p className="submission-request-banner">If you have trouble
     submitting your request,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Video, VideoProps } from "./Video";
 import { Meta, Story } from "@storybook/react";
-import "./assets/Video.stories.scss";
+import "./assets/Video.stories.css";
 export default {
   title: "Section/Video",
   component: Video,

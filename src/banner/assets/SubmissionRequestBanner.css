@@ -1,0 +1,10 @@
+.submission-request-banner {
+  font-size: .8rem;
+  font-style: italic;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+

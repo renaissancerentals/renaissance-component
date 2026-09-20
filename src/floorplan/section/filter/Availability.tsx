@@ -1,5 +1,5 @@
 import React from "react";
-import {Checkbox} from "@contentmunch/muncher-ui";
+import {Checkbox} from "@contentmunch/contentmunch-ui";
 import {DropDownFilter} from "../../filter/FloorplanDropDown";
 import moment from "moment";
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { AssetModal } from "./AssetModal";
-import { Button } from "@contentmunch/muncher-ui";
+import { Button } from "@contentmunch/contentmunch-ui";
 
 export default {
   title: "Modal/AssetModal",

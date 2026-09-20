@@ -1,6 +1,6 @@
 import React from 'react';
-import {Icon, Modal} from "@contentmunch/muncher-ui";
-import "./assets/ContactModal.scss";
+import {Icon, Modal} from "@contentmunch/contentmunch-ui";
+import "./assets/ContactModal.css";
 import {ContactSection, ContactSectionProps} from "./ContactSection";
 
 export const ContactModal: React.FC<ContactModalProps> = (

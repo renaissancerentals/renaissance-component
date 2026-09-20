@@ -1,9 +1,9 @@
 import React from "react";
-import {Badge, Button} from "@contentmunch/muncher-ui";
+import {Badge, Button} from "@contentmunch/contentmunch-ui";
 import cameraIcon from "../card/assets/camera-icon.png";
 import tourIcon from "../card/assets/360-icon.png";
 import videoIcon from "../card/assets/video-icon.png";
-import "./assets/HeroBadgeStats.scss";
+import "./assets/HeroBadgeStats.css";
 import {TourType} from "../../gallery/GridGalleryCover";
 
 export const HeroBadgeStats: React.FC<HeroBadgeStatsProps> = (

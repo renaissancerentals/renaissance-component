@@ -1,7 +1,7 @@
 import React from "react";
 import { Banner, BannerProps } from "./Banner";
 import { Meta, Story } from "@storybook/react";
-import { Button } from "@contentmunch/muncher-ui";
+import { Button } from "@contentmunch/contentmunch-ui";
 
 export default {
   title: "Section/Banner",

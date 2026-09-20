@@ -1,11 +1,11 @@
 import React from "react";
-import "./assets/FloorplansSection.scss";
+import "./assets/FloorplansSection.css";
 import {FloorplansHeaderSkeleton} from "./FloorplansHeaderSekeleton";
 import {FloorplanCardSkeleton} from "../card/FloorplanCardSkeleton";
 
 export const FloorplanSectionSkeleton: React.FC<FloorplanSectionSkeletonProps> = (
     {
-        isCondensed, skeletonCount
+        isCondensed = true, skeletonCount = 8
     }) => {
     return (
         <section className="section-floorplans">
@@ -27,9 +27,4 @@ export const FloorplanSectionSkeleton: React.FC<FloorplanSectionSkeletonProps> =
 export interface FloorplanSectionSkeletonProps {
     isCondensed?: boolean;
     skeletonCount?: number;
-}
-
-FloorplanSectionSkeleton.defaultProps = {
-    isCondensed: true,
-    skeletonCount: 8
 }

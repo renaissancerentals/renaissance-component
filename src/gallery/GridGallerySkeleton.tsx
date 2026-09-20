@@ -1,5 +1,5 @@
 import React from "react";
-import './assets/GridGallery.scss';
+import './assets/GridGallery.css';
 import Skeleton from "react-loading-skeleton";
 
 export const GridGallerySkeleton: React.FC = () => {

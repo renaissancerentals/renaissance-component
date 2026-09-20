@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import "./assets/ShortTermFloorplanCard.scss"
+import "./assets/ShortTermFloorplanCard.css"
 import {Asset, Video} from "../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../asset/service/AssetService";
-import {Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
+import {Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {toUSD} from "../utils/Utils";

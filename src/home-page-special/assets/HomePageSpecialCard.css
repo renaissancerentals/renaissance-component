@@ -1,0 +1,25 @@
+.special-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  &--image-wrapper {
+    position: relative;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &--region {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}

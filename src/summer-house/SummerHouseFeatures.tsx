@@ -1,7 +1,7 @@
 import React from "react";
 import {FeatureSection} from "../feature/FeatureSection";
 
-import "./assets/SummerHouseFeatures.scss";
+import "./assets/SummerHouseFeatures.css";
 
 export const SummerHouseFeatures: React.FC = () => {
     return (

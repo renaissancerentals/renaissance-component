@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";/* empty css                    */import{S as r}from"./index-yRdh6vnA.js";const o=()=>e.jsx("div",{className:"grid-gallery",children:e.jsx("div",{className:"gallery-hero-one",children:e.jsx(r,{})})});o.__docgenInfo={description:"",methods:[],displayName:"GridGallerySkeleton"};export{o as G};

@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/HeroImageCard.scss';
+import './assets/HeroImageCard.css';
 
 export const HeroImageCard: React.FC<HeroImageCardProps> = (
     {backgroundImage, onClick, isForMobile, children}) => {

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import "../../floorplan/section/assets/FloorplanHero.scss";
-import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/muncher-ui";
+import "../../floorplan/section/assets/FloorplanHero.css";
+import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/contentmunch-ui";
 import {Asset} from "../../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";

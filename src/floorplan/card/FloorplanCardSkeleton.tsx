@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/FloorplanCard.scss";
+import "./assets/FloorplanCard.css";
 import Skeleton from "react-loading-skeleton";
 
 export const FloorplanCardSkeleton: React.FC = () => {

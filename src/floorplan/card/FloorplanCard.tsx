@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import "./assets/FloorplanCard.scss";
+import "./assets/FloorplanCard.css";
 import tourIcon from "./assets/360-icon.png";
 import videoIcon from "./assets/video-icon.png";
-import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/muncher-ui";
+import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
 import {FloorplanCardData} from "../data/Floorplan";
 import {addressToGoogleMapLink, rangeFrom, renaissanceAddress} from "../../utils/Utils";

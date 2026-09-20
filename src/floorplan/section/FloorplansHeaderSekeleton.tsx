@@ -1,6 +1,6 @@
 import React from "react";
-import "./assets/FloorplansHeader.scss";
-import "../filter/assets/FloorplanDropDown.scss";
+import "./assets/FloorplansHeader.css";
+import "../filter/assets/FloorplanDropDown.css";
 import Skeleton from "react-loading-skeleton";
 
 export const FloorplansHeaderSkeleton: React.FC<FloorplansHeaderSkeletonProps> = ({isCondensed}) => {

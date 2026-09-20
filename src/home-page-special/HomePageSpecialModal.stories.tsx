@@ -5,7 +5,7 @@ import {momentToDate} from "../utils/Utils";
 import moment from "moment/moment";
 import {HomePageSpecialModal} from "./HomePageSpecialModal";
 import {HomePageSpecial} from "./data/HomePageSpecial";
-import {Button} from "@contentmunch/muncher-ui";
+import {Button} from "@contentmunch/contentmunch-ui";
 import {useCookies} from "react-cookie";
 
 const meta: Meta<typeof HomePageSpecialModal> = {

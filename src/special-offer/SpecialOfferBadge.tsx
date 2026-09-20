@@ -1,6 +1,6 @@
 import React from "react";
-import "./assets/SpecialOfferBadge.scss";
-import {Badge} from "@contentmunch/muncher-ui";
+import "./assets/SpecialOfferBadge.css";
+import {Badge} from "@contentmunch/contentmunch-ui";
 import startIcon from "./assets/ConcaveStar.png";
 
 export const SpecialOfferBadge: React.FC = () => {

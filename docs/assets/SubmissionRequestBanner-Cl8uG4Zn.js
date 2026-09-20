@@ -1,0 +1,1 @@
+import{j as s}from"./jsx-runtime-D_zvdyIk.js";const e=()=>s.jsxs("p",{className:"submission-request-banner",children:["If you have trouble submitting your request, please ",s.jsx("a",{href:"mailto:inquiries@renaissancerentals.com",children:"email us"}),"."]});e.__docgenInfo={description:"",methods:[],displayName:"SubmissionRequestBanner"};export{e as S};

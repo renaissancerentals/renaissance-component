@@ -1,0 +1,35 @@
+:root {
+    --floorplan-price-color: var(--primary-background-color);
+    --floorplan-price-color-inverted: var(--primary-color);
+    --floorplan-price-special-color: var(--special-offer-color);
+}
+
+.floorplan-price {
+  .strike-through {
+    text-decoration: line-through;
+    text-decoration-thickness: .25rem;
+    color: var(--floorplan-price-special-color);
+  }
+
+  .rent {
+    color: var(--floorplan-price-color);
+  }
+
+  .floorplan-special-price{
+    color: var(--floorplan-price-color);
+  }
+  .special {
+    padding-left: 1rem;
+    -webkit-text-stroke: .2rem var(--floorplan-price-special-color);
+    paint-order: stroke fill;
+    font-family: var(--serif-font);
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
+.floorplan-price-inverted{
+  .rent {
+    color: var(--floorplan-price-color-inverted);
+  }
+}

@@ -1,0 +1,14 @@
+.resident-faq-section {
+  .faq-cards{
+    @media (min-width: 48rem) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      .faqs-div {
+        width: 50%;
+      }
+    }
+  }
+
+}
+

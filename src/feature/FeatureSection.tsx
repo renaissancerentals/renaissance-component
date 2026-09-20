@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/FeatureSection.scss';
+import './assets/FeatureSection.css';
 
 export const FeatureSection: React.FC<FeatureSectionProps> = (
     {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/Map.scss';
+import './assets/Map.css';
 
 export const MapSection: React.FC<MapSectionProps> = ({src}) => {
     return (

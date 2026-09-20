@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Button, Input, Select, Spinner, Textarea} from "@contentmunch/muncher-ui";
-import "./assets/ApplicationSection.scss";
+import {
+    Button, Input, Select, Spinner, Textarea,
+    Step, StepContainer, StepLine, LargeRoundedBadge
+} from "@contentmunch/contentmunch-ui";
+import "./assets/ApplicationSection.css";
 import {sendRentalApplicationRequest} from "./service/ApplicationService";
 import {defaultRentalApplication, RentalApplication} from "./data/RentalApplication";
 import {PropertyNameIds} from "../property/data/Property";
 import {SubmissionRequestBanner} from "../banner/SubmissionRequestBanner";
 import {ContactPropertyIds} from "../contact/ContactSection";
-import {StepContainer} from "@contentmunch/muncher-ui/lib/step/StepContainer";
-import {Step} from "@contentmunch/muncher-ui/lib/step/Step";
-import {StepLine} from "@contentmunch/muncher-ui/lib/step/StepLine";
-import {LargeRoundedBadge} from "@contentmunch/muncher-ui/lib/badge/LargeRoundedBadge";
 import {ApplicationCompletion} from "./ApplicationCompletion";
 
 export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
@@ -167,7 +166,11 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                         </div>
                         {community ? "" :
                             <div className="form-element">
-                                <Select name="neighborhood" options={Object.keys(PropertyNameIds)}
+                                <Select name="neighborhood"
+                                        options={Object.keys(PropertyNameIds).map(key => ({
+                                            label: key,
+                                            value: key
+                                        }))}
                                         label="Community where you would like to apply"
                                         onChange={e => {
                                             setRentalApplication({...rentalApplication, community: e.target.value})

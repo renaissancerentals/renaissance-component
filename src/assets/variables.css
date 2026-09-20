@@ -1,0 +1,49 @@
+/* overrides from contentmunch-ui */
+:root {
+    --primary-color: #40606f;
+    --secondary-color: #4b4f54;
+    --tertiary-color: #f7f7f7;
+    --primary-background-color: white;
+    --secondary-background-color: #e2e4e2;
+    --tertiary-background-color: #91a9b3;
+    --nav-color: var(--primary-color);
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--secondary-color);
+    --nav-background-color: var(--secondary-background-color);
+    --disabled-color: #959698;
+    --danger-color: #a52a2a;
+    --success-color: green;
+    --border-color: #d8d8d8;
+    --sans-serif-font: 'Merriweather Sans', sans-serif;
+    --monospace-font: 'Roboto Mono', monospace;
+    --serif-font: 'Merriweather', serif;
+    --button-font: var(--sans-serif-font);
+
+    --black: var(--primary-color);
+    --violet: rgba(127, 0, 255, 1.0);
+    --indigo: rgba(75, 0, 130, 1.0);
+    --green: rgba(0, 180, 0, 1.0);
+    --blue: rgba(0, 0, 255, 1.0);
+    --yellow: rgba(180, 180, 0, 1.0);
+    --orange: rgba(255, 127, 0, 1.0);
+    --red: rgba(255, 0, 0, 1.0);
+    --brown: var(--danger-color);
+
+    --extra-small-size: 20rem;
+    --small-size: 22rem;
+    --medium-size: 48rem;
+    --large-size: 62rem;
+    --extra-large-size: 75rem;
+
+    /* component variables */
+    --body-color: var(--primary-background-color);
+    --section-heading-color: var(--link-color);
+    --main-font: var(--serif-font);
+    --heading-font: var(--sans-serif-font);
+    --italic-font: var(--main-font);
+    --nav-font: var(--heading-font);
+    --secondary-nav-background-color: #f0f0f0;
+    --input-focus-color: var(--tertiary-background-color);
+    --input-border-color: var(--primary-color);
+    --special-offer-color: #c55e5e;
+}

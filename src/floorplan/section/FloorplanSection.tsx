@@ -22,7 +22,7 @@ import {
     permittedPets,
     petPolicy
 } from "../service/FloorplanService";
-import "./assets/FloorplanSection.scss";
+import "./assets/FloorplanSection.css";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {FloorplanHero} from "./FloorplanHero";
 import {
@@ -38,7 +38,7 @@ import {Card} from "../../card/Card";
 import {TestimonialsCard} from "../card/TestimonialsCard";
 import {MapSection} from "../../map/MapSection";
 import {SimilarFloorplanCard} from "../card/SimilarFloorplanCard";
-import {Button, Li, Ul} from "@contentmunch/muncher-ui";
+import {Button, Li, Ul} from "@contentmunch/contentmunch-ui";
 import moment from "moment";
 import {LeaseType} from "../../property/data/Property";
 import {ShortTermFloorplanSection} from "../../short-term/ShortTermFloorplanSection";

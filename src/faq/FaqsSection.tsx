@@ -1,6 +1,6 @@
 import React from "react";
-import {Accordion, Fold} from "@contentmunch/muncher-ui";
-import "./assets/FaqsSection.scss";
+import {Accordion, Fold} from "@contentmunch/contentmunch-ui";
+import "./assets/FaqsSection.css";
 import {Faq} from "./data/Faq";
 
 export const FaqsSection: React.FC<FaqsSectionProps> = (

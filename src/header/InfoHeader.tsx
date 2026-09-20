@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/InfoHeader.scss';
+import './assets/InfoHeader.css';
 
 export const InfoHeader: React.FC<InfoHeaderProps> = ({children}) => (
     <header className="header-info">

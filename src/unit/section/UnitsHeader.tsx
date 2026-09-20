@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import "./assets/UnitsHeader.scss";
-import {Icon, Pill, Range} from "@contentmunch/muncher-ui";
+import "./assets/UnitsHeader.css";
+import {Icon, Pill, Range} from "@contentmunch/contentmunch-ui";
 import {capitalizeFirstLetter, enumToString} from "../../utils/Utils";
 import {SortBy} from "../../data/SortField";
 import {DefaultFloorplanFilters} from "../../floorplan/section/FloorplansSection";

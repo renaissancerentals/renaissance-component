@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import "./assets/SubletCard.scss";
+import "./assets/SubletCard.css";
 import {Sublet} from "./data/Sublet";
-import {Button, Icon, Paper} from "@contentmunch/muncher-ui";
+import {Button, Icon, Paper} from "@contentmunch/contentmunch-ui";
 import {SubletImage} from "./SubletImage";
 import {SubletMessageModal} from "./SubletMessageModal";
 import {addressToGoogleMapLink, decode, formatDate, toUSD} from "../utils/Utils";

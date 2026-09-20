@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import "../assets/App.scss";
-import "./assets/HeadingStory.scss";
+import "../assets/App.css";
+import "./assets/HeadingStory.css";
 export default {
   title: "Heading/Emphasized",
 } as Meta;

@@ -1,8 +1,8 @@
 import React, {ReactElement, useState} from "react";
-import './assets/GridGalleryMobile.scss';
+import './assets/GridGalleryMobile.css';
 import {Asset} from "../asset/data/Asset";
 import {assetUrlFrom} from "../asset/service/AssetService";
-import {Badge, ItemSlider} from "@contentmunch/muncher-ui";
+import {Badge, ItemSlider} from "@contentmunch/contentmunch-ui";
 import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";

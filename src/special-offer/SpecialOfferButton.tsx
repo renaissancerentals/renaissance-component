@@ -1,6 +1,6 @@
 import React from "react";
-import "./assets/SpecialOfferButton.scss";
-import {Button} from "@contentmunch/muncher-ui";
+import "./assets/SpecialOfferButton.css";
+import {Button} from "@contentmunch/contentmunch-ui";
 import startIcon from "./assets/ConcaveStar.png"
 
 export const SpecialOfferButton: React.FC<SpecialOfferButtonProps> = ({onMouseEnter, onMouseLeave}) => {

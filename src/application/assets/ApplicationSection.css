@@ -1,0 +1,61 @@
+@import '../../assets/form.css';
+
+:root {
+    --application-section-background-color: var(--primary-background-color);
+    --banner-background-color: var(--secondary-background-color);
+    --banner-color: #D73647;
+}
+
+.section-application {
+  padding-top: 2em;
+  text-align: center;
+  background: var(--application-section-background-color);
+
+  .application-heading {
+
+    .banner {
+      background: var(--banner-background-color);
+      padding: .5rem 1rem 1.5rem 1rem;
+      color: var(--banner-color);
+
+      .emphasized {
+        font-weight: bold;
+        text-decoration: underline;
+        font-style: italic;
+      }
+    }
+
+
+    text-align: center;
+
+
+  }
+
+  .step-banner {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .muncher-step .muncher-step--label {
+    font-family: var(--sans-serif-font);
+  }
+
+  .info, .emphasized-info {
+    padding: 1rem;
+  }
+
+  .emphasized-info {
+    text-transform: uppercase;
+    font-family: var(--sans-serif-font);
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 48rem) {
+    .muncher-step--container {
+      margin: 2rem 10rem;
+    }
+  }
+}
+

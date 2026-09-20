@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {Icon, Modal, Spinner} from "@contentmunch/muncher-ui";
+import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom} from "../asset/service/AssetService";
 import {Asset} from "../asset/data/Asset";
-import "./assets/GalleryModal.scss";
+import "./assets/GalleryModal.css";
 
 export const GalleryModal: React.FC<GalleryModalProps> = (
     {assets, assetIndex, setAssetIndex, assetInFocus, setAssetInFocus, showModal, modalCloseHandler, propertyId}) => {
