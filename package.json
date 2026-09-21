@@ -1,6 +1,6 @@
 {
   "name": "@renaissancerentals/renaissance-component",
-  "version": "13.0.3",
+  "version": "13.0.4",
   "description": "Renaissance rentals UI component library",
   "author": "asikpradhan",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "deploy": "npm run build-storybook",
-    "postdeploy": "cp public/CNAME docs/CNAME",
+    "postdeploy": "cp public/CNAME docs/CNAME && touch docs/.nojekyll",
     "storybook": "storybook dev -p 6008",
     "build-storybook": "storybook build -o docs"
   },
