@@ -14,6 +14,8 @@ export {GridGalleryCover} from "./gallery/GridGalleryCover";
 export {GridGallery} from "./gallery/GridGallery";
 export {GridGalleryMobile} from "./gallery/GridGalleryMobile";
 export {GridGallerySkeleton} from "./gallery/GridGallerySkeleton";
+export {GalleryModal} from "./gallery/GalleryModal";
+export type {GalleryModalProps} from "./gallery/GalleryModal";
 export {Card} from "./card/Card";
 export {InfoHeader} from "./header/InfoHeader";
 export {MapSection} from "./map/MapSection";
@@ -54,6 +56,8 @@ export type {GalleryImage} from "./gallery/data/GalleryImage";
 export {ShortTermFloorplansSection} from "./short-term/ShortTermFloorplansSection";
 export {ShortTermFloorplanCard} from "./short-term/ShortTermFloorplanCard";
 export {ShortTermPricingCard} from "./short-term/ShortTermPricingCard";
+export {Hostaway} from "./short-term/Hostaway";
+export type {HostawayProps} from "./short-term/Hostaway";
 
 export {HomePageSpecialSection} from "./home-page-special/HomePageSpecialSection";
 export {HomePageSpecialModal} from "./home-page-special/HomePageSpecialModal";

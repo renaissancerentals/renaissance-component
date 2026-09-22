@@ -65,6 +65,6 @@ declare global {
     }
 }
 
-interface HostawayProps {
+export interface HostawayProps {
     contactNumber: string;
 }
