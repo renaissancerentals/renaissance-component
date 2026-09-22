@@ -132,6 +132,7 @@ export type  {
 export type  {
     Contact
 } from "./contact/data/Contact";
+export {defaultContact} from "./contact/data/Contact";
 export {
     formatPhoneNumber,
     addressToGoogleMapLink,
@@ -160,6 +161,7 @@ export {
 export {sortBedrooms} from "./floorplan/section/filter/Bedroom";
 export {sortAvailability, AvailabilityFilter} from "./floorplan/section/filter/Availability";
 export {
+    AVAILABLE_NOW,
     filtersFrom,
     getFloorplansFilterData,
     sortFloorplans,
