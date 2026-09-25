@@ -1,3 +1,0 @@
-import{j as m}from"./jsx-runtime-D_zvdyIk.js";import{S as e}from"./SpecialOfferBadge-BN5Zu_jm.js";import"./index.es-CPsIdmmi.js";import"./index-DlV_ZNC-.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-C0QTL6_X.js";import"./index-p5Ixs3OV.js";import"./ConcaveStar-Budf_w1-.js";const g={component:e,title:"Badge/Special Offer",render:s=>m.jsx(e,{...s})},r={args:{}};var t,o,a;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`{
-  args: {}
-}`,...(a=(o=r.parameters)==null?void 0:o.docs)==null?void 0:a.source}}};const x=["Default"];export{r as Default,x as __namedExportsOrder,g as default};

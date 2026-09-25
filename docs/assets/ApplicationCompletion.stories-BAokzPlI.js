@@ -1,0 +1,3 @@
+import{j as m}from"./jsx-runtime-D_zvdyIk.js";import{A as r}from"./ApplicationCompletion-DoL1do3O.js";import"./index.es-C9vOSklQ.js";import"./index-DlV_ZNC-.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./index-C0QTL6_X.js";import"./index-p5Ixs3OV.js";const x={component:r,title:"Section/Application",render:s=>m.jsx(r,{...s})},o={args:{}};var t,e,p;o.parameters={...o.parameters,docs:{...(t=o.parameters)==null?void 0:t.docs,source:{originalSource:`{
+  args: {}
+}`,...(p=(e=o.parameters)==null?void 0:e.docs)==null?void 0:p.source}}};const f=["Completion"];export{o as Completion,f as __namedExportsOrder,x as default};

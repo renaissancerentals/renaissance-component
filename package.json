@@ -1,6 +1,6 @@
 {
   "name": "@renaissancerentals/renaissance-component",
-  "version": "13.0.8",
+  "version": "13.0.10",
   "description": "Renaissance rentals UI component library",
   "author": "asikpradhan",
   "license": "MIT",
@@ -89,7 +89,7 @@
     "web-vitals": "^2.1.4"
   },
   "dependencies": {
-    "@contentmunch/contentmunch-ui": "^1.1.109",
+    "@contentmunch/contentmunch-ui": "^1.1.110",
     "axios": "^1.7.7",
     "ga-gtag": "^1.1.7",
     "html-entities": "^2.6.0",
