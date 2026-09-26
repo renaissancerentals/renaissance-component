@@ -58,6 +58,29 @@ export const UnitSection: React.FC<UnitSectionProps> = (
 
     const [isLoading, setIsLoading] = useState(true);
     const [errorLoading, setErrorLoading] = useState(false);
+    const [notFound, setNotFound] = useState(false);
+
+    useEffect(() => {
+        if (!notFound) return;
+
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+        const wasCreated = !meta;
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.setAttribute("name", "robots");
+            document.head.appendChild(meta);
+        }
+        const previousContent = meta.getAttribute("content");
+        meta.setAttribute("content", "noindex");
+
+        return () => {
+            if (wasCreated) {
+                meta?.parentNode?.removeChild(meta);
+            } else if (previousContent !== null) {
+                meta?.setAttribute("content", previousContent);
+            }
+        };
+    }, [notFound]);
 
     const mapRef: React.Ref<HTMLDivElement> = useRef<HTMLDivElement>(null);
     const handleRefToMap = () => {
@@ -113,6 +136,7 @@ export const UnitSection: React.FC<UnitSectionProps> = (
             }
         }).catch(() => {
             setErrorLoading(true);
+            setNotFound(true);
             setIsLoading(false);
         });
 

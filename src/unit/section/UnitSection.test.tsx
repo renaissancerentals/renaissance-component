@@ -216,6 +216,24 @@ describe('UnitSection', () => {
         expect(await screen.findByText('Uh-oh, this is a 404')).toBeInTheDocument();
     });
 
+    it('adds a noindex robots meta tag when loading the unit fails', async () => {
+        vi.mocked(getUnit).mockRejectedValueOnce(new Error('not found'));
+
+        render(<UnitSection contactClickHandler={vi.fn()} applyClickHandler={vi.fn()} unitId="bad-id"/>);
+
+        await screen.findByText('Uh-oh, this is a 404');
+        expect(document.querySelector('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+    });
+
+    it('does not add a noindex robots meta tag when the unit loads successfully', async () => {
+        vi.mocked(getUnit).mockResolvedValueOnce(unitFloorplan());
+
+        render(<UnitSection contactClickHandler={vi.fn()} applyClickHandler={vi.fn()} unitId="u1"/>);
+
+        await screen.findByText('The Barcelona');
+        expect(document.querySelector('meta[name="robots"]')).not.toBeInTheDocument();
+    });
+
     it('calls handleHtmlTitleUpdate with the floorplan html title once loaded', async () => {
         vi.mocked(getUnit).mockResolvedValueOnce(unitFloorplan());
         const handleHtmlTitleUpdate = vi.fn();

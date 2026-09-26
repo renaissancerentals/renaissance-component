@@ -120,6 +120,26 @@ describe('FloorplanSection', () => {
         expect(await screen.findByText('Uh-oh, this is a 404')).toBeInTheDocument();
     });
 
+    it('adds a noindex robots meta tag when the floorplan fails to load', async () => {
+        vi.mocked(FloorplanService.getFloorplan).mockRejectedValue(new Error('not found'));
+
+        render(<FloorplanSection contactClickHandler={vi.fn()} applyClickHandler={vi.fn()}
+                                  floorplanId="everhart-not-found"/>);
+
+        await screen.findByText('Uh-oh, this is a 404');
+        expect(document.querySelector('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+    });
+
+    it('does not add a noindex robots meta tag when the floorplan loads successfully', async () => {
+        vi.mocked(FloorplanService.getFloorplan).mockResolvedValue(baseFloorplan());
+        mockDependentCalls();
+
+        render(<FloorplanSection contactClickHandler={vi.fn()} applyClickHandler={vi.fn()} floorplanId="aberdeen"/>);
+
+        await screen.findByText('Aberdeen');
+        expect(document.querySelector('meta[name="robots"]')).not.toBeInTheDocument();
+    });
+
     it('renders the short-term section instead when the property lease type is SHORT_TERM', async () => {
         vi.mocked(FloorplanService.getFloorplan).mockResolvedValue(baseFloorplan({
             property: {
