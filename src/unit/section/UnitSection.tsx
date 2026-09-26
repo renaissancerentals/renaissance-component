@@ -19,6 +19,7 @@ import {
 import "./assets/UnitSection.css";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {
+    addressToGoogleMapLink,
     capitalizeFirstLetter,
     dateToMoment,
     enumToString,
@@ -360,7 +361,8 @@ export const UnitSection: React.FC<UnitSectionProps> = (
 
                                         </div>
                                         <MapSection
-                                            src={floorplanAddressToGoogleMap(addressFromUnit(unitFloorplan))}/>
+                                            src={floorplanAddressToGoogleMap(addressFromUnit(unitFloorplan))}
+                                            href={addressToGoogleMapLink(addressFromUnit(unitFloorplan).address, addressFromUnit(unitFloorplan).zipcode)}/>
                                     </Card>
                                 </div>
                             </>

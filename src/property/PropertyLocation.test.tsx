@@ -57,7 +57,7 @@ describe('PropertyLocation', () => {
         expect(screen.getByRole('heading', {name: 'HighGrove'})).toBeInTheDocument();
         expect(screen.getByText('123 Main St, 47401')).toHaveAttribute(
             'href',
-            'https://maps.google.com/?q=123 Main St,47401'
+            'https://www.mapquest.com/search/' + encodeURIComponent('123 Main St,47401')
         );
         expect(screen.getByText('(317)-555-1234')).toHaveAttribute('href', 'tel:3175551234');
     });
@@ -148,7 +148,7 @@ describe('PropertyLocation', () => {
 
         expect(screen.getByText('456 Office Rd, 47403')).toHaveAttribute(
             'href',
-            'https://maps.google.com/?q=456 Office Rd,47403'
+            'https://www.mapquest.com/search/' + encodeURIComponent('456 Office Rd,47403')
         );
         expect(screen.getByText('(317)-555-9999')).toHaveAttribute('href', 'tel:3175559999');
         expect(screen.getByText('Mon-Fri 9-5')).toBeInTheDocument();

@@ -165,11 +165,11 @@ describe('FloorplanCard', () => {
         expect(screen.queryByText('Special Offer')).not.toBeInTheDocument();
     });
 
-    it('renders the address as a google maps link when address and zipcode are present', () => {
+    it('renders the address as a map link when address and zipcode are present', () => {
         render(<FloorplanCard floorplan={baseFloorplan} propertyId="verona-park" videoClickHandler={vi.fn()}/>);
 
         const addressLink = screen.getByText(/1100 N Walnut St/) as HTMLElement;
-        expect(addressLink.closest('a')).toHaveAttribute('href', expect.stringContaining('maps.google.com'));
+        expect(addressLink.closest('a')).toHaveAttribute('href', expect.stringContaining('mapquest.com'));
     });
 
     it('renders the featured layout with a "Featured Floorplan" label and no address', () => {

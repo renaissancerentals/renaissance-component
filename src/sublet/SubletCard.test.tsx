@@ -69,7 +69,7 @@ describe('SubletCard', () => {
         render(<SubletCard sublet={sublet()}/>);
 
         const link = screen.getByRole('link', {name: '123 Main St 47401'});
-        expect(link).toHaveAttribute('href', 'https://maps.google.com/?q=123 Main St,47401');
+        expect(link).toHaveAttribute('href', 'https://www.mapquest.com/search/' + encodeURIComponent('123 Main St,47401'));
     });
 
     it('opens the contact modal when the Contact button is clicked', async () => {

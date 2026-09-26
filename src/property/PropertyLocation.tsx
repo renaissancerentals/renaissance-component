@@ -52,7 +52,8 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                 </div>
                             </div>
                             <MapSection
-                                src={addressToGoogleMap(property.address, property.zipcode)}/>
+                                src={addressToGoogleMap(property.address, property.zipcode)}
+                                href={addressToGoogleMapLink(property.address, property.zipcode)}/>
                         </>
                     }
                 </div>
@@ -85,7 +86,8 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                 </div>
                             </div>
                             <MapSection
-                                src={addressToGoogleMap(property.leasingOffice?.address, property.leasingOffice?.zipcode)}/>
+                                src={addressToGoogleMap(property.leasingOffice?.address, property.leasingOffice?.zipcode)}
+                                href={addressToGoogleMapLink(property.leasingOffice?.address, property.leasingOffice?.zipcode)}/>
                             <div className="div-office-map-image">
                                 {property.leasingOffice?.officeMap ?
                                     <img src={getAssetUrl(property.leasingOffice.officeMap, property.id)}

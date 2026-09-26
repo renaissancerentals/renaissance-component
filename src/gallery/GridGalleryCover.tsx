@@ -9,7 +9,7 @@ import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
 import {MapSection} from "../map/MapSection";
-import {floorplanAddressToGoogleMap} from "../utils/Utils";
+import {addressToGoogleMapLink, floorplanAddressToGoogleMap} from "../utils/Utils";
 import {Asset} from "../asset/data/Asset";
 
 export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
@@ -88,7 +88,8 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                             </HeroImageCard> : ""}
 
                             <MapSection
-                                src={floorplanAddressToGoogleMap(address)}/>
+                                src={floorplanAddressToGoogleMap(address)}
+                                href={addressToGoogleMapLink(address.address, address.zipcode)}/>
                             {
 
                                 assets.map((asset) =>

@@ -155,7 +155,8 @@ export {
     availabilityDate,
     MAX_VALUE,
     MIN_VALUE,
-    floorplanAddressToGoogleMap
+    floorplanAddressToGoogleMap,
+    MAP_PROVIDER
 
 } from "./utils/Utils";
 export {sortBedrooms} from "./floorplan/section/filter/Bedroom";

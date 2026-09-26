@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";const o=({src:r})=>e.jsx("section",{className:"section-map",children:e.jsx("iframe",{title:"map",src:r,loading:"lazy",referrerPolicy:"no-referrer-when-downgrade",allowFullScreen:!0})});o.__docgenInfo={description:"",methods:[],displayName:"MapSection",props:{src:{required:!0,tsType:{name:"string"},description:""}}};export{o as M};

@@ -11,7 +11,7 @@ import {SpecialOfferButton} from "../special-offer/SpecialOfferButton";
 import {TourType} from "./GridGalleryCover";
 import {Address} from "../floorplan/service/FloorplanService";
 import {MapSection} from "../map/MapSection";
-import {floorplanAddressToGoogleMap} from "../utils/Utils";
+import {addressToGoogleMapLink, floorplanAddressToGoogleMap} from "../utils/Utils";
 
 export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
     {
@@ -69,7 +69,8 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
             }
         );
         items.push(<MapSection
-            src={floorplanAddressToGoogleMap(address)}/>)
+            src={floorplanAddressToGoogleMap(address)}
+            href={addressToGoogleMapLink(address.address, address.zipcode)}/>)
         assets.slice(1, assets.length).forEach((asset, index) => {
             items.push(createImageItem(asset, index + 1));
         });

@@ -60,16 +60,17 @@ describe('renaissanceAddress', () => {
 });
 
 describe('addressToGoogleMapLink', () => {
-    it('builds a google maps link and strips "apt." from the address', () => {
+    it('builds a mapquest search link and strips "apt." from the address', () => {
         const link = addressToGoogleMapLink('123 Main St Apt. 4', '47401');
-        expect(link).toBe('https://maps.google.com/?q=123 Main St 4,47401');
+        expect(link).toBe('https://www.mapquest.com/search/' + encodeURIComponent('123 Main St 4,47401'));
     });
 });
 
 describe('addressToGoogleMap', () => {
-    it('builds an embeddable google maps url', () => {
+    it('builds an embeddable mapquest static map url', () => {
         const link = addressToGoogleMap('123 Main St', '47401');
-        expect(link).toBe('https://www.google.com/maps?output=embed&q=123 Main St,47401');
+        expect(link).toContain('https://www.mapquestapi.com/staticmap/v5/map?key=');
+        expect(link).toContain('center=' + encodeURIComponent('123 Main St,47401'));
     });
 });
 

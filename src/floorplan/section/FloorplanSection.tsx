@@ -26,6 +26,7 @@ import "./assets/FloorplanSection.css";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {FloorplanHero} from "./FloorplanHero";
 import {
+    addressToGoogleMapLink,
     capitalizeFirstLetter,
     dateToMoment,
     enumToString,
@@ -365,7 +366,8 @@ export const FloorplanSection: React.FC<FloorplanSectionProps> = (
 
                                         </div>
                                         <MapSection
-                                            src={floorplanAddressToGoogleMap(addressFromFloorplan(floorplan))}/>
+                                            src={floorplanAddressToGoogleMap(addressFromFloorplan(floorplan))}
+                                            href={addressToGoogleMapLink(addressFromFloorplan(floorplan).address, addressFromFloorplan(floorplan).zipcode)}/>
                                     </Card>
                                 </div>
                             </>

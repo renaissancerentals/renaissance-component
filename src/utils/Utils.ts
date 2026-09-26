@@ -16,12 +16,27 @@ export const formatPhoneNumber = (phone?: string): string => {
 }
 export const renaissanceAddress = (address: string, zipcode: string) => `${address}, ${renaissance.city},${renaissance.state} ${zipcode}`
 
-const cleanAddressForGoogle = (address?: string): string => address ? address.replace(/apt. /gi, "") : "";
-export const addressToGoogleMapLink = (address?: string, zipcode?: string) => "https://maps.google.com/?q=" + cleanAddressForGoogle(address) + "," + zipcode;
-export const addressToGoogleMap = (address?: string, zipcode?: string) => "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address) + "," + zipcode;
+// Flip this back to "google" to switch the whole site back to Google Maps in one place.
+// The `as` cast (rather than a `: type` annotation) is required so TS doesn't narrow every
+// `MAP_PROVIDER === "google"` comparison below to a false-positive "no overlap" error (TS2367).
+export const MAP_PROVIDER = "mapquest" as ("mapquest" | "google");
+const MAPQUEST_API_KEY = "XJAhBJM7Pw6VFsvnwQw3rO9yjdMfuAuV";
+const cleanAddressForMap = (address?: string): string => address ? address.replace(/apt. /gi, "") : "";
+
+export const addressToGoogleMapLink = (address?: string, zipcode?: string) =>
+    MAP_PROVIDER === "google"
+        ? "https://maps.google.com/?q=" + cleanAddressForMap(address) + "," + zipcode
+        : "https://www.mapquest.com/search/" + encodeURIComponent(cleanAddressForMap(address) + "," + zipcode);
+
+export const addressToGoogleMap = (address?: string, zipcode?: string) =>
+    MAP_PROVIDER === "google"
+        ? "https://www.google.com/maps?output=embed&q=" + cleanAddressForMap(address) + "," + zipcode
+        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=15&center=" + encodeURIComponent(cleanAddressForMap(address) + "," + zipcode);
 
 export const floorplanAddressToGoogleMap = (address: Address) =>
-    "https://www.google.com/maps?output=embed&q=" + cleanAddressForGoogle(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode;
+    MAP_PROVIDER === "google"
+        ? "https://www.google.com/maps?output=embed&q=" + cleanAddressForMap(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode
+        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=15&center=" + encodeURIComponent(cleanAddressForMap(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode);
 export const enumToString = (value?: string): string => {
 
     return value && !isEmpty(value) ? value.replaceAll("_", " ").toLowerCase() : "";

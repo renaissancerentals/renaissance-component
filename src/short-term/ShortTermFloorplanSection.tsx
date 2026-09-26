@@ -6,7 +6,7 @@ import {getShortTermFloorplan} from "./service/ShortTermService";
 import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";
 import {ShortTermFloorplanHero} from "./ShortTermFloorplanHero";
 import {Card} from "../card/Card";
-import {enumToString, floorplanAddressToGoogleMap, formatPhoneNumber, toUSD} from "../utils/Utils";
+import {addressToGoogleMapLink, enumToString, floorplanAddressToGoogleMap, formatPhoneNumber, toUSD} from "../utils/Utils";
 import {MapSection} from "../map/MapSection";
 import {renaissance} from "../data/RenaissanceData";
 
@@ -170,7 +170,8 @@ export const ShortTermFloorplanSection: React.FC<FloorplanSectionProps> = (
                                                 state: renaissance.state,
                                                 address: floorplan.address,
                                                 zipcode: floorplan.zipcode
-                                            })}/>
+                                            })}
+                                            href={addressToGoogleMapLink(floorplan.address, floorplan.zipcode)}/>
                                     </Card>
                                 }
 

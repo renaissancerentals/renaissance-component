@@ -8,10 +8,13 @@
   }
 
   .section-map {
-    iframe {
+    iframe, img {
       width: 90vw;
       height: 15rem;
       margin: 1rem;
+    }
+    img {
+      object-fit: cover;
     }
   }
 
@@ -29,10 +32,13 @@
 
       }
       .section-map {
-        iframe {
+        iframe, img {
           width: 65vw;
           max-width: 50rem;
           height: 20rem;
+        }
+        img {
+          object-fit: cover;
         }
       }
       @media (min-width: 75rem) {
@@ -40,7 +46,7 @@
           width: 25vw;
         }
         .section-map {
-          iframe {
+          iframe, img {
             width: 60vw;
           }
         }
@@ -75,9 +81,12 @@
       }
       .section-map {
 
-        iframe {
+        iframe, img {
           width: 25vw;
           height: 20rem;
+        }
+        img {
+          object-fit: cover;
         }
       }
       .div-office-map-image {
