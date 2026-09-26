@@ -14,8 +14,8 @@
       margin: 1rem;
     }
     img {
-      object-fit: contain;
-      background: #f2f2ef;
+      object-fit: cover;
+      object-position: left bottom;
     }
   }
 
@@ -37,10 +37,11 @@
           width: 65vw;
           max-width: 50rem;
           height: 20rem;
+          margin: 0;
         }
         img {
-          object-fit: contain;
-          background: #f2f2ef;
+          object-fit: cover;
+          object-position: left bottom;
         }
       }
       @media (min-width: 75rem) {
@@ -81,15 +82,20 @@
       .property-card, .section-map, .div-office-map-image, .div-office-image-card {
         width: 25vw;
       }
+      .div-office-map-image, .div-office-image-card {
+        margin: 0;
+      }
       .section-map {
 
         iframe, img {
           width: 25vw;
           height: 20rem;
+          margin: 0;
+          padding: 0;
         }
         img {
-          object-fit: contain;
-          background: #f2f2ef;
+          object-fit: cover;
+          object-position: left bottom;
         }
       }
       .div-office-map-image {

@@ -87,8 +87,8 @@
           height: 20vw;
         }
         img {
-          object-fit: contain;
-          background: #f2f2ef;
+          object-fit: cover;
+          object-position: left bottom;
         }
       }
     }

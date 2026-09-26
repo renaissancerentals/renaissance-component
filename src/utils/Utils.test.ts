@@ -67,10 +67,11 @@ describe('addressToGoogleMapLink', () => {
 });
 
 describe('addressToGoogleMap', () => {
-    it('builds an embeddable mapquest static map url', () => {
+    it('builds an embeddable mapquest static map url with a pin marker', () => {
         const link = addressToGoogleMap('123 Main St', '47401');
         expect(link).toContain('https://www.mapquestapi.com/staticmap/v5/map?key=');
         expect(link).toContain('center=' + encodeURIComponent('123 Main St,47401'));
+        expect(link).toContain('locations=' + encodeURIComponent('123 Main St,47401') + '|marker-sm-6699CC-336699');
     });
 });
 

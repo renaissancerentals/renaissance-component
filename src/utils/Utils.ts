@@ -28,15 +28,19 @@ export const addressToGoogleMapLink = (address?: string, zipcode?: string) =>
         ? "https://maps.google.com/?q=" + cleanAddressForMap(address) + "," + zipcode
         : "https://www.mapquest.com/search/" + encodeURIComponent(cleanAddressForMap(address) + "," + zipcode);
 
-export const addressToGoogleMap = (address?: string, zipcode?: string) =>
-    MAP_PROVIDER === "google"
+export const addressToGoogleMap = (address?: string, zipcode?: string) => {
+    const location = encodeURIComponent(cleanAddressForMap(address) + "," + zipcode);
+    return MAP_PROVIDER === "google"
         ? "https://www.google.com/maps?output=embed&q=" + cleanAddressForMap(address) + "," + zipcode
-        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=15&center=" + encodeURIComponent(cleanAddressForMap(address) + "," + zipcode);
+        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=17&center=" + location + "&locations=" + location + "|marker-sm-6699CC-336699";
+};
 
-export const floorplanAddressToGoogleMap = (address: Address) =>
-    MAP_PROVIDER === "google"
+export const floorplanAddressToGoogleMap = (address: Address) => {
+    const location = encodeURIComponent(cleanAddressForMap(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode);
+    return MAP_PROVIDER === "google"
         ? "https://www.google.com/maps?output=embed&q=" + cleanAddressForMap(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode
-        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=15&center=" + encodeURIComponent(cleanAddressForMap(address.address) + ", " + address.city + ", " + address.state + " " + address.zipcode);
+        : "https://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&size=600,400@2x&zoom=17&center=" + location + "&locations=" + location + "|marker-sm-6699CC-336699";
+};
 export const enumToString = (value?: string): string => {
 
     return value && !isEmpty(value) ? value.replaceAll("_", " ").toLowerCase() : "";
