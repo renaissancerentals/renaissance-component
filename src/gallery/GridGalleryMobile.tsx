@@ -2,6 +2,7 @@ import React, {ReactElement, useState} from "react";
 import './assets/GridGalleryMobile.css';
 import {Asset} from "../asset/data/Asset";
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Badge, ItemSlider} from "@contentmunch/contentmunch-ui";
 import {HeroImageCard} from "./HeroImageCard";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
@@ -35,7 +36,7 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
                         <div className="gallery--information"><p>{webSpecials[0].description}</p></div> : <></>}
                 </> : <></>
             }
-            <img src={assetUrlFrom(asset.id, propertyId)}
+            <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                  alt={asset.name}
                  key={asset.id}
                  className="gallery-hero-mobile--image"
@@ -56,7 +57,7 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
         items.push(createImageItem(assets[0], 0));
         [...Array(toursCount)].forEach((x, i) => {
                 items.push(
-                    <HeroImageCard backgroundImage={assetUrlFrom(assets[i].id, propertyId)}
+                    <HeroImageCard backgroundImage={assetUrlFrom(assets[i].id, propertyId, IMAGE_WIDTH.large)}
                                    isForMobile={true}
                                    key={"tour" + i}
                                    onClick={() => {

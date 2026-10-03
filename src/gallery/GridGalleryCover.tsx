@@ -3,6 +3,7 @@ import {Address} from "../floorplan/service/FloorplanService";
 import {Badge} from "@contentmunch/contentmunch-ui";
 import {SpecialOfferBadge} from "../special-offer/SpecialOfferBadge";
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import './assets/GridGallery.css';
 import {HeroImageCard} from "./HeroImageCard";
@@ -55,7 +56,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                 {showOnlyHeroImage ?
                     <div className="gallery-hero-one">
 
-                        <img src={assetUrlFrom(heroImage.id, propertyId)}
+                        <img src={assetUrlFrom(heroImage.id, propertyId, IMAGE_WIDTH.large)}
                              alt={heroImage.name}
                              key={heroImage.id}
                              className="gallery-hero--image"
@@ -65,7 +66,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                     <>
                         <div className="gallery-hero-column-one">
 
-                            <img src={assetUrlFrom(heroImage.id, propertyId)}
+                            <img src={assetUrlFrom(heroImage.id, propertyId, IMAGE_WIDTH.large)}
                                  alt={heroImage.name}
                                  key={heroImage.id}
                                  className="gallery-hero--image"
@@ -93,7 +94,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                             {
 
                                 assets.map((asset) =>
-                                    <img src={assetUrlFrom(asset.id, propertyId)}
+                                    <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                                          alt={asset.name}
                                          key={asset.id}
                                          className="gallery-hero--image"

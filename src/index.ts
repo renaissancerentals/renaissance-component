@@ -183,7 +183,8 @@ export {
 } from "./floorplan/service/FloorplanService";
 
 export {
-    propertyIdToDomain, propertyFragment, assetUrlFrom, getAssetUrl, getAssetsFrom
+    propertyIdToDomain, propertyFragment, assetUrlFrom, getAssetUrl, getAssetsFrom,
+    IMAGE_WIDTH, setImageCdnEnabled, resetImageCdn, googleImageUrl, serverAssetUrl, installImageFallback
 } from "./asset/service/AssetService";
 
 export {

@@ -1,5 +1,6 @@
 import React from "react";
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import './assets/GridGallery.css';
 import {Asset} from "../asset/data/Asset";
 
@@ -17,7 +18,7 @@ export const GridGallery: React.FC<GridGalleryProps> = (
             <div className="gallery-hero-column">
                 {
                     assets.map((asset) =>
-                        <img src={assetUrlFrom(asset.id, propertyId)}
+                        <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                              alt={asset.name}
                              key={asset.id}
                              className={assets.length > 3 ? "gallery-hero--image" : "gallery-hero--image-fixed"}

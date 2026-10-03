@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Asset} from "../asset/data/Asset";
 import "./assets/GalleryModal.css";
 
@@ -45,7 +46,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = (
                         sliderImageLoaded ? "" : <Spinner/>
                     }
                     {showModal ?
-                        <img src={assetUrlFrom(assetInFocus.id, propertyId)} alt={assetInFocus.name}
+                        <img src={assetUrlFrom(assetInFocus.id, propertyId, IMAGE_WIDTH.large)} alt={assetInFocus.name}
                              onLoad={imageLoaded}/> : <></>}
 
                     {assets.length > 1 ?

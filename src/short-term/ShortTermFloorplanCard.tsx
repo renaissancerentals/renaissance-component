@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./assets/ShortTermFloorplanCard.css"
 import {Asset, Video} from "../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Button, ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import tourIcon from "../floorplan/card/assets/360-icon.png";
 import videoIcon from "../floorplan/card/assets/video-icon.png";
@@ -55,9 +56,9 @@ export const ShortTermFloorplanCard: React.FC<ShortTermFloorplanCardProps> = (
                                                               sliderItems={assets.map(asset => <img
                                                                   className="card--image"
                                                                   alt="card"
-                                                                  src={assetUrlFrom(asset.id, propertyId)}/>)}/> :
+                                                                  src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}/>)}/> :
                 <img className="card--image" alt="cover"
-                     src={floorplan.coverImage ? getAssetUrl(floorplan.coverImage, propertyId) : DEFAULT_IMAGE_URL}/>}
+                     src={floorplan.coverImage ? getAssetUrl(floorplan.coverImage, propertyId, IMAGE_WIDTH.card) : DEFAULT_IMAGE_URL}/>}
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}
 
 

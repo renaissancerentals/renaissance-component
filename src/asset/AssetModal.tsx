@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {getAssetUrl} from "./service/AssetService";
+import {IMAGE_WIDTH} from "./service/ImageWidth";
 import "./assets/AssetModal.css";
 
 export const AssetModal: React.FC<AssetModalProps> = (
@@ -20,7 +21,7 @@ export const AssetModal: React.FC<AssetModalProps> = (
                             assetLoaded ? "" : <Spinner/>
                         }
                         {showModal && assetUrl ?
-                            <img src={getAssetUrl(assetUrl, propertyId)} alt={assetTitle}
+                            <img src={getAssetUrl(assetUrl, propertyId, IMAGE_WIDTH.large)} alt={assetTitle}
                                  onLoad={() => setAssetLoaded(true)}/> : <></>
                         }
                     </div>

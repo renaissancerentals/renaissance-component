@@ -3,6 +3,7 @@ import {Sublet} from "./data/Sublet";
 import "./assets/SubletImage.css";
 import {ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Asset} from "../asset/data/Asset";
 import {renaissance} from "../data/RenaissanceData";
 
@@ -35,10 +36,10 @@ export const SubletImage: React.FC<SubletImageProps> = ({sublet}) => {
                     <ItemSlider navButtonSize="medium" sliderItems={
                         assets.map(
                             (asset, index) => <img className="sublet--image"
-                                                   src={assetUrlFrom(asset.id, renaissance.propertyId)}
+                                                   src={assetUrlFrom(asset.id, renaissance.propertyId, IMAGE_WIDTH.card)}
                                                    alt={"sublet image " + index + 1}/>
                         )}/> :
-                    <img className="sublet--image" src={getAssetUrl(sublet.coverImage, renaissance.propertyId)}
+                    <img className="sublet--image" src={getAssetUrl(sublet.coverImage, renaissance.propertyId, IMAGE_WIDTH.card)}
                          alt="sublet cover"/>
             }
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}

@@ -2,6 +2,7 @@ import React from "react";
 import "./assets/HomePageSpecialCard.css";
 import {HomePageSpecial} from "./data/HomePageSpecial";
 import {getAssetUrl} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 
 export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePageSpecial, propertyId}) => {
     const regions = homePageSpecial.links ?? [];
@@ -10,7 +11,7 @@ export const HomePageSpecialCard: React.FC<HomePageSpecialCardProps> = ({homePag
         <section className="special-card">
             <div className="special-card--image-wrapper">
                 <img
-                    src={getAssetUrl(homePageSpecial.image, propertyId)}
+                    src={getAssetUrl(homePageSpecial.image, propertyId, IMAGE_WIDTH.card)}
                     alt={homePageSpecial.description}
                 />
                 {regions.filter(r => r.url).map((region, i) => (

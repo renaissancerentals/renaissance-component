@@ -5,6 +5,7 @@ import {FloorplanShortTerm} from "./data/ShortTerm";
 import {Asset} from "../asset/data/Asset";
 import {extractIdFrom} from "../utils/Utils";
 import {assetUrlFrom, getAssetsFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {WebSpecial} from "../floorplan/data/Floorplan";
 import {renaissance} from "../data/RenaissanceData";
 import {GridGallerySkeleton} from "../gallery/GridGallerySkeleton";
@@ -58,7 +59,7 @@ export const ShortTermFloorplanHero: React.FC<ShortTermFloorplanHeroProps> = (
                 images.push(...galleryAssets);
 
                 if (images.length > 1) {
-                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id);
+                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id, IMAGE_WIDTH.large);
                     if (floorplan.virtualTourLink) {
                         setVirtualTour(floorplan.virtualTourLink);
                         setVirtualTourImageBackground(backgroundImageUrl);

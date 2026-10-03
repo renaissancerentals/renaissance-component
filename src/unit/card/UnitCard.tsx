@@ -4,6 +4,7 @@ import tourIcon from "./assets/360-icon.png";
 import videoIcon from "./assets/video-icon.png";
 import {Badge, Button, Icon, ItemSlider, NavigateButton, Spinner} from "@contentmunch/contentmunch-ui";
 import {assetUrlFrom, getAssetsFrom, getAssetUrl} from "../../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../../asset/service/ImageWidth";
 import {DEFAULT_IMAGE_URL} from "../../service/Api";
 import {addressToGoogleMapLink, availabilityDate, renaissanceAddress} from "../../utils/Utils";
 import {Asset, Video} from "../../asset/data/Asset";
@@ -50,9 +51,9 @@ export const UnitCard: React.FC<UnitCardProps> = (
                             sliderItems={assets.map(asset => <img
                                 className="card--image"
                                 alt="card"
-                                src={assetUrlFrom(asset.id, propertyId)}/>)}/> :
+                                src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}/>)}/> :
                 <img className="card--image" alt="cover"
-                     src={unit.coverImage ? getAssetUrl(unit.coverImage, propertyId) : DEFAULT_IMAGE_URL}/>}
+                     src={unit.coverImage ? getAssetUrl(unit.coverImage, propertyId, IMAGE_WIDTH.card) : DEFAULT_IMAGE_URL}/>}
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}
 
             {isAssetLoading ? <Spinner size="medium"/> : <></>}

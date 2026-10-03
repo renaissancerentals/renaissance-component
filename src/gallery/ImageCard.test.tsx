@@ -20,7 +20,7 @@ describe('ImageCard', () => {
 
         const img = screen.getByAltText('Living Room') as HTMLImageElement;
         expect(img).toBeInTheDocument();
-        expect(img.src).toContain('api/assets/asset-1/download');
+        expect(img.src).toBe('https://lh3.googleusercontent.com/d/asset-1=w800');
     });
 
     it('renders the asset name in the footer', () => {

@@ -4,6 +4,7 @@ import {Icon, Modal, Spinner} from "@contentmunch/contentmunch-ui";
 import {ImageCard} from "./ImageCard";
 import {ImageCardSkeleton} from "./ImageCardSkeleton";
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Asset} from "../asset/data/Asset";
 
 export const Gallery: React.FC<GalleryProps> = ({type = "simple", images, isLoading = false, showName = true, allImages, propertyId}) => {
@@ -57,7 +58,7 @@ export const Gallery: React.FC<GalleryProps> = ({type = "simple", images, isLoad
                     }
                     {imageInFocus.id ?
                         <>
-                            <img src={assetUrlFrom(imageInFocus.id, propertyId)} alt={imageInFocus.name}
+                            <img src={assetUrlFrom(imageInFocus.id, propertyId, IMAGE_WIDTH.large)} alt={imageInFocus.name}
                                  onLoad={imageLoaded}/>
                             {showName ? <p>{imageInFocus.name}</p> : ""}
                         </> : <></>}
@@ -88,7 +89,7 @@ export const Gallery: React.FC<GalleryProps> = ({type = "simple", images, isLoad
                                 </span>
                             )) :
                             images.map((image, index) => (
-                                <img src={assetUrlFrom(image.id, propertyId)}
+                                <img src={assetUrlFrom(image.id, propertyId, IMAGE_WIDTH.thumb)}
                                      alt={image.name}
                                      key={image.name}
                                      className="gallery--image"

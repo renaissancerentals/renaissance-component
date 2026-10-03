@@ -6,6 +6,7 @@ import {addressToGoogleMap, addressToGoogleMapLink, formatPhoneNumber} from "../
 import {PropertyLocationSkeleton} from "./PropertyLocationSkeleton";
 import {LeaseOfficeSkeleton} from "./LeaseOfficeSkeleton";
 import {getAssetUrl} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 
 export const PropertyLocation: React.FC<PropertyLocationProps> = (
     {property, isLoading, handleRefToContact}
@@ -90,14 +91,14 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                                 href={addressToGoogleMapLink(property.leasingOffice?.address, property.leasingOffice?.zipcode)}/>
                             <div className="div-office-map-image">
                                 {property.leasingOffice?.officeMap ?
-                                    <img src={getAssetUrl(property.leasingOffice.officeMap, property.id)}
+                                    <img src={getAssetUrl(property.leasingOffice.officeMap, property.id, IMAGE_WIDTH.large)}
                                          alt={property.leasingOffice.name}/> : ""}
 
                             </div>
                             <div className="div-office-image-card">
                                 <div className="div-office-image">
                                     {property.leasingOffice?.officeImage ?
-                                        <img src={getAssetUrl(property.leasingOffice.officeImage, property.id)}
+                                        <img src={getAssetUrl(property.leasingOffice.officeImage, property.id, IMAGE_WIDTH.card)}
                                              alt={property.leasingOffice.name}/> : ""}
                                 </div>
                                 <p>

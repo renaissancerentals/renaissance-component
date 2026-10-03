@@ -76,7 +76,7 @@ describe('FloorplanCard', () => {
         render(<FloorplanCard floorplan={baseFloorplan} propertyId="verona-park" videoClickHandler={vi.fn()}/>);
 
         const img = screen.getByAltText('cover');
-        expect(img).toHaveAttribute('src', expect.stringContaining('/api/assets/abc123/download'));
+        expect(img).toHaveAttribute('src', 'https://lh3.googleusercontent.com/d/abc123=w800');
     });
 
     it('renders a default image when there is no cover image', () => {

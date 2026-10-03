@@ -3,6 +3,7 @@ import "./assets/FloorplanHero.css";
 import {Button, Icon, ItemSlider, ShareButton} from "@contentmunch/contentmunch-ui";
 import {Asset} from "../../asset/data/Asset";
 import {assetUrlFrom, getAssetsFrom} from "../../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../../asset/service/ImageWidth";
 import {GridGallerySkeleton} from "../../gallery/GridGallerySkeleton";
 import {extractIdFrom} from "../../utils/Utils";
 import {Floorplan, WebSpecial} from "../data/Floorplan";
@@ -59,7 +60,7 @@ export const FloorplanHero: React.FC<FloorplanProps> = (
                 images.push(...galleryAssets);
 
                 if (images.length > 1) {
-                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id);
+                    const backgroundImageUrl = assetUrlFrom(images[1].id, floorplan.property.id, IMAGE_WIDTH.large);
                     if (floorplan.virtualTourLink) {
                         setVirtualTour(floorplan.virtualTourLink);
                         setVirtualTourImageBackground(backgroundImageUrl);

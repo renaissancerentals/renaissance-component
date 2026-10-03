@@ -3,6 +3,7 @@ import {TeamMember} from "../..";
 import defaultAvatar from "../../assets/default-avatar.png";
 import "./assets/TeamCard.css";
 import {getAssetUrl} from "../../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../../asset/service/ImageWidth";
 
 export const TeamCard: React.FC<TeamCardProps> = ({member, propertyId}) => {
 
@@ -13,7 +14,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({member, propertyId}) => {
                     <div className="team-card">
                         <div className="div-team-image">
                             <img className="team-image"
-                                 src={member.photoLink ? getAssetUrl(member.photoLink, propertyId) : defaultAvatar}
+                                 src={member.photoLink ? getAssetUrl(member.photoLink, propertyId, IMAGE_WIDTH.thumb) : defaultAvatar}
                                  alt={member.name}
                             />
                             <div className="team-image-info">

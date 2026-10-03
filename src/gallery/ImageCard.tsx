@@ -1,12 +1,13 @@
 import React from 'react';
 import './assets/ImageCard.css';
 import {assetUrlFrom} from "../asset/service/AssetService";
+import {IMAGE_WIDTH} from "../asset/service/ImageWidth";
 import {Asset} from "../asset/data/Asset";
 
 export const ImageCard: React.FC<ImageCardProps> = ({image, onClick, propertyId}) => {
     return (
         <div className="image-card" onClick={onClick}>
-            <img src={assetUrlFrom(image.id, propertyId)} alt={image.name}/>
+            <img src={assetUrlFrom(image.id, propertyId, IMAGE_WIDTH.card)} alt={image.name}/>
             <div className="image-card--footer">
                 <p>{image.name}</p>
             </div>

@@ -50,7 +50,7 @@ describe('GalleryModal', () => {
 
         const img = screen.getByAltText('One') as HTMLImageElement;
         expect(img).toBeInTheDocument();
-        expect(img.src).toContain('api/assets/1/download');
+        expect(img.src).toBe('https://lh3.googleusercontent.com/d/1=w1600');
     });
 
     it('shows left/right navigation arrows when there is more than one asset', () => {
