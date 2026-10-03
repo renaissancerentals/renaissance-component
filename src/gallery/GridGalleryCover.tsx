@@ -94,7 +94,7 @@ export const GridGalleryCover: React.FC<GridGalleryCoverProps> = (
                             {
 
                                 assets.map((asset) =>
-                                    <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
+                                    <img loading="lazy" decoding="async" src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                                          alt={asset.name}
                                          key={asset.id}
                                          className="gallery-hero--image"

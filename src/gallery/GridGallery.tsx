@@ -18,7 +18,7 @@ export const GridGallery: React.FC<GridGalleryProps> = (
             <div className="gallery-hero-column">
                 {
                     assets.map((asset) =>
-                        <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
+                        <img loading="lazy" decoding="async" src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                              alt={asset.name}
                              key={asset.id}
                              className={assets.length > 3 ? "gallery-hero--image" : "gallery-hero--image-fixed"}

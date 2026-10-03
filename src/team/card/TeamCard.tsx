@@ -13,7 +13,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({member, propertyId}) => {
                 member ?
                     <div className="team-card">
                         <div className="div-team-image">
-                            <img className="team-image"
+                            <img loading="lazy" decoding="async" className="team-image"
                                  src={member.photoLink ? getAssetUrl(member.photoLink, propertyId, IMAGE_WIDTH.thumb) : defaultAvatar}
                                  alt={member.name}
                             />

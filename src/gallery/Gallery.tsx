@@ -89,7 +89,7 @@ export const Gallery: React.FC<GalleryProps> = ({type = "simple", images, isLoad
                                 </span>
                             )) :
                             images.map((image, index) => (
-                                <img src={assetUrlFrom(image.id, propertyId, IMAGE_WIDTH.thumb)}
+                                <img loading="lazy" decoding="async" src={assetUrlFrom(image.id, propertyId, IMAGE_WIDTH.thumb)}
                                      alt={image.name}
                                      key={image.name}
                                      className="gallery--image"

@@ -36,7 +36,7 @@ export const GridGalleryMobile: React.FC<GridGalleryMobileProps> = (
                         <div className="gallery--information"><p>{webSpecials[0].description}</p></div> : <></>}
                 </> : <></>
             }
-            <img src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
+            <img loading="lazy" decoding="async" src={assetUrlFrom(asset.id, propertyId, IMAGE_WIDTH.card)}
                  alt={asset.name}
                  key={asset.id}
                  className="gallery-hero-mobile--image"

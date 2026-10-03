@@ -35,11 +35,11 @@ export const SubletImage: React.FC<SubletImageProps> = ({sublet}) => {
                 isAssetLoaded && assets.length > 0 ?
                     <ItemSlider navButtonSize="medium" sliderItems={
                         assets.map(
-                            (asset, index) => <img className="sublet--image"
+                            (asset, index) => <img loading="lazy" decoding="async" className="sublet--image"
                                                    src={assetUrlFrom(asset.id, renaissance.propertyId, IMAGE_WIDTH.card)}
                                                    alt={"sublet image " + index + 1}/>
                         )}/> :
-                    <img className="sublet--image" src={getAssetUrl(sublet.coverImage, renaissance.propertyId, IMAGE_WIDTH.card)}
+                    <img loading="lazy" decoding="async" className="sublet--image" src={getAssetUrl(sublet.coverImage, renaissance.propertyId, IMAGE_WIDTH.card)}
                          alt="sublet cover"/>
             }
             {isAssetLoaded ? "" : <NavigateButton direction="right" onClick={loadAssets} size="medium"/>}

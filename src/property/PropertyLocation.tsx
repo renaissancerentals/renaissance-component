@@ -98,7 +98,7 @@ export const PropertyLocation: React.FC<PropertyLocationProps> = (
                             <div className="div-office-image-card">
                                 <div className="div-office-image">
                                     {property.leasingOffice?.officeImage ?
-                                        <img src={getAssetUrl(property.leasingOffice.officeImage, property.id, IMAGE_WIDTH.card)}
+                                        <img loading="lazy" decoding="async" src={getAssetUrl(property.leasingOffice.officeImage, property.id, IMAGE_WIDTH.card)}
                                              alt={property.leasingOffice.name}/> : ""}
                                 </div>
                                 <p>
