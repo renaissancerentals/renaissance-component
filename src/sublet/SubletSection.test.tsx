@@ -1,5 +1,5 @@
 import {describe, expect, it, vi} from 'vitest';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {NEW_SUBLET, SubletSection} from './SubletSection';
 import {deleteSublet, getSublet, postAsset, postSublet} from './services/SubletService';
@@ -134,6 +134,20 @@ describe('SubletSection', () => {
             const postedSublet = mockedPostSublet.mock.calls[0][0];
             expect(postedSublet.address).toBe('456 Elm St, Bloomington IN');
             expect(mockedPostAsset).toHaveBeenCalledWith('new-asset-key', expect.any(File), '0', true);
+        });
+
+        it('posts what a bot typed into the hidden honeypot field as preferredName', async () => {
+            const user = userEvent.setup();
+            mockedPostSublet.mockResolvedValue(sublet({assetKey: 'new-asset-key'}));
+            mockedPostAsset.mockResolvedValue({} as any);
+            const {container} = render(<SubletSection uniqueId={NEW_SUBLET}/>);
+
+            await fillValidForm(user);
+            await user.type(container.querySelector('input[name="website"]')!, 'http://spam.example');
+            await user.click(screen.getByRole('button', {name: /Submit/}));
+
+            await waitFor(() => expect(mockedPostSublet).toHaveBeenCalledTimes(1));
+            expect(mockedPostSublet.mock.calls[0][0].preferredName).toBe('http://spam.example');
         });
 
         it('shows an error message when posting the sublet fails', async () => {

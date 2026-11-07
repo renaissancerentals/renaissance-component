@@ -19,7 +19,7 @@ beforeAll(() => {
     const fieldNames = [
         'firstName', 'lastName', 'phone', 'email',
         'emailPreferred', 'phonePreferred', 'textPreferred', 'question',
-        'preferredName', 'bedrooms', 'moveInDate', 'amenities', 'pets',
+        'preferredName', 'website', 'bedrooms', 'moveInDate', 'amenities', 'pets',
         'floorPlan', 'hearAboutUs', 'fullName', 'message',
         ...Object.keys(PropertyNameIds)
     ];

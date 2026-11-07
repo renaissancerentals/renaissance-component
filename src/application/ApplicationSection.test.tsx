@@ -78,6 +78,34 @@ describe('ApplicationSection', () => {
         });
     });
 
+    it('sends what a bot typed into the hidden honeypot field as preferredName, and nothing for a person', async () => {
+        mockedSendRentalApplicationRequest.mockResolvedValue({});
+        const user = userEvent.setup();
+        render(<ApplicationSection propertyId="scholars-rooftop" contactClickHandler={() => {}}/>);
+        await user.type(screen.getByLabelText('First Name', {exact: false}), 'Jane');
+        await user.type(screen.getByLabelText('Last Name', {exact: false}), 'Doe');
+        await user.type(screen.getByLabelText('Email', {exact: false}), 'jane@example.com');
+        await user.selectOptions(screen.getByLabelText('Community where you would like to apply', {exact: false}), 'Scholar\'s Rooftop');
+        await user.click(screen.getByText('Request Application'));
+        await waitFor(() => expect(mockedSendRentalApplicationRequest).toHaveBeenCalledTimes(1));
+        expect(mockedSendRentalApplicationRequest.mock.calls[0][0].preferredName).toBeFalsy();
+    });
+
+    it('passes the honeypot value on to the server when it is filled in', async () => {
+        mockedSendRentalApplicationRequest.mockResolvedValue({});
+        const user = userEvent.setup();
+        const {container} = render(<ApplicationSection propertyId="scholars-rooftop" contactClickHandler={() => {}}/>);
+        await user.type(screen.getByLabelText('First Name', {exact: false}), 'Kfhmp');
+        await user.type(screen.getByLabelText('Last Name', {exact: false}), 'Qehfv');
+        await user.type(container.querySelector('input[name="website"]')!, 'http://spam.example');
+        await user.type(screen.getByLabelText('Email', {exact: false}), 'bot@example.com');
+        await user.selectOptions(screen.getByLabelText('Community where you would like to apply', {exact: false}), 'Scholar\'s Rooftop');
+        await user.click(screen.getByText('Request Application'));
+
+        await waitFor(() => expect(mockedSendRentalApplicationRequest).toHaveBeenCalledTimes(1));
+        expect(mockedSendRentalApplicationRequest.mock.calls[0][0].preferredName).toBe('http://spam.example');
+    });
+
     it('resolves the property id from the selected community on an umbrella site page', async () => {
         mockedSendRentalApplicationRequest.mockResolvedValue({});
         const user = userEvent.setup();

@@ -119,6 +119,24 @@ describe('ContactSection', () => {
         expect(await screen.findByText('Message Sent!')).toBeInTheDocument();
     });
 
+    it('sends an empty honeypot for a person and what a bot typed into it otherwise', async () => {
+        sendContactMailMock.mockResolvedValue({});
+        const user = userEvent.setup();
+        const {unmount} = render(<ContactSection propertyId="scholars-rooftop"/>);
+        await fillRequiredFields(user);
+        await clickNext(user);
+        await user.click(screen.getByRole('button', {name: /SUBMIT/i}));
+        expect(sendContactMailMock.mock.calls[0][0].preferredName).toBe('');
+        unmount();
+
+        const second = render(<ContactSection propertyId="scholars-rooftop"/>);
+        await fillRequiredFields(user);
+        await user.type(second.container.querySelector('input[name="website"]')!, 'http://spam.example');
+        await clickNext(user);
+        await user.click(screen.getByRole('button', {name: /SUBMIT/i}));
+        expect(sendContactMailMock.mock.calls[1][0].preferredName).toBe('http://spam.example');
+    });
+
     it('shows the server-provided error message when submission fails', async () => {
         sendContactMailMock.mockRejectedValueOnce({response: {data: {message: 'Something went wrong'}}});
         const user = userEvent.setup();

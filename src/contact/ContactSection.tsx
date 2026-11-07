@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {HoneypotField, honeypotValue} from "../captcha/HoneypotField";
 import './assets/ContactSection.css';
 import {formatPhoneNumber} from "../utils/Utils";
 import {Badge, Button, Checkbox, Icon, Input, RangeSlider, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
@@ -49,6 +50,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                 question: form.question.value,
                 currentPage: window.location.href,
                 property: propertyId,
+                preferredName: honeypotValue(form),
             };
 
             if (!currentMessage.emailPreferred && !currentMessage.phonePreferred && !currentMessage.textPreferred) {
@@ -180,16 +182,7 @@ const Contact: React.FC<ContactSectionProps> = ({
                                     <Input name="lastName" icon="user" required/>
                                 </div>
                             </div>
-                            <div className="hp-form-item">
-                                <label htmlFor="preferredName">Preferred Name</label>
-                                <input
-                                    type="text"
-                                    id="preferredName"
-                                    name="preferredName"
-                                    autoComplete="off"
-                                    tabIndex={-1}
-                                />
-                            </div>
+                            <HoneypotField/>
                             <div className="form-item">
                                 <div className="item-left">
                                     <label htmlFor="email">Email*</label>

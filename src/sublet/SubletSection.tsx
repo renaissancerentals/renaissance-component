@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
+import {HoneypotField} from "../captcha/HoneypotField";
 import "./assets/SubletSection.css";
 import {Button, Checkbox, Icon, ImageInput, Input, Modal, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
 import {defaultSublet, Sublet} from "./data/Sublet";
@@ -179,16 +180,7 @@ export const SubletSection: React.FC<SubletSectionParam> = ({uniqueId}) => {
                                        required/>
                             </div>
 
-                            <div className="hp-form-item">
-                                <label htmlFor="preferredName">Preferred Name</label>
-                                <input
-                                    type="text"
-                                    id="preferredName"
-                                    name="preferredName"
-                                    autoComplete="off"
-                                    tabIndex={-1}
-                                />
-                            </div>
+                            <HoneypotField onChange={value => setSublet(current => ({...current, preferredName: value}))}/>
                             <div className="form-element">
                                 <Input label="Email" name="email" icon="mail" type="email"
                                        placeholder="Type your email"

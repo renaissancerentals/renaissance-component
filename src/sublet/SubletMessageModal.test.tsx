@@ -102,8 +102,23 @@ describe('SubletMessageModal', () => {
         expect(mockedSendMessage).toHaveBeenCalledWith('asset-42', {
             name: 'John Smith',
             email: 'john@example.com',
-            message: 'Interested in this sublet'
+            message: 'Interested in this sublet',
+            preferredName: ''
         });
+    });
+
+    it('sends what a bot typed into the hidden honeypot field so that the server can reject it', async () => {
+        const user = userEvent.setup();
+        mockedSendMessage.mockResolvedValue({} as any);
+        const {container} = render(<SubletMessageModal sublet={sublet({assetKey: 'asset-42'})} showModal={true}
+                                                         modalCloseHandler={() => {
+                                                         }}/>);
+        patchNamedFormAccess(container);
+        await user.type(container.querySelector('input[name="website"]')!, 'http://spam.example');
+
+        await fillAndSubmit(user);
+
+        expect(mockedSendMessage.mock.calls[0][1]).toMatchObject({preferredName: 'http://spam.example'});
     });
 
     it('shows a success message and disables the submit button after a successful submission', async () => {

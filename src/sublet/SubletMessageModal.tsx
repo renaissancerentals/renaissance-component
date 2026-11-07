@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {HoneypotField, honeypotValue} from "../captcha/HoneypotField";
 import {Button, Icon, Input, Modal, Spinner, Textarea} from "@contentmunch/contentmunch-ui";
 import "./assets/SubletMessageModal.css";
 import {Sublet} from "./data/Sublet";
@@ -24,7 +25,8 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
                 const subletMessage: SubletMessage = {
                     name: form.fullName.value,
                     email: form.email.value,
-                    message: form.message.value
+                    message: form.message.value,
+                    preferredName: honeypotValue(form)
                 };
                 sendMessage(sublet.assetKey, subletMessage).then(() => {
                     setSubmissionComplete(true);
@@ -53,16 +55,7 @@ export const SubletMessageModal: React.FC<SubletMessageModalProps> = ({sublet, s
                             <div className="form-element form-element--long">
                                 <Input label="Name" name="fullName" icon="user" required/>
                             </div>
-                            <div className="hp-form-item">
-                                <label htmlFor="preferredName">Preferred Name</label>
-                                <input
-                                    type="text"
-                                    id="preferredName"
-                                    name="preferredName"
-                                    autoComplete="off"
-                                    tabIndex={-1}
-                                />
-                            </div>
+                            <HoneypotField/>
                             <div className="form-element form-element--long">
                                 <Input label="Email" name="email" icon="mail" type="email" required/>
                             </div>

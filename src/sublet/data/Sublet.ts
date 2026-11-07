@@ -1,4 +1,6 @@
-export interface Sublet {
+import {CaptchaEnabledRequest} from "../../captcha/data/CaptchaEnabledRequest";
+
+export interface Sublet extends CaptchaEnabledRequest {
     assetKey: string;
     email: string;
     firstName: string;

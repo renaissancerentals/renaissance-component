@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {HoneypotField} from "../captcha/HoneypotField";
 import {
     Button, Input, Select, Spinner, Textarea,
     Step, StepContainer, StepLine, LargeRoundedBadge
@@ -136,16 +137,7 @@ export const ApplicationSection: React.FC<ApplicationSectionProps> = ({
                                    required/>
                         </div>
 
-                        <div className="hp-form-item">
-                            <label htmlFor="preferredName">Preferred Name</label>
-                            <input
-                                type="text"
-                                id="preferredName"
-                                name="preferredName"
-                                autoComplete="off"
-                                tabIndex={-1}
-                            />
-                        </div>
+                        <HoneypotField onChange={value => setRentalApplication(current => ({...current, preferredName: value}))}/>
                         <div className="form-element">
                             <Input label="Email" name="email" icon="mail" type="email"
                                    onChange={e => {
